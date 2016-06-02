@@ -1,0 +1,18 @@
+Joueur[] J = new Joueur[4];
+Remplir_Automate(J);
+Tantque (!finis(J))
+    pour i allant de 1 à 4
+        This.Jouer(J[i]);
+    fin pour
+    Affichage.Miseajour;
+fin Tantque
+_________________________________
+
+Jouer(Joueur J)
+{
+    pour tout personnage P
+        cond = G.Conditions(P);
+        Action A = P.next(cond);        //next aleatoire
+        G.Maj(G.Pos(P), A);
+    fin pour
+}
