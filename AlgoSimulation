@@ -16,3 +16,4 @@ Jouer(Joueur J)
         G.Maj(G.Pos(P), A);
     fin pour
 }
+_________________________________
