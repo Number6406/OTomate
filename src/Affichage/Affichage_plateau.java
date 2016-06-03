@@ -3,14 +3,13 @@ package Affichage;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
-
 import javax.swing.JPanel;
-
 import Otomate.Personnage;
 import Otomate.Grille;
 
 public class Affichage_plateau extends JPanel {
 	static final int TAILLECASE = 16;
+	private Grille gr;
 	
 	Color Color_int(int i){
 	switch(i){
@@ -39,16 +38,22 @@ public class Affichage_plateau extends JPanel {
 	}
 	}
 	
+	
+	
 	void Affiche_case(Graphics graph,int image,int x,int y){
 		System.out.println("case " + x + " "  + y + "avec image : " + image + "faites !");
 		graph.setColor(Color_int(image));
 		graph.fillRect(16*x+1,16*y+1, 16, 16);
 	}
 	
-	Affichage_plateau(){
+	Affichage_plateau(Grille g){
+		gr =g ;
 	}
 	
-	public void Charger(Graphics grap,Grille g){
+@Override
+public void paintComponent(Graphics g){
+	
+	super.paintComponents(g);
 	//int Nb = personnages.size();
 	int maxx=20*16;//=this.getWidth();
 	int maxy=20*16;//=this.getHeight();
@@ -59,24 +64,23 @@ public class Affichage_plateau extends JPanel {
 	maxx=maxx/TAILLECASE;
 	maxy=maxy/TAILLECASE;
 	
-	if(g.tailleX<maxx){
-		maxx=g.tailleX;
+	if(gr.tailleX<maxx){
+		maxx=gr.tailleX;
 	}
 	
-	if(g.tailleY<maxy){
-		maxy=g.tailleY;
+	if(gr.tailleY<maxy){
+		maxy=gr.tailleY;
 	}
 	
-	grap.setColor(Color.BLACK);
-	grap.fillRect(10, 10, 100, 100);
+	this.getGraphics().setColor(Color.BLACK);
+	this.getGraphics().fillRect(10, 10, 100, 100);
 	
 	System.out.println("coucou " + maxx + " " + maxy);	
 	for(j=0;j<maxy;j++){
 		for(i=0;i<maxx;i++){
-			Affiche_case(grap,g.g[i][j].element,i,j);
+			Affiche_case(g,gr.g[i][j].element,i,j);
 		}
 	}
-	super.paintComponent(grap);
 	
 	
 	

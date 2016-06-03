@@ -1,8 +1,7 @@
-﻿package Affichage;
+package Affichage;
 
 import Otomate.Grille;
 import Otomate.Jeu;
-import java.awt.BorderLayout;
 
 import java.awt.BorderLayout;
 
@@ -13,10 +12,9 @@ public class Affichage {
     }
     //Attibuts
     private static FenetreJeu jeu;
-
     private static Affichage_plateau plateau;
     
-    //MÃ©thodes    
+    //Méthodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
@@ -30,6 +28,9 @@ public class Affichage {
         
         jeu.charger(g);
 
+        
+        
+        
     }
     
 }
