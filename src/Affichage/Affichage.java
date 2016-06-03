@@ -1,4 +1,6 @@
-package Otomate;
+package Affichage;
+
+import Otomate.Jeu;
 
 public class Affichage {
     
