@@ -13,6 +13,12 @@ public class Affichage_plateau extends JPanel {
 	private Grille gr;
 	private List<Personnage> perso;
 	
+	void Affiche_perso(Graphics graph,int i,int x,int y){
+		graph.setColor(Color_int(11));
+		graph.fillOval(TAILLECASE*x, TAILLECASE*y, TAILLECASE, TAILLECASE);
+	}
+	
+	
 	Color Color_int(int i){
 	switch(i){
 	case 1:
@@ -35,6 +41,8 @@ public class Affichage_plateau extends JPanel {
 	return Color.magenta;
 	case 10:
 	return Color.ORANGE;
+	case 11:
+	return Color.PINK;
 	default:
 	return Color.white;
 	}
@@ -95,9 +103,10 @@ public void paintComponent(Graphics g){
 		}
 	}
 	
-	
-	
+	for(i=0;i<Nb;i++){
+		Affiche_perso(g,i,perso.get(i).position.abs,perso.get(i).position.ord);
 	}
 	
 	
+}
 }
