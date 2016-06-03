@@ -7,6 +7,7 @@ package Affichage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
@@ -66,14 +67,16 @@ public class FenetreJeu extends JFrame {
         b_pause = new JButton();
         b_fast = new JButton();
         tp_onglets = new JTabbedPane();
-        tab_history = new JTable();
-        tab_legende = new JTable();
+        tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0));
+        tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0));
         
         this.add(toolbar);
+        toolbar.setSize(MAXIMIZED_HORIZ, 20);
         
         this.add(pan_info);
         pan_info.setSize(XINFO, this.getHeight());
         pan_info.setLayout(new GridBagLayout());
+        GridBagConstraints infoConstraints = new GridBagConstraints();
         pan_info.setBackground(Color.red);
         
         this.add(pan_plateau);
@@ -81,14 +84,28 @@ public class FenetreJeu extends JFrame {
         pan_plateau.setBackground(Color.BLUE);
         pan_plateau.setLocation(XINFO, 0);
         
-        pan_info.add(label_perso);
+        // début de définition des contraintes
+        infoConstraints.gridx = 0;
+        infoConstraints.gridy = 0;
+        infoConstraints.gridheight = 1;
+        infoConstraints.gridwidth = 1;
+        infoConstraints.weightx = 1;
+        infoConstraints.weighty = 1;
+        
+        infoConstraints.fill = GridBagConstraints.BOTH;
+        pan_info.add(label_perso, infoConstraints);
         label_perso.setText("Personnages");
+        label_perso.setBackground(Color.GREEN);
         
-        pan_info.add(tab_perso);
+        infoConstraints.gridy = 2;
+        infoConstraints.gridheight = 9;
+        pan_info.add(tab_perso, infoConstraints);
+        ((DefaultTableModel) tab_perso.getModel()).addRow(new Object[]{"TEST", 18});
         
-        pan_info.add(pan_interraction);
-        pan_interraction.setLayout(new GridLayout(1, 3));
-        pan_interraction.setSize(MAXIMIZED_HORIZ, 30);
+        infoConstraints.gridy = 1;
+        infoConstraints.gridheight = 2;
+        pan_info.add(pan_interraction, infoConstraints);
+        pan_interraction.setLayout(new GridLayout());
         
         pan_interraction.add(b_start);
         b_start.setText("►");
@@ -98,6 +115,14 @@ public class FenetreJeu extends JFrame {
         
         pan_interraction.add(b_fast);
         b_fast.setText("»");
+        
+        infoConstraints.gridy = 6;
+        infoConstraints.gridheight = 18;
+        pan_info.add(tp_onglets, infoConstraints);
+        
+        tp_onglets.add(tab_history);
+        
+        tp_onglets.add(tab_legende);
         
         System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
     }
