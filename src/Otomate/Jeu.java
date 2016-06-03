@@ -1,5 +1,7 @@
 package Otomate;
 
+import java.util.List;
+
 public class Jeu {
     
     //Attributs
@@ -11,8 +13,9 @@ public class Jeu {
         
     }
     boolean finPartie() {
-        
+    	return false;   
     }
+    
     public static void main(String[] pArgs) {   // Dans l'UML --> Jeu():void --> Programme principal
         
     }

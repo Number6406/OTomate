@@ -3,16 +3,17 @@ package Otomate;
 public class Automate {
     
     //Attributs
-    Case[][] transitions;
-    Case[][] actions;
-    int taille;
+    protected int[][] transitions;
+    protected Case[][] actions;
+    protected int nbconditions;
     
-    //Méthodes
-    Automate(filepath) {
+    //Constructeur
+    public Automate(String filepath) {
         
     }
-    int transition(int etatCourant, int symbole) {  // renvoie le nouvel état + l'action #CommentOnFait --> nouveau type duet ?
-        
+    
+    public int transition(int etatCourant, int symbole) {  // renvoie le nouvel �tat + l'action #CommentOnFait --> nouveau type duet ?
+        return transitions[symbole][etatCourant];
     }
     
 }
