@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +22,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import Otomate.Grille;
 
 /**
  *
@@ -34,7 +37,7 @@ public class FenetreJeu extends JFrame {
     // Contenu de la frame
     JMenuBar toolbar;
     JPanel pan_info;
-    JPanel pan_plateau;
+    Affichage_plateau pan_plateau;
     JLabel label_perso;
     JTable tab_perso;
     JPanel pan_interraction;
@@ -55,10 +58,9 @@ public class FenetreJeu extends JFrame {
         this.setLayout(new BorderLayout());
     }
     
-    public void charger() {
+    public void charger(Grille g) {
         toolbar = new JMenuBar();
         pan_info = new JPanel();
-        pan_plateau = new JPanel();
         label_perso = new JLabel();
         tab_perso = new JTable(new DefaultTableModel(new Object[] {"Perso","PV"}, 0));
         pan_interraction = new JPanel();
@@ -76,9 +78,13 @@ public class FenetreJeu extends JFrame {
         pan_info.setLayout(new GridBagLayout());
         pan_info.setBackground(Color.red);
         
+        
+        pan_plateau = new Affichage_plateau();
         this.add(pan_plateau);
+        pan_plateau.Charger(this.getGraphics(), g);
+        
         pan_plateau.setSize(this.getWidth()-pan_info.getWidth(), this.getHeight());
-        pan_plateau.setBackground(Color.BLUE);
+       // pan_plateau.setBackground(Color.BLUE);
         pan_plateau.setLocation(XINFO, 0);
         
         pan_info.add(label_perso);
@@ -91,13 +97,13 @@ public class FenetreJeu extends JFrame {
         pan_interraction.setSize(MAXIMIZED_HORIZ, 30);
         
         pan_interraction.add(b_start);
-        b_start.setText("►");
+        b_start.setText("â–º");
         
         pan_interraction.add(b_pause);
-        b_pause.setText("■");
+        b_pause.setText("â– ");
         
         pan_interraction.add(b_fast);
-        b_fast.setText("»");
+        b_fast.setText("Â»");
         
         System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
     }
