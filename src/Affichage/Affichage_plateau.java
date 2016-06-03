@@ -8,8 +8,10 @@ import Otomate.Personnage;
 import Otomate.Grille;
 
 public class Affichage_plateau extends JPanel {
-	static final int TAILLECASE = 16;
+	private int TAILLECASE = 16;
+	
 	private Grille gr;
+	private List<Personnage> perso;
 	
 	Color Color_int(int i){
 	switch(i){
@@ -41,25 +43,25 @@ public class Affichage_plateau extends JPanel {
 	
 	
 	void Affiche_case(Graphics graph,int image,int x,int y){
-		System.out.println("case " + x + " "  + y + "avec image : " + image + "faites !");
+	//	System.out.println("case " + x + " "  + y + " avec image : " + image + " faites !");
 		graph.setColor(Color_int(image));
-		graph.fillRect(16*x+1,16*y+1, 16, 16);
+		graph.fillRect(TAILLECASE*x,TAILLECASE*y, TAILLECASE, TAILLECASE);
 	}
 	
-	Affichage_plateau(Grille g){
+	Affichage_plateau(Grille g,List<Personnage> perso){
 		gr =g ;
+		this.perso=perso;
 	}
 	
 @Override
 public void paintComponent(Graphics g){
-	
 	super.paintComponents(g);
-	//int Nb = personnages.size();
-	int maxx=20*16;//=this.getWidth();
-	int maxy=20*16;//=this.getHeight();
+	int Nb = perso.size();
+	int maxx=this.getWidth();
+	int maxy=this.getHeight();
 	int i,j;
-	
-	System.out.println("coucou " + maxx + " " + maxy);
+	TAILLECASE=16;
+	System.out.println("Width : " + maxx + " Height : " + maxy);
 	
 	maxx=maxx/TAILLECASE;
 	maxy=maxy/TAILLECASE;
@@ -72,8 +74,19 @@ public void paintComponent(Graphics g){
 		maxy=gr.tailleY;
 	}
 	
-	this.getGraphics().setColor(Color.BLACK);
-	this.getGraphics().fillRect(10, 10, 100, 100);
+	
+	if(maxx<(this.getWidth()/16) || maxy<(this.getHeight()/16)){
+		System.out.println("TAILLE Case : " + TAILLECASE + " Width : " + this.getWidth() + " maxx = " + maxx);
+		TAILLECASE=((this.getWidth())/maxx);
+		
+		if(TAILLECASE > (this.getHeight()/maxy)){
+		TAILLECASE=((this.getHeight())/maxy);
+		}
+	}
+	
+		System.out.println("TAILLE Case : " + TAILLECASE + " Height : " + this.getWidth() + " maxy = " + maxy);
+		
+		
 	
 	System.out.println("coucou " + maxx + " " + maxy);	
 	for(j=0;j<maxy;j++){

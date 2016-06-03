@@ -8,19 +8,17 @@ public class Grille {
     
     public Grille(){
     	int i,j;    
-    	this.tailleX=4;
-    	this.tailleY=4;
-    	g = new Case[4][4];
-    	for(i=0;i<4;i++){
-    		for(j=0;j<4;j++){
-    		    //System.out.println("COUCOU FDP");
+    	this.tailleX=16;
+    	this.tailleY=16;
+    	g = new Case[16][16];
+    	for(i=0;i<tailleX;i++){
+    		for(j=0;j<tailleY;j++){
     			g[i][j]=new Case();
     		}
     	}
     } 	
     
     public void set(int val,int i,int j){
-   // System.out.println("COUCOU FDP");
     g[i][j].setValeur(val);
     }
     

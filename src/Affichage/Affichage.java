@@ -2,8 +2,11 @@ package Affichage;
 
 import Otomate.Grille;
 import Otomate.Jeu;
+import Otomate.Personnage;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Affichage {
 	
@@ -13,20 +16,28 @@ public class Affichage {
     //Attibuts
     private static FenetreJeu jeu;
     private static Affichage_plateau plateau;
-    
+    private static List<Personnage> perso;
     //Méthodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
         Grille g=new Grille();
         int i,j;
-        for(i=0;i<4;i++){
-        	for(j=0;j<4;j++){
+        for(i=0;i<g.tailleX;i++){
+        	for(j=0;j<g.tailleY;j++){
         		g.set(random(0,9),i,j);
         	}
         }
         
-        jeu.charger(g);
+        perso = new ArrayList<Personnage>();
+        perso.add(new Personnage());
+        
+        perso.get(0).position.abs=1;
+        perso.get(0).position.ord=1;
+        
+        
+        
+        jeu.charger(g,perso);
 
         
         

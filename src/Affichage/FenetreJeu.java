@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import Otomate.Grille;
+import Otomate.Personnage;
 
 /**
  *
@@ -51,14 +53,14 @@ public class FenetreJeu extends JFrame {
     public FenetreJeu() {
         super();
         
-        this.setSize(800, 500);
+        this.setSize(1366,766);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
     }
     
-    public void charger(Grille g) {
+    public void charger(Grille g,List<Personnage> persoL) {
         toolbar = new JMenuBar();
         pan_info = new JPanel();
         label_perso = new JLabel();
@@ -76,7 +78,7 @@ public class FenetreJeu extends JFrame {
         this.add(pan_info);
         pan_info.setSize(XINFO, this.getHeight());
         pan_info.setLayout(new GridBagLayout());
-        pan_info.setBackground(Color.red);
+     //   pan_info.setBackground(Color.red);
         
         
         
@@ -84,11 +86,13 @@ public class FenetreJeu extends JFrame {
         
         
         
-        pan_plateau = new Affichage_plateau(g);
+        pan_plateau = new Affichage_plateau(g,persoL);
         this.add(pan_plateau);
         pan_plateau.setSize(this.getWidth()-pan_info.getWidth(), this.getHeight());
         // pan_plateau.setBackground(Color.BLUE);
         pan_plateau.setLocation(XINFO, 0);
+        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
+                
         
         
         
@@ -96,25 +100,24 @@ public class FenetreJeu extends JFrame {
         
         
         
-        
-        
+       
         pan_info.add(label_perso);
-        label_perso.setText("Personnages");
+        //label_perso.setText("Personnages");
         
         pan_info.add(tab_perso);
         
         pan_info.add(pan_interraction);
         pan_interraction.setLayout(new GridLayout(1, 3));
-        pan_interraction.setSize(MAXIMIZED_HORIZ, 30);
+       // pan_interraction.setSize(MAXIMIZED_HORIZ, 30);
         
         pan_interraction.add(b_start);
-        b_start.setText("►");
+       // b_start.setText("►");
         
         pan_interraction.add(b_pause);
-        b_pause.setText("■");
+        //b_pause.setText("■");
         
         pan_interraction.add(b_fast);
-        b_fast.setText("»");
+        //b_fast.setText("»");
         
         System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
     }
