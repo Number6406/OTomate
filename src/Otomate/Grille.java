@@ -1,16 +1,25 @@
 package Otomate;
 
-import java.util.List.*;
-
 public class Grille {
     
     //Attributs
-    private Case[][] g;
-    private List<Coordonnees> coinsAutomates;
+    public Case[][] g;
+    public int tailleX,tailleY;
     
-    //Méthodes
-    void Placements() {
-        
+    public Grille(){
+    	int i,j;    
+    	this.tailleX=16;
+    	this.tailleY=16;
+    	g = new Case[16][16];
+    	for(i=0;i<tailleX;i++){
+    		for(j=0;j<tailleY;j++){
+    			g[i][j]=new Case();
+    		}
+    	}
+    } 	
+    
+    public void set(int val,int i,int j){
+    g[i][j].setValeur(val);
     }
     
 }

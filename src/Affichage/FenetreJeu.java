@@ -11,7 +11,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.util.List;
 import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +24,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import Otomate.Grille;
+import Otomate.Personnage;
 
 /**
  *
@@ -35,7 +40,7 @@ public class FenetreJeu extends JFrame {
     // Contenu de la frame
     JMenuBar toolbar;
     JPanel pan_info;
-    JPanel pan_plateau;
+    Affichage_plateau pan_plateau;
     JLabel label_perso;
     JTable tab_perso;
     JPanel pan_interraction;
@@ -49,17 +54,16 @@ public class FenetreJeu extends JFrame {
     public FenetreJeu() {
         super();
         
-        this.setSize(800, 500);
+        this.setSize(1280,720);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
     }
     
-    public void charger() {
+    public void charger(Grille g,List<Personnage> persoL) {
         toolbar = new JMenuBar();
         pan_info = new JPanel();
-        pan_plateau = new JPanel();
         label_perso = new JLabel();
         tab_perso = new JTable(new DefaultTableModel(new Object[] {"Perso","PV"}, 0));
         pan_interraction = new JPanel();
@@ -79,11 +83,12 @@ public class FenetreJeu extends JFrame {
         GridBagConstraints infoConstraints = new GridBagConstraints();
         pan_info.setBackground(Color.red);
         
+        pan_plateau = new Affichage_plateau(g,persoL);
         this.add(pan_plateau);
         pan_plateau.setSize(this.getWidth()-pan_info.getWidth(), this.getHeight());
         pan_plateau.setBackground(Color.BLUE);
-        pan_plateau.setLocation(XINFO, 0);
-        
+        pan_plateau.setLocation(XINFO, 0);    
+
         // début de définition des contraintes
         infoConstraints.gridx = 0;
         infoConstraints.gridy = 0;
