@@ -1,14 +1,17 @@
 package Affichage;
 
 import Otomate.Jeu;
+import java.awt.BorderLayout;
 
 public class Affichage {
     
     //Attibuts
+    private static FenetreJeu jeu;
     
-    //Méthodes
-    void mise_a_jour(Jeu j) {
-        
+    //Méthodes    
+    public static void main(String[] args) {
+        jeu = new FenetreJeu();
+        jeu.charger();
     }
     
 }
