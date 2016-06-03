@@ -24,7 +24,7 @@ public class Affichage_plateau extends JPanel {
 	case 1:
 	return Color.BLACK;
 	case 2:
-	return Color.red;
+	return Color.lightGray;
 	case 3:
 	return Color.blue;
 	case 4:
@@ -64,12 +64,16 @@ public class Affichage_plateau extends JPanel {
 @Override
 public void paintComponent(Graphics g){
 	super.paintComponents(g);
+	if(this.getWidth()>1200){
+	System.out.println("NTM TRES FORT");
+	}
+	else{
 	int Nb = perso.size();
 	int maxx=this.getWidth();
 	int maxy=this.getHeight();
 	int i,j;
 	TAILLECASE=16;
-	System.out.println("Width : " + maxx + " Height : " + maxy);
+//	System.out.println("Version 1 : Width : " + this.getWidth() + " Height : " + this.getHeight());
 	
 	maxx=maxx/TAILLECASE;
 	maxy=maxy/TAILLECASE;
@@ -84,15 +88,16 @@ public void paintComponent(Graphics g){
 	
 	
 	if(maxx<(this.getWidth()/16) || maxy<(this.getHeight()/16)){
-		System.out.println("TAILLE Case : " + TAILLECASE + " Width : " + this.getWidth() + " maxx = " + maxx);
 		TAILLECASE=((this.getWidth())/maxx);
 		
 		if(TAILLECASE > (this.getHeight()/maxy)){
+//		System.out.println("je rendre là !");
 		TAILLECASE=((this.getHeight())/maxy);
 		}
 	}
 	
-		System.out.println("TAILLE Case : " + TAILLECASE + " Height : " + this.getWidth() + " maxy = " + maxy);
+		TAILLECASE--;
+//		System.out.println("Version 2 : Width : " + this.getWidth() + " Height : " + this.getHeight());
 		
 		
 	
@@ -107,6 +112,7 @@ public void paintComponent(Graphics g){
 		Affiche_perso(g,i,perso.get(i).position.abs,perso.get(i).position.ord);
 	}
 	
+	}
 	
 }
 }
