@@ -3,15 +3,13 @@ package Otomate;
 public class Actions {
     
     //Attributs
-    Case[][] listeActions;
+    protected Case[][] listeActions;
     
     //Méthodes
-    int action(int symbole, int status) {
-        
-    }
     
-    int resultat(Personnage p, int action) {
-        
+//Retourne l'action correspondant au symbole lu et à l'état du personnage
+    public int action(int symbole, int etat) {
+        return listeActions[symbole][etat].element;
     }
     
 }

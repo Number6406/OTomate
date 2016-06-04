@@ -19,7 +19,7 @@ public class Case {
         return element;
     }
     
-    public int setValeur(int valeur){
+    public void setValeur(int valeur){
         element = valeur;
     }
 }
