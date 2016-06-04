@@ -32,8 +32,8 @@ public class Affichage {
         perso = new ArrayList<Personnage>();
         perso.add(new Personnage());
         
-        perso.get(0).position.abs=1;
-        perso.get(0).position.ord=1;
+        perso.get(0).position.setX(1);
+        perso.get(0).position.setY(1);
         
         
         

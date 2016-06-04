@@ -9,6 +9,28 @@ public class Grille {
     private Case[][] g;
     private List<Coordonnees> coinsAutomates;
     private List<Integer> nbetats;
+    public int tailleX;
+    public int tailleY;
+    
+    public void set(int val, int x, int y){
+    	g[x][y].setValeur(val);
+    }
+    
+    public Case get(int x,int y){
+    	return g[x][y];
+    }
+    
+    public Grille(){
+    	g = new Case[16][16];
+    	tailleX=16;
+    	tailleY=16;
+    	int i,j;
+    	for(i=0;i<tailleX;i++){
+    		for(j=0;j<tailleY;j++){
+    			g[i][j] = new Case();
+    		}
+    	}
+    }
     
     //Méthodes
     

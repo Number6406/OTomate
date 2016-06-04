@@ -104,12 +104,12 @@ public void paintComponent(Graphics g){
 	System.out.println("coucou " + maxx + " " + maxy);	
 	for(j=0;j<maxy;j++){
 		for(i=0;i<maxx;i++){
-			Affiche_case(g,gr.g[i][j].element,i,j);
+			Affiche_case(g,gr.get(i,j).element,i,j);
 		}
 	}
 	
 	for(i=0;i<Nb;i++){
-		Affiche_perso(g,i,perso.get(i).position.abs,perso.get(i).position.ord);
+		Affiche_perso(g,i,perso.get(i).position.getX(),perso.get(i).position.getY());
 	}
 	
 	}

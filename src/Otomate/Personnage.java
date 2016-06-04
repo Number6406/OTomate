@@ -9,7 +9,7 @@ public class Personnage {
     protected int arme;
     protected int consommable;
     protected int etat;
-    protected Coordonnees position;
+    public Coordonnees position;
     protected Automate t;
     protected Automate a;
     
