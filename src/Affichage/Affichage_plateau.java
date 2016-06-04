@@ -64,10 +64,7 @@ public class Affichage_plateau extends JPanel {
 @Override
 public void paintComponent(Graphics g){
 	super.paintComponents(g);
-	if(this.getWidth()>1200){
-	System.out.println("NTM TRES FORT");
-	}
-	else{
+	
 	int Nb = perso.size();
 	int maxx=this.getWidth();
 	int maxy=this.getHeight();
@@ -114,5 +111,4 @@ public void paintComponent(Graphics g){
 	
 	}
 	
-}
 }
