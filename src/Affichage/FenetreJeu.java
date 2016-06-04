@@ -72,16 +72,31 @@ public class FenetreJeu extends JFrame {
         toolbar = new JMenuBar();
         pan_info = new JPanel();
         label_perso = new JLabel();
-        tab_perso = new JTable(new DefaultTableModel(new Object[] {"Perso","PV"}, 0));
+        tab_perso = new JTable(new DefaultTableModel(new Object[] {"Perso","PV"}, 0) {
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        });
+        tab_perso.getTableHeader().setReorderingAllowed(false);
         scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
         b_start = new JButton();
         b_pause = new JButton();
         b_fast = new JButton();
         tp_onglets = new JTabbedPane();
-        tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0));
+        tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0) {
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        });
+        tab_history.getTableHeader().setReorderingAllowed(false);
         scroll_history = new JScrollPane(tab_history);
-        tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0));
+        tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0) {
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        });
+        tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
         pan_plateau = new Affichage_plateau(g,persoL);
         scroll_plateau = new JScrollPane(pan_plateau);
@@ -137,12 +152,6 @@ public class FenetreJeu extends JFrame {
         pan_info.add(tp_onglets,infoConstraints);
         
         tp_onglets.add("Historique",scroll_history);
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
         ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
         ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
         ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
