@@ -1,5 +1,7 @@
 package Otomate;
 
+import java.util.List;
+
 public class Personnage {
     
     //Attributs
@@ -19,8 +21,8 @@ public class Personnage {
          * */
     }
     void setEtat(int symbole){
-        if(t[symbole][etat] != 0)
-            etat = t[symbole][etat];
+        if(t.transition(symbole,etat) != 0)
+            etat = t.transition(symbole,etat);
     }
     void jouer(Grille plateau, List<Joueur> joueurs) {
         
