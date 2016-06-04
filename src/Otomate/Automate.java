@@ -16,4 +16,8 @@ public class Automate {
         return transitions[symbole][etatCourant];
     }
     
+    public int nbConditions() {
+        return this.nbconditions;
+    }
+    
 }

@@ -36,4 +36,8 @@ public class Personnage {
     	etat=0;
     }
     
+    public Automate getAutotate() {
+        return this.t;
+    }
+    
 }
