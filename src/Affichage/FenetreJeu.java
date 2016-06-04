@@ -6,26 +6,18 @@
 package Affichage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.util.List;
-import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import Otomate.Grille;
 import Otomate.Personnage;
 import javax.swing.JScrollPane;
@@ -36,7 +28,11 @@ import javax.swing.JScrollPane;
  */
 public class FenetreJeu extends JFrame {
     
-    // Constantes
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// Constantes
     public static final int XINFO = 300;
     public static final int X=1260;
     public static final int Y=800;
@@ -73,7 +69,12 @@ public class FenetreJeu extends JFrame {
         pan_info = new JPanel();
         label_perso = new JLabel();
         tab_perso = new JTable(new DefaultTableModel(new Object[] {"Perso","PV"}, 0) {
-            public boolean isCellEditable(int row,int column){
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row,int column){
                 return false;
             }
         });
@@ -85,14 +86,24 @@ public class FenetreJeu extends JFrame {
         b_fast = new JButton();
         tp_onglets = new JTabbedPane();
         tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0) {
-            public boolean isCellEditable(int row,int column){
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row,int column){
                 return false;
             }
         });
         tab_history.getTableHeader().setReorderingAllowed(false);
         scroll_history = new JScrollPane(tab_history);
         tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0) {
-            public boolean isCellEditable(int row,int column){
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row,int column){
                 return false;
             }
         });

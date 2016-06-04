@@ -1,11 +1,11 @@
 package Affichage;
 
 import Otomate.Grille;
-import Otomate.Jeu;
+//import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.Personnage;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,13 +17,13 @@ public class Affichage {
     }
     //Attibuts
     private static FenetreJeu jeu;
-    private static Affichage_plateau plateau;
+    //private static Affichage_plateau plateau;
     private static List<Personnage> perso;
     //Méthodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
-        Grille g=new Grille();
+        Grille g=new Grille(16,16);
         int i,j;
         for(i=0;i<g.tailleX;i++){
         	for(j=0;j<g.tailleY;j++){

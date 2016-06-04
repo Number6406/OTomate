@@ -37,7 +37,7 @@ public class Jeu {
         }
     }
     public static void main(String[] pArgs) {
-        plateau = new Grille();
+        plateau = new Grille(16,16);
         joueurs = new LinkedList<Joueur>();
         File repertoire = new File("../automates/");                // "../automates/" --> répertoire des automates en .xml
         String[] fichiers = repertoire.list();                      // liste des noms de fichiers d'automates

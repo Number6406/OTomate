@@ -8,6 +8,11 @@ import Otomate.Personnage;
 import Otomate.Grille;
 
 public class Affichage_plateau extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int TAILLECASE = 16;
 	
 	private Grille gr;

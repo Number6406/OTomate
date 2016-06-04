@@ -10,7 +10,6 @@ public class Personnage {
     protected int consommable;
     protected int etat;
     public Coordonnees position;
-    protected Automate t;
     protected Automate a;
     
     //Méthodes
@@ -21,8 +20,8 @@ public class Personnage {
          * */
     }
     public void setEtat(int symbole){
-        if(t.transition(symbole,etat) != 0)
-            etat = t.transition(symbole,etat);
+        if(a.transition(symbole,etat) != 0)
+            etat = a.transition(symbole,etat);
     }
     void jouer(Grille plateau, List<Joueur> joueurs) {
         
@@ -41,7 +40,7 @@ public class Personnage {
     }
     
     public Automate getAutotate() {
-        return this.t;
+        return this.a;
     }
     
     public int getVie() {

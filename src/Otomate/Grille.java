@@ -20,10 +20,10 @@ public class Grille {
     	return g[x][y];
     }
     
-    public Grille(){
-    	g = new Case[16][16];
-    	tailleX=16;
-    	tailleY=16;
+    public Grille(int x,int y){
+    	g = new Case[x][y];
+    	tailleX=x;
+    	tailleY=y;
     	int i,j;
     	for(i=0;i<tailleX;i++){
     		for(j=0;j<tailleY;j++){
