@@ -28,6 +28,7 @@ import javax.swing.table.TableModel;
 
 import Otomate.Grille;
 import Otomate.Personnage;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -45,22 +46,24 @@ public class FenetreJeu extends JFrame {
     JPanel pan_info;
     Affichage_plateau pan_plateau;
     JLabel label_perso;
+    JScrollPane scroll_perso;
     JTable tab_perso;
     JPanel pan_interraction;
     JButton b_start;
     JButton b_pause;
     JButton b_fast;
     JTabbedPane tp_onglets;
+    JScrollPane scroll_history;
     JTable tab_history;
+    JScrollPane scroll_legende;
     JTable tab_legende;
     
     public FenetreJeu() {
         super();
-        
         this.setSize(X,Y);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setLayout(new BorderLayout());
     }
     
@@ -69,41 +72,29 @@ public class FenetreJeu extends JFrame {
         pan_info = new JPanel();
         label_perso = new JLabel();
         tab_perso = new JTable(new DefaultTableModel(new Object[] {"Perso","PV"}, 0));
+        scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
         b_start = new JButton();
         b_pause = new JButton();
         b_fast = new JButton();
         tp_onglets = new JTabbedPane();
         tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0));
+        scroll_history = new JScrollPane(tab_history);
         tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0));
-        
-        
-        this.add(toolbar);
-        toolbar.setLocation(0,0);
+        scroll_legende = new JScrollPane(tab_legende);
+        pan_plateau = new Affichage_plateau(g,persoL);
+
+        this.add(toolbar, BorderLayout.NORTH);
         toolbar.setSize(X, 20);
         
-        
-        
-        
-        this.add(pan_info);
-        pan_plateau = new Affichage_plateau(g,persoL);
-        this.add(pan_plateau);
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
-        
-        pan_plateau.setSize(this.getWidth()-XINFO, this.getHeight()-20);
-        pan_plateau.setLocation(XINFO,20);
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
-        
+        this.add(pan_info, BorderLayout.WEST);
         pan_info.setSize(XINFO, Y);
-        pan_info.setLocation(0,20);
         
+        this.add(pan_plateau, BorderLayout.CENTER);
+        pan_plateau.setSize(this.getWidth()-XINFO, this.getHeight()-20);
+
         pan_info.setLayout(new GridBagLayout());
-        GridBagConstraints infoConstraints = new GridBagConstraints();
-        pan_info.setBackground(Color.red);
-        
-        
-        pan_plateau.setBackground(Color.BLUE);   
-        	
+        GridBagConstraints infoConstraints = new GridBagConstraints();       	
        
         // début de définition des contraintes
         infoConstraints.gridx = 0;
@@ -111,67 +102,56 @@ public class FenetreJeu extends JFrame {
         infoConstraints.gridheight = 1;
         infoConstraints.gridwidth = 1;
         infoConstraints.weightx = 1;
-        infoConstraints.weighty = 0.1;
+        infoConstraints.weighty = 0;
         
         infoConstraints.fill = GridBagConstraints.BOTH;
-    //    label_perso.setLocation(0,0);
-    //    label_perso.setSize(XINFO,40);
         pan_info.add(label_perso,infoConstraints);
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
-
         label_perso.setText("Personnages");
-        label_perso.setBackground(Color.GREEN);
-        
-        infoConstraints.gridy = 2;
-        infoConstraints.gridheight = 9;
-      //  tab_perso.setLocation(0,40);
-      //  tab_perso.setSize(XINFO, Y/3 - 40);
-        pan_info.add(tab_perso,infoConstraints);
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
-        
-        ((DefaultTableModel) tab_perso.getModel()).addRow(new Object[]{"TEST", 18});
+        label_perso.setHorizontalAlignment(JLabel.CENTER);
         
         infoConstraints.gridy = 1;
-        infoConstraints.gridheight = 2;
+        infoConstraints.gridheight = 1;
+        infoConstraints.weighty = 0.2;
+        pan_info.add(scroll_perso,infoConstraints);
+        ((DefaultTableModel) tab_perso.getModel()).addRow(new Object[]{"TEST", 18});
         
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
-       
+        infoConstraints.gridy = 2;
+        infoConstraints.gridheight = 1;
+        infoConstraints.weighty = 0;
+        
         pan_info.add(pan_interraction,infoConstraints);
-     //   pan_interraction.setLocation(5,Y/3);
-     //   pan_interraction.setSize(XINFO,Y/4);
-        
         pan_interraction.setLayout(new GridLayout());
         
         pan_interraction.add(b_start);
         b_start.setText("►");
-        
         pan_interraction.add(b_pause);
         b_pause.setText("■");
-        
         pan_interraction.add(b_fast);
         b_fast.setText("»");
         
-        infoConstraints.gridy = 6;
-        infoConstraints.gridheight = 18;
-        
-       // tp_onglets.setSize(XINFO,Y/3);
-      //  tp_onglets.setLocation(XINFO,(2*Y)/3);
+        infoConstraints.gridy = 3;
+        infoConstraints.gridheight = 1;
+        infoConstraints.weighty = 0.5;
         pan_info.add(tp_onglets,infoConstraints);
         
-        tp_onglets.add(tab_history);
+        tp_onglets.add("Historique",scroll_history);
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
         
-        tp_onglets.add(tab_legende);
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
+        tp_onglets.add("Légende",scroll_legende);
         
-        
-        
-        pan_plateau.setSize(X-XINFO,Y-20);
-        pan_plateau.setLocation(XINFO, 20);
-        pan_plateau.setVisible(false);
-        pan_plateau.setVisible(true);
-//        System.out.println("tailleX : " + (X-XINFO) + " TailleY : " + (Y-20));
-        
-        System.out.println("panPlateau : " + pan_plateau.getWidth() + "/" + pan_plateau.getHeight() + " | " + pan_plateau.getX() + ":" + pan_plateau.getY());
     }
     
 }

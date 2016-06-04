@@ -91,7 +91,7 @@ public void paintComponent(Graphics g){
 		TAILLECASE=((this.getWidth())/maxx);
 		
 		if(TAILLECASE > (this.getHeight()/maxy)){
-//		System.out.println("je rendre là !");
+//		System.out.println("je rendre lï¿½ !");
 		TAILLECASE=((this.getHeight())/maxy);
 		}
 	}
