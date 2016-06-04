@@ -44,6 +44,7 @@ public class FenetreJeu extends JFrame {
     // Contenu de la frame
     JMenuBar toolbar;
     JPanel pan_info;
+    JScrollPane scroll_plateau;
     Affichage_plateau pan_plateau;
     JLabel label_perso;
     JScrollPane scroll_perso;
@@ -83,6 +84,7 @@ public class FenetreJeu extends JFrame {
         tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0));
         scroll_legende = new JScrollPane(tab_legende);
         pan_plateau = new Affichage_plateau(g,persoL);
+        scroll_plateau = new JScrollPane(pan_plateau);
 
         this.add(toolbar, BorderLayout.NORTH);
         toolbar.setSize(X, 20);
@@ -90,8 +92,8 @@ public class FenetreJeu extends JFrame {
         this.add(pan_info, BorderLayout.WEST);
         pan_info.setSize(XINFO, Y);
         
-        this.add(pan_plateau, BorderLayout.CENTER);
-        pan_plateau.setSize(this.getWidth()-XINFO, this.getHeight()-20);
+        this.add(scroll_plateau, BorderLayout.CENTER);
+        scroll_plateau.setSize(this.getWidth()-XINFO, this.getHeight()-20);
 
         pan_info.setLayout(new GridBagLayout());
         GridBagConstraints infoConstraints = new GridBagConstraints();       	
