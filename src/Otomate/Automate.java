@@ -13,7 +13,7 @@ public class Automate {
     }
     
     public int transition(int etatCourant, int symbole) {  // renvoie le nouvel état + l'action #CommentOnFait --> nouveau type duet ?
-        return trasition[symbole][etatCourant];
+        return transitions[symbole][etatCourant];
     }
     
 }
