@@ -23,7 +23,7 @@ public class Affichage {
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
-        Grille g=new Grille(16,16);
+        Grille g=new Grille(100,100);
         int i,j;
         for(i=0;i<g.tailleX;i++){
         	for(j=0;j<g.tailleY;j++){

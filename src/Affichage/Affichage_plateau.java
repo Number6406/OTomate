@@ -1,9 +1,12 @@
 package Affichage;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.List;
+
 import javax.swing.JPanel;
+
 import Otomate.Personnage;
 import Otomate.Grille;
 
@@ -77,6 +80,7 @@ public void paintComponent(Graphics g){
 	TAILLECASE=16;
 //	System.out.println("Version 1 : Width : " + this.getWidth() + " Height : " + this.getHeight());
 	
+	this.setPreferredSize( new Dimension(gr.tailleX*17,gr.tailleY*17));
 	maxx=maxx/TAILLECASE;
 	maxy=maxy/TAILLECASE;
 	
@@ -99,11 +103,11 @@ public void paintComponent(Graphics g){
 	}
 	
 		TAILLECASE--;
-//		System.out.println("Version 2 : Width : " + this.getWidth() + " Height : " + this.getHeight());
+		System.out.println("Width : " + this.getWidth() + " Height : " + this.getHeight());
 		
 		
 	
-	System.out.println("coucou " + maxx + " " + maxy);	
+	//System.out.println("coucou " + maxx + " " + maxy);	
 	for(j=0;j<maxy;j++){
 		for(i=0;i<maxx;i++){
 			Affiche_case(g,gr.get(i,j).element,i,j);

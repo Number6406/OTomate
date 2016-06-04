@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,8 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import Otomate.Grille;
 import Otomate.Personnage;
+
 import javax.swing.JScrollPane;
 
 /**
@@ -111,7 +114,7 @@ public class FenetreJeu extends JFrame {
         scroll_legende = new JScrollPane(tab_legende);
         pan_plateau = new Affichage_plateau(g,persoL);
         scroll_plateau = new JScrollPane(pan_plateau);
-
+        
         this.add(toolbar, BorderLayout.NORTH);
         toolbar.setSize(X, 20);
         
