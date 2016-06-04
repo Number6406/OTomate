@@ -34,11 +34,31 @@ public class Grille {
     
     //MÃ©thodes
     
-//Place les automates au bon endroit sur la map 
-//***/!\ /!\ /!\ /!\ /!\ VÃ©rifier que les automates ne se supperposent pas au cas oÃ¹ !!! A FAIRE
+//Place les automates au bon endroit sur la map
     public void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
+        List<Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnages().get(0).getAutotate().nbConditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
+        for(i=0; i<l; i++){
+        	for(j=0;j<J.get(i).getSizePersonnages();j++){
+        	list.add(J.get(i).getPersonnagesI(j));    	
+        	}
+        	
+            i += J.get(i).getSizePersonnages();
+        }
+        
+        for(i=0;i<l;i++){
+            for(j=i; j<l; j++){
+                if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).abs + list.get(i).position.getX() < coinsAutomates.get(j).abs){}
+                else if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).ord < coinsAutomates.get(j).ord && coinsAutomates.get(i).ord + nbCond < coinsAutomates.get(j).ord){}
+                else if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).ord > coinsAutomates.get(j).ord && coinsAutomates.get(i).ord > coinsAutomates.get(j).ord + nbCond){}
+                else if(coinsAutomates.get(i).abs > coinsAutomates.get(j).abs && coinsAutomates.get(i).abs > coinsAutomates.get(j).abs + list.get(j).position.getX()){}
+                else if(coinsAutomates.get(i).abs > coinsAutomates.get(j).abs && coinsAutomates.get(i).ord < coinsAutomates.get(j).ord && coinsAutomates.get(i).ord + nbCond < coinsAutomates.get(j).ord){}
+                else if(coinsAutomates.get(i).abs > coinsAutomates.get(j).abs && coinsAutomates.get(i).ord > coinsAutomates.get(j).ord && coinsAutomates.get(i).ord > coinsAutomates.get(j).ord + nbCond){}
+                else
+                    System.out.println("Erreur les automates se superposent on a un problème pour la énération de leur coordonnées !");
+            }
+        }
         int jdeb, kdeb;
         int x=0, s, y; 
         while(x<J.size())
