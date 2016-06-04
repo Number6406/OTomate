@@ -40,4 +40,8 @@ public class Personnage {
         return this.t;
     }
     
+    public int getVie() {
+        return this.vie;
+    }
+    
 }

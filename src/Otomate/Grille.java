@@ -1,5 +1,6 @@
 package Otomate;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Grille {
@@ -15,13 +16,13 @@ public class Grille {
 //***/!\ /!\ /!\ /!\ /!\ Vérifier que les automates ne se supperposent pas au cas où !!! A FAIRE
     public void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
-        int i,j,k,nbCond = J.get(0).personnages.get(0).transitions.nbConditions;    //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
+        int i,j,k,nbCond = J.get(0).getPersonnages().get(0).getAutotate().nbConditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
         int jdeb, kdeb;
         int x=0, s, y; 
         while(x<J.size())
         {
             y=0;
-            s = J.get(x).personnages.size();
+            s = J.get(x).getPersonnages().size();
             while(y<s)
             {
                 for(i=0;i<l;i++){               //nombre d'automates a placer
@@ -29,7 +30,7 @@ public class Grille {
                     for(j=jdeb; j<nbetats.get(i)+jdeb; i++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).ord;
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
-                            g[j][k] = J.get(x).personnages.get(y).a.actions[j-jdeb][k-kdeb];
+                            g[j][k] = J.get(x).getPersonnages().get(y).a.actions[j-jdeb][k-kdeb];
                         }
                     }
                 }
@@ -42,7 +43,7 @@ public class Grille {
 //Retourne la liste des conditions du personnage
 //On retrouve en element numéro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
     public List<Integer> Conditions(Personnage P){
-        List<Integer> l = new List<Integer>;
+        List<Integer> l = new LinkedList<>();
         l.add(g.Pos(P.position).getValeur());
         Personnage p2 = P;
         p2.ord = P.ord-1;
@@ -60,8 +61,10 @@ public class Grille {
 //Retourne une liste d'actions possibles pour P
     public List<Action> ActionsPossibles(Personnage P){
         List<Integer> l = Conditions(P);
-        List<Action> la = new List<Action>;
-        if()
+        List<Action> la = new LinkedList<>();
+        //if() ??
+        
+        return la;
     }
     
 //Retourne la case de coordonnées c
@@ -101,7 +104,7 @@ public class Grille {
         }
         
         else if(A.val == 6){                //Ramasser
-            if(G.Pos(P.position).getValeur() > 9){
+            if(g.Pos(P.position).getValeur() > 9){
                 if(P.arme == 0){                                //on rammasse l'arme et on vide la case
                     P.arme = g.Pos(P.position).getValeur();
                     g.Pos(P.position).setValeur(0);

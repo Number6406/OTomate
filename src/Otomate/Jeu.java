@@ -1,12 +1,8 @@
 package Otomate;
 
-<<<<<<< HEAD
-import java.io.file.*;
 import Affichage.*;
-import java.util.Random.*;
-=======
 import java.util.List;
->>>>>>> 0b9e0048bc262a0cb1c00bd73c1729728ae2ab52
+import java.util.Random;
 
 public class Jeu {
     
@@ -19,9 +15,9 @@ public class Jeu {
         
     }
     public boolean finPartie() {
-        int k;
+        int k = 0;
         for(int i=0; i<joueurs.size(); i++) {
-            if(joueur.get(i).get(0).vie > 0) {
+            if(joueurs.get(i).getPersonnages().get(k).getVie() > 0) {
                 k++;
             }
         }
