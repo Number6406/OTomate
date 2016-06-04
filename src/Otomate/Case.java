@@ -3,7 +3,7 @@ package Otomate;
 public class Case {
     
     // Attributs
-    private int element;
+    public int element;
     
     //Constructeurs
     public Case(){
@@ -19,6 +19,7 @@ public class Case {
         return element;
     }
     
+
     public void setValeur(int valeur){
         element = valeur;
     }

@@ -6,10 +6,13 @@ public class Actions {
     protected Case[][] listeActions;
     
     //Méthodes
-    
-//Retourne l'action correspondant au symbole lu et à l'état du personnage
+    //Retourne l'action correspondant au symbole lu et à l'état du personnage
     public int action(int symbole, int etat) {
         return listeActions[symbole][etat].element;
+    }
+    
+    int resultat(Personnage p, int action) {
+        return 0;
     }
     
 }

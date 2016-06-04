@@ -25,4 +25,13 @@ public class Personnage {
     void jouer(Grille plateau, List<Joueur> joueurs) {
         
     }
+    
+    public Personnage(){
+    	position = new Coordonnees();
+    	vie=0;
+    	arme=0;
+    	consommable=0;
+    	etat=0;
+    }
+    
 }

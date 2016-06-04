@@ -1,8 +1,12 @@
 package Otomate;
 
+<<<<<<< HEAD
 import java.io.file.*;
 import Affichage.*;
 import java.util.Random.*;
+=======
+import java.util.List;
+>>>>>>> 0b9e0048bc262a0cb1c00bd73c1729728ae2ab52
 
 public class Jeu {
     
