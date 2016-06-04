@@ -20,4 +20,12 @@ public class Joueur {
         return personnages;
     }
     
+    public Personnage getPersonnagesI(int i){
+    	return personnages.get(i);
+    }
+    
+    public int getSizePersonnages(){
+    	return personnages.size();
+    }
+    
 }

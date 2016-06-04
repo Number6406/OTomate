@@ -66,29 +66,43 @@ public class Grille {
 //On retrouve en element numéro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
     public List<Integer> Conditions(Personnage P){
         List<Integer> l = new LinkedList<>();
-        l.add(g.Pos(P.position).getValeur());
+        l.add(Pos(P.position).getValeur());
         Personnage p2 = P;
-        p2.ord = P.ord-1;
-        l.add(g.Pos(p2.position).getValeur());
-        p2.ord = P.ord+1;
-        l.add(g.Pos(p2.position).getValeur());
-        p2.ord = P.ord;
-        p2.abs = P.abs-1;
-        l.add(g.Pos(p2.position).getValeur());
-        p2.abs = P.abs+1;
-        l.add(g.Pos(p2.position).getValeur());
+        p2.position.ord=(P.position.ord-1);
+        l.add(Pos(p2.position).getValeur());
+        p2.position.ord = P.position.ord+1;
+        l.add(Pos(p2.position).getValeur());
+        p2.position.ord = P.position.ord;
+        p2.position.abs = P.position.abs-1;
+        l.add(Pos(p2.position).getValeur());
+        p2.position.abs = P.position.abs+1;
+        l.add(Pos(p2.position).getValeur());
         return l;
     }
     
 //Retourne une liste d'actions possibles pour P
-    public List<Action> ActionsPossibles(Personnage P){
+    public List<Case> ActionsPossibles(Personnage P){
         List<Integer> l = Conditions(P);
-        List<Action> la = new LinkedList<>();
-        //if() ??
+        List<Case> la = new LinkedList<Case>();
+        if(P.a.transitions[P.etat][l.get(0)] != 0){         //si transition possible depuis l'�tat o� le personnage se trouve avec la condition de la case valide
+            la.add((P.a.actions[P.etat][l.get(0)]));
+        }
+        if(P.a.transitions[P.etat][l.get(1)] != 0){         //regarde au nord
+            la.add(P.a.actions[P.etat][l.get(1)]);
+        }
+        if(P.a.transitions[P.etat][l.get(2)] != 0){         //Sud
+            la.add(P.a.actions[P.etat][l.get(2)]);
+        }
+        if(P.a.transitions[P.etat][l.get(3)] != 0){          //Ouest
+            la.add(P.a.actions[P.etat][l.get(3)]);
+        }
+        if(P.a.transitions[P.etat][l.get(4)] != 0){         //EST
+            la.add(P.a.actions[P.etat][l.get(4)]);
+        }
         
         return la;
     }
-    
+
 //Retourne la case de coordonnées c
     public Case Pos(Coordonnees c){
         return g[c.abs][c.ord];
@@ -126,181 +140,189 @@ public class Grille {
         }
         
         else if(A.val == 6){                //Ramasser
-            if(g.Pos(P.position).getValeur() > 9){
+            if(Pos(P.position).getValeur() > 9){
                 if(P.arme == 0){                                //on rammasse l'arme et on vide la case
-                    P.arme = g.Pos(P.position).getValeur();
-                    g.Pos(P.position).setValeur(0);
+                    P.arme = Pos(P.position).getValeur();
+                    Pos(P.position).setValeur(0);
                 }
-                else if(G.Pos(P.position).getValeur() > P.arme){        //on récupère l'arme qui est plus efficace et on remplace la case
+                else if(Pos(P.position).getValeur() > P.arme){        //on récupère l'arme qui est plus efficace et on remplace la case
                     int weapon = P.arme;
-                    P.arme = G.Pos(P.position).getValeur();
-                    G.Pos(P.position).setValeur(weapon);
+                    P.arme = Pos(P.position).getValeur();
+                    Pos(P.position).setValeur(weapon);
                 }
             }
-            else if(G.Pos(P.position).getValeur() == 9)
+            else if(Pos(P.position).getValeur() == 9)
                 if(P.consommable == 0){
                     P.consommable = 9;
-                    G.Pos(P.position).setValeur(0);
+                    Pos(P.position).setValeur(0);
                 }
             return;
         }
         
         else if(A.val == 7){ //Frapper au nord
-            Coordonnees v;
+            Coordonnees v = new Coordonnees();
             v.abs = P.position.abs;
             v.ord = P.position.ord-1;
-            Personnage E;
+            Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;
-            while(x<l){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).personnages.size();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
+               s = J.get(x).getPersonnages().size();     //nombre de personnages que possède le joueur x
                for(i=0; i<s; i++){
-                   if(J.get(x).personnages.get(i).position == v){
-                       E = J.get(x).personnages.get(i);
+                   if(J.get(x).getPersonnages().get(i).position == v){
+                       E = J.get(x).getPersonnagesI(i);
                        i = s;
-                       x = l;
+                       x = nb;
                    }
                }
                x++;
             }
+            
+            if(!E.equals(null)){
             if(P.arme == 0){
                 if(E.vie>1)
                     E.vie--;
                 else
-                    g.Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
                     E.vie -= 3;
                 else
-                    g.Pos(P.position).setValeur(0);
+                    Pos(P.position).setValeur(0);
             }
             else if(P.arme == 11){
                 if(E.vie>5)
                     E.vie -= 5;
                 else
-                    g.Pos(P.position).setValeur(0); 
+                    Pos(P.position).setValeur(0); 
             }
             return;
+        }
         }
         
         else if(A.val == 8){ //Frapper au sud
-            Coordonnees v;
+            Coordonnees v=new Coordonnees();
             v.abs = P.position.abs;
             v.ord = P.position.ord+1;
-            Personnage E;
+            Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;
-            while(x<l){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).personnages.size();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
+               s = J.get(x).getSizePersonnages();     //nombre de personnages que possède le joueur x
                for(i=0; i<s; i++){
-                   if(J.get(x).personnages.get(i).position == v){
-                       E = J.get(x).personnages.get(i);
+                   if(J.get(x).getPersonnagesI(i).position == v){
+                       E = J.get(x).getPersonnagesI(i);
                        i = s;
-                       x = l;
+                       x = nb;
                    }
                }
                x++;
             }
+            if(!E.equals(null)){
             if(P.arme == 0){
                 if(E.vie>1)
                     E.vie--;
                 else
-                    g.Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
                     E.vie -= 3;
                 else
-                    g.Pos(P.position).setValeur(0);
+                    Pos(P.position).setValeur(0);
             }
             else if(P.arme == 11){
                 if(E.vie>5)
                     E.vie -= 5;
                 else
-                    g.Pos(P.position).setValeur(0); 
+                    Pos(P.position).setValeur(0); 
             }
             return;
+        }
         }
         
         else if(A.val == 9){ //Frapper à l'est 
-            Coordonnees v;
+            Coordonnees v = new Coordonnees();
             v.abs = P.position.abs+1;
             v.ord = P.position.ord;
-            Personnage E;
+            Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;
-            while(x<l){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).personnages.size();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
+               s = J.get(x).getSizePersonnages();     //nombre de personnages que possède le joueur x
                for(i=0; i<s; i++){
-                   if(J.get(x).personnages.get(i).position == v){
-                       E = J.get(x).personnages.get(i);
+                   if(J.get(x).getPersonnagesI(i).position == v){
+                       E = J.get(x).getPersonnagesI(i);
                        i = s;
-                       x = l;
+                       x = nb;
                    }
                }
                x++;
             }
+            if(E!=null){
             if(P.arme == 0){
                 if(E.vie>1)
                     E.vie--;
                 else
-                    g.Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
                     E.vie -= 3;
                 else
-                    g.Pos(P.position).setValeur(0);
+                    Pos(P.position).setValeur(0);
             }
             else if(P.arme == 11){
                 if(E.vie>5)
                     E.vie -= 5;
                 else
-                    g.Pos(P.position).setValeur(0); 
+                    Pos(P.position).setValeur(0); 
             }
             return;
+        }
         }
         
         else if(A.val == 10){ //Frapper à l'ouest
-            Coordonnees v;
+            Coordonnees v = new Coordonnees();
             v.abs = P.position.abs-1;
             v.ord = P.position.ord;
-            Personnage E;
+            Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
-            int x=0, s, i;
-            while(x<l){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).personnages.size();     //nombre de personnages que possède le joueur x
+            int x=0, s, i;	
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
+               s = J.get(x).getSizePersonnages();     //nombre de personnages que possède le joueur x
                for(i=0; i<s; i++){
-                   if(J.get(x).personnages.get(i).position == v){
-                       E = J.get(x).personnages.get(i);
+                   if(J.get(x).getPersonnagesI(i).position == v){
+                       E = J.get(x).getPersonnagesI(i);
                        i = s;
-                       x = l;
+                       x = nb;
                    }
                }
                x++;
             }
+            if(E!=null){
             if(P.arme == 0){
                 if(E.vie>1)
                     E.vie--;
                 else
-                    g.Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
                     E.vie -= 3;
                 else
-                    g.Pos(P.position).setValeur(0);
+                    Pos(P.position).setValeur(0);
             }
             else if(P.arme == 11){
                 if(E.vie>5)
                     E.vie -= 5;
                 else
-                    g.Pos(P.position).setValeur(0); 
+                    Pos(P.position).setValeur(0); 
             }
             return;
         }
-        
+        }
         return;
     }
 }

@@ -20,12 +20,16 @@ public class Personnage {
          * Remplissage des attributs du personnage
          * */
     }
-    void setEtat(int symbole){
+    public void setEtat(int symbole){
         if(t.transition(symbole,etat) != 0)
             etat = t.transition(symbole,etat);
     }
     void jouer(Grille plateau, List<Joueur> joueurs) {
         
+    }
+    
+    public int getEtat(){
+        return etat;
     }
     
     public Personnage(){
