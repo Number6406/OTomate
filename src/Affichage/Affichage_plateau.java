@@ -82,7 +82,7 @@ public class Affichage_plateau extends JPanel {
             //System.out.println("case " + x + " "  + y + " avec image : " + image + " faites !");
             //graph.setColor(Color_int(image));
             //graph.fillRect(TAILLECASE*x,TAILLECASE*y, TAILLECASE, TAILLECASE);
-            if(image <= tiles.size() && image!=0){
+            if(image < tiles.size()){
                 graph.drawImage(tiles.get(image), x, y, TAILLECASE, TAILLECASE, null);
             }
             else{
