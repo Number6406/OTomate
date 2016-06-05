@@ -38,10 +38,10 @@ public class Affichage_plateau extends JPanel {
             BufferedImage img2 = null;
             try {
              //   img = ImageIO.read(new File("..\\Graphics.Tiles\\grass.jpg")); // Version Windows
-             	  img = ImageIO.read(new File(this.getClass().getResource("grass.jpg").getFile())); //Version Linux
+             	  img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/grass.jpg").getFile())); //Version Linux
              	  
                   tiles.add(img);
-                  img2 = ImageIO.read(new File(this.getClass().getResource("build.jpg").getFile()));
+                  img2 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/build.jpg").getFile()));
              //   	img2 = ImageIO.read(new File("..\\Graphics.Tiles\\build.jpg"));
                 tiles.add(img2);
             } catch (IOException e) {
