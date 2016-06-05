@@ -25,7 +25,7 @@ public class Affichage_plateau extends JPanel {
 	
 	private Grille gr;
 	private List<Personnage> perso;
-        private List<BufferedImage> tiles;
+    private List<BufferedImage> tiles;
 	
 	void Affiche_perso(Graphics graph,int i,int x,int y){
             graph.setColor(Color_int(11));
@@ -37,9 +37,11 @@ public class Affichage_plateau extends JPanel {
             BufferedImage img = null;
             BufferedImage img2 = null;
             try {
-                img = ImageIO.read(new File("../Graphics.Tiles/grass.jpg"));
+                img = ImageIO.read(new File("..\\Graphics\\Tiles\\grass.jpg")); // Version Windows
+             //	  img = ImageIO.read(new File("../Graphics/Tiles/grass.jpg")); //Version Linux
                 tiles.add(img);
-                img2 = ImageIO.read(new File("../Graphics.Tiles/build.jpg"));
+                  img2 = ImageIO.read(new File("../Graphics/Tiles/build.jpg"));
+             //   img2 = ImageIO.read(new File("..\\Graphics\\Tiles\\build.jpg"));
                 tiles.add(img2);
             } catch (IOException e) {
                 System.out.println(e);
@@ -86,11 +88,12 @@ public class Affichage_plateau extends JPanel {
 	Affichage_plateau(Grille g,List<Personnage> perso){
             gr =g ;
             this.perso=perso;
+            loadTiles();
+
 	}
 	
         @Override
         public void paintComponent(Graphics g){
-            loadTiles();
             super.paintComponents(g);
 
             int Nb = perso.size();
