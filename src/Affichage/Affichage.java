@@ -27,7 +27,7 @@ public class Affichage {
         int i,j;
         for(i=0;i<g.tailleX;i++){
         	for(j=0;j<g.tailleY;j++){
-        		g.set(random(1,9),i,j);
+        		g.set(random(1,8),i,j);
         	}
         }
         
