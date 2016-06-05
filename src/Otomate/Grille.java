@@ -2,13 +2,18 @@ package Otomate;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class Grille {
     
+    public static int random(int min, int max){
+    return (int) (min + (Math.random() * (max - min)));
+    }
+    
     //Attributs
-    private Case[][] g;
-    private List<Coordonnees> coinsAutomates;
-    private List<Integer> nbetats;
+    private static Case[][] g;
+    private static List<Coordonnees> coinsAutomates;
+    private static List<Integer> nbetats;
     public int tailleX;
     public int tailleY;
     
@@ -20,7 +25,11 @@ public class Grille {
     	return g[x][y];
     }
     
-    public Grille(int x,int y){
+    public Grille(){
+    	
+    }
+    
+    public Grille(int x, int y){
     	g = new Case[x][y];
     	tailleX=x;
     	tailleY=y;
@@ -32,10 +41,10 @@ public class Grille {
     	}
     }
     
-    //Méthodes
+    //Methodes
     
 //Place les automates au bon endroit sur la map
-    public void Placements(List<Joueur> J) {
+    public static void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
         List<Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnages().get(0).getAutotate().nbConditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
@@ -56,7 +65,7 @@ public class Grille {
                 else if(coinsAutomates.get(i).abs > coinsAutomates.get(j).abs && coinsAutomates.get(i).ord < coinsAutomates.get(j).ord && coinsAutomates.get(i).ord + nbCond < coinsAutomates.get(j).ord){}
                 else if(coinsAutomates.get(i).abs > coinsAutomates.get(j).abs && coinsAutomates.get(i).ord > coinsAutomates.get(j).ord && coinsAutomates.get(i).ord > coinsAutomates.get(j).ord + nbCond){}
                 else
-                    System.out.println("Erreur les automates se superposent on a un probl�me pour la �n�ration de leur coordonn�es !");
+                    System.out.println("Erreur les automates se superposent on a un probl�me pour la generation de leur coordonnees : erreur dans goAutomates !");
             }
         }
         int jdeb, kdeb;
@@ -80,6 +89,88 @@ public class Grille {
             }
             x++;
         }
+    }
+    
+    public static List<Coordonnees> goAutomates(List<Personnage> l, int dimh, int dimv){
+        List<Coordonnees> res = new LinkedList<Coordonnees>();
+        Random rnd = new Random();
+        Coordonnees newc = new Coordonnees();
+        int nb = l.size();
+        int i, j, k;
+        for(k=0; k<l.size(); k++){
+            i = rnd.nextInt(nb);       //donne le num�ro de la case "h"
+            newc.setX(i*dimh/nb);              //abscisse correspondant
+            j = rnd.nextInt(nb);
+            newc.setY(j*dimv/nb);
+            j=k;
+            for(i=0; i<k; i++){
+                if(newc.getX() == res.get(i).getX() && newc.getY() == res.get(i).getY()){
+                    i=k;
+                    k--;           // la c'est pour refaire le meme tour puisque la case est deja occupee
+                }
+            }
+            if(j == k){             //c'est pour verifier qu'on est pas tomb� dans le if et que c'est bon la case est dispo
+                res.add(newc);
+            }
+        }
+        return res;
+    }
+    
+    public static int max(List<Integer> l){
+        int fin = l.size();
+        int i, m=0;
+        for(i=0; i<fin; i++){
+            if(m<l.get(i))
+                m=l.get(i);
+        }
+        return m;
+    }
+    
+    public static void initialisergrille(List<Joueur> l) {
+        int i,j,k;
+        List<Personnage> list = new LinkedList<>();
+        for(i=0; i<l.size(); i++){
+        	for(j=0;j<l.get(i).getSizePersonnages();j++){
+        	list.add(l.get(i).getPersonnagesI(j));    	
+        	}
+        	
+            i += l.get(i).getSizePersonnages();
+        }
+        List<Integer> taille = new LinkedList<Integer>();
+        for(i=0; i<l.size(); i++){
+            for(j=0; j<l.get(i).getSizePersonnages(); j++){
+                for(k=0; k<j; k++){
+                    taille.add(l.get(i).getPersonnagesI(k).a.nbEtat());
+                }
+            }
+        }
+        int maxi = max(taille);
+        int dimh = maxi * list.size();
+        if(dimh<150)
+            dimh = 150;
+        maxi = l.get(0).getPersonnagesI(0).a.nbConditions();
+        int dimv = maxi * list.size();
+        if(dimv<150)
+            dimv = 150;
+            
+      //cr�ation de la map dimh/dimv avec minimum 150/150
+        
+        g = new Case[dimh][dimv];     
+        for(i=0;i<dimh;i++){
+        	for(j=0;j<dimv;j++){
+        		g[i][j]=new Case();
+        	}
+        }
+        
+        for(i=0; i<dimh; i++){
+            for(j=0; j<dimv; j++){
+                k = random(1, 10);        //car 10 actions possibles num�rot�es de 1 � 10 
+                g[i][j].element = k;
+            }
+        }
+        
+        coinsAutomates = goAutomates(list, dimh, dimv);
+        Placements(l);
     }
 
 //Retourne la liste des conditions du personnage
@@ -122,16 +213,27 @@ public class Grille {
         
         return la;
     }
+    
+    public Action takeOne(List<Case> l){
+        Action a = new Action();
+        if(l.isEmpty() == true)
+            return a;
+        else{
+            int i = random(0, l.size()-1);
+            a.val = l.get(i).element;
+            return a;
+        }
+    }
 
-//Retourne la case de coordonnées c
+//Retourne la case de coordonnees c
     public Case Pos(Coordonnees c){
         return g[c.abs][c.ord];
     }
     
-//On rappelle que l'"origine" du repère de la grille est en haut à gauche donc un déplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
+//On rappelle que l'"origine" du repere de la grille est en haut à gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
   
-//Met à jour la map = change le numéro si besoin est
+//Met a jour la map = change le numero si besoin est
     public void Maj(Personnage P, Action A, List<Joueur> J){
         if(A.val == 0)                  //indifférent
             return;
@@ -149,12 +251,12 @@ public class Grille {
             return;
         }
         
-        else if(A.val == 4){            //Partir à droite
+        else if(A.val == 4){            //Partir a droite
             P.position.abs++;
             return;
         }
         
-        else if(A.val == 5){            //Partir à gauche
+        else if(A.val == 5){            //Partir a gauche
             P.position.abs--;
             return;
         }
@@ -165,7 +267,7 @@ public class Grille {
                     P.arme = Pos(P.position).getValeur();
                     Pos(P.position).setValeur(0);
                 }
-                else if(Pos(P.position).getValeur() > P.arme){        //on récupère l'arme qui est plus efficace et on remplace la case
+                else if(Pos(P.position).getValeur() > P.arme){        //on recupere l'arme qui est plus efficace et on remplace la case
                     int weapon = P.arme;
                     P.arme = Pos(P.position).getValeur();
                     Pos(P.position).setValeur(weapon);
@@ -186,8 +288,8 @@ public class Grille {
             Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;
-            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).getPersonnages().size();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
+               s = J.get(x).getPersonnages().size();     //nombre de personnages que possede le joueur x
                for(i=0; i<s; i++){
                    if(J.get(x).getPersonnages().get(i).position == v){
                        E = J.get(x).getPersonnagesI(i);
@@ -203,7 +305,7 @@ public class Grille {
                 if(E.vie>1)
                     E.vie--;
                 else
-                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case a vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
@@ -228,8 +330,8 @@ public class Grille {
             Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;
-            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).getSizePersonnages();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
+               s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
                for(i=0; i<s; i++){
                    if(J.get(x).getPersonnagesI(i).position == v){
                        E = J.get(x).getPersonnagesI(i);
@@ -244,7 +346,7 @@ public class Grille {
                 if(E.vie>1)
                     E.vie--;
                 else
-                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case a vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
@@ -269,8 +371,8 @@ public class Grille {
             Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;
-            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).getSizePersonnages();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
+               s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
                for(i=0; i<s; i++){
                    if(J.get(x).getPersonnagesI(i).position == v){
                        E = J.get(x).getPersonnagesI(i);
@@ -285,7 +387,7 @@ public class Grille {
                 if(E.vie>1)
                     E.vie--;
                 else
-                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case a vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)
@@ -310,8 +412,8 @@ public class Grille {
             Personnage E=null;
             int nb = J.size();                      //nombre de joueurs
             int x=0, s, i;	
-            while(x<nb){                             //Tant que tous les joueurs n'ont pas été check
-               s = J.get(x).getSizePersonnages();     //nombre de personnages que possède le joueur x
+            while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
+               s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
                for(i=0; i<s; i++){
                    if(J.get(x).getPersonnagesI(i).position == v){
                        E = J.get(x).getPersonnagesI(i);
@@ -326,7 +428,7 @@ public class Grille {
                 if(E.vie>1)
                     E.vie--;
                 else
-                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case à vide
+                    Pos(P.position).setValeur(0);         //le personnage est mort on met la case a vide
             }
             else if(P.arme == 10){
                 if(E.vie>3)

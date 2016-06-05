@@ -23,8 +23,9 @@ public class Personnage {
         if(a.transition(symbole,etat) != 0)
             etat = a.transition(symbole,etat);
     }
+    
     void jouer(Grille plateau, List<Joueur> joueurs) {
-        
+        plateau.Maj(this, plateau.takeOne(plateau.ActionsPossibles(this)), joueurs); //  #GG #EffortMaximum #JaiSuéPourCa #TropFort #NoPainNoGain #MDR
     }
     
     public int getEtat(){

@@ -6,6 +6,7 @@ public class Automate {
     protected int[][] transitions;
     protected Case[][] actions;
     protected int nbconditions;
+    protected int nbetat;
     
     //Constructeur
     public Automate(String filepath) {
@@ -18,6 +19,10 @@ public class Automate {
     
     public int nbConditions() {
         return this.nbconditions;
+    }
+    
+    public int nbEtat(){
+        return nbetat;
     }
     
 }

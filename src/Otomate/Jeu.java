@@ -8,15 +8,16 @@ import java.util.Random;
 import java.io.File;
 
 public class Jeu {
+	
+    public static int random(int min, int max){
+    return (int) (min + (Math.random() * (max - min)));
+    }
     
     //Attributs
     public static Grille plateau;
     static List<Joueur> joueurs;
     
     //Méthodes
-    public static void initialisergrille() {
-        
-    }
     
     public static boolean finPartie() {
         int k = 0;
@@ -37,14 +38,14 @@ public class Jeu {
         }
     }
     public static void main(String[] pArgs) {
-        plateau = new Grille(16,16);
+        plateau = new Grille();
         joueurs = new LinkedList<Joueur>();
         File repertoire = new File("../automates/");                // "../automates/" --> répertoire des automates en .xml
         String[] fichiers = repertoire.list();                      // liste des noms de fichiers d'automates
         for(int i=0; i<fichiers.length; i++) {
             joueurs.add(new Joueur(fichiers[i]));                    // création de la liste des joueurs/personnages + automates associés
         }
-        initialisergrille();                                        // création de la grille
+        Grille.initialisergrille(joueurs);                                        // création de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
         
         Affichage.recharger(plateau,joueurs);
