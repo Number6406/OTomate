@@ -36,14 +36,32 @@ public class Affichage_plateau extends JPanel {
             tiles = new ArrayList<>();
             BufferedImage img = null;
             BufferedImage img2 = null;
+            BufferedImage img3 = null;
+            BufferedImage img4 = null;
+            BufferedImage img5 = null;
+            BufferedImage img6 = null;
+            BufferedImage img7 = null;
+            BufferedImage img8 = null;
+            BufferedImage img9 = null;
             try {
-             //   img = ImageIO.read(new File("..\\Graphics.Tiles\\grass.jpg")); // Version Windows
-             	  img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/grass.jpg").getFile())); //Version Linux
-             	  
-                  tiles.add(img);
-                  img2 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/build.jpg").getFile()));
-             //   	img2 = ImageIO.read(new File("..\\Graphics.Tiles\\build.jpg"));
+                img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/grass.jpg").getFile())); //Version Linux
+             	tiles.add(img);
+                img2 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/build.jpg").getFile()));
                 tiles.add(img2);
+                img3 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/tree.jpg").getFile()));
+                tiles.add(img3);
+                img4 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/bow.jpg").getFile()));
+                tiles.add(img4);
+                img5 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/desert.jpg").getFile()));
+                tiles.add(img5);
+                img6 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/water.jpg").getFile()));
+                tiles.add(img6);
+                img7 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/apple.jpg").getFile()));
+                tiles.add(img7);
+                img8 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/grass.jpg").getFile()));
+                tiles.add(img8);
+                img9 = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/grass.jpg").getFile()));
+                tiles.add(img9);
             } catch (IOException e) {
                 System.out.println(e);
             }
