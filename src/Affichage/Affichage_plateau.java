@@ -37,11 +37,12 @@ public class Affichage_plateau extends JPanel {
             BufferedImage img = null;
             BufferedImage img2 = null;
             try {
-                img = ImageIO.read(new File("..\\Graphics\\Tiles\\grass.jpg")); // Version Windows
-             //	  img = ImageIO.read(new File("../Graphics/Tiles/grass.jpg")); //Version Linux
-                tiles.add(img);
-                  img2 = ImageIO.read(new File("../Graphics/Tiles/build.jpg"));
-             //   img2 = ImageIO.read(new File("..\\Graphics\\Tiles\\build.jpg"));
+             //   img = ImageIO.read(new File("..\\Graphics.Tiles\\grass.jpg")); // Version Windows
+             	  img = ImageIO.read(new File(this.getClass().getResource("grass.jpg").getFile())); //Version Linux
+             	  
+                  tiles.add(img);
+                  img2 = ImageIO.read(new File(this.getClass().getResource("build.jpg").getFile()));
+             //   	img2 = ImageIO.read(new File("..\\Graphics.Tiles\\build.jpg"));
                 tiles.add(img2);
             } catch (IOException e) {
                 System.out.println(e);
@@ -79,10 +80,15 @@ public class Affichage_plateau extends JPanel {
 	
 	void Affiche_case(Graphics graph,int image,int x,int y){
             //System.out.println("case " + x + " "  + y + " avec image : " + image + " faites !");
-            graph.setColor(Color_int(image));
-            graph.fillRect(TAILLECASE*x,TAILLECASE*y, TAILLECASE, TAILLECASE);
-            if(tiles.size() >= image)
+            //graph.setColor(Color_int(image));
+            //graph.fillRect(TAILLECASE*x,TAILLECASE*y, TAILLECASE, TAILLECASE);
+            if(image <= tiles.size() && image!=0){
                 graph.drawImage(tiles.get(image), x, y, TAILLECASE, TAILLECASE, null);
+            }
+            else{
+            	graph.setColor(Color_int(image));
+            	graph.fillRect(TAILLECASE*x,TAILLECASE*y, TAILLECASE, TAILLECASE);
+            }
 	}
 	
 	Affichage_plateau(Grille g,List<Personnage> perso){
@@ -125,7 +131,7 @@ public class Affichage_plateau extends JPanel {
             }
 
             TAILLECASE--;
-            System.out.println("Width : " + this.getWidth() + " Height : " + this.getHeight());
+            System.out.println("Width : " + this.getWidth() + " Height : " + this.getHeight()+ " Size : " + tiles.size());
 
 
 
