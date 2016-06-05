@@ -89,7 +89,6 @@ public class Affichage_plateau extends JPanel {
             gr =g ;
             this.perso=perso;
             loadTiles();
-
 	}
 	
         @Override
