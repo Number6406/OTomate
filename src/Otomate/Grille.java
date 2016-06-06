@@ -65,7 +65,7 @@ public class Grille {
         }
         
         for(i=0;i<l;i++){
-            for(j=i; j<l; j++){
+            for(j=i+1; j<l; j++){
                 if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).abs + list.get(i).getPosition().getX() < coinsAutomates.get(j).abs){}
                 else if(coinsAutomates.get(i).getX() < coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() < coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() + nbCond < coinsAutomates.get(j).getY()){}
                 else if(coinsAutomates.get(i).getX() < coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() + nbCond){}
@@ -86,7 +86,7 @@ public class Grille {
             {
                 for(i=0;i<l;i++){               //nombre d'automates a placer
                     jdeb = coinsAutomates.get(i).getX();
-                    for(j=jdeb; j<nbetats.get(i)+jdeb; i++){      //parcours de lignes
+                    for(j=jdeb; j<nbetats.get(i)+jdeb; j++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).getY();
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
                             g[j][k] = J.get(x).getPersonnagesI(y).a.actions[j-jdeb][k-kdeb];

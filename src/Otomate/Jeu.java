@@ -30,7 +30,7 @@ public class Jeu {
     	joueurs.add(J2);
     	
     	plateau = new Grille();
-    	plateau.initialisergrille(joueurs);
+    	Grille.initialisergrille(joueurs);
     	
     	return 0;
     }
