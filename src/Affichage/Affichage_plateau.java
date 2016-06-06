@@ -39,6 +39,7 @@ public class Affichage_plateau extends JPanel {
             try {
                 for(int i=1; i<=7; i++) {
                     BufferedImage img;
+                    System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
                     img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/Zombie/"+i+".jpg").getFile())); //Version Linux
                     tiles.add(img);
                 }

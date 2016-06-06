@@ -15,10 +15,10 @@ import org.xml.sax.SAXException;
 import Otomate.Case;
 
 public class Parser{
-	Case[][] act;
-	int[][] auto;
-	int nb_etat;
-	
+	public Case[][] act;
+	public int[][] auto;
+	public int nb_etat;
+	public int etat_init;
 	public Parser(String file){
 		
 		try{
@@ -27,11 +27,13 @@ public class Parser{
         
         MyXMLHandler a=new MyXMLHandler();
         File f=new File(file);
+        System.out.println("filename : " + file);
         parser.parse(f, a);
         
         act=a.act;
         auto=a.auto;
         nb_etat=a.nb_etats;
+        etat_init=a.etat_init;
         
 	      } catch (DOMException e) {
 	          e.printStackTrace();

@@ -9,12 +9,14 @@ import Otomate.Case;
 
 public class MyXMLHandler extends DefaultHandler{
 	   
+	   boolean binit = false;
+	   boolean bNbEtat = false;
 	   boolean bEtat = false;
-	   boolean bLigne = false;
-	   boolean bCol = false;
+	   boolean bCond = false;
 	   boolean bTransition = false;
 	   boolean bAction = false;
 	  	
+	int etat_init;   
 	int[][] auto;
 	Case[][] act;
 	int nb_etats;
@@ -23,12 +25,15 @@ public class MyXMLHandler extends DefaultHandler{
 	public void startElement(String uri, 
 			   String localName, String qName, Attributes attributes)
 			      throws SAXException {
+				  if (qName.equalsIgnoreCase("etat_init")){
+					  binit=true;
+				  }
 			      if (qName.equalsIgnoreCase("nb_etats")) {
-			    	  bEtat=true;
-			      } else if (qName.equalsIgnoreCase("ligne")) {
-			         bLigne = true;
-			      } else if (qName.equalsIgnoreCase("colonne")) {
-			         bCol = true;
+			    	  bNbEtat=true;
+			      } else if (qName.equalsIgnoreCase("etat")) {
+			         bEtat = true;
+			      } else if (qName.equalsIgnoreCase("condition")) {
+			         bCond = true;
 			      } else if (qName.equalsIgnoreCase("transition")) {
 			         bTransition = true;
 			      }
@@ -52,7 +57,7 @@ public class MyXMLHandler extends DefaultHandler{
 			   public void characters(char ch[], 
 			      int start, int length) throws SAXException {
 				   String lecture = new String(ch,start,length);
-				   	if (bEtat){
+				   	if (bNbEtat){
 					  nb_etats= Integer.parseInt(lecture);
 					  auto= new int[nb_cond][nb_etats];
 					  act = new Case[nb_cond][nb_etats];
@@ -64,13 +69,16 @@ public class MyXMLHandler extends DefaultHandler{
 					  i=0;
 					  j=0;
 					  
-					  bEtat=false;
-				  } else if (bLigne) {
+					  bNbEtat=false;
+				   	}
+				   	else if (binit){
+				   	etat_init= Integer.parseInt(lecture);	
+				  } else if (bEtat) {
 					 j= Integer.parseInt(lecture);
-			         bLigne = false;
-			      } else if (bCol) {
+			         bEtat = false;
+			      } else if (bCond) {
 			         i= Integer.parseInt(lecture);
-			    	 bCol = false;
+			    	 bCond = false;
 			      } else if (bTransition) {
 			         auto[i][j]=Integer.parseInt(lecture);
 			    	 bTransition = false;

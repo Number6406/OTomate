@@ -37,6 +37,7 @@ public class Jeu {
             joueurs.remove(k);
         }
     }
+    
     public static void main(String[] pArgs) {
         plateau = new Grille();
         joueurs = new LinkedList<Joueur>();
