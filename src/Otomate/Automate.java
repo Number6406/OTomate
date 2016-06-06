@@ -38,8 +38,8 @@ public class Automate {
     	return nbconditions;
     }
 
-	public void setConditions(int i) {
-		this.nbconditions = i;		
+	public void setConditions(int nb) {
+		this.nbconditions = nb;		
 	}
 
 	public int nbetats() {

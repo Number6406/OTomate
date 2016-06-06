@@ -20,7 +20,7 @@ public abstract class $Personnage {
         inventaire = 0;
     }
     
-    //Méthodes
+    //Mï¿½thodes
     
     public void jouer(Grille plateau, List<Joueur> joueurs) {
         plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
@@ -35,7 +35,7 @@ public abstract class $Personnage {
             etat = a.transitions[symbole][etat];
     }
     
-    public Automate getAutotate(){
+    public Automate getAutomate(){
         return a;
     }
     
