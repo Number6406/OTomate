@@ -114,7 +114,7 @@ public class FenetreJeu extends JFrame {
         });
         tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
-        pan_plateau = new Affichage_plateau(g,perso);
+        pan_plateau = new Affichage_plateau(g,persoL);
         scroll_plateau = new JScrollPane(pan_plateau);
         
         this.add(toolbar, BorderLayout.NORTH);

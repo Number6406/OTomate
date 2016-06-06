@@ -102,7 +102,7 @@ public class Affichage_plateau extends JPanel {
 	
 	Affichage_plateau(Grille g,List<$Personnage> perso){
             gr =g ;
-            this.perso=perso2;
+            this.perso=perso;
             loadTiles();
 	}
 	
