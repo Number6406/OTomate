@@ -9,17 +9,25 @@ public abstract class $Personnage {
     protected int etat;
     protected Coordonnees position;
     protected Automate a;
-    protected int nbetats;
     protected int inventaire;
     
-    //Mï¿½thodes
+    //Constructeur
+    protected $Personnage(String file)
+    {
+    	a = new Automate(file);
+    	position = new Coordonnees(1,1);
+        vie = 10;
+        inventaire = 0;
+    }
+    
+    //Méthodes
     
     public void jouer(Grille plateau, List<Joueur> joueurs) {
         plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
     }
     
     public int nbEtat(){
-        return nbetats;
+        return a.nbetats();
     }
     
     void setEtat(int symbole){
