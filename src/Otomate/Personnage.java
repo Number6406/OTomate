@@ -25,7 +25,7 @@ public class Personnage {
     }
     
     void jouer(Grille plateau, List<Joueur> joueurs) {
-        plateau.Maj(this, plateau.takeOne(plateau.ActionsPossibles(this)), joueurs); //  #GG #EffortMaximum #JaiSuéPourCa #TropFort #NoPainNoGain #MDR
+//        plateau.Maj(this, plateau.takeOne(plateau.ActionsPossibles(this)), joueurs); //  #GG #EffortMaximum #JaiSuéPourCa #TropFort #NoPainNoGain #MDR
     }
     
     public int getEtat(){

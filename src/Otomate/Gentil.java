@@ -4,7 +4,11 @@ import Parser.Parser;
 
 public class Gentil extends $Personnage{
     
-    public Gentil(String file){
+	public Gentil(){
+		
+	}
+
+	public Gentil(String file){
         a.nbconditions = 12;
         vie = 10;
         int arme = 0;

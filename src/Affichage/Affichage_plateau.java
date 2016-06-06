@@ -7,13 +7,16 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import Otomate.$Personnage;
 import Otomate.Personnage;
 import Otomate.Grille;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -26,7 +29,7 @@ public class Affichage_plateau extends JPanel {
 	private int TAILLECASE = 16;
 	
 	private Grille gr;
-	private List<Personnage> perso;
+	private List<$Personnage> perso;
         private List<BufferedImage> tiles;
         Image chara;
 	
@@ -98,9 +101,9 @@ public class Affichage_plateau extends JPanel {
             }
 	}
 	
-	Affichage_plateau(Grille g,List<Personnage> perso){
+	Affichage_plateau(Grille g,List<$Personnage> perso2){
             gr =g ;
-            this.perso=perso;
+            this.perso=perso2;
             loadTiles();
 	}
 	
@@ -150,7 +153,7 @@ public class Affichage_plateau extends JPanel {
             }
 
             for(i=0;i<Nb;i++){
-                Affiche_perso(g,i,perso.get(i).position.getX(),perso.get(i).position.getY());
+                Affiche_perso(g,i,perso.get(i).getPosition().getX(),perso.get(i).getPosition().getY());
             }
 
             }

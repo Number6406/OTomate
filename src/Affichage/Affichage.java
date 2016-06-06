@@ -1,9 +1,12 @@
 package Affichage;
 
+import Otomate.Gentil;
 import Otomate.Grille;
 //import Otomate.Jeu;
 import Otomate.Joueur;
+import Otomate.$Personnage;
 import Otomate.Personnage;
+
 
 //import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class Affichage {
     //Attibuts
     private static FenetreJeu jeu;
     //private static Affichage_plateau plateau;
-    private static List<Personnage> perso;
+    private static List<$Personnage> perso;
     //Méthodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
@@ -31,18 +34,18 @@ public class Affichage {
         	}
         }
         
-        perso = new ArrayList<Personnage>();
-        perso.add(new Personnage());
+        perso = new ArrayList<$Personnage>();
+        perso.add(new Gentil());
         
-        perso.get(0).position.setX(1);
-        perso.get(0).position.setY(1);
+        perso.get(0).getPosition().setX(1);
+        perso.get(0).getPosition().setY(1);
         
         
         
         jeu.charger(g,perso);
     } 
    public static void recharger(Grille g,List<Joueur> l){
-	   LinkedList<Personnage> lp = new LinkedList<Personnage>();
+	   LinkedList<$Personnage> lp = new LinkedList<>();
 	   int i,j,max=l.size(),max2;
 	   
 	   for(i=0;i<max;i++){

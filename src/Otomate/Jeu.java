@@ -40,13 +40,13 @@ public class Jeu {
     public static List<Joueur> addJoueurs(String[] fichiers) {
         List<Joueur> joueurs = new LinkedList<Joueur>();
         Random rnd = new Random();
-        int k = rnd.nextInt(fichiers.size);
-        for(int i=0; i<fichiers.size; i++) {
-            joueurs.add(new Joueur(fichiers[i]), i==k);
+        int k = rnd.nextInt(fichiers.length);
+        for(int i=0; i<fichiers.length; i++) {
+            joueurs.add(new Joueur(fichiers[i],i==k));
         }
         return joueurs;
     }
-    public static void main(String[] pArgs) {
+    public static void main(String[] pArgs) throws InterruptedException {
         plateau = new Grille();
         File repertoire = new File("../automates/");                // "../automates/" --> répertoire des automates en .xml
         String[] fichiers = repertoire.list();                      // liste des noms de fichiers d'automates

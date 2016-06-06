@@ -26,10 +26,10 @@ public class Case {
     
     //fonctions de vérification d'obstruation
     public boolean estChemin(){
-        return ( ( element >= Terre.getValeur() && element <= Sable.getValeur() ) || element == Arc.getValeur() || element == Sabre.getValeur() );
+        return ( ( element >= Contenus.Terre.getValeur() && element <= Contenus.Sable.getValeur() ) || element == Contenus.Arc.getValeur() || element == Contenus.Sabre.getValeur() );
     }
     
     public boolean estRamassable(){
-        return ( ( element >= Pomme.getValeur() && element <= Gateau.getValeur() ) || ( element == Arc.getValeur() ) || ( element == Sabre.getValeur() ) );
+        return ( ( element >= Contenus.Pomme.getValeur() && element <= Contenus.Gateau.getValeur() ) || ( element == Contenus.Arc.getValeur() ) || ( element == Contenus.Sabre.getValeur() ) );
     }
 }

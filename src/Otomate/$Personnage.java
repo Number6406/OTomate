@@ -7,7 +7,7 @@ public abstract class $Personnage {
     //Attributs
     protected int vie;
     protected int etat;
-    protected Coordonnees position;
+    private Coordonnees position;
     protected Automate a;
     protected int nbetats;
     protected int inventaire;
@@ -15,7 +15,7 @@ public abstract class $Personnage {
     //Méthodes
     
     public void jouer(Grille plateau, List<Joueur> joueurs) {
-        plateau.Maj(this, takeOne(ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
+        plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
     }
     
     public int nbEtat(){
