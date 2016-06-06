@@ -89,7 +89,7 @@ public class Grille {
                     for(j=jdeb; j<nbetats.get(i)+jdeb; j++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).getY();
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
-                            g[j][k] = J.get(x).getPersonnagesI(y).a.actions[j-jdeb][k-kdeb];
+                            g[j][k] = J.get(x).getPersonnagesI(y).a.getActions(k-kdeb, j-jdeb);
                         }
                     }
                 }
