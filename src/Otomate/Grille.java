@@ -55,7 +55,7 @@ public class Grille {
     public static void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
         List<$Personnage> list = new LinkedList<>();
-        int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutotate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
+        int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutomate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
         for(i=0; i<l; i++){
         	for(j=0;j<J.get(i).getSizePersonnages();j++){
         	    list.add(J.get(i).getPersonnagesI(j));    	

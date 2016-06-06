@@ -203,8 +203,8 @@ let rec ecrireListe(liste:tradautomate)(writefile:out_channel):int =
     0
   |(x,y,z,t)::s->
       fprintf writefile "\t<case>\n";
-      fprintf writefile "\t\t<ligne>%d</ligne>\n" x;
-      fprintf writefile "\t\t<colonne>%d</colonne>\n" y;
+      fprintf writefile "\t\t<etat>%d</etat>\n" x;
+      fprintf writefile "\t\t<condition>%d</condition>\n" y;
       fprintf writefile "\t\t<transition>%d</transition>\n" z;
       fprintf writefile "\t\t<action>%d</action>\n" t;
       fprintf writefile "\t</case>\n";
@@ -212,12 +212,14 @@ let rec ecrireListe(liste:tradautomate)(writefile:out_channel):int =
       1
 ;;
 
-let toXML(liste:tradautomate) =
+let toXML(liste:tradautomate)(etat_init:int) =
   let writefile = open_out "AutomateenXML.xml" in
     fprintf writefile "<automate>\n";
     fprintf writefile "\t<nb_etats>%d</nb_etats>\n" (nbetatsauto liste);
+    fprintf writefile "\t<etat_init>%d</etat_init>\n" etat_init;
     ecrireListe liste writefile;
     fprintf writefile "</automate>\n";
     close_out writefile ;;
   
-toXML tradtamere;;
+toXML tradtamere 1;;
+
