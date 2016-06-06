@@ -7,7 +7,7 @@ public abstract class $Personnage {
     //Attributs
     protected int vie;
     protected int etat;
-    private Coordonnees position;
+    protected Coordonnees position;
     protected Automate a;
     protected int nbetats;
     protected int inventaire;
