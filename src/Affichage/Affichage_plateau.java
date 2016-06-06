@@ -9,11 +9,13 @@ import javax.swing.JPanel;
 
 import Otomate.Personnage;
 import Otomate.Grille;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Affichage_plateau extends JPanel {
 	/**
@@ -26,11 +28,11 @@ public class Affichage_plateau extends JPanel {
 	private Grille gr;
 	private List<Personnage> perso;
         private List<BufferedImage> tiles;
-        BufferedImage chara;
+        Image chara;
 	
 	void Affiche_perso(Graphics graph,int i,int x,int y){
             graph.setColor(Color_int(11));
-            graph.drawImage(chara, x*TAILLECASE, y*TAILLECASE, TAILLECASE, TAILLECASE, null);
+            graph.drawImage(chara, x*TAILLECASE, y*TAILLECASE, TAILLECASE, TAILLECASE, this);
             //graph.fillOval(TAILLECASE*x, TAILLECASE*y, TAILLECASE, TAILLECASE);
 	}
         
@@ -49,8 +51,8 @@ public class Affichage_plateau extends JPanel {
             
             //test perso
             try {
-                chara = ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
-            } catch (IOException e) {};
+                chara = new ImageIcon(this.getClass().getResource("../Graphics/Chara/1.gif")).getImage();
+            } catch (Exception e) {};
             
         }
 	

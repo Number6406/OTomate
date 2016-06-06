@@ -68,6 +68,7 @@ public class FenetreJeu extends JFrame {
     }
     
     public void charger(Grille g,List<Personnage> persoL) {
+        // Chargement des différents éléments des fenêtres
         toolbar = new JMenuBar();
         pan_info = new JPanel();
         label_perso = new JLabel();
