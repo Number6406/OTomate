@@ -2,6 +2,7 @@ package Otomate;
 
 import Affichage.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +19,21 @@ public class Jeu {
     static List<Joueur> joueurs;
     
     //Méthodes
+    
+    public static int initPartie(){
+    	System.out.println("Partie avec deux joueurs.");
+    	System.out.println("On récupère les deux automates des joueurs :");
+    	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
+    	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
+    	joueurs = new ArrayList<Joueur>();
+    	joueurs.add(J1);
+    	joueurs.add(J2);
+    	
+    	plateau = new Grille();
+    	plateau.initialisergrille(joueurs);
+    	
+    	return 0;
+    }
     
     public static boolean finPartie() {
         int k = 0;
@@ -37,6 +53,7 @@ public class Jeu {
             joueurs.remove(k);
         }
     }
+    
     public static List<Joueur> addJoueurs(String[] fichiers) {
         List<Joueur> joueurs = new LinkedList<Joueur>();
         Random rnd = new Random();
@@ -46,12 +63,13 @@ public class Jeu {
         }
         return joueurs;
     }
+    
     public static void main(String[] pArgs) throws InterruptedException {
         plateau = new Grille();
         File repertoire = new File("../automates/");                // "../automates/" --> répertoire des automates en .xml
         String[] fichiers = repertoire.list();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
-        Grille.initialisergrille(joueurs);                                        // création de la grille
+        plateau.initialisergrille(joueurs);                                        // création de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
         
         Affichage.recharger(plateau,joueurs);

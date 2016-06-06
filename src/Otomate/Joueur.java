@@ -2,7 +2,11 @@ package Otomate;
 
 import java.util.List;
 
-
+/**
+ * 
+ * Pour l'instant un joueur a UN SEUL Personnage
+ *
+ */
 public class Joueur {
     String name;
     //Attributs
