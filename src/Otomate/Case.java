@@ -24,7 +24,7 @@ public class Case {
         element = valeur;
     }
     
-    //fonctions de vérification d'obstruation
+    //fonctions de vï¿½rification d'obstruation
     public boolean estChemin(){
         return ( ( element >= Contenus.Terre.getValeur() && element <= Contenus.Sable.getValeur() ) || element == Contenus.Arc.getValeur() || element == Contenus.Sabre.getValeur() );
     }

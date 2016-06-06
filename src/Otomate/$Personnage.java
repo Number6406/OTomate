@@ -12,7 +12,7 @@ public abstract class $Personnage {
     protected int nbetats;
     protected int inventaire;
     
-    //Méthodes
+    //Mï¿½thodes
     
     public void jouer(Grille plateau, List<Joueur> joueurs) {
         plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
@@ -47,7 +47,7 @@ public abstract class $Personnage {
         return inventaire;
     }
     /**
-     * Renvoie l'ancien contenu de l'inventaire du personnage en le remplacant par l'objet donné.
+     * Renvoie l'ancien contenu de l'inventaire du personnage en le remplacant par l'objet donnï¿½.
      */
     public int ramasser(int objet){
         int contenu = this.inventaire;
@@ -56,7 +56,7 @@ public abstract class $Personnage {
     }
     
     /**
-     * Fonctions de déplacement sur la map
+     * Fonctions de dï¿½placement sur la map
      */
     public void deplacementDroite(){
         this.getPosition().incrX();

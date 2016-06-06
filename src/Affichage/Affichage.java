@@ -5,7 +5,7 @@ import Otomate.Grille;
 //import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.$Personnage;
-import Otomate.Personnage;
+import Otomate.Gentil;
 
 
 //import java.awt.BorderLayout;
@@ -34,25 +34,24 @@ public class Affichage {
         	}
         }
         
-        perso = new ArrayList<$Personnage>();
-        perso.add(new Gentil());
+        perso = new ArrayList<>();
+        perso.add(new Gentil("../Parser/AutomateenXML.xml"));
         
         perso.get(0).getPosition().setX(1);
         perso.get(0).getPosition().setY(1);
         
         
-        
         jeu.charger(g,perso);
     } 
    public static void recharger(Grille g,List<Joueur> l){
-	   LinkedList<$Personnage> lp = new LinkedList<>();
+	   List<$Personnage> lp = new LinkedList<>();
 	   int i,j,max=l.size(),max2;
 	   
 	   for(i=0;i<max;i++){
-		   max2=l.get(i).getSizePersonnages();
-		   		for(j=0;j<max2;j++){
-		   			lp.add(l.get(i).getPersonnagesI(j));
-		   		}
+                max2=l.get(i).getSizePersonnages();
+                for(j=0;j<max2;j++){
+                    lp.add(l.get(i).getPersonnagesI(j));
+                }
 	   }
 	   jeu.charger(g,lp);
 	   

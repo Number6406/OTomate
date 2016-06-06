@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
-import Otomate.Personnage;
+import Otomate.$Personnage;
 
 import javax.swing.JScrollPane;
 
@@ -68,7 +68,7 @@ public class FenetreJeu extends JFrame {
         this.setLayout(new BorderLayout());
     }
     
-    public void charger(Grille g,List<$Personnage> perso) {
+    public void charger(Grille g,List<$Personnage> persoL) {
         // Chargement des différents éléments des fenêtres
         toolbar = new JMenuBar();
         pan_info = new JPanel();
