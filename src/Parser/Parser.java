@@ -27,7 +27,7 @@ public class Parser{
         
         MyXMLHandler a=new MyXMLHandler();
         File f=new File(this.getClass().getResource("AutomateenXML.xml").getFile());
-        System.out.println("filename : " + file);
+        //System.out.println("filename : " + file);
         parser.parse(f, a);
         
         act=a.act;

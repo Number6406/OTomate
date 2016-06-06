@@ -49,7 +49,7 @@ public class MyXMLHandler extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("Case")) {
-			         System.out.println("End Element :" + qName + " " + i +" "+ j);
+			         //System.out.println("End Element :" + qName + " " + i +" "+ j);
 			      }
 			   }
 

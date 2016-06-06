@@ -134,7 +134,7 @@ public class Grille {
         return m;
     }
     
-    public void initialisergrille(List<Joueur> l) {
+    public static void initialisergrille(List<Joueur> l) {
         int i,j,k;
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){

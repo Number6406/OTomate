@@ -1,5 +1,6 @@
 package Otomate;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ public class Joueur {
     
     //Méthodes
     public Joueur(String xml, boolean mechant) {
+    	personnages = new LinkedList<>();
         if(mechant) {
             personnages.add(new Mechant(xml));
         } else {

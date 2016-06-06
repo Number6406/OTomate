@@ -56,8 +56,7 @@ public class Jeu {
     
     public static List<Joueur> addJoueurs(String[] fichiers) {
         List<Joueur> joueurs = new LinkedList<Joueur>();
-        Random rnd = new Random();
-        int k = rnd.nextInt(fichiers.length);
+        int k = random(1,fichiers.length);
         for(int i=0; i<fichiers.length; i++) {
             joueurs.add(new Joueur(fichiers[i],i==k));
         }
@@ -66,12 +65,14 @@ public class Jeu {
     
     public static void main(String[] pArgs) throws InterruptedException {
         plateau = new Grille();
-        File repertoire = new File("../automates/");                // "../automates/" --> répertoire des automates en .xml
+        File repertoire = new File("../automate/");                // "../automates/" --> répertoire des automates en .xml
         String[] fichiers = repertoire.list();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
-        plateau.initialisergrille(joueurs);                                        // création de la grille
-       // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
         
+        System.out.println("coucou" + fichiers.length);
+        Grille.initialisergrille(joueurs);                                        // création de la grille
+       // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
+        System.out.println("coucou");
         Affichage.recharger(plateau,joueurs);
         
         while(!finPartie()) {
