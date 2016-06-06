@@ -40,8 +40,8 @@ public class Jeu {
     public static List<Joueur> addJoueurs(String[] fichiers) {
         List<Joueur> joueurs = new LinkedList<Joueur>();
         Random rnd = new Random();
-        int k = rnd.nextInt(fichiers.size);
-        for(int i=0; i<fichiers.size; i++) {
+        int k = rnd.nextInt(fichiers.length);
+        for(int i=0; i<fichiers.length; i++) {
             joueurs.add(new Joueur(fichiers[i]), i==k);
         }
         return joueurs;

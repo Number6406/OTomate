@@ -4,8 +4,6 @@ import Parser.Parser;
 
 public class Mechant extends $Personnage{
     
-    protected int inventaire;
-    
     public Mechant(String file){
         a.nbconditions = 12;
         vie = 10;
