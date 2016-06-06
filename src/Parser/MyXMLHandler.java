@@ -20,7 +20,7 @@ public class MyXMLHandler extends DefaultHandler{
 	int[][] auto;
 	Case[][] act;
 	int nb_etats;
-	static final int nb_cond=10;
+	static final int nb_cond=12;
 	int i,j;
 	public void startElement(String uri, 
 			   String localName, String qName, Attributes attributes)
@@ -48,8 +48,8 @@ public class MyXMLHandler extends DefaultHandler{
 			   @Override
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
-			      if (qName.equalsIgnoreCase("automate")) {
-			         System.out.println("End Element :" + qName);
+			      if (qName.equalsIgnoreCase("Case")) {
+			         System.out.println("End Element :" + qName + " " + i +" "+ j);
 			      }
 			   }
 
@@ -59,10 +59,10 @@ public class MyXMLHandler extends DefaultHandler{
 				   String lecture = new String(ch,start,length);
 				   	if (bNbEtat){
 					  nb_etats= Integer.parseInt(lecture);
-					  auto= new int[nb_cond][nb_etats];
-					  act = new Case[nb_cond][nb_etats];
+					  auto= new int[nb_cond][nb_etats+1];
+					  act = new Case[nb_cond][nb_etats+1];
 					  for(i=0;i<nb_cond;i++){
-						  for(j=0;j<nb_etats;j++){
+						  for(j=0;j<nb_etats+1;j++){
 							  act[i][j]=new Case();
 						  }
 					  }
@@ -72,7 +72,8 @@ public class MyXMLHandler extends DefaultHandler{
 					  bNbEtat=false;
 				   	}
 				   	else if (binit){
-				   	etat_init= Integer.parseInt(lecture);	
+				   	etat_init= Integer.parseInt(lecture);
+				   	binit=false;
 				  } else if (bEtat) {
 					 j= Integer.parseInt(lecture);
 			         bEtat = false;
