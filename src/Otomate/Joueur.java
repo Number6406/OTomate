@@ -20,11 +20,11 @@ public class Joueur {
         return name;
     }
     
-    public List<Personnage> getPersonnages() {
+    public List<$Personnage> getPersonnages() {
         return personnages;
     }
     
-    public Personnage getPersonnagesI(int i){
+    public $Personnage getPersonnagesI(int i){
     	return personnages.get(i);
     }
     

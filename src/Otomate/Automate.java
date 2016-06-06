@@ -21,4 +21,8 @@ public class Automate {
     
     }
     
+    public int nbconditions(){
+    	return nbconditions;
+    }
+    
 }

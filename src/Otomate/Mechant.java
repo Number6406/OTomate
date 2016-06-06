@@ -1,5 +1,7 @@
 package Otomate;
 
+import Parser.Parser;
+
 public class Mechant extends $Personnage{
     
     protected int inventaire;
