@@ -25,6 +25,10 @@ public class Automate {
         return transitions[symbole][etatCourant];
     }
     
+    public Case getActions(int etatCourant, int symbole){
+    	return actions[symbole][etatCourant];
+    }
+    
     public int action(int etatCourant, int symbole){
         return actions[symbole][etatCourant].element;
     
