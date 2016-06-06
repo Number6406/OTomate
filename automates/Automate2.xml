@@ -1,5 +1,5 @@
 <automate>
-	<nb_etats>12</nb_etats>
+	<nb_etats>5</nb_etats>
 	<etat_init>1</etat_init>
 	<case>
 		<etat>1</etat>
@@ -27,158 +27,171 @@
 	</case>
 	<case>
 		<etat>1</etat>
-		<condition>9</condition>
-		<transition>6</transition>
-		<action>1</action>
+		<condition>5</condition>
+		<transition>7</transition>
+		<action>2</action>
 	</case>
 	<case>
-		<etat>2</etat>
+		<etat>1</etat>
+		<condition>6</condition>
+		<transition>8</transition>
+		<action>3</action>
+	</case>
+	<case>
+		<etat>1</etat>
+		<condition>7</condition>
+		<transition>9</transition>
+		<action>4</action>
+	</case>
+	<case>
+		<etat>1</etat>
+		<condition>8</condition>
+		<transition>10</transition>
+		<action>5</action>
+	</case>
+	<case>
+		<etat>1</etat>
 		<condition>1</condition>
 		<transition>2</transition>
 		<action>2</action>
 	</case>
 	<case>
-		<etat>2</etat>
+		<etat>1</etat>
 		<condition>2</condition>
 		<transition>3</transition>
-		<action>2</action>
+		<action>3</action>
 	</case>
 	<case>
-		<etat>2</etat>
+		<etat>1</etat>
 		<condition>3</condition>
 		<transition>4</transition>
-		<action>2</action>
+		<action>4</action>
 	</case>
 	<case>
-		<etat>2</etat>
+		<etat>1</etat>
 		<condition>4</condition>
 		<transition>5</transition>
-		<action>2</action>
-	</case>
-	<case>
-		<etat>2</etat>
-		<condition>5</condition>
-		<transition>7</transition>
 		<action>5</action>
 	</case>
 	<case>
 		<etat>2</etat>
-		<condition>6</condition>
-		<transition>8</transition>
-		<action>6</action>
+		<condition>1</condition>
+		<transition>2</transition>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>2</etat>
-		<condition>7</condition>
-		<transition>9</transition>
-		<action>7</action>
+		<condition>2</condition>
+		<transition>3</transition>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>2</etat>
-		<condition>8</condition>
-		<transition>10</transition>
-		<action>8</action>
+		<condition>3</condition>
+		<transition>4</transition>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>2</etat>
-		<condition>11</condition>
-		<transition>6</transition>
-		<action>3</action>
-	</case>
-	<case>
-		<etat>3</etat>
-		<condition>5</condition>
-		<transition>7</transition>
-		<action>9</action>
-	</case>
-	<case>
-		<etat>3</etat>
-		<condition>6</condition>
-		<transition>8</transition>
-		<action>10</action>
-	</case>
-	<case>
-		<etat>3</etat>
-		<condition>7</condition>
-		<transition>9</transition>
-		<action>11</action>
-	</case>
-	<case>
-		<etat>3</etat>
-		<condition>8</condition>
-		<transition>10</transition>
-		<action>12</action>
+		<condition>4</condition>
+		<transition>5</transition>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>3</etat>
 		<condition>1</condition>
 		<transition>2</transition>
-		<action>3</action>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>3</etat>
 		<condition>2</condition>
 		<transition>3</transition>
-		<action>3</action>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>3</etat>
 		<condition>3</condition>
 		<transition>4</transition>
-		<action>3</action>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>3</etat>
 		<condition>4</condition>
 		<transition>5</transition>
-		<action>3</action>
+		<action>1</action>
+	</case>
+	<case>
+		<etat>4</etat>
+		<condition>1</condition>
+		<transition>2</transition>
+		<action>1</action>
+	</case>
+	<case>
+		<etat>4</etat>
+		<condition>2</condition>
+		<transition>3</transition>
+		<action>1</action>
+	</case>
+	<case>
+		<etat>4</etat>
+		<condition>3</condition>
+		<transition>4</transition>
+		<action>1</action>
+	</case>
+	<case>
+		<etat>4</etat>
+		<condition>4</condition>
+		<transition>5</transition>
+		<action>1</action>
 	</case>
 	<case>
 		<etat>5</etat>
 		<condition>1</condition>
 		<transition>2</transition>
-		<action>2</action>
+		<action>1</action>
 	</case>
 	<case>
-		<etat>6</etat>
+		<etat>5</etat>
 		<condition>2</condition>
 		<transition>3</transition>
-		<action>2</action>
+		<action>1</action>
 	</case>
 	<case>
-		<etat>7</etat>
+		<etat>5</etat>
 		<condition>3</condition>
 		<transition>4</transition>
+		<action>1</action>
+	</case>
+	<case>
+		<etat>5</etat>
+		<condition>4</condition>
+		<transition>5</transition>
+		<action>1</action>
+	</case>
+	<case>
+		<etat>2</etat>
+		<condition>5</condition>
+		<transition>7</transition>
 		<action>2</action>
 	</case>
 	<case>
-		<etat>8</etat>
-		<condition>4</condition>
-		<transition>5</transition>
-		<action>2</action>
-	</case>
-	<case>
-		<etat>9</etat>
-		<condition>1</condition>
-		<transition>2</transition>
+		<etat>3</etat>
+		<condition>6</condition>
+		<transition>8</transition>
 		<action>3</action>
 	</case>
 	<case>
-		<etat>10</etat>
-		<condition>2</condition>
-		<transition>3</transition>
-		<action>3</action>
+		<etat>4</etat>
+		<condition>7</condition>
+		<transition>9</transition>
+		<action>4</action>
 	</case>
 	<case>
-		<etat>11</etat>
-		<condition>3</condition>
-		<transition>4</transition>
-		<action>3</action>
-	</case>
-	<case>
-		<etat>12</etat>
-		<condition>4</condition>
-		<transition>5</transition>
-		<action>3</action>
+		<etat>5</etat>
+		<condition>8</condition>
+		<transition>10</transition>
+		<action>5</action>
 	</case>
 </automate>
+

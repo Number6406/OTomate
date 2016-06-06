@@ -1,7 +1,0 @@
-open Printf
-let () =
-    let writefile = open_out "AutomateenXML.xml" in
-    fprintf fichier "<automate>\n\t";
-    fprintf fichier "<nb_etats>%s</nb_etats>\n";
-    fprintf fichier "</automate>\n";
-    close_out ;;
