@@ -6,11 +6,15 @@ import java.util.List;
 public class Joueur {
     String name;
     //Attributs
-    private List<Personnage> personnages;
+    private List<$Personnage> personnages;
     
     //Méthodes
-    public Joueur(String xml) {
-        personnages.add(new Personnage(xml));
+    public Joueur(String xml, boolean mechant) {
+        if(mechant) {
+            personnages.add(new Mechant(xml));
+        } else {
+            personnages.add(new Gentil(xml));
+        }
     }
     public String getName() {
         return name;

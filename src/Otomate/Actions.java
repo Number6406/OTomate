@@ -1,18 +1,62 @@
 package Otomate;
 
-public class Actions {
+public enum Actions {
     
-    //Attributs
-    protected Case[][] listeActions;
+    //Objets directement construits
+    Rien ("Ne fais rien", 1),
+    AvancerN ("Avance au Nord", 2),
+    AvancerS ("Avance au Sud", 3),
+    AvancerE ("Avance à l'Est", 4),
+    AvancerO ("Avance à l'Ouest", 5),
+    Ramasser ("Ramasse un objet sur sa case", 6),
+    FrapperN ("Frappe au Nord", 7),
+    FrapperS ("Frappe au Sud", 8),
+    FrapperE ("Frappe à l'Est", 9),
+    FrapperO ("Frappe à l'Ouest", 10),;
     
-    //MÃ©thodes
-    //Retourne l'action correspondant au symbole lu et Ã  l'Ã©tat du personnage
-    public int action(int symbole, int etat) {
-        return listeActions[symbole][etat].element;
+    private int value;
+    private String name = "";
+    
+    //Constructeur
+    Actions(int value, String name){
+        this.value = value;
+        this.name = name;
     }
     
-    int resultat(Personnage p, int action) {
-        return 0;
+    
+    
+    public int getValeur(){
+        return value;    
+    }
+    
+    public String toString(){
+        return name;
+    }
+    
+    public static Actions fromint(int x){
+        switch(x) {
+        case 1:
+            return Rien;
+        case 2:
+            return AvancerN;
+        case 3:
+            return AvancerS;
+        case 4:
+            return AvancerE;
+        case 5:
+            return AvancerO;
+        case 6:
+            return Ramasser;
+        case 7:
+            return FrapperN;
+        case 8:
+            return FrapperS;
+        case 9:
+            return FrapperE;
+        case 10:
+            return FrapperO;
+        }
+        return null;
     }
     
 }

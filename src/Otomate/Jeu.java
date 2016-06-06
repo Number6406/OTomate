@@ -37,27 +37,34 @@ public class Jeu {
             joueurs.remove(k);
         }
     }
-    
+    public static List<Joueur> addJoueurs(String[] fichiers) {
+        List<Joueur> joueurs = new LinkedList<Joueur>();
+        Random rnd = new Random();
+        int k = rnd.nextInt(fichiers.size);
+        for(int i=0; i<fichiers.size; i++) {
+            joueurs.add(new Joueur(fichiers[i]), i==k);
+        }
+        return joueurs;
+    }
     public static void main(String[] pArgs) {
         plateau = new Grille();
-        joueurs = new LinkedList<Joueur>();
         File repertoire = new File("../automates/");                // "../automates/" --> répertoire des automates en .xml
         String[] fichiers = repertoire.list();                      // liste des noms de fichiers d'automates
-        for(int i=0; i<fichiers.length; i++) {
-            joueurs.add(new Joueur(fichiers[i]));                    // création de la liste des joueurs/personnages + automates associés
-        }
+        joueurs = addJoueurs(fichiers);
         Grille.initialisergrille(joueurs);                                        // création de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
         
         Affichage.recharger(plateau,joueurs);
         
-        while(!finPartie()) {                                       // *-*-* BOUCLE PRINCIPALE [start] *-*-*
-            melange();                                              // mélange des joueurs dans la liste --> ordre de jeu aléatoire
+        while(!finPartie()) {
+            Thread.sleep(1000);                             // (faux) timer 1 seconde
+            melange();
             for(int i=0; i<joueurs.size(); i++) {
-                joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);      // action de tous les joueurs
+                joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
             }
-            Affichage.recharger(plateau, joueurs);                              // mise à jour de l'affichage graphique
-        }                                                           // *-*-* BOUCLE PRINCIPALE [end] *-*-*
+            Affichage.recharger(plateau, joueurs);
+        }
+        
         //affichageFin();                                             // affichage de la fin de partie
     }
     
