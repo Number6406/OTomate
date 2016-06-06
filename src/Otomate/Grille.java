@@ -55,7 +55,7 @@ public class Grille {
     public static void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
         List<Personnage> list = new LinkedList<>();
-        int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutotate().nbConditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
+        int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutotate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
         for(i=0; i<l; i++){
         	for(j=0;j<J.get(i).getSizePersonnages();j++){
         	    list.add(J.get(i).getPersonnagesI(j));    	
@@ -156,7 +156,7 @@ public class Grille {
         int dimh = maxi * list.size();
         if(dimh<20)
             dimh = 20;
-        maxi = l.get(0).getPersonnagesI(0).a.nbConditions();
+        maxi = l.get(0).getPersonnagesI(0).a.nbconditions();
         int dimv = maxi * list.size();
         if(dimv<20)
             dimv = 20;
@@ -258,7 +258,7 @@ public class Grille {
         Case N = Pos(new Coordonnees(position.getX(), position.getY()-1));
         Case S = Pos(new Coordonnees(position.getX(), position.getY()+1));
         Case E = Pos(new Coordonnees(position.getX()+1, position.getY()));
-        Case O = Pos(new Coordonnees(position.getX()-1, position.getY());
+        Case O = Pos(new Coordonnees(position.getX()-1, position.getY()));
         String Description = "";
         
         
@@ -266,11 +266,11 @@ public class Grille {
             if(A.get_Action() == 0)                  //indiffÃ©rent
                 return;
                 
-            else if(A.get_Action() == Rien.getValeur()){  // Ne rien faire
-                Description = "Ne fais rien."
+            else if(A.get_Action() == Actions.Rien.getValeur()){  // Ne rien faire
+                Description = "Ne fais rien.";
                 return;
             }
-            else if(A.get_Action() == AvancerN.getValeur()){            //Avancer au nord
+            else if(A.get_Action() == Actions.AvancerN.getValeur()){            //Avancer au nord
                 if(N.estChemin()){
                     P.deplacementHaut();
                     Description = "Se déplace au Nord.";
@@ -280,7 +280,7 @@ public class Grille {
                 return;
             }
             
-            else if(A.get_Action() == AvancerS.getValeur()){             //Reculer
+            else if(A.get_Action() == Actions.AvancerS.getValeur()){             //Reculer
                 if(S.estChemin()) {
                     P.deplacementBas();
                     Description = "Se déplace au Sud.";
@@ -290,7 +290,7 @@ public class Grille {
                 return;
             }
             
-            else if(A.get_Action() == AvancerE.getValeur()){            //Partir a droite
+            else if(A.get_Action() == Actions.AvancerE.getValeur()){            //Partir a droite
                 if(E.estChemin()) {
                     P.deplacementDroite();
                     Description = "Se déplace à l'Est.";
@@ -300,7 +300,7 @@ public class Grille {
                 return;
             }
             
-            else if(A.get_Action() == AvancerO.getValeur()){            //Partir a gauche
+            else if(A.get_Action() == Actions.AvancerO.getValeur()){            //Partir a gauche
                 if(O.estChemin()) {
                     P.deplacementGauche();
                     Description = "Se déplace à l'Ouest.";
@@ -310,7 +310,7 @@ public class Grille {
                 return;
             }
             
-            else if(A.get_Action() == Ramasser.getValeur()){            //Ramasser  
+            else if(A.get_Action() == Actions.Ramasser.getValeur()){            //Ramasser  
                 
                 if(C.estRamassable()){
                     Description += "Ramasse " + Contenus.fromint(C.getValeur()).toString() + "et pose ";
@@ -322,7 +322,7 @@ public class Grille {
                     Description = "Tente de ramasser " + Contenus.fromint(C.getValeur()).toString() + "mais échoue.";
                 }
             }
-            else if(A.get_Action() == FrapperN.getValeur()){ //Frapper au nord
+            else if(A.get_Action() == Actions.FrapperN.getValeur()){ //Frapper au nord
                 Coordonnees v = new Coordonnees();
                 v.setX(P.position.getX());
                 v.setY(P.position.getY()-1);
