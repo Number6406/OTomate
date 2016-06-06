@@ -7,14 +7,18 @@ public class Coordonnees{
     protected int ord;
     
     // Constructeurs
-    public void Coordonnees(int x,int y){
+    public Coordonnees(int x,int y){
         this.abs = x;
         this.ord = y;
     }
     
-    public void Coordonnees(Coordonnees C){
+    public Coordonnees(Coordonnees C){
         this.abs = C.getX();
         this.ord = C.getY();
+    }
+    
+    public Coordonnees(){
+    	
     }
     
     
