@@ -20,6 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Otomate.$Personnage;
 import Otomate.Grille;
 import Otomate.$Personnage;
 
@@ -113,7 +114,7 @@ public class FenetreJeu extends JFrame {
         });
         tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
-        pan_plateau = new Affichage_plateau(g,persoL);
+        pan_plateau = new Affichage_plateau(g,perso);
         scroll_plateau = new JScrollPane(pan_plateau);
         
         this.add(toolbar, BorderLayout.NORTH);
@@ -179,5 +180,6 @@ public class FenetreJeu extends JFrame {
         tp_onglets.add("Légende",scroll_legende);
         
     }
+
     
 }

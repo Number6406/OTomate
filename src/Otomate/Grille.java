@@ -54,7 +54,7 @@ public class Grille {
     //Place les automates au bon endroit sur la map
     public static void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
-        List<Personnage> list = new LinkedList<>();
+        List<$Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutotate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
         for(i=0; i<l; i++){
         	for(j=0;j<J.get(i).getSizePersonnages();j++){
@@ -66,10 +66,10 @@ public class Grille {
         
         for(i=0;i<l;i++){
             for(j=i; j<l; j++){
-                if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).abs + list.get(i).position.getX() < coinsAutomates.get(j).abs){}
+                if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).abs + list.get(i).getPosition().getX() < coinsAutomates.get(j).abs){}
                 else if(coinsAutomates.get(i).getX() < coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() < coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() + nbCond < coinsAutomates.get(j).getY()){}
                 else if(coinsAutomates.get(i).getX() < coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() + nbCond){}
-                else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() + list.get(j).position.getX()){}
+                else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() + list.get(j).getPosition().getX()){}
                 else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() < coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() + nbCond < coinsAutomates.get(j).getY()){}
                 else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() + nbCond){}
                 else
@@ -99,13 +99,13 @@ public class Grille {
         }
     }
     
-    public static List<Coordonnees> goAutomates(List<Personnage> l, int dimh, int dimv){
+    public static List<Coordonnees> goAutomates(List<$Personnage> list, int dimh, int dimv){
         List<Coordonnees> res = new LinkedList<Coordonnees>();
         Random rnd = new Random();
         Coordonnees newc = new Coordonnees();
-        int nb = l.size();
+        int nb = list.size();
         int i, j, k;
-        for(k=0; k<l.size(); k++){
+        for(k=0; k<list.size(); k++){
             i = rnd.nextInt(nb);       //donne le num�ro de la case "h"
             newc.setX(i*dimh/nb);              //abscisse correspondant
             j = rnd.nextInt(nb);
@@ -136,7 +136,7 @@ public class Grille {
     
     public static void initialisergrille(List<Joueur> l) {
         int i,j,k;
-        List<Personnage> list = new LinkedList<>();
+        List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
         	for(j=0;j<l.get(i).getSizePersonnages();j++){
         	list.add(l.get(i).getPersonnagesI(j));    	
@@ -148,7 +148,7 @@ public class Grille {
         for(i=0; i<l.size(); i++){
             for(j=0; j<l.get(i).getSizePersonnages(); j++){
                 for(k=0; k<j; k++){
-                    taille.add(l.get(i).getPersonnagesI(k).a.nbEtat());
+                    taille.add(l.get(i).getPersonnagesI(k).nbEtat());
                 }
             }
         }
@@ -183,24 +183,24 @@ public class Grille {
 
 //Retourne la liste des conditions du personnage
 //On retrouve en element numéro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
-    public List<Integer> Conditions($Personnage P){
+    public static List<Integer> Conditions($Personnage P){
         List<Integer> l = new LinkedList<>();
-        l.add(Pos(P.position).getValeur());
-        Personnage p2 = P;
-        p2.position.setY(P.position.getY()-1);
-        l.add(Pos(p2.position).getValeur());
-        p2.position.setY(P.position.getY()+1);
-        l.add(Pos(p2.position).getValeur());
-        p2.position.setY(P.position.getY());
-        p2.position.setX(P.position.getX()-1);
-        l.add(Pos(p2.position).getValeur());
-        p2.position.setX(P.position.getX()+1);
-        l.add(Pos(p2.position).getValeur());
+        l.add(Pos(P.getPosition()).getValeur());
+        $Personnage p2 = P;
+        p2.getPosition().setY(P.getPosition().getY()-1);
+        l.add(Pos(p2.getPosition()).getValeur());
+        p2.getPosition().setY(P.getPosition().getY()+1);
+        l.add(Pos(p2.getPosition()).getValeur());
+        p2.getPosition().setY(P.getPosition().getY());
+        p2.getPosition().setX(P.getPosition().getX()-1);
+        l.add(Pos(p2.getPosition()).getValeur());
+        p2.getPosition().setX(P.getPosition().getX()+1);
+        l.add(Pos(p2.getPosition()).getValeur());
         return l;
     }
     
 //Retourne une liste d'actions possibles pour P
-    public List<Case> ActionsPossibles($Personnage P){
+    public static List<Case> ActionsPossibles($Personnage P){
         List<Integer> l = Conditions(P);
         List<Case> la = new LinkedList<Case>();
         if(P.a.transitions[P.etat][l.get(0)] != 0){         //si transition possible depuis l'�tat o� le personnage se trouve avec la condition de la case valide
@@ -222,7 +222,7 @@ public class Grille {
         return la;
     }
     
-    public Action takeOne(List<Case> l){
+    public static Action takeOne(List<Case> l){
         Action a = new Action();
         if(l.isEmpty() == true)
             return a;
@@ -234,7 +234,7 @@ public class Grille {
     }
 
 //Retourne la case de coordonnees c
-    public Case Pos(Coordonnees c){
+    public static Case Pos(Coordonnees c){
         return g[c.getX()][c.getY()];
     }
     
@@ -262,7 +262,7 @@ public class Grille {
         String Description = "";
         
         
-        if(P.instanceof(Gentil)){
+        if(P instanceof Gentil){
             if(A.get_Action() == 0)                  //indifférent
                 return;
                 
@@ -324,16 +324,16 @@ public class Grille {
             }
             else if(A.get_Action() == Actions.FrapperN.getValeur()){ //Frapper au nord
                 Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX());
-                v.setY(P.position.getY()-1);
-                Personnage E=null;
+                v.setX(P.getPosition().getX());
+                v.setY(P.getPosition().getY()-1);
+                $Personnage E1=null;
                 int nb = J.size();                      //nombre de joueurs
                 int x=0, s, i;
                 while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
                    s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
                    for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).position == v){
-                           E = J.get(x).getPersonnagesI(i);
+                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                           E1 = J.get(x).getPersonnagesI(i);
                            i = s;
                            x = nb;
                        }
@@ -341,185 +341,185 @@ public class Grille {
                    x++;
                 }
                 
-                if((!E.equals(null))&&(E.instanceof(Mechant))){
+                if((!E1.equals(null))&&(E1 instanceof Mechant)){
                     if(P.getInventaire() == 10){
-                        if(E.getVie()>3)
-                            E.setVie(E.getVie()-3);
+                        if(E1.getVie()>3)
+                            E1.setVie(E1.getVie()-3);
                         else
-                            E.setVie(0);
+                            E1.setVie(0);
                     }
                     else if(P.getInventaire() == 11){
-                        if(E.getVie()>5)
-                            E.setVie(E.getVie()-5);
+                        if(E1.getVie()>5)
+                            E1.setVie(E1.getVie()-5);
                         else
-                            E.setVie(0); 
+                            E1.setVie(0); 
                     }
                     else{
-                        if(E.getVie()>1))
-                            E.setVie(E.getVie()-1);
+                        if(E1.getVie()>1)
+                            E1.setVie(E1.getVie()-1);
                         else
-                            E.setVie(0);         //le personnage est mort on met la case a vide
+                            E1.setVie(0);         //le personnage est mort on met la case a vide
                     }
                     return;
                 }
             }
             
-            else if(A.get_Action() == FrapperS.getValeur()){ //Frapper au sud
+            else if(A.get_Action() == Actions.FrapperS.getValeur()){ //Frapper au sud
                 Coordonnees v=new Coordonnees();
-                v.setX(P.position.getX());
-                v.setY(P.position.getY()+1);
-                Personnage E=null;
+                v.setX(P.getPosition().getX());
+                v.setY(P.getPosition().getY()+1);
+                $Personnage E1=null;
                 int nb = J.size();                      //nombre de joueurs
                 int x=0, s, i;
                 while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
                    s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
                    for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).position == v){
-                           E = J.get(x).getPersonnagesI(i);
+                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                           E1 = J.get(x).getPersonnagesI(i);
                            i = s;
                            x = nb;
                        }
                    }
                    x++;
                 }
-                if((!E.equals(null))&&(E.instanceof(Mechant))){
+                if((!E1.equals(null))&&(E1 instanceof Mechant)){
                     if(P.getInventaire() == 10){
-                        if(E.getVie()>3)
-                            E.setVie(E.getVie()-3);
+                        if(E1.getVie()>3)
+                            E1.setVie(E1.getVie()-3);
                         else
-                            E.setVie(0);
-                    }
-                    else if(P.getInventaire == 11){
-                        if(E.getVie()>5)
-                            E.setVie(E.getVie()-5);;
-                        else
-                            E.setVie(0); 
-                    }
-                    else{
-                        if(E.getVie()>1)
-                            E.setVie(E.getVie()-1);
-                        else
-                            E.setVie(0);         //le personnage est mort on met la case a vide
-                    }
-                    return;
-                }
-            }
-            
-            else if(A.get_Action() == FrapperE.getValeur()){ //Frapper à l'est 
-                Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX()+1);
-                v.setY(P.position.getY());
-                Personnage E=null;
-                int nb = J.size();                      //nombre de joueurs
-                int x=0, s, i;
-                while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
-                   s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
-                   for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).position == v){
-                           E = J.get(x).getPersonnagesI(i);
-                           i = s;
-                           x = nb;
-                       }
-                   }
-                   x++;
-                }
-                if((!E.equals(null))&&(E.instanceof(Mechant))){
-                    if(P.getInventaire == 10){
-                        if(E.getVie()>3)
-                            E.setVie(E.getVie()-3);
-                        else
-                            E.setVie(0);
+                            E1.setVie(0);
                     }
                     else if(P.getInventaire() == 11){
-                        if(E.getVie()>5)
-                            E.setVie(E.getVie()-5);
+                        if(E1.getVie()>5)
+                            E1.setVie(E1.getVie()-5);
                         else
-                            E.setVie(0);
+                            E1.setVie(0); 
                     }
                     else{
-                        if(E.getVie()>1)
-                            E.setVie(E.getVie()-1);
+                        if(E1.getVie()>1)
+                            E1.setVie(E1.getVie()-1);
                         else
-                            E.setVie(0);         //le personnage est mort on met la case a vide
+                            E1.setVie(0);         //le personnage est mort on met la case a vide
                     }
                     return;
                 }
             }
             
-            else if(A.get_Action() == FrapperO.getValeur()){ //Frapper à l'ouest
+            else if(A.get_Action() == Actions.FrapperE.getValeur()){ //Frapper à l'est 
                 Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX()-1);
-                v.setY(P.position.getY());
-                Personnage E=null;
+                v.setX(P.getPosition().getX()+1);
+                v.setY(P.getPosition().getY());
+                $Personnage E1=null;
+                int nb = J.size();                      //nombre de joueurs
+                int x=0, s, i;
+                while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
+                   s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
+                   for(i=0; i<s; i++){
+                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                           E1 = J.get(x).getPersonnagesI(i);
+                           i = s;
+                           x = nb;
+                       }
+                   }
+                   x++;
+                }
+                if((!E1.equals(null))&&(E1 instanceof Mechant)){
+                    if(P.getInventaire() == 10){
+                        if(E1.getVie()>3)
+                            E1.setVie(E1.getVie()-3);
+                        else
+                            E1.setVie(0);
+                    }
+                    else if(P.getInventaire() == 11){
+                        if(E1.getVie()>5)
+                            E1.setVie(E1.getVie()-5);
+                        else
+                            E1.setVie(0);
+                    }
+                    else{
+                        if(E1.getVie()>1)
+                            E1.setVie(E1.getVie()-1);
+                        else
+                            E1.setVie(0);         //le personnage est mort on met la case a vide
+                    }
+                    return;
+                }
+            }
+            
+            else if(A.get_Action() == Actions.FrapperO.getValeur()){ //Frapper à l'ouest
+                Coordonnees v = new Coordonnees();
+                v.setX(P.getPosition().getX()-1);
+                v.setY(P.getPosition().getY());
+                $Personnage E1=null;
                 int nb = J.size();                      //nombre de joueurs
                 int x=0, s, i;	
                 while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
                    s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
                    for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).position == v){
-                           E = J.get(x).getPersonnagesI(i);
+                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                           E1 = J.get(x).getPersonnagesI(i);
                            i = s;
                            x = nb;
                        }
                    }
                    x++;
                 }
-                if((!E.equals(null))&&(E.instanceof(Mechant))){
-                    if(P.getInventaire)() == 10){
-                        if(E.getVie()>3)
-                            E.setVie(E.getVie()-3);
+                if((!E1.equals(null))&&(E1 instanceof Mechant)){
+                    if(P.getInventaire() == 10){
+                        if(E1.getVie()>3)
+                            E1.setVie(E1.getVie()-3);
                         else
-                            E.setVie(0);
+                            E1.setVie(0);
                     }
                     else if(P.getInventaire() == 11){
-                        if(E.getVie()>5)
-                            E.setVie(E.getVie()-5);
+                        if(E1.getVie()>5)
+                            E1.setVie(E1.getVie()-5);
                         else
-                            E.setVie(0);
+                            E1.setVie(0);
                     }
                     else{
-                        if(E.getVie()>1)
-                            E.setVie(E.getVie()-1);
+                        if(E1.getVie()>1)
+                            E1.setVie(E1.getVie()-1);
                         else
-                            E.setVie(0);         //le personnage est mort on met la case a vide
+                            E1.setVie(0);         //le personnage est mort on met la case a vide
                     }
                     return;
                 }
             }
             return;
         }
-        else if(P.instanceof(Mechant)){
+        else if(P instanceof Mechant){
             if(A.get_Action() == 0)
                 return;
                 
-            else if(A.get_Action() == Rien.getValeur())
+            else if(A.get_Action() == Actions.Rien.getValeur())
                 return;
                 
-            else if(A.get_Action() == AvancerN.getValeur()){
+            else if(A.get_Action() == Actions.AvancerN.getValeur()){
                 if(N.estChemin())
                     P.deplacementHaut();
                 return;
             }
             
-            else if(A.get_Action() == AvancerS.getValeur()){
-                if(S.estChemein())
+            else if(A.get_Action() == Actions.AvancerS.getValeur()){
+                if(S.estChemin())
                     P.deplacementBas();
                 return;
             }
             
-            else if(A.get_Action() == AvancerE.getValeur()){
+            else if(A.get_Action() == Actions.AvancerE.getValeur()){
                 if(E.estChemin())
                     P.deplacementDroite();
                 return;
             }
             
-            else if(A.get_Action() == AvancerO.getValeur()){
+            else if(A.get_Action() == Actions.AvancerO.getValeur()){
                 if(O.estChemin())
                     P.deplacementGauche();
                 return;
             }
             
-            else if(A.get_Action() == Ramasser.getValeur()){
+            else if(A.get_Action() == Actions.Ramasser.getValeur()){
                 if(C.estRamassable()){
                     Description += "Ramasse " + Contenus.fromint(C.getValeur()).toString() + "et pose ";
                     int aPoser = P.ramasser(C.getValeur());
@@ -529,18 +529,18 @@ public class Grille {
                 return;
             }
             
-            else if(A.get_Action() == FrapperN.getValeur()){
+            else if(A.get_Action() == Actions.FrapperN.getValeur()){
                 Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX);
-                v.setY(P.position.getY-1);
-                Personnage E = null;
+                v.setX(P.getPosition().getX());
+                v.setY(P.getPosition().getY()-1);
+                $Personnage E1 = null;
                 int nb = J.size();
                 int x=0, s, i;
                 while(x<nb){
                     s = J.get(x).getSizePersonnages();
                     for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).position == v){
-                            E = J.get(x).getPersonnagesI(i);
+                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                            E1 = J.get(x).getPersonnagesI(i);
                             i = s;
                             x = nb;
                         }
@@ -548,27 +548,27 @@ public class Grille {
                     x++;
                 }
                 
-                if(E != null && E.instanceof(Gentil)){
-                    if(E.getVie() > 5)
-                        E.setVie(E.getVie()-5);
+                if(E1 != null && E1 instanceof Gentil){
+                    if(E1.getVie() > 5)
+                        E1.setVie(E1.getVie()-5);
                     else
-                        E.setVie(0);
+                        E1.setVie(0);
                 }
                 return;
             }
             
-            else if(A.get_Action() == FrapperS.getValeur()){
+            else if(A.get_Action() == Actions.FrapperS.getValeur()){
                 Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX);
-                v.setY(P.position.getY+1);
-                Personnage E = null;
+                v.setX(P.getPosition().getX());
+                v.setY(P.getPosition().getY()+1);
+                $Personnage E1 = null;
                 int nb = J.size();
                 int x=0, s, i;
                 while(x<nb){
                     s = J.get(x).getSizePersonnages();
                     for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).position == v){
-                            E = J.get(x).getPersonnagesI(i);
+                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                            E1 = J.get(x).getPersonnagesI(i);
                             i = s;
                             x = nb;
                         }
@@ -576,27 +576,27 @@ public class Grille {
                     x++;
                 }
                 
-                if(E != null && E.instanceof(Gentil)){
-                    if(E.getVie() > 5)
-                        E.setVie(E.getVie()-5);
+                if(E1 != null && E1 instanceof Gentil){
+                    if(E1.getVie() > 5)
+                        E1.setVie(E1.getVie()-5);
                     else
-                        E.setVie(0);
+                        E1.setVie(0);
                 }
                 return;
             }
             
-            else if(A.get_Action() == FrapperE.getValeur()){
+            else if(A.get_Action() == Actions.FrapperE.getValeur()){
                 Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX+1);
-                v.setY(P.position.getY);
-                Personnage E = null;
+                v.setX(P.getPosition().getX()+1);
+                v.setY(P.getPosition().getY());
+                $Personnage E1 = null;
                 int nb = J.size();
                 int x=0, s, i;
                 while(x<nb){
                     s = J.get(x).getSizePersonnages();
                     for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).position == v){
-                            E = J.get(x).getPersonnagesI(i);
+                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                            E1 = J.get(x).getPersonnagesI(i);
                             i = s;
                             x = nb;
                         }
@@ -604,27 +604,27 @@ public class Grille {
                     x++;
                 }
                 
-                if(E != null && E.instanceof(Gentil)){
-                    if(E.getVie() > 5)
-                        E.setVie(E.getVie()-5);
+                if(E1 != null && E1 instanceof Gentil){
+                    if(E1.getVie() > 5)
+                        E1.setVie(E1.getVie()-5);
                     else
-                        E.setVie(0);
+                        E1.setVie(0);
                 }
                 return;
             }
             
-            else if(A.get_Action() == FrapperO.getValeur()){
+            else if(A.get_Action() == Actions.FrapperO.getValeur()){
                 Coordonnees v = new Coordonnees();
-                v.setX(P.position.getX-1);
-                v.setY(P.position.getY);
-                Personnage E = null;
+                v.setX(P.getPosition().getX()-1);
+                v.setY(P.getPosition().getY());
+                $Personnage E1 = null;
                 int nb = J.size();
                 int x=0, s, i;
                 while(x<nb){
                     s = J.get(x).getSizePersonnages();
                     for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).position == v){
-                            E = J.get(x).getPersonnagesI(i);
+                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
+                            E1 = J.get(x).getPersonnagesI(i);
                             i = s;
                             x = nb;
                         }
@@ -632,11 +632,11 @@ public class Grille {
                     x++;
                 }
                 
-                if(E != null && E.instanceof(Gentil)){
-                    if(E.getVie() > 5)
-                        E.setVie(E.getVie()-5);
+                if(E1 != null && E1 instanceof Gentil){
+                    if(E1.getVie() > 5)
+                        E1.setVie(E1.getVie()-5);
                     else
-                        E.setVie(0);
+                        E1.setVie(0);
                 }
                 return;
             }

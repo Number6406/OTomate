@@ -9,11 +9,13 @@ import javax.swing.JPanel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -100,7 +102,7 @@ public class Affichage_plateau extends JPanel {
 	
 	Affichage_plateau(Grille g,List<$Personnage> perso){
             gr =g ;
-            this.perso=perso;
+            this.perso=perso2;
             loadTiles();
 	}
 	

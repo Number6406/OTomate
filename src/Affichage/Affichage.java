@@ -1,10 +1,12 @@
 package Affichage;
 
+import Otomate.Gentil;
 import Otomate.Grille;
 //import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.$Personnage;
 import Otomate.Gentil;
+
 
 //import java.awt.BorderLayout;
 import java.util.ArrayList;
