@@ -22,8 +22,6 @@ import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
-import Otomate.$Personnage;
-
 import javax.swing.JScrollPane;
 
 /**
