@@ -50,6 +50,7 @@ public class Affichage {
                     lp.add(l.get(i).getPersonnagesI(j));
                 }
 	   }
+	   jeu = new FenetreJeu();
 	   jeu.charger(g,lp);
 	   
    }
