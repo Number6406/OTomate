@@ -19,7 +19,7 @@ public enum Conditions {
     private String name = "";
     
     //Constructeur
-    Conditions(int value, String name){
+    Conditions(String name,int value){
         this.value = value;
         this.name = name;
     }

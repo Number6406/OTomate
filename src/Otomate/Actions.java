@@ -18,7 +18,7 @@ public enum Actions {
     private String name = "";
     
     //Constructeur
-    Actions(int value, String name){
+    Actions(String name,int value){
         this.value = value;
         this.name = name;
     }

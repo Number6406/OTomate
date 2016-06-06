@@ -1,5 +1,7 @@
 package Otomate;
 
+import java.util.List;
+
 public abstract class $Personnage {
     
     //Attributs
@@ -12,7 +14,7 @@ public abstract class $Personnage {
     
     //Méthodes
     
-    public jouer(Grille plateau, List<Joueur> joueurs) {
+    public void jouer(Grille plateau, List<Joueur> joueurs) {
         plateau.Maj(this, takeOne(ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
     }
     

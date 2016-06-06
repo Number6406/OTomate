@@ -19,4 +19,6 @@ public class Automate {
     public int action(int etatCourant, int symbole){
         return actions[symbole][etatCourant].element;
     
+    }
+    
 }

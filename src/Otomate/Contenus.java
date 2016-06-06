@@ -19,7 +19,7 @@ public enum Contenus {
     private String name = "";
     
     //Constructeur
-    Contenus(int value, String name){
+    Contenus(String name,int value){
         this.value = value;
         this.name = name;
     }
