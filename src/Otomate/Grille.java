@@ -6,8 +6,10 @@ import java.util.Random;
 
 public class Grille {
     
-    public static int random(int min, int max){
-    return (int) (min + (Math.random() * (max - min)));
+	public static int random(int min, int max){
+    	int k = (int) (min + (Math.random() * (max - min)));
+    	System.out.println("RANDOMDEMERGE : "+k);
+    	return k;
     }
     
     //Attributs
@@ -108,7 +110,7 @@ public class Grille {
         int nb = list.size();
         int i, j, k;
         for(k=0; k<list.size(); k++){
-            i = rnd.nextInt(nb);       //donne le numï¿½ro de la case "h"
+            i = rnd.nextInt(nb);       //donne le numro de la case "h"
             newc.setX(i*dimh/nb);              //abscisse correspondant
             j = rnd.nextInt(nb);
             newc.setY(j*dimv/nb);
@@ -119,7 +121,7 @@ public class Grille {
                     k--;           // la c'est pour refaire le meme tour puisque la case est deja occupee
                 }
             }
-            if(j == k){             //c'est pour verifier qu'on est pas tombï¿½ dans le if et que c'est bon la case est dispo
+            if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
                 res.add(newc);
             }
         }
@@ -164,7 +166,7 @@ public class Grille {
         if(dimv<20)
             dimv = 20;
             
-      //crï¿½ation de la map dimh/dimv avec minimum 150/150
+      //cration de la map dimh/dimv avec minimum 150/150
         
         g = new Case[dimh][dimv];     
         for(i=0;i<dimh;i++){
@@ -175,7 +177,7 @@ public class Grille {
         
         for(i=0; i<dimh; i++){
             for(j=0; j<dimv; j++){
-                k = random(1, 10);        //car 10 actions possibles numï¿½rotï¿½es de 1 ï¿½ 10 
+                k = random(1, 10);        //car 10 actions possibles numrotes de 1  10 
                 g[i][j].element = k;
             }
         }
@@ -185,10 +187,63 @@ public class Grille {
     }
 
 //Retourne la liste des conditions du personnage
-//On retrouve en element numÃ©ro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
+//On retrouve en element numéro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
     public static List<Integer> Conditions($Personnage P){
         List<Integer> l = new LinkedList<>();
-        l.add(Pos(P.getPosition()).getValeur());
+        int i, k=0;
+        i=Pos(P.getPosition()).getValeur();		//recup du numero contenu
+        if(i>=0 && i<=5){
+        	if(i == 1 || i==2 || i==3){
+        		l.add(9);
+        	}
+        	else
+        		l.add(0);
+        }
+        else if(i<9){
+        	System.out.println("ERRUUUUUUR");
+        }
+        else
+        	l.add(10);
+        $Personnage p2 = P;
+        p2.getPosition().setY(P.getPosition().getY()-1);
+        if(p2.position.getX()>0 && p2.position.getY()>0){
+        i=(Pos(p2.getPosition()).getValeur());
+        if(i>=0 && i<=5 || i>8){
+        		l.add(1);
+        }
+        else
+        	l.add(-1);
+        }
+        p2.getPosition().setY(P.getPosition().getY()+1);
+        if(p2.position.getX()>0 && p2.position.getY()>0){
+        i = (Pos(p2.getPosition()).getValeur());
+        if(i>=0 && i<=5 || i>8){
+    		l.add(2);
+        }
+        else
+        	l.add(-1);
+        }
+        p2.getPosition().setX(P.getPosition().getX()-1);
+        if(p2.position.getX()>0 && p2.position.getY()>0){
+        i = (Pos(p2.getPosition()).getValeur());
+        if(i>=0 && i<=5 || i>8){
+    		l.add(4);
+        }
+        else
+        	l.add(-1);
+        }
+        p2.getPosition().setX(P.getPosition().getX()+1);
+        if(p2.position.getX()>0 && p2.position.getY()>0){
+        i = (Pos(p2.getPosition()).getValeur());
+        if(i>=0 && i<=5 || i>8){
+    		l.add(3);
+        }
+        else
+        	l.add(-1);
+        }
+        System.out.println("La liste l vaut :"+l.toString());
+        return l;
+        /*l.add(Pos(P.getPosition()).getValeur());
         $Personnage p2 = P;
         p2.getPosition().setY(P.getPosition().getY()-1);
         l.add(Pos(p2.getPosition()).getValeur());
@@ -199,30 +254,46 @@ public class Grille {
         l.add(Pos(p2.getPosition()).getValeur());
         p2.getPosition().setX(P.getPosition().getX()+1);
         l.add(Pos(p2.getPosition()).getValeur());
-        return l;
+        System.out.println("La liste l vaut :"+l.toString());
+        return l;*/
     }
     
 //Retourne une liste d'actions possibles pour P
     public static List<Case> ActionsPossibles($Personnage P){
-        List<Integer> l = Conditions(P);
-        List<Case> la = new LinkedList<Case>();
-        if(P.a.transitions[P.etat][l.get(0)] != 0){         //si transition possible depuis l'ï¿½tat oï¿½ le personnage se trouve avec la condition de la case valide
-            la.add((P.a.actions[P.etat][l.get(0)]));
-        }
-        if(P.a.transitions[P.etat][l.get(1)] != 0){         //regarde au nord
-            la.add(P.a.actions[P.etat][l.get(1)]);
-        }
-        if(P.a.transitions[P.etat][l.get(2)] != 0){         //Sud
-            la.add(P.a.actions[P.etat][l.get(2)]);
-        }
-        if(P.a.transitions[P.etat][l.get(3)] != 0){          //Ouest
-            la.add(P.a.actions[P.etat][l.get(3)]);
-        }
-        if(P.a.transitions[P.etat][l.get(4)] != 0){         //EST
-            la.add(P.a.actions[P.etat][l.get(4)]);
-        }
-        
-        return la;
+    	List<Integer> l = Conditions(P);
+    	int s = l.size();
+    	List<Case> la = new LinkedList<Case>();
+    	if(s>0){
+    		if(l.get(0)>0 && P.a.transition(P.etat, l.get(0)) != 0){         //si transition possible depuis l'etat o le personnage se trouve avec la condition de la case valide
+    			la.add(P.a.getActions(P.etat, l.get(0)));
+    			System.out.println("0 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(0)).element);
+    		}
+    		if(s>1){
+    			if(l.get(1)>0 && P.a.transition(P.etat, l.get(1)) != 0){         //regarde au nord
+    				la.add(P.a.getActions(P.etat, l.get(1)));
+    				System.out.println("1 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(1)).element);
+    			}
+    			if(s>2){
+    				if(l.get(2)>0 && P.a.transition(P.etat, l.get(2)) != 0){         //Sud
+    					la.add(P.a.getActions(P.etat, l.get(2)));
+    					System.out.println("2 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(2)).element);
+    				}
+    				if(s>3){
+    					if(l.get(3)>0 && P.a.transition(P.etat, l.get(3)) != 0){          //Ouest
+    						la.add(P.a.getActions(P.etat, l.get(3)));
+    						System.out.println("3 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(3)).element);
+    					}
+    					if(s>4){
+    						if(l.get(4)>0 && P.a.transition(P.etat, l.get(4)) != 0){         //EST
+    							la.add(P.a.getActions(P.etat, l.get(4)));
+    							System.out.println("4 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(4)).element);
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+    	return la;
     }
     
     public static Action takeOne(List<Case> l){
@@ -230,8 +301,11 @@ public class Grille {
         if(l.isEmpty() == true)
             return a;
         else{
+        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
             int i = random(0, l.size()-1);
+            System.out.println("Je vais faire l'action : "+l.get(i).element);
             a.set_Action(l.get(i).element);
+            System.out.println("J'ai fait l'action : "+l.get(i).element);
             return a;
         }
     }
@@ -242,14 +316,14 @@ public class Grille {
     }
     
     /**
-     * Fonction permettant de frapper ï¿½ un emplacement alï¿½atoire s'il y a des entitï¿½s ï¿½ proximitï¿½
+     * Fonction permettant de frapper  un emplacement alatoire s'il y a des entits  proximit
      */
      public void Frapper($Personnage acteur) {
          
      }
     
     
-//On rappelle que l'"origine" du repere de la grille est en haut ï¿½ gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
+//On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
   
 //Met a jour la map = change le numero si besoin est
@@ -266,50 +340,55 @@ public class Grille {
         
         
         if(P instanceof Gentil){
-            if(A.get_Action() == 0)                  //indiffÃ©rent
+            if(A.get_Action() == 0)                  //indifférent
                 return;
                 
             else if(A.get_Action() == Actions.Rien.getValeur()){  // Ne rien faire
                 Description = "Ne fais rien.";
+                System.out.println(Description);
                 return;
             }
             else if(A.get_Action() == Actions.AvancerN.getValeur()){            //Avancer au nord
                 if(N.estChemin()){
                     P.deplacementHaut();
-                    Description = "Se dï¿½place au Nord.";
+                    Description = "Se deplace au Nord.";
                 } else {
-                    Description = "Tente de se dï¿½placer au Nord mais ï¿½choue.";
+                    Description = "Tente de se deplacer au Nord mais echoue.";
                 }
+                System.out.println(Description);
                 return;
             }
             
             else if(A.get_Action() == Actions.AvancerS.getValeur()){             //Reculer
                 if(S.estChemin()) {
                     P.deplacementBas();
-                    Description = "Se dï¿½place au Sud.";
+                    Description = "Se deplace au Sud.";
                 } else {
-                    Description = "Tente de se dï¿½placer au Sud mais ï¿½choue.";
+                    Description = "Tente de se deplacer au Sud mais achoue.";
                 }
+                System.out.println(Description);
                 return;
             }
             
             else if(A.get_Action() == Actions.AvancerE.getValeur()){            //Partir a droite
                 if(E.estChemin()) {
                     P.deplacementDroite();
-                    Description = "Se dï¿½place ï¿½ l'Est.";
+                    Description = "Se deplace a l'Est.";
                 } else {
-                    Description = "Tente de se dï¿½placer ï¿½ l'Est mais ï¿½choue.";
+                    Description = "Tente de se deplacer a l'Est mais achoue.";
                 }
+                System.out.println(Description);
                 return;
             }
             
             else if(A.get_Action() == Actions.AvancerO.getValeur()){            //Partir a gauche
                 if(O.estChemin()) {
                     P.deplacementGauche();
-                    Description = "Se dï¿½place ï¿½ l'Ouest.";
+                    Description = "Se deplace a l'Ouest.";
                 } else {
-                    Description = "Tente de se dï¿½placer ï¿½ l'Ouest mais ï¿½choue.";
+                    Description = "Tente de se deplacer a l'Ouest mais achoue.";
                 }
+                System.out.println(Description);
                 return;
             }
             
@@ -322,7 +401,7 @@ public class Grille {
                     Description += Contenus.fromint(aPoser).toString();
                 }
                 else {
-                    Description = "Tente de ramasser " + Contenus.fromint(C.getValeur()).toString() + "mais ï¿½choue.";
+                    Description = "Tente de ramasser " + Contenus.fromint(C.getValeur()).toString() + "mais echoue.";
                 }
             }
             else if(A.get_Action() == Actions.FrapperN.getValeur()){ //Frapper au nord
@@ -408,7 +487,7 @@ public class Grille {
                 }
             }
             
-            else if(A.get_Action() == Actions.FrapperE.getValeur()){ //Frapper Ã  l'est 
+            else if(A.get_Action() == Actions.FrapperE.getValeur()){ //Frapper à l'est 
                 Coordonnees v = new Coordonnees();
                 v.setX(P.getPosition().getX()+1);
                 v.setY(P.getPosition().getY());
@@ -426,7 +505,7 @@ public class Grille {
                    }
                    x++;
                 }
-                if((!E1.equals(null))&&(E1 instanceof Mechant)){
+                if((E1 instanceof Mechant)&&(!E1.equals(null))){
                     if(P.getInventaire() == 10){
                         if(E1.getVie()>3)
                             E1.setVie(E1.getVie()-3);
@@ -449,7 +528,7 @@ public class Grille {
                 }
             }
             
-            else if(A.get_Action() == Actions.FrapperO.getValeur()){ //Frapper Ã  l'ouest
+            else if(A.get_Action() == Actions.FrapperO.getValeur()){ //Frapper à l'ouest
                 Coordonnees v = new Coordonnees();
                 v.setX(P.getPosition().getX()-1);
                 v.setY(P.getPosition().getY());

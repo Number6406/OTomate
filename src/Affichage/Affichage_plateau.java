@@ -41,7 +41,7 @@ public class Affichage_plateau extends JPanel {
         void loadTiles() {
             tiles = new ArrayList<>();
             try {
-                for(int i=1; i<=7; i++) {
+                for(int i=0; i<=10; i++) {
                     BufferedImage img;
                     System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
                     img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/Zombie/"+i+".jpg").getFile())); //Version Linux
@@ -91,8 +91,8 @@ public class Affichage_plateau extends JPanel {
             //System.out.println("case " + x + " "  + y + " avec image : " + image + " faites !");
             //graph.setColor(Color_int(image));
             //graph.fillRect(TAILLECASE*x,TAILLECASE*y, TAILLECASE, TAILLECASE);
-            if(image <= tiles.size()){
-                graph.drawImage(tiles.get(image-1), x*TAILLECASE, y*TAILLECASE, TAILLECASE, TAILLECASE, null);
+            if(image < tiles.size()){
+                graph.drawImage(tiles.get(image), x*TAILLECASE, y*TAILLECASE, TAILLECASE, TAILLECASE, null);
             }
             else{
             	graph.setColor(Color_int(image));
@@ -117,7 +117,7 @@ public class Affichage_plateau extends JPanel {
             TAILLECASE=16;
             // System.out.println("Version 1 : Width : " + this.getWidth() + " Height : " + this.getHeight());
 
-            this.setPreferredSize( new Dimension(gr.tailleX*17,gr.tailleY*17));
+            this.setPreferredSize( new Dimension(gr.tailleX*16,gr.tailleY*16));
             maxx=maxx/TAILLECASE;
             maxy=maxy/TAILLECASE;
 
@@ -134,7 +134,6 @@ public class Affichage_plateau extends JPanel {
                 TAILLECASE=((this.getWidth())/maxx);
 
                 if(TAILLECASE > (this.getHeight()/maxy)){
-                    //System.out.println("je rendre l� !");
                     TAILLECASE=((this.getHeight())/maxy);
                 }
             }

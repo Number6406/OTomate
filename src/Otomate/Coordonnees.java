@@ -7,7 +7,7 @@ public class Coordonnees{
     protected int ord;
     
     // Constructeurs
-    public Coordonnees(int x,int y){
+    public Coordonnees(int y,int x){
         this.abs = x;
         this.ord = y;
     }

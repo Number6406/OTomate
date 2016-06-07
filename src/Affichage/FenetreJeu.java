@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Affichage;
 
 import java.awt.BorderLayout;
@@ -67,7 +62,7 @@ public class FenetreJeu extends JFrame {
     }
     
     public void charger(Grille g,List<$Personnage> persoL) {
-        // Chargement des différents éléments des fenêtres
+        // Chargement des différents éléments des fenetres
         toolbar = new JMenuBar();
         pan_info = new JPanel();
         label_perso = new JLabel();
@@ -175,9 +170,8 @@ public class FenetreJeu extends JFrame {
         ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
         ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
         
-        tp_onglets.add("Légende",scroll_legende);
+        tp_onglets.add("Legende",scroll_legende);
         
     }
 
-    
 }
