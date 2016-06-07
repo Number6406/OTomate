@@ -3,7 +3,10 @@
 <type>k</type>
 <direction>d</direction>
 <objet>o</objet>
-<cond>1 2 3 4</cond>
+<cond>1</cond>
+<cond>2</cond>
+<cond>3</cond>
+<cond>4</cond>
 <name>s</name>
 </action>
 

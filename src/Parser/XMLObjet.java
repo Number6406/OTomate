@@ -61,7 +61,8 @@ public class XMLObjet extends DefaultHandler{
 				   		use=Integer.parseInt(lecture);
 				   		buse=false;
 				  } else if (bname){
-					name=lecture;  
+					name=lecture;
+					bname=false;
 				  } else if (btype) {
 					 	type=Integer.parseInt(lecture);
 					 	btype=false;

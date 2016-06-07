@@ -74,7 +74,7 @@ public class XMLAction extends DefaultHandler{
 			         objet= Integer.parseInt(lecture);
 			    	 bo = false;
 			      } else if (bcond) {
-			         //A FAIRE
+			    	  cond.add(Integer.parseInt(lecture));
 			    	 bcond = false;
 			      } else if (bname) {
 			    	 name=lecture;
