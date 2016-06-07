@@ -73,27 +73,29 @@ public class Grille {
                 else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() < coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() + nbCond < coinsAutomates.get(j).getY()){}
                 else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() + nbCond){}
                 else
-                    System.out.println("Erreur les automates se superposent on a un probl�me pour la generation de leur coordonnees : erreur dans goAutomates !");
+                    System.out.println("Erreur les automates se superposent on a un probleme pour la generation de leur coordonnees : erreur dans goAutomates !");
             }
         }
         int jdeb, kdeb;
-        int x=0, s, y; 
+        int x=0, s, y;
+        i=0;
         while(x<J.size())
         {
             y=0;
             s = J.get(x).getSizePersonnages();
-            while(y<s)
+            while(y<s && i<l)
             {
-                for(i=0;i<l;i++){               //nombre d'automates a placer
+                //for(i=0;i<l;i++){               //nombre d'automates a placer
                     jdeb = coinsAutomates.get(i).getX();
-                    for(j=jdeb; j<nbetats.get(i)+jdeb; j++){      //parcours de lignes
+                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat()/*nbetats.get(i)+jdeb*/; j++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).getY();
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
                             g[j][k] = J.get(x).getPersonnagesI(y).a.getActions(k-kdeb, j-jdeb);
                         }
                     }
-                }
+                //}
                 y++;
+                i++;
             }
             x++;
         }
@@ -152,6 +154,7 @@ public class Grille {
                 }
             }
         }
+        nbetats = taille;
         int maxi = max(taille);
         int dimh = maxi * list.size();
         if(dimh<20)

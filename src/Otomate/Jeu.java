@@ -74,8 +74,9 @@ public class Jeu {
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
         System.out.println("coucou");
         Affichage.recharger(plateau,joueurs);
-        
+   
         while(!finPartie()) {
+        	System.out.println(joueurs.get(0).getPersonnagesI(0).getPosition().getX() +" "+ joueurs.get(0).getPersonnagesI(0).getPosition().getY());
             Thread.sleep(1000);                             // (faux) timer 1 seconde
             melange();
             for(int i=0; i<joueurs.size(); i++) {
