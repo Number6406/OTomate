@@ -2,7 +2,7 @@ package Parser;
 
 public class ParserMain {
 	public static void main(String[] args) {
-	Parser a = new Parser("Parser/AutomateenXML.xml");
+	ParserAutomate a = new ParserAutomate("Parser/AutomateenXML.xml");
 	int i,j;
 	for(i=0;i<a.nb_etat;i++){
 		for(j=0;j<12;j++){

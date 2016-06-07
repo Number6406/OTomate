@@ -15,14 +15,45 @@ public enum Conditions {
     Comestible ("Comestible sur ma Case", 9),
     Arc ("Arc sur ma Case", 10),
     Sabre ("Sabre sur ma Case", 11);
-    
+    private int id;
     private int value;
+    private int type;
     private String name = "";
     
     //Constructeur
     Conditions(String name,int value){
         this.value = value;
         this.name = name;
+    }
+    
+    Conditions(int id,int value,int type){
+    	this.id=id;
+    	this.value=value;
+    	this.type=type;
+    }
+    
+    public int getValue(){
+    	return value;
+    }
+    
+    public int getType(){
+    	return type;
+    }
+    
+    public int getId(){
+    	return id;
+    }
+    
+    public void setType(int i){
+    	type=i;
+    }
+    
+    public void setId(int i){
+    	id=i;
+    }
+    
+    public void setValeur(int val){
+    	value=val;
     }
     
     public int getValeur(){

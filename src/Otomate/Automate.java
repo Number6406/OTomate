@@ -1,6 +1,6 @@
 package Otomate;
 
-import Parser.Parser;
+import Parser.ParserAutomate;
 
 public class Automate {
     
@@ -13,7 +13,7 @@ public class Automate {
     
     //Constructeur
     public Automate(String filepath) {
-        Parser P = new Parser(filepath);
+        ParserAutomate P = new ParserAutomate(filepath);
         actions = P.act;
         transitions = P.auto;
         nbetats = P.nb_etat;

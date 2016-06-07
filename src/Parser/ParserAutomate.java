@@ -14,18 +14,18 @@ import org.xml.sax.SAXException;
 
 import Otomate.Case;
 
-public class Parser{
+public class ParserAutomate{
 	public Case[][] act;
 	public int[][] auto;
 	public int nb_etat;
 	public int etat_init;
-	public Parser(String file){
+	public ParserAutomate(String file){
 		
 		try{
 		SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         
-        MyXMLHandler a=new MyXMLHandler();
+        XMLAutomate a=new XMLAutomate();
         File f=new File(this.getClass().getResource("AutomateenXML.xml").getFile());
         //System.out.println("filename : " + file);
         parser.parse(f, a);

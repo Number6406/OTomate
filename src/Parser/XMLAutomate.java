@@ -7,7 +7,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import Otomate.Case;
 
 
-public class MyXMLHandler extends DefaultHandler{
+public class XMLAutomate extends DefaultHandler{
 	   
 	   boolean binit = false;
 	   boolean bNbEtat = false;
