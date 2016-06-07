@@ -23,7 +23,7 @@ public class ParserObjet{
         SAXParser parser = factory.newSAXParser();
         
         XMLObjet a=new XMLObjet();
-        File f=new File(this.getClass().getResource("AutomateenXML.xml").getFile());
+        File f=new File(this.getClass().getResource(file).getFile());
         //System.out.println("filename : " + file);
         parser.parse(f, a);
         
