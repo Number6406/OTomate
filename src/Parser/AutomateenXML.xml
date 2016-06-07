@@ -32,6 +32,12 @@
 		<transition>1</transition>
 	</case>
 	<case>
+		<etat>1</etat>
+		<condition>10</condition>
+		<action>6</action>
+		<transition>2</transition>
+	</case>
+	<case>
 		<etat>2</etat>
 		<condition>1</condition>
 		<action>2</action>
@@ -84,6 +90,12 @@
 		<condition>11</condition>
 		<action>6</action>
 		<transition>3</transition>
+	</case>
+	<case>
+		<etat>2</etat>
+		<condition>9</condition>
+		<action>6</action>
+		<transition>1</transition>
 	</case>
 	<case>
 		<etat>3</etat>

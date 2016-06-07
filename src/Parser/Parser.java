@@ -26,7 +26,7 @@ public class Parser{
         SAXParser parser = factory.newSAXParser();
         
         MyXMLHandler a=new MyXMLHandler();
-        File f=new File(this.getClass().getResource("Automataparfait.xml").getFile());
+        File f=new File(this.getClass().getResource("AutomateenXML.xml").getFile());
         //System.out.println("filename : " + file);
         parser.parse(f, a);
         

@@ -33,7 +33,7 @@ public abstract class $Personnage {
     		System.out.print("\n");
     	}
     	etat = a.etat_init;
-    	position = new Coordonnees(1,1);
+    	position = new Coordonnees(1,7);
         vie = 10;
         inventaire = 0;
     }
