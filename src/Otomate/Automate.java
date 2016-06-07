@@ -38,16 +38,16 @@ public class Automate {
     }
     
     public int transition(int etatCourant, int symbole) {  // renvoie le nouvel tat + l'action #CommentOnFait --> nouveau type duet ?
-        return transitions[etatCourant][symbole];
+        return transitions[symbole][etatCourant];
     }
     
     public Case getActions(int etatCourant, int symbole){
     	//System.out.println("Je recupere l'action :"+actions[symbole][etatCourant].element);
-    	return actions[etatCourant][symbole];
+    	return actions[symbole][etatCourant];
     }
     
     public int action(int etatCourant, int symbole){
-        return actions[etatCourant][symbole].element;
+        return actions[symbole][etatCourant].element;
     
     }
     

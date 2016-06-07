@@ -49,7 +49,7 @@ public class MyXMLHandler extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("Case")) {
-			         System.out.println("End Element :" + qName + " " + j +" "+ i+ " "+act[i][j-1].element + " "+ auto[i][j-1]);
+			         System.out.println("End Element :" + qName + " " + j +" "+ i+ " "+act[j-1][i].element + " "+ auto[j-1][i]);
 			      }
 			   }
 
@@ -59,11 +59,11 @@ public class MyXMLHandler extends DefaultHandler{
 				   String lecture = new String(ch,start,length);
 				   	if (bNbEtat){
 					  nb_etats= Integer.parseInt(lecture);
-					  auto= new int[nb_cond][nb_etats];
-					  act = new Case[nb_cond][nb_etats];
+					  auto= new int[nb_etats+1][nb_cond];
+					  act = new Case[nb_etats+1][nb_cond];
 					  for(i=0;i<nb_cond;i++){
-						  for(j=0;j<nb_etats;j++){
-							  act[i][j]=new Case();
+						  for(j=0;j<nb_etats+1;j++){
+							  act[j][i]=new Case();
 						  }
 					  }
 					  i=0;

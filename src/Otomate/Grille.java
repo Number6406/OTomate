@@ -266,29 +266,29 @@ public class Grille {
     	int s = l.size();
     	List<Case> la = new LinkedList<>();
     	if(s>0){
-    		if(l.get(0)>0 && P.a.transition(P.etat, l.get(0)) != 0){         //si transition possible depuis l'etat o le personnage se trouve avec la condition de la case valide
-    			la.add(P.a.getActions(P.etat, l.get(0)));
-    			System.out.println("0 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(0)).element);
+    		if(l.get(0)>0 && P.a.transition(l.get(0),P.etat) != 0){         //si transition possible depuis l'etat o le personnage se trouve avec la condition de la case valide
+    			la.add(P.a.getActions(l.get(0),P.etat));
+    			System.out.println("0 :On ajoute l'action :"+P.a.getActions(l.get(0),P.etat).element);
     		}
     		if(s>1){
-    			if(l.get(1)>0 && P.a.transition(P.etat, l.get(1)) != 0){         //regarde au nord
-    				la.add(P.a.getActions(P.etat, l.get(1)));
-    				System.out.println("1 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(1)).element);
+    			if(l.get(1)>0 && P.a.transition(l.get(1),P.etat) != 0){         //regarde au nord
+    				la.add(P.a.getActions(l.get(1),P.etat));
+    				System.out.println("1 :On ajoute l'action :"+P.a.getActions(l.get(1),P.etat).element);
     			}
     			if(s>2){
-    				if(l.get(2)>0 && P.a.transition(P.etat, l.get(2)) != 0){         //Sud
-    					la.add(P.a.getActions(P.etat, l.get(2)));
-    					System.out.println("2 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(2)).element);
+    				if(l.get(2)>0 && P.a.transition(l.get(2),P.etat) != 0){         //Sud
+    					la.add(P.a.getActions(l.get(2),P.etat));
+    					System.out.println("2 :On ajoute l'action :"+P.a.getActions(l.get(2),P.etat).element);
     				}
     				if(s>3){
-    					if(l.get(3)>0 && P.a.transition(P.etat, l.get(3)) != 0){          //Ouest
-    						la.add(P.a.getActions(P.etat, l.get(3)));
-    						System.out.println("3 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(3)).element);
+    					if(l.get(3)>0 && P.a.transition(l.get(3),P.etat) != 0){          //Ouest
+    						la.add(P.a.getActions(l.get(3),P.etat));
+    						System.out.println("3 :On ajoute l'action :"+P.a.getActions(l.get(3),P.etat).element);
     					}
     					if(s>4){
-    						if(l.get(4)>0 && P.a.transition(P.etat, l.get(4)) != 0){         //EST
-    							la.add(P.a.getActions(P.etat, l.get(4)));
-    							System.out.println("4 :On ajoute l'action :"+P.a.getActions(P.etat, l.get(4)).element);
+    						if(l.get(4)>0 && P.a.transition(l.get(4),P.etat) != 0){         //EST
+    							la.add(P.a.getActions(l.get(4),P.etat));
+    							System.out.println("4 :On ajoute l'action :"+P.a.getActions(l.get(4),P.etat).element);
     						}
     					}
     				}

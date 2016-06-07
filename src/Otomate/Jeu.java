@@ -69,7 +69,7 @@ public class Jeu {
     public static void main(String[] pArgs) throws InterruptedException {
         plateau = new Grille();
        // File repertoire = new File("../automate/");                // "../automates/" --> répertoire des automates en .xml
-        String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
+        String fichiers = new File("Automataparfait.xml").toString();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
         
     //    System.out.println("coucou" +1 );
