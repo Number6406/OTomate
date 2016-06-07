@@ -11,18 +11,20 @@ import java.io.File;
 public class Jeu {
 	
     public static int random(int min, int max){
-    return (int) (min + (Math.random() * (max - min)));
+    	int k = (int) (min + (Math.random() * (max - min)));
+    	System.out.println("RANDOMDEMERGE : "+k);
+    	return k;
     }
     
     //Attributs
     public static Grille plateau;
     static List<Joueur> joueurs;
     
-    //MÃ©thodes
+    //Méthodes
     
     public static int initPartie(){
     	System.out.println("Partie avec deux joueurs.");
-    	System.out.println("On rÃ©cupÃ¨re les deux automates des joueurs :");
+    	System.out.println("On récupère les deux automates des joueurs :");
     	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
     	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
     	joueurs = new ArrayList<Joueur>();
@@ -58,34 +60,32 @@ public class Jeu {
         List<Joueur> joueurs = new LinkedList<Joueur>();
         int k = random(1,1);
         for(int i=0; i<1; i++) {
-            joueurs.add(new Joueur(fichiers,i==k));
+            joueurs.add(new Joueur(fichiers,false/*i==k*/));
         }
         return joueurs;
     }
     
     public static void main(String[] pArgs) throws InterruptedException {
         plateau = new Grille();
-       // File repertoire = new File("../automate/");                // "../automates/" --> rÃ©pertoire des automates en .xml
+       // File repertoire = new File("../automate/");                // "../automates/" --> répertoire des automates en .xml
         String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
         
         System.out.println("coucou" +1 );
-        Grille.initialisergrille(joueurs);                                        // crÃ©ation de la grille
+        Grille.initialisergrille(joueurs);                                        // création de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
         System.out.println("coucou");
         Affichage.recharger(plateau,joueurs);
    
-        while(!finPartie()) {
+        while(/*!finPartie()*/true) {
         	System.out.println(joueurs.get(0).getPersonnagesI(0).getPosition().getX() +" "+ joueurs.get(0).getPersonnagesI(0).getPosition().getY());
             Thread.sleep(1000);                             // (faux) timer 1 seconde
             melange();
             for(int i=0; i<joueurs.size(); i++) {
+            	System.out.println("SBLEU : "+joueurs.get(i).getPersonnagesI(0).etat+"\n");
                 joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
             }
-            Affichage.recharger(plateau, joueurs);
         }
-        
-        //affichageFin();                                             // affichage de la fin de partie
     }
-    
 }
+    

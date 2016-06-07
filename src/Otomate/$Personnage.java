@@ -15,15 +15,33 @@ public abstract class $Personnage {
     protected $Personnage(String file)
     {
     	a = new Automate(file);
-    	position = new Coordonnees(1,1);
+    	int l = a.nbetats();
+    	int k = a.nbconditions();
+    	int i,j;
+		System.out.println("actions :" );
+    	for(i=0; i<k; i++){
+    		for(j=0;j<l;j++){
+    			System.out.print(a.action(j,i)+"  ");
+    		}
+    		System.out.print("\n");
+    	}
+		System.out.println("\n\ntransitions :" );
+    	for(i=0; i<k; i++){
+    		for(j=0;j<l;j++){
+    			System.out.print(a.transition(j,i)+ "  ");
+    		}
+    		System.out.print("\n");
+    	}
+    	etat = a.etat_init;
+    	position = new Coordonnees(2,13);
         vie = 10;
         inventaire = 0;
     }
     
-    //M�thodes
+    //Mthodes
     
     public void jouer(Grille plateau, List<Joueur> joueurs) {
-        plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); // #GG #EffortMaximum #NoPainNoGain #JenAiChie
+        plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); //#EffortMaximum
     }
     
     public int nbEtat(){
@@ -55,7 +73,7 @@ public abstract class $Personnage {
         return inventaire;
     }
     /**
-     * Renvoie l'ancien contenu de l'inventaire du personnage en le remplacant par l'objet donn�.
+     * Renvoie l'ancien contenu de l'inventaire du personnage en le remplacant par l'objet donn.
      */
     public int ramasser(int objet){
         int contenu = this.inventaire;
@@ -64,7 +82,7 @@ public abstract class $Personnage {
     }
     
     /**
-     * Fonctions de d�placement sur la map
+     * Fonctions de dplacement sur la map
      */
     public void deplacementDroite(){
         this.getPosition().incrX();
@@ -81,7 +99,6 @@ public abstract class $Personnage {
     public void deplacementHaut(){
         this.getPosition().decrY();
     }
-    
     //Override
     public String toString(){
     	String s = "PV : " + vie + "\n";
@@ -91,5 +108,4 @@ public abstract class $Personnage {
     	s += "Etat courant : " + etat;
     	return s;
     }
-    
 }

@@ -3,6 +3,7 @@ package Otomate;
 public enum Conditions {
     
     //Objets directement construits
+	CaseVide ("Case vide", 0),
     CheminN ("Chemin au Nord", 1),
     CheminS ("Chemin au Sud", 2),
     CheminE ("Chemin au Est", 3),

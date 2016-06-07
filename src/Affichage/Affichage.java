@@ -19,7 +19,7 @@ public class Affichage {
     private static FenetreJeu jeu;
     //private static Affichage_plateau plateau;
     private static List<$Personnage> perso;
-    //MÃ©thodes    
+    //Méthodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
@@ -54,6 +54,5 @@ public class Affichage {
 	   jeu.charger(g,lp);
 	   
    }
-    
     
 }

@@ -21,11 +21,12 @@ public class Automate {
         nbconditions = 12;
     }
     
-    public int transition(int etatCourant, int symbole) {  // renvoie le nouvel �tat + l'action #CommentOnFait --> nouveau type duet ?
+    public int transition(int etatCourant, int symbole) {  // renvoie le nouvel tat + l'action #CommentOnFait --> nouveau type duet ?
         return transitions[symbole][etatCourant];
     }
     
     public Case getActions(int etatCourant, int symbole){
+    	//System.out.println("Je recupere l'action :"+actions[symbole][etatCourant].element);
     	return actions[symbole][etatCourant];
     }
     
@@ -45,7 +46,7 @@ public class Automate {
 	public int nbetats() {
 		return nbetats;
 	}
-	
+    
 	// Override
 	public String toString(){
 		String s = "";

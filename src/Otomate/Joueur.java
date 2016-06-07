@@ -13,7 +13,7 @@ public class Joueur {
     //Attributs
     private List<$Personnage> personnages;
     
-    //MÃ©thodes
+    //Méthodes
     public Joueur(String xml, boolean mechant) {
     	personnages = new LinkedList<>();
         if(mechant) {
