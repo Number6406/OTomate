@@ -1,6 +1,7 @@
 package Affichage;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
+
 import javax.swing.JScrollPane;
 
 /**
@@ -108,6 +110,7 @@ public class FenetreJeu extends JFrame {
         tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
         pan_plateau = new Affichage_plateau(g,persoL);
+        pan_plateau.setBackground(Color.LIGHT_GRAY);
         scroll_plateau = new JScrollPane(pan_plateau);
         
         this.add(toolbar, BorderLayout.NORTH);

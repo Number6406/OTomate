@@ -10,9 +10,10 @@ import java.io.File;
 
 public class Jeu {
 	
-    public static int random(int min, int max){
-    	int k = (int) (min + (Math.random() * (max - min)));
-    	System.out.println("RANDOMDEMERGE : "+k);
+    public static int random(int min, int max) throws InterruptedException{
+    	Random r = new Random();
+    	int k = min + r.nextInt(max - min);
+
     	return k;
     }
     
@@ -56,9 +57,9 @@ public class Jeu {
         }
     }
     
-    public static List<Joueur> addJoueurs(String fichiers) {
+    public static List<Joueur> addJoueurs(String fichiers) throws InterruptedException {
         List<Joueur> joueurs = new LinkedList<Joueur>();
-        int k = random(1,1);
+       int k = 1;//random(1,1);
         for(int i=0; i<1; i++) {
             joueurs.add(new Joueur(fichiers,false/*i==k*/));
         }
@@ -71,18 +72,19 @@ public class Jeu {
         String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
         
-        System.out.println("coucou" +1 );
+    //    System.out.println("coucou" +1 );
         Grille.initialisergrille(joueurs);                                        // création de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
-        System.out.println("coucou");
+   //     System.out.println("coucou");
         Affichage.recharger(plateau,joueurs);
    
         while(/*!finPartie()*/true) {
         	System.out.println(joueurs.get(0).getPersonnagesI(0).getPosition().getX() +" "+ joueurs.get(0).getPersonnagesI(0).getPosition().getY());
-            Thread.sleep(1000);                             // (faux) timer 1 seconde
+            Thread.sleep(200);                             // (faux) timer 1 seconde
             melange();
             for(int i=0; i<joueurs.size(); i++) {
-            	System.out.println("SBLEU : "+joueurs.get(i).getPersonnagesI(0).etat+"\n");
+            	System.out.println("random : " + random(1,5));
+            	//System.out.println("SBLEU : "+joueurs.get(i).getPersonnagesI(0).etat+"\n");
                 joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
             }
         }

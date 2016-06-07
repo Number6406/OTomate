@@ -20,7 +20,7 @@ public class Automate {
         etat_init = P.etat_init;
         nbconditions = 12;
         int i,j;
-        System.out.println("Actions :");
+/*        System.out.println("Actions :");
         for(i=0; i<nbetats; i++){
         	for(j=0; j<nbconditions; j++){
         		System.out.print(actions[i][j].element+"  ");
@@ -33,21 +33,21 @@ public class Automate {
         		System.out.print(transitions[i][j]+"  ");
         	}
         	System.out.print("\n");
-        }
+        }*/
 
     }
     
     public int transition(int etatCourant, int symbole) {  // renvoie le nouvel tat + l'action #CommentOnFait --> nouveau type duet ?
-        return transitions[symbole][etatCourant];
+        return transitions[etatCourant][symbole];
     }
     
     public Case getActions(int etatCourant, int symbole){
     	//System.out.println("Je recupere l'action :"+actions[symbole][etatCourant].element);
-    	return actions[symbole][etatCourant];
+    	return actions[etatCourant][symbole];
     }
     
     public int action(int etatCourant, int symbole){
-        return actions[symbole][etatCourant].element;
+        return actions[etatCourant][symbole].element;
     
     }
     

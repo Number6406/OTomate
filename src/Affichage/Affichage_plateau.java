@@ -109,7 +109,7 @@ public class Affichage_plateau extends JPanel {
         @Override
         public void paintComponent(Graphics g){
             super.paintComponents(g);
-
+           // this.setBackground(Color.lightGray);
             int Nb = perso.size();
             int maxx=this.getWidth();
             int maxy=this.getHeight();
@@ -139,7 +139,7 @@ public class Affichage_plateau extends JPanel {
             }
 
             TAILLECASE--;
-            System.out.println("Width : " + this.getWidth() + " Height : " + this.getHeight()+ " Size : " + tiles.size());
+          //  System.out.println("Width : " + this.getWidth() + " Height : " + this.getHeight()+ " Size : " + tiles.size());
 
 
 

@@ -21,19 +21,19 @@ public abstract class $Personnage {
 		System.out.println("actions :" );
     	for(i=0; i<k; i++){
     		for(j=0;j<l;j++){
-    			System.out.print(a.action(j,i)+"  ");
+    			System.out.print(a.action(i,j)+"  ");
     		}
     		System.out.print("\n");
     	}
 		System.out.println("\n\ntransitions :" );
     	for(i=0; i<k; i++){
     		for(j=0;j<l;j++){
-    			System.out.print(a.transition(j,i)+ "  ");
+    			System.out.print(a.transition(i,j)+ "  ");
     		}
     		System.out.print("\n");
     	}
     	etat = a.etat_init;
-    	position = new Coordonnees(2,13);
+    	position = new Coordonnees(1,1);
         vie = 10;
         inventaire = 0;
     }

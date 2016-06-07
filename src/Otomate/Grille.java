@@ -7,8 +7,9 @@ import java.util.Random;
 public class Grille {
     
 	public static int random(int min, int max){
-    	int k = (int) (min + (Math.random() * (max - min)));
-    	System.out.println("RANDOMDEMERGE : "+k);
+    	Random r = new Random();
+    	int k = min + r.nextInt(max - min);
+
     	return k;
     }
     
@@ -241,7 +242,7 @@ public class Grille {
         else
         	l.add(-1);
         }
-        System.out.println("La liste l vaut :"+l.toString());
+        
         return l;
         /*l.add(Pos(P.getPosition()).getValeur());
         $Personnage p2 = P;
@@ -261,8 +262,9 @@ public class Grille {
 //Retourne une liste d'actions possibles pour P
     public static List<Case> ActionsPossibles($Personnage P){
     	List<Integer> l = Conditions(P);
+    	System.out.println("La liste l vaut :"+l.toString());
     	int s = l.size();
-    	List<Case> la = new LinkedList<Case>();
+    	List<Case> la = new LinkedList<>();
     	if(s>0){
     		if(l.get(0)>0 && P.a.transition(P.etat, l.get(0)) != 0){         //si transition possible depuis l'etat o le personnage se trouve avec la condition de la case valide
     			la.add(P.a.getActions(P.etat, l.get(0)));
@@ -302,7 +304,7 @@ public class Grille {
             return a;
         else{
         	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
-            int i = random(0, l.size()-1);
+            int i = random(0, l.size());
             System.out.println("Je vais faire l'action : "+l.get(i).element);
             a.set_Action(l.get(i).element);
             System.out.println("J'ai fait l'action : "+l.get(i).element);
@@ -332,10 +334,22 @@ public class Grille {
         Coordonnees position = P.getPosition();
         
         Case C = Pos(position);
-        Case N = Pos(new Coordonnees(position.getX(), position.getY()-1));
-        Case S = Pos(new Coordonnees(position.getX(), position.getY()+1));
-        Case E = Pos(new Coordonnees(position.getX()+1, position.getY()));
-        Case O = Pos(new Coordonnees(position.getX()-1, position.getY()));
+        Case N;
+        Case S;
+        Case E;
+        Case O;
+        if (position.getY()>0){
+        	N = Pos(new Coordonnees(position.getX(), position.getY()-1));}
+        else {N =new Case(6);}
+        if (position.getY()<tailleY-1){
+        	S = Pos(new Coordonnees(position.getX(), position.getY()+1));}
+        else {S =new Case(6);}
+        if (position.getX()<tailleX-1){
+        	E = Pos(new Coordonnees(position.getX()+1, position.getY()));}
+        else {E =new Case(6);}
+        if (position.getX()>0){
+        	O = Pos(new Coordonnees(position.getX()-1, position.getY()));}
+        else {O =new Case(6);}
         String Description = "";
         
         
