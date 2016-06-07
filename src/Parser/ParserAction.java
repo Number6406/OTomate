@@ -11,12 +11,6 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
-
-
-
-
-
-
 import Otomate.Action2;
 
 public class ParserAction{

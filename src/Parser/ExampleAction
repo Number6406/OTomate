@@ -1,0 +1,27 @@
+<action>
+<id>i</id>
+<type>k</type>
+<direction>d</direction>
+<objet>o</objet>
+<cond>1 2 3 4</cond>
+<name>s</name>
+</action>
+
+
+    { 0 : rien
+    { 1 : deplacement
+k € { 2 : attaque
+    { 3 : ramassage
+    { 4 : utiliser
+
+    { 0 : SP
+    { 1 : N
+d € { 2 : S
+    { 3 : E
+    { 4 : O
+
+o € list<int>
+
+name --> String
+
+cond < condMax

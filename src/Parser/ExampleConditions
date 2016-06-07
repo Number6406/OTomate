@@ -3,3 +3,17 @@
 <d>d</d>
 <type>t</type>
 </cond>
+
+    { 0 : SP
+    { 1 : N
+d € { 2 : E
+    { 3 : S
+    { 4 : O
+
+i < condMax
+
+       { 0 : mur
+       { 1 : objet
+type € { 2 : bloque
+       { 3 : ennemi
+       { 4 : chemin
