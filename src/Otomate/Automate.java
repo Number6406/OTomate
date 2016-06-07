@@ -19,7 +19,6 @@ public class Automate {
         nbetats = P.nb_etat;
         etat_init = P.etat_init;
         nbconditions = 12;
-        int i,j;
 /*        System.out.println("Actions :");
         for(i=0; i<nbetats; i++){
         	for(j=0; j<nbconditions; j++){

@@ -59,7 +59,7 @@ public class Jeu {
     
     public static List<Joueur> addJoueurs(String fichiers) throws InterruptedException {
         List<Joueur> joueurs = new LinkedList<Joueur>();
-       int k = 1;//random(1,1);
+      // int k = 1;//random(1,1);
         for(int i=0; i<1; i++) {
             joueurs.add(new Joueur(fichiers,false/*i==k*/));
         }

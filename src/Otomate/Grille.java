@@ -191,7 +191,7 @@ public class Grille {
 //On retrouve en element numéro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
     public static List<Integer> Conditions($Personnage P){
         List<Integer> l = new LinkedList<>();
-        int i, k=0;
+        int i;
         i=Pos(P.getPosition()).getValeur();		//recup du numero contenu
         if(i>=0 && i<=5){
         	if(i == 1 || i==2 || i==3){
