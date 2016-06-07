@@ -45,5 +45,12 @@ public class Automate {
 	public int nbetats() {
 		return nbetats;
 	}
+	
+	// Override
+	public String toString(){
+		String s = "";
+		// TODO
+		return s;
+	}
     
 }

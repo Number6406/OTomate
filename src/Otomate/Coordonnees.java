@@ -39,7 +39,7 @@ public class Coordonnees{
     }
     
     /**
-     * Fonctions pour incrémenter ou décrémenter une des deux coordonnées
+     * Fonctions pour incrï¿½menter ou dï¿½crï¿½menter une des deux coordonnï¿½es
      */
     public void incrX(){
         this.abs++;
@@ -55,6 +55,10 @@ public class Coordonnees{
     
     public void decrY(){
         this.ord--;
+    }
+    
+    public String toString(){
+    	return "(" + abs + "," + ord + ")";
     }
     
 }

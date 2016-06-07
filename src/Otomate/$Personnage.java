@@ -81,4 +81,15 @@ public abstract class $Personnage {
     public void deplacementHaut(){
         this.getPosition().decrY();
     }
+    
+    //Override
+    public String toString(){
+    	String s = "PV : " + vie + "\n";
+    	s += "Inventaire : " + Contenus.fromint(inventaire).toString() + "\n";
+    	s += "Position : " + position.toString() + "\n";
+    	s += "Automate : " + a.toString() +"\n";
+    	s += "Etat courant : " + etat;
+    	return s;
+    }
+    
 }
