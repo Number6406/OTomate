@@ -738,7 +738,7 @@ public class Grille {
             }
         }
     }
-
+    
 	public static List<Integer> getNbetats() {
 		return nbetats;
 	}

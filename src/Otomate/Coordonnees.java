@@ -21,6 +21,36 @@ public class Coordonnees{
     	
     }
     
+    /*
+     * 1 : NORTH
+     * 2 : EST
+     * 3 : SUD
+     * 4 : OUEST
+    */
+    public Coordonnees CalculCase(int d){
+    	Coordonnees k = new Coordonnees();
+    	k.setX(this.getX());
+    	k.setY(this.getY());
+    	switch(d){
+    		case 1:
+    			k.setY(this.getY()-1);
+    		break;
+    		
+    		case 2:
+    			k.setX(this.getX()+1);
+    		break;
+    		
+    		case 3:
+    			k.setY(this.getY()+1);
+    		break;
+    		
+    		case 4:
+    			k.setX(this.getX()-1);
+    		break;
+    	
+    	}
+    return k;
+    }
     
     public int getX(){
         return abs;
