@@ -157,7 +157,7 @@ public class Grille {
                 }
             }
         }
-        nbetats = taille;
+        setNbetats(taille);
         int maxi = max(taille);
         int dimh = maxi * list.size();
         if(dimh<20)
@@ -738,4 +738,12 @@ public class Grille {
             }
         }
     }
+
+	public static List<Integer> getNbetats() {
+		return nbetats;
+	}
+
+	public static void setNbetats(List<Integer> nbetats) {
+		Grille.nbetats = nbetats;
+	}
 }
