@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
 
@@ -38,6 +39,7 @@ public class FenetreNouvellePartie extends JFrame {
     JLabel lnbpersos = new JLabel("Nombre de personnages par joueur max.");
     JSpinner spin_persos = new JSpinner();
    
+    JScrollPane scroll_u = new JScrollPane();
     ButtonGroup radio_univers = new ButtonGroup();
     
     JPanel pan_b = new JPanel(new BorderLayout());
@@ -53,7 +55,7 @@ public class FenetreNouvellePartie extends JFrame {
         this.setLayout(new BorderLayout());
         this.setResizable(false);
         
-        this.add(pan_corps, BorderLayout.CENTER);
+        this.add(pan_corps, BorderLayout.NORTH);
         
         pan_corps.add(pan_partie);
         pan_partie.setBorder(BorderFactory.createTitledBorder("Options de jeu"));
@@ -69,11 +71,12 @@ public class FenetreNouvellePartie extends JFrame {
         pan_option.setBorder(BorderFactory.createTitledBorder("Options spécifiques"));
         
         pan_corps.add(pan_option);
+        pan_option.add(scroll_u);
         
         for(String u : univers) {
             JRadioButton bcu = new JRadioButton(u);
             radio_univers.add(bcu);
-            pan_option.add(bcu);
+            scroll_u.add(bcu);
         }
         
         this.add(pan_b, BorderLayout.SOUTH);
