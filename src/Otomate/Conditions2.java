@@ -27,9 +27,9 @@ public class Conditions2 {
  
     //Constructeur
     
-    public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,List<Joueur> lj){
+    public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
     	Coordonnees next=pos.CalculCase(direction);
-    	int i,max=l.size();
+    	int i,j,max=l.size();
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
     	
     	for(i=0;i<max;i++){
@@ -49,9 +49,21 @@ public class Conditions2 {
     				return false;
     			
     			case 3:
-    				// A FAIRE
+    				for(i=0;i<lj.size();i++){
+    					List<$Personnage> lp=lj.get(i).getPersonnages();
+    					for(j=0;j<lp.size();j++){
+    						if(lp.get(j).getPosition().getX()==jo.getPosition().getX() && lp.get(j).getPosition().getY()==jo.getPosition().getY()){
+    						if(jo instanceof Gentil){
+    							if(lp.get(j) instanceof Mechant) return true;
+    						}
+    						else{
+    							if(lp.get(j) instanceof Gentil) return true;
+    						}
+    						}
+    					}
+    					
+    				}
     				return false;
-    				//if(l.get(i).type==5) return true;
     			
     			case 4:
     				if(l.get(i).passable==1) return true;

@@ -69,7 +69,7 @@ public class XMLObjet extends DefaultHandler{
 				  }
 				  else if (bpas){
 					   passable=Integer.parseInt(lecture);
-					   c=new Objet(id,use,type,name,passable);
+					   c=new Objet(id,type,use,name,passable);
 					   list.add(c);
 					   bpas=false;
 				  }

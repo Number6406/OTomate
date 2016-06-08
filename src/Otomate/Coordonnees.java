@@ -22,6 +22,7 @@ public class Coordonnees{
     }
     
     /*
+     * 0 : SP
      * 1 : NORTH
      * 2 : EST
      * 3 : SUD
@@ -46,6 +47,9 @@ public class Coordonnees{
     		
     		case 4:
     			k.setX(this.getX()-1);
+    		break;
+    		
+    		default:
     		break;
     	
     	}
