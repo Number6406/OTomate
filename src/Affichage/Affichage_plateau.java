@@ -108,7 +108,7 @@ public class Affichage_plateau extends JPanel {
 	
         @Override
         public void paintComponent(Graphics g){
-            super.paintComponents(g);
+            super.paintComponent(g);
            // this.setBackground(Color.lightGray);
             int Nb = perso.size();
             int maxx=this.getWidth();

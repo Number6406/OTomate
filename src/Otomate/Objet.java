@@ -1,12 +1,28 @@
 package Otomate;
+/*
+ * b € [0,1] € |N
+
+i < iMax
+
+    	{ 1 : arme
+type €  { 2 : consommable
+    	{ 3 : antidote ?
+    	{ 4 : terrain
+    	{ 5 : mur
+
+use € { si arme = degat
+    { si consommable = regen
+ */
 
 public class Objet {
+int id;
 int type;
 int use;
 String name;
 int passable;
 
-public Objet(int type,int use,String name, int passable){
+public Objet(int id,int type,int use,String name, int passable){
+	this.id=id;
 	this.type=type;
 	this.use=use;
 	this.name=name;

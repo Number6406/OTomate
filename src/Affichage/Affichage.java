@@ -40,6 +40,7 @@ public class Affichage {
         
         jeu.charger(g,perso);
     } 
+    
    public static void recharger(Grille g,List<Joueur> l){
 	   List<$Personnage> lp = new LinkedList<>();
 	   int i,j,max=l.size(),max2;
