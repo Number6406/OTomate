@@ -62,6 +62,7 @@ public class XMLAction extends DefaultHandler{
 				   String lecture = new String(ch,start,length);
 				   	if (bid){
 					  id=Integer.parseInt(lecture);
+					  cond.clear();
 					  bid=false;
 				   	}
 				   	else if (btype){
