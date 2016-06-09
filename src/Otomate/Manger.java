@@ -2,7 +2,7 @@ package Otomate;
 
 import java.util.List;
 
-public class Manger {
+public class Manger extends $Action{
 	private boolean effect = false;
 	int valeur = 11;
 	

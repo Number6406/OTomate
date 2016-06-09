@@ -23,7 +23,7 @@ public class Ramasser extends $Action{
 					g.Pos(p.position).setValeur(aux);
 				}
 				else if(l.get(0) == 16){		//seringue
-					if(((Gentil) p).drogue == false){
+					if(((Gentil) p).drogue != 0){
 						aux = Grille.random(0, 101);
 						if(aux<10){
 							p.viemax += 10;

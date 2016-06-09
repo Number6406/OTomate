@@ -8,6 +8,8 @@ package Affichage;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -20,11 +22,25 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
  */
-public class FenetreNouvellePartie extends JFrame {
+public class FenetreNouvellePartie extends FenetreBase {
+    
+    // Valeurs prises en compte
+    private int maxJ = 8;
+    private int minJ = 2;
+    private int maxR = 10;
+    private int minR = 1;
+    private int ratio = 1;
+    private int maxP = 5;
+    private int minP = 1;
+    private String tratio = "Ratio infecté / sain";
     
     // Elements
     JPanel pan_corps = new JPanel(new GridLayout(1, 2));
@@ -32,14 +48,17 @@ public class FenetreNouvellePartie extends JFrame {
     JPanel pan_option = new JPanel();
     
     JLabel ljoueurs = new JLabel("Nombre de joueurs : ");
-    JSpinner spin_joueurs = new JSpinner();
-    JLabel lratio = new JLabel("Un infecté pour ...");
-    JSlider slider_ratio = new JSlider(1, 10);
+    SpinnerModel smj = new SpinnerNumberModel(2, minJ, maxJ, 1);
+    JSpinner spin_joueurs = new JSpinner(smj);
+    JLabel lratio = new JLabel(tratio + "(" + ratio + ")");
+    JSlider slider_ratio = new JSlider(minR, maxR, ratio);
     JLabel lratiof = new JLabel("1 personnage sain");
     JLabel lnbpersos = new JLabel("Nombre de personnages par joueur max.");
-    JSpinner spin_persos = new JSpinner();
+    SpinnerModel smp = new SpinnerNumberModel(1, minP, maxP, 1);
+    JSpinner spin_persos = new JSpinner(smp);
    
-    JScrollPane scroll_u = new JScrollPane();
+    JPanel pan_radio = new JPanel(new GridBagLayout());
+    JScrollPane scroll_u = new JScrollPane(pan_radio);
     ButtonGroup radio_univers = new ButtonGroup();
     
     JPanel pan_b = new JPanel(new BorderLayout());
@@ -47,13 +66,9 @@ public class FenetreNouvellePartie extends JFrame {
     JButton b_suivant = new JButton("Suivant");
     
     public FenetreNouvellePartie(List<String> univers) {
-        super("Création d'une nouvelle partie");
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super(800, 500, "Création d'une nouvelle partie");
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.setResizable(false);
         
         this.add(pan_corps, BorderLayout.NORTH);
         
@@ -62,8 +77,13 @@ public class FenetreNouvellePartie extends JFrame {
         
         pan_partie.add(ljoueurs);
         pan_partie.add(spin_joueurs);
+                
         pan_partie.add(lratio);
         pan_partie.add(slider_ratio);
+        slider_ratio.addChangeListener((ChangeEvent e) -> {
+            lratio.setText(tratio + "(" + slider_ratio.getValue() + ")");
+        });
+        
         pan_partie.add(lnbpersos);
         pan_partie.add(spin_persos);
         
@@ -75,13 +95,27 @@ public class FenetreNouvellePartie extends JFrame {
         
         for(String u : univers) {
             JRadioButton bcu = new JRadioButton(u);
+            bcu.setSelected(true);
             radio_univers.add(bcu);
-            scroll_u.add(bcu);
+            pan_radio.add(bcu);
         }
         
         this.add(pan_b, BorderLayout.SOUTH);
         pan_b.add(b_annuler, BorderLayout.WEST);
         pan_b.add(b_suivant, BorderLayout.EAST);
+        
+        b_annuler.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        
+        b_suivant.addActionListener((ActionEvent e) -> {
+            this.setVisible(false);
+            FenetreCreation fCreation = new FenetreCreation(getRatio(), getNbP(), getNbJ());
+            fCreation.setPrevious(this);
+        });
         
     }
     
@@ -90,6 +124,18 @@ public class FenetreNouvellePartie extends JFrame {
         u.add("Humain vs. Zombie");
         u.add("Robot vs. Virus");
         new FenetreNouvellePartie(u);
+    }
+    
+    public int getRatio() {
+        return ((Integer) slider_ratio.getValue());
+    }
+    
+    public int getNbP() {
+        return ((Integer) spin_persos.getValue());
+    }
+    
+    public int getNbJ() {
+        return ((Integer) spin_joueurs.getValue());
     }
     
 }
