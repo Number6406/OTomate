@@ -17,16 +17,20 @@ public class Gentil extends $Personnage{
 	 * 			8. - vie
 	 */
 	
+	/*remede = 1.antidote
+	 * 			2.bandage
+	 */
+	
 	int vie;		//vie actuelle NE PAS DEPASSER viemax
-	int arme, remede;
+	int arme, remede, drogue;
 	int paralysie, piege;			//nb de tour a jouer, att avant prochain piege
 	int efdrogue, efsaignement; //calcul le nombre de tours restant et effet a effectuer
-	boolean infecte, saignement, drogue;
+	boolean infecte, saignement;
     
 	public Gentil(String file){
 		super(file);
-		arme = remede  = 0;
-		infecte = saignement = drogue = false;
+		arme = remede = drogue  = 0;
+		infecte = saignement = false;
 		vie = viemax;
 		paralysie = 1;
 		piege = 10;
