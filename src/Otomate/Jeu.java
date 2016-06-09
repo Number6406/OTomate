@@ -1,7 +1,6 @@
 package Otomate;
 
 import Affichage.*;
-import Otomate.historique.Historique;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -68,8 +67,6 @@ public class Jeu {
         String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
         
-        historique = new Historique();
-        
     //    System.out.println("coucou" +1 );
         Grille.initialisergrille(joueurs);                                        // cr�ation de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
@@ -86,6 +83,7 @@ public class Jeu {
             	
             	
             	//IL FAUT PARCOURIR LA LISTE DES PERSO CHECK EFFETS PAR TOUR --> voir AttEst
+            	//on decremente effdrogue apr�s avoir check et piege 
             	
             	
                 //joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);

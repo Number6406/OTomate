@@ -19,7 +19,7 @@ public class Gentil extends $Personnage{
 	
 	int vie;		//vie actuelle NE PAS DEPASSER viemax
 	int arme, remede;
-	int paralysie;			//nb de tour a jouer
+	int paralysie, piege;			//nb de tour a jouer, att avant prochain piege
 	int efdrogue, efsaignement; //calcul le nombre de tours restant et effet a effectuer
 	boolean infecte, saignement, drogue;
     
@@ -29,6 +29,7 @@ public class Gentil extends $Personnage{
 		infecte = saignement = drogue = false;
 		vie = viemax;
 		paralysie = 1;
+		piege = 10;
     }
 	
 	public String toString(){
