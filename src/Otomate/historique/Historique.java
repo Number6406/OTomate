@@ -15,7 +15,7 @@ import Otomate.Gentil;
  * 
  * Un historique est une liste d'actions, ordonnées temporellement et par tour... ?
  */
-public class Historique {
+public class Historique{
 	
 	// Attributs //
 	
@@ -36,12 +36,22 @@ public class Historique {
 	public Tour ceTour(){
 		return partie.get(tourCourant-1);
 	}
+
+	public Tour getTour(int i) {
+		return partie.get(i);
+	}
+	
+	public int nbTour(){
+		return partie.size();
+	}
 	
 	
 	public String toString(){
 		String s = "Historique : \n";
+		int i = 1;
 		for(Tour t : partie){
-			s += "Tour " + tourCourant + "\n" + t.toString() + "\n";
+			s += "Tour " + i + "\n" + t.toString();
+			i++;
 		}
 		return s;
 	}	
@@ -54,6 +64,8 @@ public class Historique {
 		h.addTour();
 		h.ceTour().addEvenement(new Evenement(g, "fais la vaisselle"));
 		h.ceTour().addEvenement(e);
+		h.addTour();
+		h.ceTour().addEvenement(new Evenement(g, "a mal aux pieds"));
 		System.out.println(h.toString());
 		
 	}

@@ -26,6 +26,10 @@ public class Tour {
 		this.evenements.add(evenement);
 	}
 	
+	public int nbEvenement(){
+		return evenements.size();
+	}
+	
 	@Override
 	public String toString(){
 		String s = "";

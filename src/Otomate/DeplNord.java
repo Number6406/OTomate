@@ -7,10 +7,14 @@ public class DeplNord extends $Action{
 	private boolean effect = false;
 	int valeur = 1;
 	
-	public void todo(List<Integer> l, $Personnage p){
+	public void todo(List<Integer> l, $Personnage p, Grille g){
 		if(l.get(1) == 1){		//1 = chemin au nord avec le deuxieme element de la liste qui regarde la case au nord
 			p.position.setY(p.position.getY()-1);
 			effect = true;
+		}
+		if (p instanceof Mechant){
+			if (g.Pos(p.position).piegee==true)
+			((Mechant) p).vie-=20;
 		}
 	}	
 	

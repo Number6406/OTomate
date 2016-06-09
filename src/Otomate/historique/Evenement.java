@@ -18,7 +18,8 @@ public class Evenement{
 	
 	@Override
 	public String toString(){
-		return personnage.getNom() + " " + description;			
+		return "<html>" + personnage.getNomHtml() + " " + description + "</html>";
 	}
+	
 	
 }

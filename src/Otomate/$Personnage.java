@@ -1,17 +1,19 @@
 package Otomate;
 
+import java.awt.Color;
 import java.util.List;
 
 public abstract class $Personnage {
     
     //Attributs
-    protected int vie;
+    protected int viemax;
     protected int etat;
     protected Coordonnees position;
     protected Automate a;
     protected int inventaire;
     protected String nom;
     protected int dmg;
+    protected Color couleur;
     
     //Constructeur
     protected $Personnage(String file)
@@ -19,10 +21,11 @@ public abstract class $Personnage {
     	a = new Automate(file);
     	etat = a.etat_initial();
     	position = new Coordonnees(1,7);
-        vie = 100;
+        viemax = 100;
         inventaire = 0;
-        nom ="Bob sans nom";
+        nom ="Bob";
         dmg = 10;
+        couleur = Color.BLUE; 
     }
     
     //Mthodes
@@ -41,11 +44,11 @@ public abstract class $Personnage {
     }
     
     public int getVie(){
-        return vie;
+        return viemax;
     }
     
     public void setVie(int Vie){
-        this.vie=Vie;
+        this.viemax=Vie;
     }
     
     public Coordonnees getPosition(){
@@ -55,18 +58,30 @@ public abstract class $Personnage {
     public int getInventaire(){
         return inventaire;
     }
+
+	public String getNomHtml() {
+		return "<font color=\"rgb(" + couleur.getRed() +"," + couleur.getGreen() + "," + couleur.getBlue() + ")\">" + nom + "</font>";
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public Color getCouleur(){
+		return couleur;
+	}
+	
+	public void setColor(Color c){
+		this.couleur = c;
+	}
     
     //Override
     public String toString(){
-    	String s = "PV : " + vie + "\n";
+    	String s = "PV : " + viemax + "\n";
     	s += "Inventaire : " + /*Contenus.fromint(inventaire).toString() +*/ "\n";
     	s += "Position : " + position.toString() + "\n";
     	s += "Automate : " + a.toString() +"\n";
     	s += "Etat courant : " + etat;
     	return s;
     }
-
-	public String getNom() {
-		return nom;
-	}
 }
