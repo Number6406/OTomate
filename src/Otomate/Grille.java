@@ -167,9 +167,9 @@ public class Grille {
         if(dimv<20)
             dimv = 20;
             
-      //cration de la map dimh/dimv avec minimum 150/150
+      //cration die la map dimh/dimv avec minimum 150/150
         
-        g = new Case[dimh][dimv];     
+        g = new Case[dimh][dimv];
         for(i=0;i<dimh;i++){
         	for(j=0;j<dimv;j++){
         		g[i][j]=new Case();
@@ -626,7 +626,7 @@ public class Grille {
                 return;
             }
         }
-    }
+    }*/
     
 	public static List<Integer> getNbetats() {
 		return nbetats;
@@ -635,4 +635,4 @@ public class Grille {
 	public static void setNbetats(List<Integer> nbetats) {
 		Grille.nbetats = nbetats;
 	}
-}*/
+}

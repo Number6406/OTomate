@@ -21,7 +21,7 @@ public class Jeu {
     public static Grille plateau;
     static List<Joueur> joueurs;
     
-    //M�thodes
+    //Methodes
     
     public static int initPartie(){
     	System.out.println("Partie avec deux joueurs.");
@@ -39,7 +39,7 @@ public class Jeu {
     }
     
     public static boolean finPartie() {
-        
+        return false;
     }
     public static void melange() {
         Random rnd = new Random();
@@ -79,7 +79,7 @@ public class Jeu {
             for(int i=0; i<joueurs.size(); i++) {
             	System.out.println("random : " + random(1,5));
             	//System.out.println("SBLEU : "+joueurs.get(i).getPersonnagesI(0).etat+"\n");
-                joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
+                //joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
             }
         }
     }

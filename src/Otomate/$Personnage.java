@@ -38,8 +38,36 @@ public abstract class $Personnage {
         inventaire = 0;
     }
     
-    //Methodes
+    //Mthodes
     
+    public int nbEtat(){
+        return a.nbetats();
+    }
+    
+    void setEtat(int symbole){
+        if(a.transitions[symbole][etat] != 0)
+            etat = a.transitions[symbole][etat];
+    }
+    
+    public Automate getAutomate(){
+        return a;
+    }
+    
+    public int getVie(){
+        return vie;
+    }
+    
+    public void setVie(int Vie){
+        this.vie=Vie;
+    }
+    
+    public Coordonnees getPosition(){
+        return this.position;
+    }
+     
+    public int getInventaire(){
+        return inventaire;
+    }
     
     //Override
     public String toString(){
