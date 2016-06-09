@@ -167,9 +167,9 @@ public class Grille {
         if(dimv<20)
             dimv = 20;
             
-      //cration de la map dimh/dimv avec minimum 150/150
+      //cration die la map dimh/dimv avec minimum 150/150
         
-        g = new Case[dimh][dimv];     
+        g = new Case[dimh][dimv];
         for(i=0;i<dimh;i++){
         	for(j=0;j<dimv;j++){
         		g[i][j]=new Case();
@@ -186,131 +186,20 @@ public class Grille {
         coinsAutomates = goAutomates(list, dimh, dimv);
         Placements(l);
     }
-
-//Retourne la liste des conditions du personnage
-//On retrouve en element numéro : 0:centre; 1:Nord; 2:Sud; 3:Ouest; 4:Est
-    public static List<Integer> Conditions($Personnage P){
-        List<Integer> l = new LinkedList<>();
-        int i;
-        i=Pos(P.getPosition()).getValeur();		//recup du numero contenu
-        if(i>=0 && i<=5){
-        	if(i == 1 || i==2 || i==3){
-        		l.add(9);
-        	}
-        	else
-        		l.add(0);
-        }
-        else if(i<9){
-        	System.out.println("ERRUUUUUUR");
-        }
-        else
-        	l.add(10);
-        $Personnage p2 = P;
-        p2.getPosition().setY(P.getPosition().getY()-1);
-        if(p2.position.getX()>0 && p2.position.getY()>0){
-        i=(Pos(p2.getPosition()).getValeur());
-        if(i>=0 && i<=5 || i>8){
-        		l.add(1);
-        }
-        else
-        	l.add(-1);
-        }
-        p2.getPosition().setY(P.getPosition().getY()+1);
-        if(p2.position.getX()>0 && p2.position.getY()>0){
-        i = (Pos(p2.getPosition()).getValeur());
-        if(i>=0 && i<=5 || i>8){
-    		l.add(2);
-        }
-        else
-        	l.add(-1);
-        }
-        p2.getPosition().setX(P.getPosition().getX()-1);
-        if(p2.position.getX()>0 && p2.position.getY()>0){
-        i = (Pos(p2.getPosition()).getValeur());
-        if(i>=0 && i<=5 || i>8){
-    		l.add(4);
-        }
-        else
-        	l.add(-1);
-        }
-        p2.getPosition().setX(P.getPosition().getX()+1);
-        if(p2.position.getX()>0 && p2.position.getY()>0){
-        i = (Pos(p2.getPosition()).getValeur());
-        if(i>=0 && i<=5 || i>8){
-    		l.add(3);
-        }
-        else
-        	l.add(-1);
-        }
-        
-        return l;
-        /*l.add(Pos(P.getPosition()).getValeur());
-        $Personnage p2 = P;
-        p2.getPosition().setY(P.getPosition().getY()-1);
-        l.add(Pos(p2.getPosition()).getValeur());
-        p2.getPosition().setY(P.getPosition().getY()+1);
-        l.add(Pos(p2.getPosition()).getValeur());
-        p2.getPosition().setY(P.getPosition().getY());
-        p2.getPosition().setX(P.getPosition().getX()-1);
-        l.add(Pos(p2.getPosition()).getValeur());
-        p2.getPosition().setX(P.getPosition().getX()+1);
-        l.add(Pos(p2.getPosition()).getValeur());
-        System.out.println("La liste l vaut :"+l.toString());
-        return l;*/
-    }
     
-//Retourne une liste d'actions possibles pour P
-    public static List<Case> ActionsPossibles($Personnage P){
-    	List<Integer> l = Conditions(P);
-    	System.out.println("La liste l vaut :"+l.toString());
-    	int s = l.size();
-    	List<Case> la = new LinkedList<>();
-    	if(s>0){
-    		if(l.get(0)>0 && P.a.transition(l.get(0),P.etat-1) != 0){         //si transition possible depuis l'etat o le personnage se trouve avec la condition de la case valide
-    			la.add(P.a.getActions(l.get(0),P.etat-1));
-    			System.out.println("0 :On ajoute l'action :"+P.a.getActions(l.get(0),P.etat-1).element);
-    		}
-    		if(s>1){
-    			if(l.get(1)>0 && P.a.transition(l.get(1),P.etat-1) != 0){         //regarde au nord
-    				la.add(P.a.getActions(l.get(1),P.etat-1));
-    				System.out.println("1 :On ajoute l'action :"+P.a.getActions(l.get(1),P.etat-1).element);
-    			}
-    			if(s>2){
-    				if(l.get(2)>0 && P.a.transition(l.get(2),P.etat-1) != 0){         //Sud
-    					la.add(P.a.getActions(l.get(2),P.etat-1));
-    					System.out.println("2 :On ajoute l'action :"+P.a.getActions(l.get(2),P.etat-1).element);
-    				}
-    				if(s>3){
-    					if(l.get(3)>0 && P.a.transition(l.get(3),P.etat-1) != 0){          //Ouest
-    						la.add(P.a.getActions(l.get(3),P.etat-1));
-    						System.out.println("3 :On ajoute l'action :"+P.a.getActions(l.get(3),P.etat-1).element);
-    					}
-    					if(s>4){
-    						if(l.get(4)>0 && P.a.transition(l.get(4),P.etat-1) != 0){         //EST
-    							la.add(P.a.getActions(l.get(4),P.etat-1));
-    							System.out.println("4 :On ajoute l'action :"+P.a.getActions(l.get(4),P.etat-1).element);
-    						}
-    					}
-    				}
-    			}
-    		}
-    	}
-    	return la;
-    }
-    
-    public static Action takeOne(List<Case> l){
-        Action a = new Action();
-        if(l.isEmpty() == true)
-            return a;
-        else{
-        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
-            int i = random(0, l.size());
-            System.out.println("Je vais faire l'action : "+l.get(i).element);
-            a.set_Action(l.get(i).element);
-            System.out.println("J'ai fait l'action : "+l.get(i).element);
-            return a;
-        }
-    }
+//    public static Action takeOne(List<Case> l){
+//        Action a = new Action();
+//        if(l.isEmpty() == true)
+//            return a;
+//        else{
+//        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
+//            int i = random(0, l.size());
+//            System.out.println("Je vais faire l'action : "+l.get(i).element);
+//            a.set_Action(l.get(i).element);
+//            System.out.println("J'ai fait l'action : "+l.get(i).element);
+//            return a;
+//        }
+//    }
 
 //Retourne la case de coordonnees c
     public static Case Pos(Coordonnees c){
@@ -319,17 +208,17 @@ public class Grille {
     
     /**
      * Fonction permettant de frapper  un emplacement alatoire s'il y a des entits  proximit
-     */
-     public void Frapper($Personnage acteur) {
-         
-     }
+//     */
+//     public void Frapper($Personnage acteur) {
+//         
+//     }
     
     
 //On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
   
 //Met a jour la map = change le numero si besoin est
-    public void Maj($Personnage P, Action A, List<Joueur> J){
+/*    public void Maj($Personnage P, Action A, List<Joueur> J){
         
         Coordonnees position = P.getPosition();
         
@@ -354,7 +243,7 @@ public class Grille {
         
         
         if(P instanceof Gentil){
-            if(A.get_Action() == 0)                  //indifférent
+            if(A.get_Action() == 0)                  //indiffï¿½rent
                 return;
                 
             else if(A.get_Action() == Actions.Rien.getValeur()){  // Ne rien faire
@@ -501,7 +390,7 @@ public class Grille {
                 }
             }
             
-            else if(A.get_Action() == Actions.FrapperE.getValeur()){ //Frapper à l'est 
+            else if(A.get_Action() == Actions.FrapperE.getValeur()){ //Frapper ï¿½ l'est 
                 Coordonnees v = new Coordonnees();
                 v.setX(P.getPosition().getX()+1);
                 v.setY(P.getPosition().getY());
@@ -542,7 +431,7 @@ public class Grille {
                 }
             }
             
-            else if(A.get_Action() == Actions.FrapperO.getValeur()){ //Frapper à l'ouest
+            else if(A.get_Action() == Actions.FrapperO.getValeur()){ //Frapper ï¿½ l'ouest
                 Coordonnees v = new Coordonnees();
                 v.setX(P.getPosition().getX()-1);
                 v.setY(P.getPosition().getY());
@@ -737,7 +626,7 @@ public class Grille {
                 return;
             }
         }
-    }
+    }*/
     
 	public static List<Integer> getNbetats() {
 		return nbetats;

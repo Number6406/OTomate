@@ -13,8 +13,15 @@ public enum Conditions {
     EnnemiE ("Ennemi au Est", 7),
     EnnemiO ("Ennemi au Ouest", 8),
     Comestible ("Comestible sur ma Case", 9),
-    Arc ("Arc sur ma Case", 10),
-    Sabre ("Sabre sur ma Case", 11);
+    //Pompe ("pompe sur ma Case", 10),
+    Couteau ("Couteau sur ma Case", 10),
+	ObstacleN ("Obstacle au nord", 11),
+	ObstacleS ("Obstacle au sud", 12),
+	ObstacleE ("Obstacle à l'est", 13),
+	ObstacleO ("Obstacle à l'ouest", 14),
+	Fouillable ("est fouillable", 15),
+	Seringue ("la drogue c'est bon", 16);
+	
     private int id;
     private int value;
     private int type;
@@ -64,7 +71,7 @@ public enum Conditions {
         return name;
     }
     
-    public static Conditions fromint(int x){
+    /*public static Conditions fromint(int x){
         switch(x) {
         case 1:
             return CheminN;
@@ -90,7 +97,7 @@ public enum Conditions {
             return Sabre;
         }
         return null;
-    }
+    }*/
     
     
 }

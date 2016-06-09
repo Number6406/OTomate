@@ -36,16 +36,16 @@ public class Automate {
 
     }
     
-    public int transition(int etatCourant, int symbole) {  // renvoie le nouvel tat + l'action #CommentOnFait --> nouveau type duet ?
+    public int transition(int symbole, int etatCourant) {  // renvoie le nouvel tat + l'action #CommentOnFait --> nouveau type duet ?
         return transitions[symbole][etatCourant];
     }
     
-    public Case getActions(int etatCourant, int symbole){
+    public Case getActions(int symbole, int etatCourant){
     	//System.out.println("Je recupere l'action :"+actions[symbole][etatCourant].element);
     	return actions[symbole][etatCourant];
     }
     
-    public int action(int etatCourant, int symbole){
+    public int action(int symbole, int etatCourant){
         return actions[symbole][etatCourant].element;
     
     }
@@ -60,6 +60,32 @@ public class Automate {
 
 	public int nbetats() {
 		return nbetats;
+	}
+
+	public int etat_initial() {
+		return etat_init;
+	}
+	
+	public String toString(){
+		String s = "";
+		int l = this.nbetats();
+    	int k = this.nbconditions();
+    	int i,j;
+		System.out.println("actions :" );
+    	for(i=0; i<k; i++){
+    		for(j=0;j<l;j++){
+    			System.out.print(this.action(i,j)+"  ");
+    		}
+    		System.out.print("\n");
+    	}
+		System.out.println("\n\ntransitions :" );
+    	for(i=0; i<k; i++){
+    		for(j=0;j<l;j++){
+    			System.out.print(this.transition(i,j)+ "  ");
+    		}
+    		System.out.print("\n");
+    	}
+    	return s;
 	}
     
 }

@@ -10,39 +10,22 @@ public abstract class $Personnage {
     protected Coordonnees position;
     protected Automate a;
     protected int inventaire;
+    protected String nom;
+    protected int dmg;
     
     //Constructeur
     protected $Personnage(String file)
     {
     	a = new Automate(file);
-    	int l = a.nbetats();
-    	int k = a.nbconditions();
-    	int i,j;
-		System.out.println("actions :" );
-    	for(i=0; i<k; i++){
-    		for(j=0;j<l;j++){
-    			System.out.print(a.action(i,j)+"  ");
-    		}
-    		System.out.print("\n");
-    	}
-		System.out.println("\n\ntransitions :" );
-    	for(i=0; i<k; i++){
-    		for(j=0;j<l;j++){
-    			System.out.print(a.transition(i,j)+ "  ");
-    		}
-    		System.out.print("\n");
-    	}
-    	etat = a.etat_init;
+    	etat = a.etat_initial();
     	position = new Coordonnees(1,7);
-        vie = 10;
+        vie = 100;
         inventaire = 0;
+        nom ="Bob sans nom";
+        dmg = 10;
     }
     
     //Mthodes
-    
-    public void jouer(Grille plateau, List<Joueur> joueurs) {
-        plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); //#EffortMaximum
-    }
     
     public int nbEtat(){
         return a.nbetats();
@@ -72,40 +55,18 @@ public abstract class $Personnage {
     public int getInventaire(){
         return inventaire;
     }
-    /**
-     * Renvoie l'ancien contenu de l'inventaire du personnage en le remplacant par l'objet donn.
-     */
-    public int ramasser(int objet){
-        int contenu = this.inventaire;
-        this.inventaire = objet;
-        return contenu;
-    }
     
-    /**
-     * Fonctions de dplacement sur la map
-     */
-    public void deplacementDroite(){
-        this.getPosition().incrX();
-    }
-    
-    public void deplacementGauche(){
-        this.getPosition().decrX();
-    }
-    
-    public void deplacementBas(){
-        this.getPosition().incrY();
-    }
-    
-    public void deplacementHaut(){
-        this.getPosition().decrY();
-    }
     //Override
     public String toString(){
     	String s = "PV : " + vie + "\n";
-    	s += "Inventaire : " + Contenus.fromint(inventaire).toString() + "\n";
+    	s += "Inventaire : " + /*Contenus.fromint(inventaire).toString() +*/ "\n";
     	s += "Position : " + position.toString() + "\n";
     	s += "Automate : " + a.toString() +"\n";
     	s += "Etat courant : " + etat;
     	return s;
     }
+
+	public String getNom() {
+		return nom;
+	}
 }
