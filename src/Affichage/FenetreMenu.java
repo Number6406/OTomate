@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,8 +31,10 @@ public class FenetreMenu extends FenetreBase {
     BoutonBasique b_credits = new BoutonBasique(d,"Crédits");
     BoutonBasique b_quitter = new BoutonBasique(d,"Quitter");
     
+    // Liste des univers
+    List<String> univers = new ArrayList<String>();
     
-    public FenetreMenu() {
+    public FenetreMenu() {        
         super(500,300,"ANGRY OTOMATE");
         this.setLayout(new BorderLayout());
         
@@ -43,21 +47,18 @@ public class FenetreMenu extends FenetreBase {
         panel_b.add(b_credits);
         panel_b.add(b_quitter);
         
+        // Définition des univers en DUR pour le moment
+        univers.add("Humains VS. Zombies");
+        univers.add("Robots VS. Virus");
         
-        b_jouer.addActionListener( new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                // Ouvre une fenêtre de nouvelle partie au clic
-                FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(null);
-            }
+        b_jouer.addActionListener((ActionEvent e) -> {
+            // Ouvre une fenêtre de nouvelle partie au clic
+            FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(univers);
         });
         
-        b_quitter.addActionListener( new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                // Ouvre une fenêtre de nouvelle partie au clic
-                dispose();
-            }
+        b_quitter.addActionListener((ActionEvent e) -> {
+            // Ouvre une fenêtre de nouvelle partie au clic
+            dispose();
         });
         
     }
