@@ -21,11 +21,11 @@ public class Jeu {
     public static Grille plateau;
     static List<Joueur> joueurs;
     
-    //Méthodes
+    //Mï¿½thodes
     
     public static int initPartie(){
     	System.out.println("Partie avec deux joueurs.");
-    	System.out.println("On récupère les deux automates des joueurs :");
+    	System.out.println("On rï¿½cupï¿½re les deux automates des joueurs :");
     	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
     	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
     	joueurs = new ArrayList<Joueur>();
@@ -68,12 +68,12 @@ public class Jeu {
     
     public static void main(String[] pArgs) throws InterruptedException {
         plateau = new Grille();
-       // File repertoire = new File("../automate/");                // "../automates/" --> répertoire des automates en .xml
+       // File repertoire = new File("../automate/");                // "../automates/" --> rï¿½pertoire des automates en .xml
         String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
         
     //    System.out.println("coucou" +1 );
-        Grille.initialisergrille(joueurs);                                        // création de la grille
+        Grille.initialisergrille(joueurs);                                        // crï¿½ation de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
    //     System.out.println("coucou");
         Affichage.recharger(plateau,joueurs);
