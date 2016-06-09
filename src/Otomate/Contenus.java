@@ -3,17 +3,22 @@ package Otomate;
 public enum Contenus {
     
     //Objets directement construits
-    Terre("de la Terre", 0),
-    Pomme ("une Pomme", 1),
-    Carotte ("une Carotte", 2),
-    Gateau ("un Gateau", 3),
-    Herbe ("de l'Herbe", 4),
-    Sable ("du Sable", 5),
-    Arbre ("un Arbre", 6),
-    Buisson ("un Buisson", 7),
-    Eau ("de l'Eau", 8),
-    Arc ("un Arc", 9),
-    Sabre ("un Sabre", 10),;
+    Herbe ("de l'herbe", 0),
+    Terre ("de la terre", 1),
+    Gravier ("du gravier", 2),
+    Sable ("du sable", 3),
+    Eau ("de l'eau", 4),
+    Immeuble ("un immeuble", 5),
+    EauContaminee ("de l'eau contaminée", 6),
+    Conserve ("une boite de conserve", 7),
+    Bouteille ("une bouteille", 8),
+    Couteau ("un couteau", 9),
+    Pompe ("un fusil a pompe", 10),
+    Hopital ("un hopital", 11),
+    Grange ("une grange", 12),
+    Cactus ("un cactus", 13),
+    Bandage ("un bandage", 14),
+    Armure ("une armure", 15);
     
     private int value;
     private String name = "";
@@ -35,27 +40,37 @@ public enum Contenus {
     public static Contenus fromint(int x){
         switch(x) {
         case 0:
-            return Terre;
-        case 1:
-            return Pomme;
-        case 2:
-            return Carotte;
-        case 3:
-            return Gateau;
-        case 4:
             return Herbe;
-        case 5:
+        case 1:
+            return Terre;
+        case 2:
+            return Gravier;
+        case 3:
             return Sable;
-        case 6:
-            return Arbre;
-        case 7:
-            return Buisson;
-        case 8:
+        case 4:
             return Eau;
+        case 5:
+            return Immeuble;
+        case 6:
+            return EauContaminee;
+        case 7:
+            return Conserve;
+        case 8:
+            return Bouteille;
         case 9:
-            return Arc;
+            return Couteau;
         case 10:
-            return Sabre;
+            return Pompe;
+        case 11:
+        	return Hopital;
+        case 12:
+        	return Grange;
+        case 13:
+        	return Cactus;
+        case 14:
+        	return Bandage;
+        case 15:
+        	return Armure;
         }
         return null;
     }

@@ -38,67 +38,9 @@ public abstract class $Personnage {
         inventaire = 0;
     }
     
-    //Mthodes
+    //Methodes
     
-    public void jouer(Grille plateau, List<Joueur> joueurs) {
-        plateau.Maj(this, Grille.takeOne(Grille.ActionsPossibles(this)), joueurs); //#EffortMaximum
-    }
     
-    public int nbEtat(){
-        return a.nbetats();
-    }
-    
-    void setEtat(int symbole){
-        if(a.transitions[symbole][etat] != 0)
-            etat = a.transitions[symbole][etat];
-    }
-    
-    public Automate getAutomate(){
-        return a;
-    }
-    
-    public int getVie(){
-        return vie;
-    }
-    
-    public void setVie(int Vie){
-        this.vie=Vie;
-    }
-    
-    public Coordonnees getPosition(){
-        return this.position;
-    }
-     
-    public int getInventaire(){
-        return inventaire;
-    }
-    /**
-     * Renvoie l'ancien contenu de l'inventaire du personnage en le remplacant par l'objet donn.
-     */
-    public int ramasser(int objet){
-        int contenu = this.inventaire;
-        this.inventaire = objet;
-        return contenu;
-    }
-    
-    /**
-     * Fonctions de dplacement sur la map
-     */
-    public void deplacementDroite(){
-        this.getPosition().incrX();
-    }
-    
-    public void deplacementGauche(){
-        this.getPosition().decrX();
-    }
-    
-    public void deplacementBas(){
-        this.getPosition().incrY();
-    }
-    
-    public void deplacementHaut(){
-        this.getPosition().decrY();
-    }
     //Override
     public String toString(){
     	String s = "PV : " + vie + "\n";
