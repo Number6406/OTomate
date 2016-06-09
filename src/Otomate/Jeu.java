@@ -83,6 +83,11 @@ public class Jeu {
             for(int i=0; i<joueurs.size(); i++) {
             	System.out.println("random : " + random(1,5));
             	//System.out.println("SBLEU : "+joueurs.get(i).getPersonnagesI(0).etat+"\n");
+            	
+            	
+            	//IL FAUT PARCOURIR LA LISTE DES PERSO CHECK EFFETS PAR TOUR --> voir AttEst
+            	
+            	
                 //joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
             }
         }

@@ -6,13 +6,29 @@ public class Gentil extends $Personnage{
 	  * correspond au degats supp
 	  */
 	
+	/*type drogue = 0.nickel
+	 * 			1.bonus hp max
+	 * 			2.malus hp.max
+	 * 			3. + hp/tour
+	 * 			4. - hp/tour
+	 * 			5.adrenaline
+	 * 			6. passe
+	 * 			7. + vie
+	 * 			8. - vie
+	 */
+	
+	int vie;		//vie actuelle NE PAS DEPASSER viemax
 	int arme, remede;
+	int paralysie;			//nb de tour a jouer
+	int efdrogue, efsaignement; //calcul le nombre de tours restant et effet a effectuer
 	boolean infecte, saignement, drogue;
     
 	public Gentil(String file){
 		super(file);
-		arme = remede = 0;
+		arme = remede  = 0;
 		infecte = saignement = drogue = false;
+		vie = viemax;
+		paralysie = 1;
     }
 	
 	public String toString(){

@@ -23,12 +23,12 @@ public class AttNord extends $Action{
 			}
 			if(p instanceof Gentil){
 				if(e != null && e instanceof Mechant)
-					e.vie -= p.dmg + ((Gentil) p).arme;
+					((Mechant) e).vie -= p.dmg + ((Gentil) p).arme;
 				
 			}
 			else
 				if(e != null && e instanceof Gentil){
-					e.vie -= p.dmg;
+					((Gentil) e).vie -= p.dmg;
 					if(Grille.random(0, 101) > 24)
 						((Gentil)e).saignement = true;
 					if(Grille.random(0,101) > 4)

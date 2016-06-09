@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class $Personnage {
     
     //Attributs
-    protected int vie;
+    protected int viemax;
     protected int etat;
     protected Coordonnees position;
     protected Automate a;
@@ -21,7 +21,7 @@ public abstract class $Personnage {
     	a = new Automate(file);
     	etat = a.etat_initial();
     	position = new Coordonnees(1,7);
-        vie = 100;
+        viemax = 100;
         inventaire = 0;
         nom ="Bob";
         dmg = 10;
@@ -44,11 +44,11 @@ public abstract class $Personnage {
     }
     
     public int getVie(){
-        return vie;
+        return viemax;
     }
     
     public void setVie(int Vie){
-        this.vie=Vie;
+        this.viemax=Vie;
     }
     
     public Coordonnees getPosition(){
@@ -69,7 +69,7 @@ public abstract class $Personnage {
     
     //Override
     public String toString(){
-    	String s = "PV : " + vie + "\n";
+    	String s = "PV : " + viemax + "\n";
     	s += "Inventaire : " + /*Contenus.fromint(inventaire).toString() +*/ "\n";
     	s += "Position : " + position.toString() + "\n";
     	s += "Automate : " + a.toString() +"\n";
