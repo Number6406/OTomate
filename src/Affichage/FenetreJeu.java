@@ -18,6 +18,9 @@ import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
+import Otomate.historique.Evenement;
+import Otomate.historique.Historique;
+import Otomate.historique.Tour;
 
 import javax.swing.JScrollPane;
 
@@ -63,7 +66,7 @@ public class FenetreJeu extends JFrame {
         this.setLayout(new BorderLayout());
     }
     
-    public void charger(Grille g,List<$Personnage> persoL) {
+    public void charger(Grille g,List<$Personnage> persoL, Historique h) {
         // Chargement des différents éléments des fenetres
         toolbar = new JMenuBar();
         pan_info = new JPanel();
@@ -164,14 +167,14 @@ public class FenetreJeu extends JFrame {
         pan_info.add(tp_onglets,infoConstraints);
         
         tp_onglets.add("Historique",scroll_history);
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
-        ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"TEST", "Bla"});
+        for(int i = h.nbTour()-1; i >=0;i--){
+        	Tour t = h.getTour(i);
+        	for(int j = 0; j < t.nbEvenement();j++){
+        		Evenement e = t.getEvenement(j);
+                ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{i+1, e.toString()});
+        	}
+            if(i!=0)((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"", ""});
+        }
         
         tp_onglets.add("Legende",scroll_legende);
         

@@ -1,6 +1,7 @@
 package Otomate;
 
 import Affichage.*;
+import Otomate.historique.Historique;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,6 +21,7 @@ public class Jeu {
     //Attributs
     public static Grille plateau;
     static List<Joueur> joueurs;
+    public static Historique historique;
     
     //Methodes
     
@@ -66,11 +68,13 @@ public class Jeu {
         String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
         joueurs = addJoueurs(fichiers);
         
+        historique = new Historique();
+        
     //    System.out.println("coucou" +1 );
         Grille.initialisergrille(joueurs);                                        // cr�ation de la grille
        // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
    //     System.out.println("coucou");
-        Affichage.recharger(plateau,joueurs);
+        Affichage.recharger(plateau,joueurs,historique);
    
         while(/*!finPartie()*/true) {
         	System.out.println(joueurs.get(0).getPersonnagesI(0).getPosition().getX() +" "+ joueurs.get(0).getPersonnagesI(0).getPosition().getY());

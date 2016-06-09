@@ -4,6 +4,8 @@ import Otomate.Gentil;
 import Otomate.Grille;
 //import Otomate.Jeu;
 import Otomate.Joueur;
+import Otomate.historique.Evenement;
+import Otomate.historique.Historique;
 import Otomate.$Personnage;
 //import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -19,7 +21,9 @@ public class Affichage {
     private static FenetreJeu jeu;
     //private static Affichage_plateau plateau;
     private static List<$Personnage> perso;
-    //Méthodes    
+    
+    private static Historique h;
+    //Mï¿½thodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
@@ -37,11 +41,19 @@ public class Affichage {
         perso.get(0).getPosition().setX(1);
         perso.get(0).getPosition().setY(1);
         
+        h = new Historique();
+        h.addTour(); 
+        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fais rien"));
+        h.addTour(); 
+	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fais toujours rien"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne sais rien faire"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(0), "s'ennuie"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(0), "compte les nuages"));
         
-        jeu.charger(g,perso);
+        jeu.charger(g,perso,h);
     } 
     
-   public static void recharger(Grille g,List<Joueur> l){
+   public static void recharger(Grille g,List<Joueur> l,Historique h){
 	   List<$Personnage> lp = new LinkedList<>();
 	   int i,j,max=l.size(),max2;
 	   
@@ -52,7 +64,7 @@ public class Affichage {
                 }
 	   }
 	   jeu = new FenetreJeu();
-	   jeu.charger(g,lp);
+	   jeu.charger(g,lp,h);
 	   
    }
     
