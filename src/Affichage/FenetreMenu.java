@@ -5,58 +5,61 @@
  */
 package Affichage;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  */
-public class FenetreMenu extends JFrame {
+public class FenetreMenu extends FenetreBase {
     
     // Elements du menu
     JLabel titre = new JLabel("OTomatamer");
-    JButton b_jouer = new JButton("Jouer");
-    JButton b_credits = new JButton("Crédits");
-    JButton b_quitter = new JButton("Quitter");
+    
+    JPanel panel_b = new JPanel();
+    Dimension d = new Dimension(200,50);
+    BoutonBasique b_jouer = new BoutonBasique(d,"Jouer");
+    BoutonBasique b_credits = new BoutonBasique(d,"Crédits");
+    BoutonBasique b_quitter = new BoutonBasique(d,"Quitter");
+    
     
     public FenetreMenu() {
-        super();
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridBagLayout());
-        this.setResizable(false);
+        super(500,300,"ANGRY OTOMATE");
+        this.setLayout(new BorderLayout());
         
-        // début de définition des contraintes
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridheight = 1;
-        c.gridwidth = 1;
-        c.weightx = 0;
-        c.weighty = 0;
-        
-        c.fill = GridBagConstraints.HORIZONTAL;
-        this.add(titre,c);
+        this.add(titre, BorderLayout.NORTH);
+        titre.setSize(800,100);
         titre.setHorizontalTextPosition(JLabel.CENTER);
         
-        c.fill = GridBagConstraints.NONE;
-        c.gridy = 2;
-        this.add(b_jouer,c);
-        b_jouer.setSize(200,50);
-        b_jouer.setLocation(300, 200);
-        c.gridy = 3;
-        this.add(b_credits,c);
-        b_credits.setSize(200,50);
-        b_credits.setLocation(300, 250);
-        c.gridy = 4;
-        this.add(b_quitter,c);
-        b_quitter.setSize(200,50);
-        b_quitter.setLocation(300, 300);
+        this.add(panel_b, BorderLayout.SOUTH);
+        panel_b.add(b_jouer);
+        panel_b.add(b_credits);
+        panel_b.add(b_quitter);
+        
+        
+        b_jouer.addActionListener( new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                // Ouvre une fenêtre de nouvelle partie au clic
+                FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(null);
+            }
+        });
+        
+        b_quitter.addActionListener( new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                // Ouvre une fenêtre de nouvelle partie au clic
+                dispose();
+            }
+        });
+        
     }
  
     public static void main(String[] args) {

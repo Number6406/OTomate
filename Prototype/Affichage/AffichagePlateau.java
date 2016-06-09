@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-public class Affichage_plateau extends JPanel {
+public class AffichagePlateau extends JPanel {
 	/**
 	 * 
 	 */
@@ -100,7 +100,7 @@ public class Affichage_plateau extends JPanel {
             }
 	}
 	
-	Affichage_plateau(Grille g,List<$Personnage> perso){
+	AffichagePlateau(Grille g,List<$Personnage> perso){
             gr =g ;
             this.perso=perso;
             loadTiles();

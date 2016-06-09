@@ -40,7 +40,7 @@ public class FenetreJeu extends JFrame {
     JMenuBar toolbar;
     JPanel pan_info;
     JScrollPane scroll_plateau;
-    Affichage_plateau pan_plateau;
+    AffichagePlateau pan_plateau;
     JLabel label_perso;
     JScrollPane scroll_perso;
     JTable tab_perso;
@@ -109,7 +109,7 @@ public class FenetreJeu extends JFrame {
         });
         tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
-        pan_plateau = new Affichage_plateau(g,persoL);
+        pan_plateau = new AffichagePlateau(g,persoL);
         pan_plateau.setBackground(Color.LIGHT_GRAY);
         scroll_plateau = new JScrollPane(pan_plateau);
         
