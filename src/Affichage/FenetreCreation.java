@@ -7,6 +7,8 @@ package Affichage;
 
 import Otomate.Joueur;
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -47,6 +49,17 @@ public class FenetreCreation extends FenetreBase {
         
         // Pour tous les joueurs, leur créer un onglet
         for(int i=0; i<nbJ; i++) {
+            JPanel panelJ = new JPanel(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridwidth = 0;
+            c.gridheight = 0;
+            c.gridx = 0;
+            c.gridy = 0;
+            c.weightx = 0;
+            c.weighty = 0;
+            c.fill = GridBagConstraints.NONE;
+            
+            ongletsJoueurs.add(panelJ);
         }
         
         this.add(pan_b, BorderLayout.SOUTH);
