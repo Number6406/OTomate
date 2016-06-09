@@ -43,10 +43,10 @@ public class Affichage {
         
         h = new Historique();
         h.addTour(); 
-        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fais rien"));
+        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fait rien"));
         h.addTour(); 
-	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fais toujours rien"));
-	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne sais rien faire"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fait toujours rien"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne sait rien faire"));
 	        h.ceTour().addEvenement(new Evenement(perso.get(0), "s'ennuie"));
 	        h.ceTour().addEvenement(new Evenement(perso.get(0), "compte les nuages"));
         

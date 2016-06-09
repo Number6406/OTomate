@@ -1,5 +1,6 @@
 package Otomate;
 
+import java.awt.Color;
 import java.util.List;
 
 public abstract class $Personnage {
@@ -12,6 +13,7 @@ public abstract class $Personnage {
     protected int inventaire;
     protected String nom;
     protected int dmg;
+    protected Color couleur;
     
     //Constructeur
     protected $Personnage(String file)
@@ -21,8 +23,9 @@ public abstract class $Personnage {
     	position = new Coordonnees(1,7);
         vie = 100;
         inventaire = 0;
-        nom ="Bob sans nom";
+        nom ="Bob";
         dmg = 10;
+        couleur = Color.BLUE; 
     }
     
     //Mthodes
@@ -55,6 +58,14 @@ public abstract class $Personnage {
     public int getInventaire(){
         return inventaire;
     }
+
+	public String getNom() {
+		return nom;
+	}
+	
+	public Color getCouleur(){
+		return couleur;
+	}
     
     //Override
     public String toString(){
@@ -65,8 +76,4 @@ public abstract class $Personnage {
     	s += "Etat courant : " + etat;
     	return s;
     }
-
-	public String getNom() {
-		return nom;
-	}
 }
