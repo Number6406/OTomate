@@ -20,7 +20,7 @@ public abstract class $Personnage {
     	position = new Coordonnees(1,7);
         vie = 10;
         inventaire = 0;
-        nom ="";
+        nom ="Bob sans nom";
     }
     
     //Mthodes
@@ -63,4 +63,8 @@ public abstract class $Personnage {
     	s += "Etat courant : " + etat;
     	return s;
     }
+
+	public String getNom() {
+		return nom;
+	}
 }
