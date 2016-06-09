@@ -70,12 +70,12 @@ public abstract class $Personnage {
     }
     
     //Override
-    public String toString(){
+    /*public String toString(){
     	String s = "PV : " + vie + "\n";
     	s += "Inventaire : " + Contenus.fromint(inventaire).toString() + "\n";
     	s += "Position : " + position.toString() + "\n";
     	s += "Automate : " + a.toString() +"\n";
     	s += "Etat courant : " + etat;
     	return s;
-    }
+    }*/
 }

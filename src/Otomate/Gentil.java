@@ -2,11 +2,13 @@ package Otomate;
 
 public class Gentil extends $Personnage{
 	
-	int armure,arme;
+	int arme, remede;
+	boolean infecte, saignement, drogue;
     
 	public Gentil(String file){
 		super(file);
-		armure = arme = 0;
+		arme = remede = 0;
+		infecte = saignement = drogue = false;
     }
 	
 	public String toString(){
