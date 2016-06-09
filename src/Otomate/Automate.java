@@ -61,5 +61,31 @@ public class Automate {
 	public int nbetats() {
 		return nbetats;
 	}
+
+	public int etat_initial() {
+		return etat_init;
+	}
+	
+	public String toString(){
+		String s = "";
+		int l = this.nbetats();
+    	int k = this.nbconditions();
+    	int i,j;
+		System.out.println("actions :" );
+    	for(i=0; i<k; i++){
+    		for(j=0;j<l;j++){
+    			System.out.print(this.action(i,j)+"  ");
+    		}
+    		System.out.print("\n");
+    	}
+		System.out.println("\n\ntransitions :" );
+    	for(i=0; i<k; i++){
+    		for(j=0;j<l;j++){
+    			System.out.print(this.transition(i,j)+ "  ");
+    		}
+    		System.out.print("\n");
+    	}
+    	return s;
+	}
     
 }
