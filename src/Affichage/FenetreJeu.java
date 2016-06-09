@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -18,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
+import Otomate.Jeu;
+import Otomate.Joueur;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
@@ -66,7 +69,21 @@ public class FenetreJeu extends JFrame {
         this.setLayout(new BorderLayout());
     }
     
-    public void charger(Grille g,List<$Personnage> persoL, Historique h) {
+    public void charger() {
+    	
+    	Grille g = Jeu.plateau;
+    	List<$Personnage> persoL = new LinkedList<>();
+    	Historique h = Jeu.historique;
+    	List<Joueur> l = Jeu.joueurs;
+	 	   int i,j,max=l.size(),max2;
+	 	   
+	 	   for(i=0;i<max;i++){
+	                 max2=l.get(i).getSizePersonnages();
+	                 for(j=0;j<max2;j++){
+	                     persoL.add(l.get(i).getPersonnagesI(j));
+	                 }
+	 	   }
+    	
         // Chargement des différents éléments des fenetres
         toolbar = new JMenuBar();
         pan_info = new JPanel();
@@ -167,13 +184,13 @@ public class FenetreJeu extends JFrame {
         pan_info.add(tp_onglets,infoConstraints);
         
         tp_onglets.add("Historique",scroll_history);
-        for(int i = h.nbTour()-1; i >=0;i--){
-        	Tour t = h.getTour(i);
-        	for(int j = 0; j < t.nbEvenement();j++){
-        		Evenement e = t.getEvenement(j);
-                ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{i+1, e.toString()});
+        for(int i1 = h.nbTour()-1; i1 >=0;i1--){
+        	Tour t = h.getTour(i1);
+        	for(int j1 = 0; j1 < t.nbEvenement();j1++){
+        		Evenement e = t.getEvenement(j1);
+                ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{i1+1, e.toString()});
         	}
-            if(i!=0)((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"", ""});
+            if(i1!=0)((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"", ""});
         }
         
         tp_onglets.add("Legende",scroll_legende);

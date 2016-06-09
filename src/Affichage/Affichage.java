@@ -2,6 +2,7 @@ package Affichage;
 
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Jeu;
 //import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.Mechant;
@@ -30,6 +31,7 @@ public class Affichage {
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
+        Jeu.initPartie();
         Grille g=new Grille(20,20);
         int i,j;
         for(i=0;i<g.tailleX;i++){
@@ -58,7 +60,7 @@ public class Affichage {
 	        h.ceTour().addEvenement(new Evenement(perso.get(0), "s'ennuie"));
 	        h.ceTour().addEvenement(new Evenement(perso.get(1), "compte les nuages"));
         
-        jeu.charger(g,perso,h);
+        jeu.charger();
     } 
     
    public static void recharger(Grille g,List<Joueur> l,Historique h){
@@ -72,8 +74,14 @@ public class Affichage {
                 }
 	   }
 	   jeu = new FenetreJeu();
-	   jeu.charger(g,lp,h);
+	   jeu.charger();
 	   
    }
+   
+	  public static void charger(){
+		   jeu = new FenetreJeu();
+		   jeu.charger();
+		   
+	  }
     
 }
