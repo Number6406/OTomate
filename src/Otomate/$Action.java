@@ -1,5 +1,5 @@
 package Otomate;
 
-public class $Action {
+public abstract class $Action {
 	int valeur;
 }
