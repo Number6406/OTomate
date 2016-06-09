@@ -1,0 +1,20 @@
+<objet>
+<id>i</id>
+<type>t</type>
+<use>h</use>
+<name>NOM</name>
+<passage>b</passage>
+</objet>
+
+b € [0,1] € |N
+
+i < iMax
+
+    { 1 : arme
+t € { 2 : consommable
+    { 3 : antidote ?
+    { 4 : terrain.
+    { 5 : mur
+
+h € { si arme = degat
+    { si consommable = regen
