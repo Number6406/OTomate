@@ -1,6 +1,7 @@
 package Otomate;
 
 import Affichage.*;
+import Otomate.historique.Historique;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -62,6 +63,7 @@ public class Jeu {
     }
     
     public static void main(String[] pArgs) throws InterruptedException {
+    	historique = new Historique();
         plateau = new Grille();
        // File repertoire = new File("../automate/");                // "../automates/" --> r�pertoire des automates en .xml
         String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
