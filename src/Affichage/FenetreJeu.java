@@ -171,12 +171,7 @@ public class FenetreJeu extends JFrame {
         	Tour t = h.getTour(i);
         	for(int j = 0; j < t.nbEvenement();j++){
         		Evenement e = t.getEvenement(j);
-        		Color c = Color.BLUE;
-        				//e.getcouleur();
-        		String nom = "<html><font color=\"rgb(" + c.getRed() +"," + c.getGreen() + "," + c.getBlue() + ")\">";
-        		nom += e.getNom() + "</font> " + e.getTexte() + "</html>";
-        		System.out.println(nom);
-                ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{i+1, nom});
+                ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{i+1, e.toString()});
         	}
             if(i!=0)((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{"", ""});
         }

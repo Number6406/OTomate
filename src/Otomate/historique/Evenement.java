@@ -1,7 +1,5 @@
 package Otomate.historique;
 
-import java.awt.Color;
-
 import Otomate.$Personnage;
 
 /**
@@ -18,21 +16,10 @@ public class Evenement{
 		this.description = description;
 	}
 	
-	public Color getcouleur(){
-		return personnage.getCouleur();
-	}
-	
-	public String getNom(){
-		return personnage.getNom();
-	}
-	
-	public String getTexte(){
-		return description;
-	}
-	
 	@Override
 	public String toString(){
-		return personnage.getNom() + " " + description;			
+		return "<html>" + personnage.getNomHtml() + " " + description + "</html>";
 	}
+	
 	
 }

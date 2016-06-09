@@ -4,9 +4,12 @@ import Otomate.Gentil;
 import Otomate.Grille;
 //import Otomate.Jeu;
 import Otomate.Joueur;
+import Otomate.Mechant;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.$Personnage;
+
+import java.awt.Color;
 //import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -37,18 +40,23 @@ public class Affichage {
         
         perso = new ArrayList<>();
         perso.add(new Gentil("../Parser/AutomateenXML.xml"));
+        perso.add(new Mechant("../Parser/AutomateenXML.xml"));
         
         perso.get(0).getPosition().setX(1);
         perso.get(0).getPosition().setY(1);
+        perso.get(1).getPosition().setX(5);
+        perso.get(1).getPosition().setY(10);
+        perso.get(1).setColor(Color.PINK);;
         
         h = new Historique();
         h.addTour(); 
         h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fait rien"));
+        h.ceTour().addEvenement(new Evenement(perso.get(1), "ne fait rien"));
         h.addTour(); 
 	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne fait toujours rien"));
-	        h.ceTour().addEvenement(new Evenement(perso.get(0), "ne sait rien faire"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(1), "ne sait rien faire"));
 	        h.ceTour().addEvenement(new Evenement(perso.get(0), "s'ennuie"));
-	        h.ceTour().addEvenement(new Evenement(perso.get(0), "compte les nuages"));
+	        h.ceTour().addEvenement(new Evenement(perso.get(1), "compte les nuages"));
         
         jeu.charger(g,perso,h);
     } 

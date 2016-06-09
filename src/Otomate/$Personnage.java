@@ -59,12 +59,20 @@ public abstract class $Personnage {
         return inventaire;
     }
 
+	public String getNomHtml() {
+		return "<font color=\"rgb(" + couleur.getRed() +"," + couleur.getGreen() + "," + couleur.getBlue() + ")\">" + nom + "</font>";
+	}
+	
 	public String getNom() {
 		return nom;
 	}
 	
 	public Color getCouleur(){
 		return couleur;
+	}
+	
+	public void setColor(Color c){
+		this.couleur = c;
 	}
     
     //Override
