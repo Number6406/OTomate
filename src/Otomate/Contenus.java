@@ -8,7 +8,7 @@ public enum Contenus {
     Gravier ("du gravier", 2),
     Sable ("du sable", 3),
     Eau ("de l'eau", 4),
-    Immeuble ("un immeuble", 5),
+    Immeuble ("un immeuble", 5), 	//pompe
     EauContaminee ("de l'eau contaminée", 6),
     Conserve ("une boite de conserve", 7),
     Bouteille ("une bouteille", 8),

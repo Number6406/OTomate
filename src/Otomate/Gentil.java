@@ -1,6 +1,10 @@
 package Otomate;
 
 public class Gentil extends $Personnage{
+	 /*arme = 25.pompe
+	  * 	  15.couteau
+	  * correspond au degats supp
+	  */
 	
 	int arme, remede;
 	boolean infecte, saignement, drogue;

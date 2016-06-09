@@ -11,6 +11,7 @@ public abstract class $Personnage {
     protected Automate a;
     protected int inventaire;
     protected String nom;
+    protected int dmg;
     
     //Constructeur
     protected $Personnage(String file)
@@ -18,9 +19,10 @@ public abstract class $Personnage {
     	a = new Automate(file);
     	etat = a.etat_initial();
     	position = new Coordonnees(1,7);
-        vie = 10;
+        vie = 100;
         inventaire = 0;
         nom ="Bob sans nom";
+        dmg = 10;
     }
     
     //Mthodes
