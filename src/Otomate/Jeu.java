@@ -49,19 +49,10 @@ public class Jeu {
         }
     }
     
-    public static void initJoueurs(int nbJoueurs, int nbPersoParJoueur, int nbPersoParZombie, int nZombie, List<String> xmlsGentils, List<String> xmlsMechants) {
+    public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls) {
     	joueurs = new LinkedList<Joueur>();
-    	int nbZ = nbPersoParJoueur*(nbJoueurs-1)/nbPersoParZombie;
-    	for(int i=0; i<nbJoueurs; i++) {
-    		if(i==nZombie) {
-    			joueurs.add(new Joueur(xmlsMechants, true, nbZ, nbPersoParJoueur));
-    		} else {
-    			if(i<nZombie) {
-    				joueurs.add(new Joueur(xmlsGentils.subList(i*nbPersoParJoueur, (i+1)*nbPersoParJoueur), false, nbZ, nbPersoParJoueur));
-    			} else {
-    				joueurs.add(new Joueur(xmlsGentils.subList((i-1)*nbPersoParJoueur, i*nbPersoParJoueur), false, nbZ, nbPersoParJoueur));
-    			}
-    		}
+    	for(int i=0; i<xmls.size(); i++) {
+    		
     	}
     }
     
@@ -73,10 +64,9 @@ public class Jeu {
     	int nbPersoParJoueur = 2;
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
-    	List<String> xmlsGentils = new LinkedList<String>();
-    	List<String> xmlsMechants = new LinkedList<String>();
+    	List<List<String>> xmls = new LinkedList<List<String>>();
     	// <- Fin variables
-    	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
+    	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmls);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);

@@ -16,7 +16,7 @@ public class Pieger extends $Action{
 	int valeur = 10;
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
-		if((Grille.Pos(p.getPosition()).piegee==false)&&(l.get(0) == 1 || l.get(0) == 5 || l.get(0) == 10 || l.get(0) == 11)){
+		if((Grille.Pos(p.getPosition()).piegee==false)&&(l.get(0) == 0 || l.get(0) == 15)){
 			Grille.Pos(p.getPosition()).piegee = true;
 			effect = true;
 		}

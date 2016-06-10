@@ -15,7 +15,7 @@ public class Detruire extends $Action {
 	int valeur = 14;
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
-		if(l.get(0) == 13){
+		if(l.get(0) == 18){
 			int aux;
 			aux = p.getInventaire();
 			p.setInventaire(8);
