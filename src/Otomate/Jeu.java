@@ -76,17 +76,48 @@ public class Jeu {
     	List<String> xmlsGentils = new LinkedList<String>();
     	List<String> xmlsMechants = new LinkedList<String>();
     	// <- Fin variables
+    	int j,p;
     	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);
     	Affichage.charger();
     	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-    	while(!finPartie(nbTotal)) {
+    	while(!finPartie(nbTotal)){
     		melange();
     		for(int i=0; i<refPersos.size(); i++) {
-    			tempHistorique = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100)).jouer();
-    			//tempHistorique sera la chaîne renvoyée par l'action d'un joueur
+    			j = refPersos.get(i)/100;
+    			p = refPersos.get(i)%100;
+    			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
+        			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
+    				while (gentilperso.getParalysie()>0){
+    					if(gentilperso.getEfdrogue() != 0){
+    						if(gentilperso.getDrogue() == 3){
+    							gentilperso.setVie(gentilperso.getVie()+5);
+    							if(gentilperso.getVie() > gentilperso.getViemax())
+    								gentilperso.setVie(gentilperso.getViemax());
+    						}
+    						if(gentilperso.getDrogue() == 4){
+    							gentilperso.setVie(gentilperso.getVie()-5);
+    						}
+    						if(gentilperso.getDrogue() == 5){
+    							gentilperso.setParalysie(2);
+    						}
+    						if(gentilperso.getDrogue() == 6){
+    							gentilperso.setParalysie(0);
+    						}					
+    						//((Gentil) p).efdrogue --;  PENSER A LE METTRE A LA FIN DE LA GRANDE BOUCE DE TOUR
+    					}
+    					else 
+    						gentilperso.setDrogue(0);
+    					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
+    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
+    					Thread.sleep(200);
+    				}
+    			}
+    			else
+    				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
+    				//tempHistorique sera la chaîne renvoyée par l'action d'un joueur
     		}
     		Thread.sleep(200);
     	}

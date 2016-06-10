@@ -47,6 +47,12 @@ public class Gentil extends $Personnage{
 	public void setRemede(int Remede){
         this.remede=Remede;
     }
+	public int getParalysie(){
+        return paralysie;
+    }
+	public void setParalysie(int Paralysie){
+        this.paralysie=Paralysie;
+    }
 	public int getEfdrogue(){
         return arme;
     }
