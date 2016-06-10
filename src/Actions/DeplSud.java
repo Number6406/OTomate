@@ -15,12 +15,12 @@ public class DeplSud extends $Action{
 	
 	public void todo(List<Integer> l, $Personnage p, Grille g){
 		if(l.get(3) == 2){		// 2 = chemin au sud et 4eme element de la liste -> regarde le sud
-			p.position.setY(p.position.getY()+1);
+			p.getPosition().setX(p.getPosition().getY()+1);
 			effect = true;
 		}
 		if (p instanceof Mechant){
-			if (g.Pos(p.position).piegee==true)
-			((Mechant) p).vie-=20;
+			if (g.Pos(p.getPosition()).piegee==true)
+			((Mechant) p).setVie(((Mechant) p).getVie()-20);
 		}
 	}
 	

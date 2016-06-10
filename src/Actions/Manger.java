@@ -14,12 +14,12 @@ public class Manger extends $Action{
 	
 	public void todo(List<Integer> l, $Personnage p){
 		if(p instanceof Gentil){
-			if ((p.inventaire==7) || (p.inventaire == 6)){
+			if ((p.getInventaire()==7) || (p.getInventaire() == 6)){
 				int gain = Grille.random(5,10);
-				((Gentil)p).vie+=gain;
-				if(((Gentil) p).vie > ((Gentil) p).viemax)
-					((Gentil) p).vie = ((Gentil) p).viemax;
-				p.inventaire=0;
+				((Gentil)p).setVie(((Gentil)p).getVie()+gain);
+				if(((Gentil) p).getVie() > ((Gentil) p).getViemax())
+					((Gentil) p).setVie(((Gentil) p).getViemax());
+				p.setInventaire(0);
 				effect=true;
 			}
 		}

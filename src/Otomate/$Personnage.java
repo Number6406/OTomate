@@ -19,12 +19,23 @@ public abstract class $Personnage {
     {
     	a = new Automate(file);
     	etat = a.etat_initial();
-    	position = new Coordonnees(1,7);
+    	position = new Coordonnees(0,0);
         viemax = 100;
         inventaire = 0;
         nom ="Bob";
         dmg = 10;
         couleur = Color.BLUE; 
+    }
+    
+    protected $Personnage($Personnage cpy) {
+    	a = cpy.getAutomate();
+    	etat = a.etat_initial();
+    	position = new Coordonnees(0,0);
+    	viemax = 100;
+    	inventaire = 0;
+    	nom = "Bob";
+    	dmg = 10;
+    	couleur = Color.BLUE;
     }
     
     //Mthodes
@@ -42,22 +53,25 @@ public abstract class $Personnage {
         return a;
     }
     
-    public int getVie(){
+    public int getViemax(){
         return viemax;
     }
     
-    public void setVie(int Vie){
+    public void setViemax(int Vie){
         this.viemax=Vie;
     }
-    
+    public int getDmg(){
+        return dmg;
+    }
     public Coordonnees getPosition(){
         return this.position;
     }
-     
     public int getInventaire(){
         return inventaire;
     }
-
+    public void setInventaire(int Inventaire){
+        this.inventaire=Inventaire;
+    }
 	public String getNomHtml() {
 		return "<font color=\"rgb(" + couleur.getRed() +"," + couleur.getGreen() + "," + couleur.getBlue() + ")\">" + nom + "</font>";
 	}

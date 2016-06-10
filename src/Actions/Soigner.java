@@ -16,16 +16,16 @@ public class Soigner extends $Action{
 	
 	public void todo(List<Integer> l, $Personnage p){
 		if(p instanceof Gentil){
-			if (((Gentil) p).remede == 1){
-				if(((Gentil) p).infecte == true)
-					((Gentil) p).infecte = false;
-				((Gentil) p).remede = 0;
+			if (((Gentil) p).getRemede() == 1){
+				if(((Gentil) p).getInfecte() == true)
+					((Gentil) p).setInfecte (false);
+				((Gentil) p).setRemede (0);
 				effect=true;
 			}
-			else if(((Gentil) p).remede == 2){
-				if(((Gentil) p).saignement == true)
-					((Gentil) p).saignement = false;
-				((Gentil) p).remede = 0;
+			else if(((Gentil) p).getRemede() == 2){
+				if(((Gentil) p).getSaignement() == true)
+					((Gentil) p).setSaignement(false);
+				((Gentil) p).setRemede (0);
 				effect=true;
 			}
 		}

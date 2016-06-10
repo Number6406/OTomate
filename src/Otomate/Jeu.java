@@ -28,7 +28,7 @@ public class Jeu {
     
     public static int initPartie(){
     	System.out.println("Partie avec deux joueurs.");
-    	System.out.println("On r�cup�re les deux automates des joueurs :");
+    	System.out.println("On récupére les deux automates des joueurs :");
     	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
     	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
     	joueurs = new ArrayList<Joueur>();
@@ -41,27 +41,14 @@ public class Jeu {
     	return 0;
     }
     
-    public static boolean finPartie() {
-        return false;
-    }
-    public static void melange() {
-        Random rnd = new Random();
-        int k;
-        for(int i=joueurs.size(); i>0 ; i--) {
-            k = rnd.nextInt(i);
-            joueurs.add(joueurs.get(k));
-            joueurs.remove(k);
-        }
-    }
-    
-    public static List<Joueur> addJoueurs(String fichiers) throws InterruptedException {
-        List<Joueur> joueurs = new LinkedList<Joueur>();
-      // int k = 1;//random(1,1);
-        for(int i=0; i<1; i++) {
-            joueurs.add(new Joueur(fichiers,false/*i==k*/));
-        }
-        return joueurs;
-    }
+//    public static List<Joueur> addJoueurs(String fichiers) throws InterruptedException {
+//        List<Joueur> joueurs = new LinkedList<Joueur>();
+//      // int k = 1;//random(1,1);
+//        for(int i=0; i<1; i++) {
+//            joueurs.add(new Joueur(fichiers,false/*i==k*/));
+//        }
+//        return joueurs;
+//    }
     
 //    public static void main(String[] pArgs) throws InterruptedException {
 //        plateau = new Grille();
@@ -92,6 +79,20 @@ public class Jeu {
 //            }
 //        }
 //    }
+    
+    public static boolean finPartie() {
+        return false;
+    }
+    
+    public static void melange() {
+        Random rnd = new Random();
+        int k;
+        for(int i=joueurs.size(); i>0 ; i--) {
+            k = rnd.nextInt(i);
+            joueurs.add(joueurs.get(k));
+            joueurs.remove(k);
+        }
+    }
     
     public static void initJoueurs(int nbJoueurs, int nbPersoParJoueur, int nbPersoParZombie, int nZombie, List<String> xmlsGentils, List<String> xmlsMechants) {
     	joueurs = new LinkedList<Joueur>();

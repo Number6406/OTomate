@@ -14,15 +14,66 @@ public class Fuir extends $Action{
 	private boolean effect = false;
 	int valeur = 13;
 	
-	public void todo(List<Integer> l, $Personnage p, Grille g){
-		Coordonnees cnord, csud, cest, couest;
-		int rnd;
-		cnord = csud = cest = couest = p.getPosition();
-		cnord.setY(cnord.getY()-1);
-		csud.setY(csud.getX()+1);
-		cest.setX(cest.getX()+1);
-		couest.setY(couest.getX()-1);
+//Retourne le parcours le plus court (l'entier calculant la 'distance' minimale
+	public int min($Personnage p, int i, Coordonnees c2){
+		int aux=0, aux2 = 0;
+		if(i<0){
+			aux = p.getPosition().getX() - c2.getX();
+			if(aux<0)
+				i=-aux;
+			else
+				i=aux;
+			aux = p.getPosition().getY() - c2.getY();
+			if(aux<0)
+				i += -aux;
+			else
+				i += aux;
+		}
+		else{
+			aux = p.getPosition().getX() - c2.getX();
+			if(aux<0)
+				aux = -aux;
+			aux2 = p.getPosition().getY() - c2.getY();
+			if(aux2<0)
+				aux2 = -aux2;
+			aux += aux2;
+		}
+		if(aux<i)
+			i=aux;
+		return i;
+	}
+	
+	public Gentil prox($Personnage p, List<$Personnage> l){
+		int s = l.size();
+		int i, mini = -1, mini2;
+		Gentil e = null;
+		for(i=0; i<s; i++){
+			if(l.get(i) instanceof Gentil){
+				if(e==null){
+					e = (Gentil) l.get(i);
+					mini = min(p,mini,l.get(i).getPosition());
+				}
+				else{
+					mini2 = min(p,mini,l.get(i).getPosition());
+					if(mini2<mini){
+						mini = mini2;
+						e = (Gentil) l.get(i);
+					}
+				}
+			}
+		}
+		return e;
+	}
+	
+	public void todo(List<Integer> l, $Personnage p, Grille g, List<$Personnage> lp){
 		if(p instanceof Gentil){
+			Coordonnees cnord, csud, cest, couest;
+			int rnd;
+			cnord = csud = cest = couest = p.getPosition();
+			cnord.setY(cnord.getY()-1);
+			csud.setY(csud.getX()+1);
+			cest.setX(cest.getX()+1);
+			couest.setY(couest.getX()-1);
 			if(l.get(1) == 5){			//ennemi au nord
 				if(l.get(2) == 7){		//ennemi a l'est
 					if(l.get(3) == 6){	//ennemi au sud
@@ -124,7 +175,7 @@ public class Fuir extends $Action{
 			else if(l.get(3) == 6){
 				if(l.get(4) == 8){
 					rnd = Grille.random(1, 3);
-					if(rnd == 1 && Grille.Pos(cnord).getValeur)() == 0){
+					if(rnd == 1 && Grille.Pos(cnord).getValeur() == 0){
 						p.setPosition(cnord);
 						effect = true;
 					}
@@ -185,7 +236,32 @@ public class Fuir extends $Action{
 			}
 		}
 		else if(p instanceof Mechant){
-			
+			Gentil e;
+			int x, y, x2, y2;
+			e = prox(p, lp);
+			x = p.getPosition().getX() - e.getPosition().getX();
+			y = p.getPosition().getY() - e.getPosition().getY();
+			if(x<0)
+				x2 = -x;
+			else
+				x2 = x;
+			if(y<0)
+				y2 = -y;
+			else
+				y2 = y;
+			if((x2<y2 && x2 != 0) || y == 0){
+				if(x<0)
+					p.getPosition().setX(p.getPosition().getX()+1);
+				else
+					p.getPosition().setX(p.getPosition().getX()-1);
+			}
+			else{
+				if(y<0)
+					p.getPosition().setY(p.getPosition().getY()+1);
+				else
+					p.getPosition().setY(p.getPosition().getY()-1);
+			}
+			effect = true;
 		}
 	}
 }
