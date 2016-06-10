@@ -89,7 +89,8 @@ public class Jeu {
     	int nbPersoParJoueur = 2;
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
-    	List<List<String>> xmls = new LinkedList<List<String>>();
+    	List<String> xmlsGentils = new LinkedList<String>();
+    	List<String> xmlsMechants = new LinkedList<String>();
     	// <- Fin variables
     	initJoueurs(nbPersoParZombie, nZombie, xmls);
     	refPersos = new LinkedList<Integer>();

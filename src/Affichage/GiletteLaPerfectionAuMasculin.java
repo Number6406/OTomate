@@ -1,8 +1,16 @@
 package Affichage;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,11 +21,15 @@ public class GiletteLaPerfectionAuMasculin extends JPanel {
 	 * 
 	 */
 	int i, nbP;
+	Color maCouleur=null;
 	GridBagConstraints c;
 	JTextField userName;
 	AutomatePicker mechant=null;
 	GentilPicker listePersos=null;
 	JScrollPane scrollP;
+	JButton choixCouleur;
+	boolean zombis;
+	
 
 	private static final long serialVersionUID = 1L;
 
@@ -47,11 +59,60 @@ public class GiletteLaPerfectionAuMasculin extends JPanel {
 
 		c.gridwidth = 2;
 		this.add(new JLabel("Nom du Joueur :"));
+		choixCouleur=new JButton();
+		this.add(choixCouleur);
+		choixCouleur.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JDialog jd = new JDialog();
+				JColorChooser jc = new JColorChooser();
+				JButton jblalcolique = new JButton();
+				jblalcolique.setSize(new Dimension(50,50));
+				jd.add(jblalcolique);
+				
+				jblalcolique.setText("ok");
+				jblalcolique.addActionListener(new ActionListener() {
+				
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						maCouleur=jc.getColor();
+						choixCouleur.setBackground(maCouleur);
+						jd.setVisible(false);
+						
+					}
+				});
+				jd.add(jc);
+				
+				
+				
+				jd.setSize(new Dimension(500,400));
+				jd.setVisible(true);
+				
+				
+			}
+		});
+		
+		
+		
 		c.gridwidth = 1;
 		c.gridx = 2;
 		this.add(new JLabel("Couleur"));
 		c.gridx = 3;
 		this.add(new JLabel("Jouer Zombie ?"));
+		
+		JCheckBox jc = new JCheckBox();
+		jc.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				zombis = jc.isSelected();
+				System.out.println("le joueur " +i+" c'est un zombis ? " + zombis + " wesh ");
+				
+			}
+		});
+		this.add(jc);
+		
 		c.gridy = 1;
 		c.gridx = 0;
 		c.gridwidth = 2;
@@ -101,7 +162,7 @@ public class GiletteLaPerfectionAuMasculin extends JPanel {
 		}
 		else bp=listePersos.cool();
 		
-		return bm&&bp;
+		return bm&&bp&&(maCouleur!=null);
 	}
 
 }

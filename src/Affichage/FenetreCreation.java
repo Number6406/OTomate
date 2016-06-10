@@ -5,6 +5,7 @@
  */
 package Affichage;
 
+import Otomate.Grille;
 import Otomate.Joueur;
 
 import java.awt.BorderLayout;
@@ -90,8 +91,28 @@ public class FenetreCreation extends FenetreBase {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(cool(ratio,nbP,nbJ));
+				int i;
+				int nb=0;
+				List<Integer> li= new LinkedList<>();
+				for(i=0;i<l.size();i++){
+					if(l.get(i).zombis){
+						nb++;
+						li.add(i);
+					}
+				}
+				if(nb==1){
+					System.out.println("le zombie sera le joueur "+(li.get(0)+1));
+				}
+				else if(nb>1){
+					int id=Grille.random(0,li.size());
+					System.out.println("le zombie sera le joueur "+(li.get(id)+1));
+				}
+				else if(nb==0){
+					int id=Grille.random(0,l.size());
+					System.out.println("le zombie sera le joueur "+(id+1));
+				
 			}
-		});
+			}});
     }
     
     public void setPrevious(FenetreNouvellePartie f) {
