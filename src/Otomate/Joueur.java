@@ -18,8 +18,9 @@ public class Joueur {
     public Joueur(List<String> xmls, boolean mechant, int nbMechants, int nbPersosParJoueur) {
     	personnages = new LinkedList<>();
     	if(mechant) {
-    		for(int i=0; i<nbMechants; i++) {
-    			personnages.add(new Mechant(xmls.get(0)));
+    		personnages.add(new Mechant(xmls.get(0)));
+    		for(int i=1; i<nbMechants; i++) {
+    			personnages.add(new Mechant(personnages.get(0)));
     		}
     	} else {
     		for(int i=0; i<nbPersosParJoueur; i++) {
