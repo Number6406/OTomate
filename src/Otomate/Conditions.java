@@ -20,7 +20,9 @@ public enum Conditions {
 	ObstacleE ("Obstacle à l'est", 13),
 	ObstacleO ("Obstacle à l'ouest", 14),
 	Fouillable ("est fouillable", 15),
-	Seringue ("la drogue c'est bon", 16);
+	Seringue ("la drogue c'est bon", 16),
+	VieManquante ("le personnage a perdu de la vie", 17),
+	Cactus ("Cactus sur ma case", 18);
 	
     private int id;
     private int value;
