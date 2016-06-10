@@ -3,6 +3,7 @@ package Otomate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import Actions.*;
 
 public class Grille {
     
@@ -178,7 +179,7 @@ public class Grille {
         
         for(i=0; i<dimh; i++){
             for(j=0; j<dimv; j++){
-                k = random(1, 10);        //car 10 actions possibles numrotes de 1  10 
+                k = random(0, 16);        //car 10 actions possibles numrotes de 1  10 
                 g[i][j].element = k;
             }
         }
@@ -187,446 +188,134 @@ public class Grille {
         Placements(l);
     }
     
-//    public static Action takeOne(List<Case> l){
-//        Action a = new Action();
-//        if(l.isEmpty() == true)
-//            return a;
-//        else{
-//        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
-//            int i = random(0, l.size());
-//            System.out.println("Je vais faire l'action : "+l.get(i).element);
-//            a.set_Action(l.get(i).element);
-//            System.out.println("J'ai fait l'action : "+l.get(i).element);
-//            return a;
-//        }
-//    }
+//Retourne une liste de 6 entiers représentant les differentes conditions
+    public List<Integer> conditions($Personnage p, List<Boolean> l){
+    	List<Integer> listcond = new LinkedList<>();
+    	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
+    		listcond.add(0);		//
+    	else if(l.get(9) == true)	//
+    		listcond.add(9);		//
+    	else if(l.get(10) == true)	//
+    		listcond.add(10);		//
+    	else if(l.get(15) == true)	//
+    		listcond.add(15);		//
+    	else if(l.get(16))			//
+    		listcond.add(16);		//
+    	else if(l.get(18) == true)	//
+    		listcond.add(18);		//
+    	if(l.get(1) == true)		//**********CONDITION AU NORD****************
+    		listcond.add(1);		//
+    	else if(l.get(5) == true)	//
+    		listcond.add(5);		//
+    	else if(l.get(11) == true)	//
+    		listcond.add(11);		//
+    	if(l.get(3) == true)		//*********CONDITION EST*********************
+    		listcond.add(3);		//
+    	else if(l.get(7) == true)	//
+    		listcond.add(7);		//
+    	else if(l.get(13) == true)	//
+    		listcond.add(13);		//
+    	if(l.get(2) == true)		//************CONDITION SUD*******************
+    		listcond.add(2);		//
+    	else if(l.get(6) == true)	//
+    		listcond.add(6);		//
+    	else if(l.get(12) == true)	//
+    		listcond.add(12);		//
+    	if(l.get(4) == true)		//*************CONDITION OUEST***************
+    		listcond.add(4);		//
+    	else if(l.get(8) == true)	//
+    		listcond.add(8);		//
+    	else if(l.get(14) == true)	//
+    		listcond.add(14);		//
+    	if(l.get(17) == true)		//*************CONDITION ETAT*******************
+    		listcond.add(17);		//
+    	else						//
+    		listcond.add(19);		//
+    	return listcond;
+    }
+    
+    public List<Integer> actionsPossibles($Personnage p, List<Integer> l){
+    	List<Integer> la = new LinkedList<>();
+    	int i, s = l.size();
+    	for(i=0; i<s; i++){
+    		if(p.getAutomate().transition(l.get(i), p.getEtat()) != 0){
+    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()).getValeur());
+    			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()));
+    		}
+    	}
+    	return la;
+    }
+    
+    public static $Action takeOne(List<Integer> l){
+        $Action a = null;
+        if(l.isEmpty() == true){
+            a = new RaF();
+            return a;
+        }
+        else{
+        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
+            int i = random(0, l.size());
+            System.out.println("Je vais faire l'action : "+l.get(i));
+            if(l.get(i) == 0)
+            	a = new RaF();
+            else if(l.get(i) == 1)
+            	a = new DeplNord();
+            else if(l.get(i) == 2)
+            	a = new DeplSud();
+            else if(l.get(i) == 3)
+            	a = new DeplEst();
+            else if(l.get(i) == 4)
+            	a = new DeplOuest();
+            else if(l.get(i) == 5)
+            	a = new AttNord();
+            else if(l.get(i) == 6)
+            	a = new AttSud();
+            else if(l.get(i) == 7)
+            	a = new AttEst();
+            else if(l.get(i) == 8)
+            	a = new AttOuest();
+            else if(l.get(i) == 9)
+            	a = new Ramasser();
+            else if(l.get(i) == 10)
+            	a = new Pieger();
+            else if(l.get(i) == 11)
+            	a = new Manger();
+            else if(l.get(i) == 12)
+            	a = new Soigner();
+            else if(l.get(i) == 13)
+            	a = new Fuir();
+            else if(l.get(i) == 14)
+            	a = new Detruire();
+            else if(l.get(i) == 15)
+            	a = new Fouiller();
+            System.out.println("J'ai fait l'action : "+l.get(i));
+            return a;
+        }
+    }
 
 //Retourne la case de coordonnees c
     public static Case Pos(Coordonnees c){
         return g[c.getX()][c.getY()];
     }
     
-    /**
-     * Fonction permettant de frapper  un emplacement alatoire s'il y a des entits  proximit
-//     */
-//     public void Frapper($Personnage acteur) {
-//         
-//     }
-    
     
 //On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
   
 //Met a jour la map = change le numero si besoin est
-/*    public void Maj($Personnage P, Action A, List<Joueur> J){
-        
-        Coordonnees position = P.getPosition();
-        
-        Case C = Pos(position);
-        Case N;
-        Case S;
-        Case E;
-        Case O;
-        if (position.getY()>0){
-        	N = Pos(new Coordonnees(position.getX(), position.getY()-1));}
-        else {N =new Case(6);}
-        if (position.getY()<tailleY-1){
-        	S = Pos(new Coordonnees(position.getX(), position.getY()+1));}
-        else {S =new Case(6);}
-        if (position.getX()<tailleX-1){
-        	E = Pos(new Coordonnees(position.getX()+1, position.getY()));}
-        else {E =new Case(6);}
-        if (position.getX()>0){
-        	O = Pos(new Coordonnees(position.getX()-1, position.getY()));}
-        else {O =new Case(6);}
-        String Description = "";
-        
-        
-        if(P instanceof Gentil){
-            if(A.get_Action() == 0)                  //indiffï¿½rent
-                return;
-                
-            else if(A.get_Action() == Actions.Rien.getValeur()){  // Ne rien faire
-                Description = "Ne fais rien.";
-                System.out.println(Description);
-                return;
-            }
-            else if(A.get_Action() == Actions.AvancerN.getValeur()){            //Avancer au nord
-                if(N.estChemin()){
-                    P.deplacementHaut();
-                    Description = "Se deplace au Nord.";
-                } else {
-                    Description = "Tente de se deplacer au Nord mais echoue.";
-                }
-                System.out.println(Description);
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.AvancerS.getValeur()){             //Reculer
-                if(S.estChemin()) {
-                    P.deplacementBas();
-                    Description = "Se deplace au Sud.";
-                } else {
-                    Description = "Tente de se deplacer au Sud mais achoue.";
-                }
-                System.out.println(Description);
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.AvancerE.getValeur()){            //Partir a droite
-                if(E.estChemin()) {
-                    P.deplacementDroite();
-                    Description = "Se deplace a l'Est.";
-                } else {
-                    Description = "Tente de se deplacer a l'Est mais achoue.";
-                }
-                System.out.println(Description);
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.AvancerO.getValeur()){            //Partir a gauche
-                if(O.estChemin()) {
-                    P.deplacementGauche();
-                    Description = "Se deplace a l'Ouest.";
-                } else {
-                    Description = "Tente de se deplacer a l'Ouest mais achoue.";
-                }
-                System.out.println(Description);
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.Ramasser.getValeur()){            //Ramasser  
-                
-                if(C.estRamassable()){
-                    Description += "Ramasse " + Contenus.fromint(C.getValeur()).toString() + "et pose ";
-                    int aPoser = P.ramasser(C.getValeur());
-                    C.setValeur(aPoser);
-                    Description += Contenus.fromint(aPoser).toString();
-                }
-                else {
-                    Description = "Tente de ramasser " + Contenus.fromint(C.getValeur()).toString() + "mais echoue.";
-                }
-            }
-            else if(A.get_Action() == Actions.FrapperN.getValeur()){ //Frapper au nord
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX());
-                v.setY(P.getPosition().getY()-1);
-                $Personnage E1=null;
-                int nb = J.size();                      //nombre de joueurs
-                int x=0, s, i;
-                while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
-                   s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
-                   for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                           E1 = J.get(x).getPersonnagesI(i);
-                           i = s;
-                           x = nb;
-                       }
-                   }
-                   x++;
-                }
-                
-                if((!E1.equals(null))&&(E1 instanceof Mechant)){
-                    if(P.getInventaire() == 10){
-                        if(E1.getVie()>3)
-                            E1.setVie(E1.getVie()-3);
-                        else
-                            E1.setVie(0);
-                    }
-                    else if(P.getInventaire() == 11){
-                        if(E1.getVie()>5)
-                            E1.setVie(E1.getVie()-5);
-                        else
-                            E1.setVie(0); 
-                    }
-                    else{
-                        if(E1.getVie()>1)
-                            E1.setVie(E1.getVie()-1);
-                        else
-                            E1.setVie(0);         //le personnage est mort on met la case a vide
-                    }
-                    return;
-                }
-            }
-            
-            else if(A.get_Action() == Actions.FrapperS.getValeur()){ //Frapper au sud
-                Coordonnees v=new Coordonnees();
-                v.setX(P.getPosition().getX());
-                v.setY(P.getPosition().getY()+1);
-                $Personnage E1=null;
-                int nb = J.size();                      //nombre de joueurs
-                int x=0, s, i;
-                while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
-                   s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
-                   for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                           E1 = J.get(x).getPersonnagesI(i);
-                           i = s;
-                           x = nb;
-                       }
-                   }
-                   x++;
-                }
-                if((!E1.equals(null))&&(E1 instanceof Mechant)){
-                    if(P.getInventaire() == 10){
-                        if(E1.getVie()>3)
-                            E1.setVie(E1.getVie()-3);
-                        else
-                            E1.setVie(0);
-                    }
-                    else if(P.getInventaire() == 11){
-                        if(E1.getVie()>5)
-                            E1.setVie(E1.getVie()-5);
-                        else
-                            E1.setVie(0); 
-                    }
-                    else{
-                        if(E1.getVie()>1)
-                            E1.setVie(E1.getVie()-1);
-                        else
-                            E1.setVie(0);         //le personnage est mort on met la case a vide
-                    }
-                    return;
-                }
-            }
-            
-            else if(A.get_Action() == Actions.FrapperE.getValeur()){ //Frapper ï¿½ l'est 
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX()+1);
-                v.setY(P.getPosition().getY());
-                $Personnage E1=null;
-                int nb = J.size();                      //nombre de joueurs
-                int x=0, s, i;
-                while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
-                   s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
-                   for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                           E1 = J.get(x).getPersonnagesI(i);
-                           i = s;
-                           x = nb;
-                       }
-                   }
-                   x++;
-                }
-                if((E1 instanceof Mechant)&&(!E1.equals(null))){
-                    if(P.getInventaire() == 10){
-                        if(E1.getVie()>3)
-                            E1.setVie(E1.getVie()-3);
-                        else
-                            E1.setVie(0);
-                    }
-                    else if(P.getInventaire() == 11){
-                        if(E1.getVie()>5)
-                            E1.setVie(E1.getVie()-5);
-                        else
-                            E1.setVie(0);
-                    }
-                    else{
-                        if(E1.getVie()>1)
-                            E1.setVie(E1.getVie()-1);
-                        else
-                            E1.setVie(0);         //le personnage est mort on met la case a vide
-                    }
-                    return;
-                }
-            }
-            
-            else if(A.get_Action() == Actions.FrapperO.getValeur()){ //Frapper ï¿½ l'ouest
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX()-1);
-                v.setY(P.getPosition().getY());
-                $Personnage E1=null;
-                int nb = J.size();                      //nombre de joueurs
-                int x=0, s, i;	
-                while(x<nb){                             //Tant que tous les joueurs n'ont pas ete check
-                   s = J.get(x).getSizePersonnages();     //nombre de personnages que possede le joueur x
-                   for(i=0; i<s; i++){
-                       if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                           E1 = J.get(x).getPersonnagesI(i);
-                           i = s;
-                           x = nb;
-                       }
-                   }
-                   x++;
-                }
-                if((!E1.equals(null))&&(E1 instanceof Mechant)){
-                    if(P.getInventaire() == 10){
-                        if(E1.getVie()>3)
-                            E1.setVie(E1.getVie()-3);
-                        else
-                            E1.setVie(0);
-                    }
-                    else if(P.getInventaire() == 11){
-                        if(E1.getVie()>5)
-                            E1.setVie(E1.getVie()-5);
-                        else
-                            E1.setVie(0);
-                    }
-                    else{
-                        if(E1.getVie()>1)
-                            E1.setVie(E1.getVie()-1);
-                        else
-                            E1.setVie(0);         //le personnage est mort on met la case a vide
-                    }
-                    return;
-                }
-            }
-            return;
+    public void Maj($Personnage P, $Action A, List<Joueur> J, List<Integer> l){
+    	int i,j;
+    	List<$Personnage> list = new LinkedList<>();
+    	int longperso = J.size();
+    	for(i=0; i<longperso; i++){
+        	for(j=0;j<J.get(i).getSizePersonnages();j++){
+        	    list.add(J.get(i).getPersonnagesI(j));    	
+        	}
+        	
+            i += J.get(i).getSizePersonnages();
         }
-        else if(P instanceof Mechant){
-            if(A.get_Action() == 0)
-                return;
-                
-            else if(A.get_Action() == Actions.Rien.getValeur())
-                return;
-                
-            else if(A.get_Action() == Actions.AvancerN.getValeur()){
-                if(N.estChemin())
-                    P.deplacementHaut();
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.AvancerS.getValeur()){
-                if(S.estChemin())
-                    P.deplacementBas();
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.AvancerE.getValeur()){
-                if(E.estChemin())
-                    P.deplacementDroite();
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.AvancerO.getValeur()){
-                if(O.estChemin())
-                    P.deplacementGauche();
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.Ramasser.getValeur()){
-                if(C.estRamassable()){
-                    Description += "Ramasse " + Contenus.fromint(C.getValeur()).toString() + "et pose ";
-                    int aPoser = P.ramasser(C.getValeur());
-                    C.setValeur(aPoser);
-                    Description += Contenus.fromint(aPoser).toString();
-                }
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.FrapperN.getValeur()){
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX());
-                v.setY(P.getPosition().getY()-1);
-                $Personnage E1 = null;
-                int nb = J.size();
-                int x=0, s, i;
-                while(x<nb){
-                    s = J.get(x).getSizePersonnages();
-                    for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                            E1 = J.get(x).getPersonnagesI(i);
-                            i = s;
-                            x = nb;
-                        }
-                    }
-                    x++;
-                }
-                
-                if(E1 != null && E1 instanceof Gentil){
-                    if(E1.getVie() > 5)
-                        E1.setVie(E1.getVie()-5);
-                    else
-                        E1.setVie(0);
-                }
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.FrapperS.getValeur()){
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX());
-                v.setY(P.getPosition().getY()+1);
-                $Personnage E1 = null;
-                int nb = J.size();
-                int x=0, s, i;
-                while(x<nb){
-                    s = J.get(x).getSizePersonnages();
-                    for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                            E1 = J.get(x).getPersonnagesI(i);
-                            i = s;
-                            x = nb;
-                        }
-                    }
-                    x++;
-                }
-                
-                if(E1 != null && E1 instanceof Gentil){
-                    if(E1.getVie() > 5)
-                        E1.setVie(E1.getVie()-5);
-                    else
-                        E1.setVie(0);
-                }
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.FrapperE.getValeur()){
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX()+1);
-                v.setY(P.getPosition().getY());
-                $Personnage E1 = null;
-                int nb = J.size();
-                int x=0, s, i;
-                while(x<nb){
-                    s = J.get(x).getSizePersonnages();
-                    for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                            E1 = J.get(x).getPersonnagesI(i);
-                            i = s;
-                            x = nb;
-                        }
-                    }
-                    x++;
-                }
-                
-                if(E1 != null && E1 instanceof Gentil){
-                    if(E1.getVie() > 5)
-                        E1.setVie(E1.getVie()-5);
-                    else
-                        E1.setVie(0);
-                }
-                return;
-            }
-            
-            else if(A.get_Action() == Actions.FrapperO.getValeur()){
-                Coordonnees v = new Coordonnees();
-                v.setX(P.getPosition().getX()-1);
-                v.setY(P.getPosition().getY());
-                $Personnage E1 = null;
-                int nb = J.size();
-                int x=0, s, i;
-                while(x<nb){
-                    s = J.get(x).getSizePersonnages();
-                    for(i=0; i<s; i++){
-                        if(J.get(x).getPersonnagesI(i).getPosition() == v){
-                            E1 = J.get(x).getPersonnagesI(i);
-                            i = s;
-                            x = nb;
-                        }
-                    }
-                    x++;
-                }
-                
-                if(E1 != null && E1 instanceof Gentil){
-                    if(E1.getVie() > 5)
-                        E1.setVie(E1.getVie()-5);
-                    else
-                        E1.setVie(0);
-                }
-                return;
-            }
-        }
-    }*/
+    	A.todo(l,P,list, this);
+    }
     
 	public static List<Integer> getNbetats() {
 		return nbetats;

@@ -14,9 +14,12 @@ public class DeplSud extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 2;
+
+	public DeplSud(){
+		valeur = 2;
+	}
 	
-	public void todo(List<Integer> l, $Personnage p, Grille g){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(3) == 2){		// 2 = chemin au sud et 4eme element de la liste -> regarde le sud
 			p.getPosition().setX(p.getPosition().getY()+1);
 			effect = true;
@@ -29,8 +32,8 @@ public class DeplSud extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return(" se deplace au sud.");
+			return("se deplace au sud.");
 		else
-			return (" ne peut pas se deplacer au sud, il y a un obstacle.");
+			return ("ne peut pas se deplacer au sud, il y a un obstacle.");
 	}
 }

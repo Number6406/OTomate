@@ -14,13 +14,16 @@ public enum Conditions {
     EnnemiO ("Ennemi au Ouest", 8),
     Comestible ("Comestible sur ma Case", 9),
     //Pompe ("pompe sur ma Case", 10),
-    Couteau ("Couteau sur ma Case", 10),
+    Arme ("un arme sur la case", 10),	//pompe ou couteau ou branche
 	ObstacleN ("Obstacle au nord", 11),
 	ObstacleS ("Obstacle au sud", 12),
 	ObstacleE ("Obstacle à l'est", 13),
 	ObstacleO ("Obstacle à l'ouest", 14),
 	Fouillable ("est fouillable", 15),
-	Seringue ("la drogue c'est bon", 16);
+	Seringue ("la drogue c'est bon", 16),
+	VieManquante ("le personnage a perdu de la vie", 17),
+	Cactus ("Cactus sur ma case", 18),
+	ViePleine ("Les pvs du personnages sont au max", 19);
 	
     private int id;
     private int value;

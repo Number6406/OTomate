@@ -16,9 +16,12 @@ public class AttEst extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 7;
+
+	public AttEst(){
+		valeur = 7;
+	}
     
-	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(2) == 7){		// 7 = ennemi a l'est et 3 regard a l'est
 			$Personnage e = null;
 			Coordonnees card = p.getPosition();
@@ -71,8 +74,8 @@ public class AttEst extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return(" attaque l'ennemi a l'est.");
+			return("attaque l'ennemi a l'est.");
 		else
-			return (" n'a rien fait, il n'y a pas d'ennemi a l'est.");
+			return ("n'a rien fait, il n'y a pas d'ennemi a l'est.");
 	}
 }

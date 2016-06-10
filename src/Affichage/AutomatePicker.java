@@ -35,7 +35,11 @@ public class AutomatePicker extends JPanel {
     Button bEdit = new Button("E");
     Button bSupp = new Button("D");
     
-    String camlExt = ".ml";
+    String camlExt = ".xml";
+    
+    public boolean cool(){
+    	return (checkExtension());
+    }
     
     public AutomatePicker() {
         super();
@@ -90,6 +94,10 @@ public class AutomatePicker extends JPanel {
         });
     }
     
+  /*  public boolean cool(){
+    	(chemin.getText())
+    }
+  */  
     public boolean checkExtension() {
         String nomFichier = this.chemin.getText();
         try{
@@ -101,18 +109,21 @@ public class AutomatePicker extends JPanel {
                 // On récupère l'extension du fichier
                 String ext = nomFichier.substring(nomFichier.lastIndexOf("."));
                 // Si le fichier n'a pas la bonne extension
-                if (ext != camlExt) {
+                if (!ext.equals(camlExt)) {
+                	System.out.println(nomFichier+" Depuis CheckExt rep1 : false");
                     return false;
                 }
             } else {
                 // sinon c'est que le fichier n'a pas d'extension
-                return false;
+            	System.out.println(nomFichier+" Depuis CheckExt rep2 : false");
+            	return false;
             }
             
         } catch (FileNotFoundException fnfe) {
-           return false;
+        	System.out.println(nomFichier+" Depuis CheckExt rep : false (fnfe)");
+        	return false;
         }
-        
+        System.out.println(nomFichier+" Depuis CheckExt rep : true");
         return true;
     }
     

@@ -11,9 +11,12 @@ public class Manger extends $Action{
 		// TODO Auto-generated constructor stub
 	}
 	private boolean effect = false;
-	int valeur = 11;
+
+	public Manger(){
+		valeur = 11;
+	}
 	
-	public void todo(List<Integer> l, $Personnage p){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(p instanceof Gentil){
 			if ((p.getInventaire()==7) || (p.getInventaire() == 6)){
 				int gain = Grille.random(5,10);

@@ -13,12 +13,13 @@ public enum Contenus {
     Conserve ("une boite de conserve", 7),
     Bouteille ("une bouteille", 8),
     Couteau ("un couteau", 9),
-    //Pompe ("un fusil a pompe", 10),
     Hopital ("un hopital", 10),
     Grange ("une grange", 11),
     Cactus ("un cactus", 12),
     //Bandage ("un bandage", 13),
-    Seringue ("un peu de drogue?", 13);
+    Seringue ("un peu de drogue?", 13),
+	Branches ("une branche", 14),
+	Pompe ("un fusil a pompe", 15);
     
     private int value;
     private String name = "";

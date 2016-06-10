@@ -16,7 +16,11 @@ public class Fuir extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 13;
+	private boolean inno = false;
+
+	public Fuir(){
+		valeur = 13;
+	}
 	
 //Retourne le parcours le plus court (l'entier calculant la 'distance' minimale
 	public int min($Personnage p, int i, Coordonnees c2){
@@ -69,7 +73,7 @@ public class Fuir extends $Action{
 		return e;
 	}
 	
-	public void todo(List<Integer> l, $Personnage p, Grille g, List<$Personnage> lp){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(p instanceof Gentil){
 			Coordonnees cnord, csud, cest, couest;
 			int rnd;
@@ -238,6 +242,7 @@ public class Fuir extends $Action{
 					effect = true;
 				}
 			}
+			inno = true;
 		}
 		else if(p instanceof Mechant){
 			Gentil e;
@@ -267,5 +272,15 @@ public class Fuir extends $Action{
 			}
 			effect = true;
 		}
+	}
+	
+	public String toString(){
+		if(effect == true && inno == true)
+			return("s'enfuit.");
+		else if(effect == true){
+			return("a flaire un ennemi a proximite.");
+		}
+		else
+			return ("n'a pas reussi a se deplacer.");
 	}
 }

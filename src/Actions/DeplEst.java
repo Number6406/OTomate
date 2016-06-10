@@ -15,9 +15,12 @@ public class DeplEst extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 3;
+
+	public DeplEst(){
+		valeur = 3;
+	}
 	
-	public void todo(List<Integer> l, $Personnage p,Grille g){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(2) == 3){		// 3 = chemin au sud et 3eme element de la liste -> regarde l'est
 			p.getPosition().setX(p.getPosition().getX()+1);
 			effect = true;
@@ -30,8 +33,8 @@ public class DeplEst extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return(" se deplace a l'est.");
+			return("se deplace a l'est.");
 		else
-			return (" ne peut pas se deplacer a l'est, il y a un obstacle.");
+			return ("ne peut pas se deplacer a l'est, il y a un obstacle.");
 	}
 }

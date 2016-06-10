@@ -17,9 +17,12 @@ public class AttNord extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 5;
+
+	public AttNord(){
+		valeur = 5;
+	}
     
-	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(1) == 5){		// 5 = ennemi au nord et 1 regard au nord
 			$Personnage e = null;
 			Coordonnees card = p.getPosition();
@@ -51,8 +54,8 @@ public class AttNord extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return(" attaque l'ennemi au nord.");
+			return("attaque l'ennemi au nord.");
 		else
-			return (" n'a rien fait, il n'y a pas d'ennemi au nord.");
+			return ("n'a rien fait, il n'y a pas d'ennemi au nord.");
 	}
 	}
