@@ -66,6 +66,9 @@ public abstract class $Personnage {
     public Coordonnees getPosition(){
         return this.position;
     }
+    public void setPosition(Coordonnees c){
+    	position = c;
+    }
     public int getInventaire(){
         return inventaire;
     }

@@ -3,9 +3,6 @@ package Actions;
 
 import java.util.List; 
 import Otomate.$Personnage;
-import Otomate.Coordonnees;
-import Otomate.Joueur;
-import Otomate.Gentil;
 import Otomate.Mechant;
 import Otomate.Grille;
 public class DeplOuest extends $Action{
@@ -19,7 +16,7 @@ public class DeplOuest extends $Action{
 			effect = true;
 		}
 		if (p instanceof Mechant){
-			if (g.Pos(p.getPosition()).piegee==true)
+			if (Grille.Pos(p.getPosition()).piegee==true)
 			((Mechant) p).setVie(((Mechant) p).getVie()-20);
 		}
 	}

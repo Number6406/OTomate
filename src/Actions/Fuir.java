@@ -6,7 +6,6 @@ import Otomate.$Personnage;
 import Otomate.Coordonnees;
 import Otomate.Gentil;
 import Otomate.Grille;
-import Otomate.Joueur;
 import Otomate.Mechant;
 
 public class Fuir extends $Action{

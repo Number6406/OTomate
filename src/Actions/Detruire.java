@@ -2,10 +2,6 @@ package Actions;
 
 import java.util.List;
 import Otomate.$Personnage;
-import Otomate.Coordonnees;
-import Otomate.Joueur;
-import Otomate.Gentil;
-import Otomate.Mechant;
 import Otomate.Grille;
 
 public class Detruire extends $Action {
@@ -18,7 +14,7 @@ public class Detruire extends $Action {
 			int aux;
 			aux = p.getInventaire();
 			p.setInventaire(8);
-			g.Pos(p.getPosition()).setValeur(aux);
+			Grille.Pos(p.getPosition()).setValeur(aux);
 			effect=true;
 		}
 	}
