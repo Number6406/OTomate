@@ -8,7 +8,7 @@ import Otomate.Joueur;
 import Otomate.Gentil;
 import Otomate.Mechant;
 import Otomate.Grille;
-public class Pieger {
+public class Pieger extends $Action{
 	
 	private boolean effect = false;
 	int valeur = 10;

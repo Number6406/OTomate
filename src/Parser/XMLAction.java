@@ -7,24 +7,34 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import Otomate.Action2;
+import Actions.*;
 
+/*
+1 : AttNord
+2 : AttEst
+3 : AttSud
+4 : AttOuest
+5 : deplNord
+6 : deplEst
+7 : deplSud
+8 : deplOuest
+9 : Detruire
+10 : Fuir
+11 : Manger
+12 : Pieger
+13 : Ramasser
+14 : Soigner
+15 :
+
+ */
 
 public class XMLAction extends DefaultHandler{
 	   
 	   boolean bid=false;
-	   boolean btype=false;
-	   boolean bd=false;
-	   boolean bo=false;
-	   boolean bcond=false;
 	   boolean bname=false;
 	   
 	   int id;
-	   int type;
-	   int direction;
-	   int objet;
-	   List<Integer> cond=new LinkedList<Integer>();
-	   List<Action2> list=new LinkedList<>();
+	   List<$Action> list=new LinkedList<>();
 	   String name;
 	   
 	static final int nb_cond=12;
@@ -34,15 +44,6 @@ public class XMLAction extends DefaultHandler{
 				  if (qName.equalsIgnoreCase("id")){
 					  bid=true;
 				  }
-			      if (qName.equalsIgnoreCase("type")) {
-			    	  btype=true;
-			      } else if (qName.equalsIgnoreCase("direction")) {
-			         bd = true;
-			      } else if (qName.equalsIgnoreCase("objet")) {
-			         bo = true;
-			      } else if (qName.equalsIgnoreCase("cond")) {
-			         bcond = true;
-			      }
 			      else if (qName.equalsIgnoreCase("name")) {
 			         bname = true;
 			      }
@@ -52,7 +53,7 @@ public class XMLAction extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("Case")) {
-			         System.out.println("End Element :" + name + " " + id +" "+ type+ " "+direction + " "+objet);
+			         System.out.println("End Element :" + name + " " + id);
 			      }
 			   }
 
@@ -62,26 +63,71 @@ public class XMLAction extends DefaultHandler{
 				   String lecture = new String(ch,start,length);
 				   	if (bid){
 					  id=Integer.parseInt(lecture);
-					  cond.clear();
 					  bid=false;
 				   	}
-				   	else if (btype){
-				   	type = Integer.parseInt(lecture);
-				   	btype=false;
-				  } else if (bd) {
-					 direction= Integer.parseInt(lecture);
-			         bd = false;
-			      } else if (bo) {
-			         objet= Integer.parseInt(lecture);
-			    	 bo = false;
-			      } else if (bcond) {
-			    	  cond.add(Integer.parseInt(lecture));
-			    	 bcond = false;
-			      } else if (bname) {
-			    	 name=lecture;
-			         bname = false;
-			         list.add(new Action2(type,direction,objet,cond,name));
-			      }
+				   	 else if (bname){
+				   		 name=lecture;
+				   		 switch(id){
+				   		case 1:
+				   			list.add(new AttNord());
+				   			break;
+				   		 
+				   		case 2:
+				   			list.add(new AttEst());
+				   			break;
+				   			
+				   		case 3:
+				   			list.add(new AttSud());
+				   			break;
+				   			
+				   		case 4:
+				   			list.add(new AttOuest());
+				   			break;
+				   			
+				   		case 5:
+				   			list.add(new DeplNord());
+				   			break;
+				   			
+				   		case 6:
+				   			list.add(new DeplEst());
+				   			break;
+				   		
+				   		case 7:
+				   			list.add(new DeplSud());
+				   			break;
+				   			
+				   		case 8:
+				   			list.add(new DeplOuest());
+				   			break;
+				   			
+				   		case 9:
+				   			list.add(new Detruire());
+				   			break;
+				   			
+				   		case 10:
+				   			list.add(new Fuir());
+				   			break;
+				   			
+				   		case 11:
+				   			list.add(new Manger());
+				   			break;
+				   			
+				   		case 12:
+				   			list.add(new Pieger());
+				   			break;
+				   			
+				   		case 13:
+				   			list.add(new Ramasser());
+				   			break;
+				   			
+				   		case 14:
+				   			list.add(new Soigner());
+				   			break;
+				   		
+				   		case 15:
+				   			break;
+				   		 }
+			        }
 			   }
 			   
 			   public void startDocument() throws SAXException {
