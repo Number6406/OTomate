@@ -9,7 +9,6 @@ import java.awt.Button;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +25,12 @@ import javax.swing.event.DocumentListener;
  */
 public class AutomatePicker extends JPanel {
     
-    JTextField chemin = new JTextField();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	JTextField chemin = new JTextField();
     Button bChoix = new Button("C");
     Button bEdit = new Button("E");
     Button bSupp = new Button("D");
@@ -43,24 +47,26 @@ public class AutomatePicker extends JPanel {
         c.fill = GridBagConstraints.HORIZONTAL;
         this.add(chemin,c);
         chemin.getDocument().addDocumentListener(new DocumentListener() {
+        	
             @Override
             public void insertUpdate(DocumentEvent e) {
-                
+                System.out.println(e.toString());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                
+            	 System.out.println(e.toString());
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                if(!checkExtension()) {
+            	 System.out.println(e.toString());
+            	if(!checkExtension()) {
                     new JDialog();
                 }
             }
         });
-
+        System.out.println(chemin.toString());
         c.weightx = 0;
         c.fill = GridBagConstraints.NONE;
         c.gridx += 1;

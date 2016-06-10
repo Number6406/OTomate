@@ -6,6 +6,10 @@ import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
 public class Manger extends $Action{
+	public Manger(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 	private boolean effect = false;
 	int valeur = 11;
 	

@@ -7,6 +7,11 @@ import Otomate.Gentil;
 
 public class Soigner extends $Action{
 	
+	public Soigner(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	int valeur = 12;
 	

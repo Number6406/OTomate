@@ -7,13 +7,9 @@ package Affichage;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Box;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,7 +18,12 @@ import javax.swing.JPanel;
  */
 public class FenetreMenu extends FenetreBase {
     
-    // Elements du menu
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// Elements du menu
     JLabel titre = new JLabel("OTomatamer");
     
     JPanel panel_b = new JPanel();

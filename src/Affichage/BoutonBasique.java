@@ -13,7 +13,12 @@ import javax.swing.JButton;
  */
 public class BoutonBasique extends JButton {
     
-    public BoutonBasique(int l, int h, String texte) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public BoutonBasique(int l, int h, String texte) {
         super(texte);
         Dimension d = new Dimension(l, h);
         this.definirTaille(d);

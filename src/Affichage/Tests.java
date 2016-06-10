@@ -12,6 +12,12 @@ package Affichage;
 public class Tests extends javax.swing.JPanel {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	/**
      * Creates new form NewJPanel
      */
     public Tests() {

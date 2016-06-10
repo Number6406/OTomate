@@ -1,11 +1,16 @@
 package Actions;
 
 import java.util.List;
+
 import Otomate.$Personnage;
 import Otomate.Grille;
 
 public class Detruire extends $Action {
 	
+	public Detruire(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 	private boolean effect = false;
 	int valeur = 14;
 	

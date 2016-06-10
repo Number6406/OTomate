@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class FenetreJeu extends JFrame {
         this.setLayout(new BorderLayout());
     }
     
-    public void charger() {
+    public void charger() throws IOException {
     	
     	Grille g = Jeu.plateau;
     	List<$Personnage> persoL = new LinkedList<>();

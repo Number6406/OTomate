@@ -9,6 +9,11 @@ import Otomate.Mechant;
 import Otomate.Grille;
 public class AttSud extends $Action{
 
+	public AttSud(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	int valeur = 6;
     
