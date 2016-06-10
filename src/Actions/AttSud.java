@@ -3,8 +3,12 @@ package Actions;
 import java.util.List;
 import java.util.Random;
 
+import Otomate.$Personnage;
+import Otomate.Coordonnees;
+import Otomate.Joueur;
 import Otomate.Gentil;
-
+import Otomate.Mechant;
+import Otomate.Grille;
 public class AttSud extends $Action{
 
 	private boolean effect = false;
