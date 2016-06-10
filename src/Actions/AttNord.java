@@ -1,18 +1,26 @@
-package Otomate;
+package Actions;
+
 
 import java.util.List;
 import java.util.Random;
 
-public class AttSud extends $Action{
+import Otomate.$Personnage;
+import Otomate.Coordonnees;
+import Otomate.Joueur;
+import Otomate.Gentil;
+import Otomate.Mechant;
+import Otomate.Grille;
 
+public class AttNord extends $Action{
+	
 	private boolean effect = false;
-	int valeur = 6;
+	int valeur = 5;
     
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp){
-		if(l.get(3) == 6){		// 6 = ennemi au sud et 3 regard au sud
+		if(l.get(1) == 5){		// 5 = ennemi au nord et 1 regard au nord
 			$Personnage e = null;
 			Coordonnees card = p.position;
-			card.setY(card.getY()+1);
+			card.setY(card.getY()-1);
 			int s = lp.size();
 			int i=0;
 			while(i<s){
@@ -40,8 +48,8 @@ public class AttSud extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return("Le personnage attaque l'ennemi au sud.");
+			return("Le personnage attaque l'ennemi au nord.");
 		else
-			return ("Echec, pas d'ennemi au sud:D.");
+			return ("Echec, pas d'ennemi au nord:D.");
 	}
 }

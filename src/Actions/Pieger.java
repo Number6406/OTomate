@@ -1,8 +1,14 @@
-package Otomate;
+package Actions;
+
 
 import java.util.List;
-
-public class Pieger {
+import Otomate.$Personnage;
+import Otomate.Coordonnees;
+import Otomate.Joueur;
+import Otomate.Gentil;
+import Otomate.Mechant;
+import Otomate.Grille;
+public class Pieger extends $Action{
 	
 	private boolean effect = false;
 	int valeur = 10;
