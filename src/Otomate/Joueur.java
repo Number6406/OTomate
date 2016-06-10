@@ -2,6 +2,7 @@ package Otomate;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 
@@ -16,7 +17,11 @@ public class Joueur {
     //M�thodes
     public Joueur(List<String> xmls) {
     	personnages = new LinkedList<>();
-        for
+    	Random rnd = new Random();
+    	int k = rnd.nextInt(xmls.size());
+        for(int i=0; i<xmls.size(); i++) {
+        	personnages.add(new Gentil(xmls.get(i)));
+        }
     }
     public String getName() {
         return name;

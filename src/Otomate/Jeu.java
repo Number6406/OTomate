@@ -1,11 +1,7 @@
 package Otomate;
 
 import Affichage.*;
-<<<<<<< HEAD
-import Otomate.historique.*;
-=======
 import Otomate.historique.Historique;
->>>>>>> master
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -97,15 +93,15 @@ public class Jeu {
 //        }
 //    }
     
-    public static void initJoueurs(int nbJoueurs, List<String> xmls) {
+    public static void initJoueurs(int nbPersoParJoueur, List<String> xmls) {
     	joueurs = new LinkedList<Joueur>();
-    	Joueur nouv = new Joueur();
+    	joueurs.add(new Joueur(xmls.subList(0, nbPersoParJoueur)));
     }
     
     public static void main(String[] pArgs) throws InterruptedException {
     	plateau = new Grille();
     	int nbJoueurs = 2;
-    	String[] xmls;
+    	List<String> xmls;
     	initJoueurs(nbJoueurs, xmls);
     }
 }
