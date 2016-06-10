@@ -24,8 +24,8 @@ public class DeplEst extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return("Le personnage se deplace a l'est.");
+			return(" se deplace a l'est.");
 		else
-			return ("Echec, le personnage n'a pas franchi l'obstacle :D.");
+			return (" ne peut pas se deplacer a l'est, il y a un obstacle.");
 	}
 }
