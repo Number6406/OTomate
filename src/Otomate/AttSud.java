@@ -1,7 +1,6 @@
 package Otomate;
 
 import java.util.List;
-import java.util.Random;
 
 public class AttSud extends $Action{
 
@@ -9,7 +8,7 @@ public class AttSud extends $Action{
 	int valeur = 6;
     
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp){
-		if(l.get(3) == 6){		// 6 = ennemi au sud et 3 regard au sud
+		if(l.get(3) == 6){		// 6 = ennemi au sud et 4 regard au sud
 			$Personnage e = null;
 			Coordonnees card = p.position;
 			card.setY(card.getY()+1);

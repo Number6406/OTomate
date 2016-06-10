@@ -13,7 +13,7 @@ public class DeplEst extends $Action{
 			effect = true;
 		}
 		if (p instanceof Mechant){
-			if (g.Pos(p.position).piegee==true)
+			if (Grille.Pos(p.position).piegee==true)
 			((Mechant) p).vie-=20;
 		}
 	}

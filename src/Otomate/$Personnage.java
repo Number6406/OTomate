@@ -1,7 +1,6 @@
 package Otomate;
 
 import java.awt.Color;
-import java.util.List;
 
 public abstract class $Personnage {
     
