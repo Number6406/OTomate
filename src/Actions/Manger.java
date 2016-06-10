@@ -3,10 +3,7 @@ package Actions;
 import java.util.List;
 
 import Otomate.$Personnage;
-import Otomate.Coordonnees;
-import Otomate.Joueur;
 import Otomate.Gentil;
-import Otomate.Mechant;
 import Otomate.Grille;
 public class Manger extends $Action{
 	private boolean effect = false;

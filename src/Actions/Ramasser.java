@@ -3,10 +3,7 @@ package Actions;
 import java.util.List;
 
 import Otomate.$Personnage;
-import Otomate.Coordonnees;
-import Otomate.Joueur;
 import Otomate.Gentil;
-import Otomate.Mechant;
 import Otomate.Grille;
 
 public class Ramasser extends $Action{
@@ -20,14 +17,14 @@ public class Ramasser extends $Action{
 			int aux;
 			if(l.get(0) == 9){		//comestible
 				aux = p.getInventaire();
-				p.setInventaire(g.Pos(p.getPosition()).getValeur());
-				g.Pos(p.getPosition()).setValeur(aux);
+				p.setInventaire(Grille.Pos(p.getPosition()).getValeur());
+				Grille.Pos(p.getPosition()).setValeur(aux);
 			}
 			if(p instanceof Gentil){
 				if(l.get(0) == 10){		//couteau
 					aux = ((Gentil) p).getArme();
-					((Gentil) p).setArme(g.Pos(p.getPosition()).getValeur());
-					g.Pos(p.getPosition()).setValeur(aux);
+					((Gentil) p).setArme(Grille.Pos(p.getPosition()).getValeur());
+					Grille.Pos(p.getPosition()).setValeur(aux);
 				}
 				else if(l.get(0) == 16){		//seringue
 					if(((Gentil) p).getDrogue() != 0){
