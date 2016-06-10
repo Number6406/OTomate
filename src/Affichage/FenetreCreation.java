@@ -7,6 +7,7 @@ package Affichage;
 
 import Otomate.Joueur;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
@@ -42,7 +44,7 @@ public class FenetreCreation extends FenetreBase {
     JButton bAnnuler = new JButton("Annuler");
     
     public FenetreCreation(int ratio, int nbP, int nbJ) {
-        super(500, 600, "Création des joueurs pour la partie");
+        super(500, 400, "Création des joueurs pour la partie");
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
@@ -67,36 +69,48 @@ public class FenetreCreation extends FenetreBase {
             c.gridy = 0;
             c.weightx = 0;
             c.weighty = 0;
-            c.fill = GridBagConstraints.NONE;
+            c.fill = GridBagConstraints.HORIZONTAL;
             
             ongletsJoueurs.add("Joueur" + i, pJoueur);
-            JTextField userName = new JTextField("Joueur " + i);
+            
+            c.gridwidth = 2;
+            pJoueur.add(new JLabel("Nom du Joueur :"));
+            c.gridwidth = 1;
+            c.gridx = 2;
+            pJoueur.add(new JLabel("Couleur"));
+            c.gridx = 3;
+            pJoueur.add(new JLabel("Jouer Zombie ?"));
             c.gridy = 1;
+            c.gridx = 0;            
+            c.gridwidth = 2;
+            JTextField userName = new JTextField("Joueur " + i);
+            c.gridy = 2;
+            c.gridwidth = 1;
             pJoueur.add(userName, c);
             
-            c.gridy = 2;
+            c.gridy = 3;
+            c.gridx = 0;
             pJoueur.add(new JLabel("Automate Méchant : "), c);
             c.gridx = 1;
+            c.gridwidth = 2;
             c.weightx = 1;
             c.fill = GridBagConstraints.HORIZONTAL;
-            JTextField textAutoM = new JTextField("chemin");
-            pJoueur.add(textAutoM, c);
-            c.gridx = 2;
-            c.weightx = 0;
-            c.fill = GridBagConstraints.NONE;
-            JButton bFichierM = new JButton("Fichier");
-            pJoueur.add(bFichierM, c);
-            bFichierM.addActionListener((ActionEvent e) -> {
-                JFileChooser fileM = new JFileChooser();
-                int returnValue = fileM.showOpenDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileM.getSelectedFile();
-                    textAutoM.setText(selectedFile.getAbsolutePath());
-                }
-            });
+            AutomatePicker mechant = new AutomatePicker();
+            pJoueur.add(mechant, c);
             
-            c.gridy = 3;
+            c.gridx = 0;
+            c.gridy = 4;
             pJoueur.add(new JLabel("Automates Gentils : "), c);
+            
+            c.gridy = 5;
+            c.gridheight = 1;
+            c.gridwidth = 4;
+            c.weighty = 1;
+            c.fill = GridBagConstraints.BOTH;
+            GentilPicker listePersos = new GentilPicker(nbP);
+            JScrollPane scrollP = new JScrollPane(listePersos);
+            scrollP.setMinimumSize(new Dimension(200, 200));
+            pJoueur.add(scrollP, c);
         }
         
         this.add(pan_b, BorderLayout.SOUTH);
