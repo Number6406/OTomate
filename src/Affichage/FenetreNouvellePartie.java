@@ -6,6 +6,7 @@
 package Affichage;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -44,7 +45,7 @@ public class FenetreNouvellePartie extends FenetreBase {
     
     // Elements
     JPanel pan_corps = new JPanel(new GridLayout(1, 2));
-    JPanel pan_partie = new JPanel(new GridLayout(3, 2));
+    JPanel pan_partie = new JPanel(new GridBagLayout());
     JPanel pan_option = new JPanel();
     
     JLabel ljoueurs = new JLabel("Nombre de joueurs : ");
@@ -53,7 +54,7 @@ public class FenetreNouvellePartie extends FenetreBase {
     JLabel lratio = new JLabel(tratio + "(" + ratio + ")");
     JSlider slider_ratio = new JSlider(minR, maxR, ratio);
     JLabel lratiof = new JLabel("1 personnage sain");
-    JLabel lnbpersos = new JLabel("Nombre de personnages par joueur max.");
+    JLabel lnbpersos = new JLabel("Nb. persos / joueur max.");
     SpinnerModel smp = new SpinnerNumberModel(1, minP, maxP, 1);
     JSpinner spin_persos = new JSpinner(smp);
    
@@ -66,26 +67,42 @@ public class FenetreNouvellePartie extends FenetreBase {
     JButton b_suivant = new JButton("Suivant");
     
     public FenetreNouvellePartie(List<String> univers) {
-        super(800, 500, "Création d'une nouvelle partie");
+        super(500, 300, "Création d'une nouvelle partie");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new BorderLayout());
+        
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.fill = GridBagConstraints.HORIZONTAL;
         
         this.add(pan_corps, BorderLayout.NORTH);
         
         pan_corps.add(pan_partie);
         pan_partie.setBorder(BorderFactory.createTitledBorder("Options de jeu"));
         
-        pan_partie.add(ljoueurs);
-        pan_partie.add(spin_joueurs);
+        pan_partie.add(ljoueurs, c);
+        c.gridx = 1;
+        pan_partie.add(spin_joueurs, c);
                 
-        pan_partie.add(lratio);
-        pan_partie.add(slider_ratio);
+        c.gridx = 0;
+        c.gridy = 1;
+        pan_partie.add(lratio, c);
+        c.gridx = 1;
+        pan_partie.add(slider_ratio, c);
         slider_ratio.addChangeListener((ChangeEvent e) -> {
             lratio.setText(tratio + "(" + slider_ratio.getValue() + ")");
         });
         
-        pan_partie.add(lnbpersos);
-        pan_partie.add(spin_persos);
+        c.gridx = 0;
+        c.gridy = 2;
+        pan_partie.add(lnbpersos, c);
+        c.gridx = 1;
+        pan_partie.add(spin_persos, c);
         
         pan_corps.add(pan_option);
         pan_option.setBorder(BorderFactory.createTitledBorder("Options spécifiques"));
@@ -93,11 +110,14 @@ public class FenetreNouvellePartie extends FenetreBase {
         pan_corps.add(pan_option);
         pan_option.add(scroll_u);
         
+        c.gridx = 0;
+        c.gridy = 0;
         for(String u : univers) {
             JRadioButton bcu = new JRadioButton(u);
             bcu.setSelected(true);
             radio_univers.add(bcu);
-            pan_radio.add(bcu);
+            pan_radio.add(bcu, c);
+            c.gridy += 1;
         }
         
         this.add(pan_b, BorderLayout.SOUTH);
