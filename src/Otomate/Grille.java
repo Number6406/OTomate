@@ -188,6 +188,16 @@ public class Grille {
         Placements(l);
     }
     
+    public List<Integer> conditions($Personnage p, List<Boolean> l){
+    	List<Integer> listcond = new LinkedList<>();
+    	int s = l.size();
+    	int i = 0;
+    	while(i<s){
+    		if(l.get(i) == true)
+    			listcond.add(e)
+    	}
+    }
+    
 //    public static Action takeOne(List<Case> l){
 //        Action a = new Action();
 //        if(l.isEmpty() == true)

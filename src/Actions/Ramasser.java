@@ -15,7 +15,6 @@ public class Ramasser extends $Action{
 
 	private boolean effect = false;
 	private boolean drogue = false;
-	private boolean pompe = false;
 	int valeur = 9;
     
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
@@ -27,12 +26,10 @@ public class Ramasser extends $Action{
 				Grille.Pos(p.getPosition()).setValeur(aux);
 			}
 			if(p instanceof Gentil){
-				if(l.get(0) == 10){		//couteau
-					if(((Gentil) p).getArme() != 25){
-						aux = ((Gentil) p).getArme();
-						((Gentil) p).setArme(Grille.Pos(p.getPosition()).getValeur());
-						Grille.Pos(p.getPosition()).setValeur(aux);
-					}
+				if(l.get(0) == 10){		//couteau ou branche ou pompe
+					aux = ((Gentil) p).getArme();
+					((Gentil) p).setArme(Grille.Pos(p.getPosition()).getValeur());
+					Grille.Pos(p.getPosition()).setValeur(aux);
 				}
 				else if(l.get(0) == 16){		//seringue
 					if(((Gentil) p).getDrogue() != 0){
@@ -69,21 +66,15 @@ public class Ramasser extends $Action{
 				}
 			}
 			effect = true;
-			if(((Gentil) p).getArme() == 25){
-				effect = false;
-				pompe = true;
-			}
 		}
 	}
 	
 	public String toString(){
 		if((effect == true)&&(drogue == false))
 			return("a ramasse quelque chose.");
-		else if((effect == true)&&(drogue == false)){
+		else if((effect == true)&&(drogue == true)){
 			return("a ramasse de la drogue et s'est pique, petit filou.");
 		}
-		else if(pompe == true)
-			return("tente de ramasser un couteau mais préfère garder son fusil a pompe.");
 		else
 			return ("mais il n'y a rien a recolter");
 	}

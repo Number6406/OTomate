@@ -3,6 +3,7 @@ package Otomate;
 public class Gentil extends $Personnage{
 	 /*arme = 25.pompe
 	  * 	  15.couteau
+	  * 	  5 .branche
 	  * correspond au degats supp
 	  */
 	

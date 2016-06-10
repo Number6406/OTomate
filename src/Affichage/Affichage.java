@@ -11,6 +11,7 @@ import Otomate.historique.Historique;
 import Otomate.$Personnage;
 
 import java.awt.Color;
+import java.io.IOException;
 //import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,15 +29,15 @@ public class Affichage {
     
     private static Historique h;
     //Methodes    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         jeu = new FenetreJeu();
         
-        Jeu.initPartie();
+      //  Jeu.initPartie();
         Grille g=new Grille(20,20);
         int i,j;
         for(i=0;i<g.tailleX;i++){
         	for(j=0;j<g.tailleY;j++){
-        		g.set(random(1,8),i,j);
+        		g.set(random(1,3),i,j);
         	}
         }
         
@@ -63,7 +64,7 @@ public class Affichage {
         jeu.charger();
     } 
     
-   public static void recharger(Grille g,List<Joueur> l,Historique h){
+   public static void recharger(Grille g,List<Joueur> l,Historique h) throws IOException{
 	   List<$Personnage> lp = new LinkedList<>();
 	   int i,j,max=l.size(),max2;
 	   
@@ -78,7 +79,7 @@ public class Affichage {
 	   
    }
    
-	  public static void charger(){
+	  public static void charger() throws IOException{
 		   jeu = new FenetreJeu();
 		   jeu.charger();
 		   
