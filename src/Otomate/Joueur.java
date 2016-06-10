@@ -15,7 +15,7 @@ public class Joueur {
     private List<$Personnage> personnages;
     
     //M�thodes
-    public Joueur(List<String> xmls, boolean estMechant, int nbMechants, int nbPersosParJoueur) {
+    public Joueur(List<String> xmls, boolean estMechant, int nbMechants) {
     	personnages = new LinkedList<>();
     	mechant = estMechant;
     	if(mechant) {
@@ -24,12 +24,8 @@ public class Joueur {
     			personnages.add(new Mechant(personnages.get(0)));
     		}
     	} else {
-    		for(int i=0; i<nbPersosParJoueur; i++) {
-    			if(i<xmls.size()) {
-    				personnages.add(new Gentil(xmls.get(i)));
-    			} else {
-    				personnages.add(new Gentil(xmls.get(0)));
-    			}
+    		for(int i=0; i<xmls.size(); i++) {
+				personnages.add(new Gentil(xmls.get(i)));
     		}
     	}
     }

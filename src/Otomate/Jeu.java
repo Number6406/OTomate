@@ -17,16 +17,24 @@ public class Jeu {
     
     //Methodes
     
-    public static boolean finPartie(int nbTotal) {
+    public static boolean finPartie() {
+    	boolean passe=false, un=false;
         for(int i=0; i<joueurs.size(); i++) {
         	if(joueurs.get(i).mechant) {
-        		if((joueurs.get(i).getPersonnages().size()==0) ||
-        		   (joueurs.get(i).getPersonnages().size()==nbTotal)) {
+        		if(joueurs.get(i).getPersonnages().size()==0) {
         			return true;
+        		} else {
+        			if(un) {return false;}
+            		passe=true;
+        		}
+        	} else {
+        		if(joueurs.get(i).getPersonnages().size()!=0) {
+        			if(passe) {return false;}
+        			un=true;
         		}
         	}
         }
-        return false;
+        return true;
     }
     
     public static void remplir() {
@@ -49,18 +57,26 @@ public class Jeu {
         }
     }
     
-    public static void initJoueurs(int nbJoueurs, int nbPersoParJoueur, int nbPersoParZombie, int nZombie, List<String> xmlsGentils, List<String> xmlsMechants) {
+    public static int nbGentils(List<List<String>> xmls, int nZombie) {
+    	int k=0;
+    	for(int i=0; i<xmls.size(); i++) {
+    		if(i!=nZombie) {
+	    		for(int j=0; j<xmls.get(i).size(); j++) {
+	    			k++;
+	    		}
+    		}
+    	}
+    	return k;
+    }
+    
+    public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls) {
     	joueurs = new LinkedList<Joueur>();
-    	int nbZ = nbPersoParJoueur*(nbJoueurs-1)/nbPersoParZombie;
-    	for(int i=0; i<nbJoueurs; i++) {
+    	int nZ = nbGentils(xmls, nZombie)/nbPersoParZombie;
+    	for(int i=0; i<xmls.size(); i++) {
     		if(i==nZombie) {
-    			joueurs.add(new Joueur(xmlsMechants, true, nbZ, nbPersoParJoueur));
+    			joueurs.add(new Joueur(xmls.get(i),true,nZ));
     		} else {
-    			if(i<nZombie) {
-    				joueurs.add(new Joueur(xmlsGentils.subList(i*nbPersoParJoueur, (i+1)*nbPersoParJoueur), false, nbZ, nbPersoParJoueur));
-    			} else {
-    				joueurs.add(new Joueur(xmlsGentils.subList((i-1)*nbPersoParJoueur, i*nbPersoParJoueur), false, nbZ, nbPersoParJoueur));
-    			}
+    			joueurs.add(new Joueur(xmls.get(i),false,42));
     		}
     	}
     }
@@ -76,13 +92,12 @@ public class Jeu {
     	List<String> xmlsGentils = new LinkedList<String>();
     	List<String> xmlsMechants = new LinkedList<String>();
     	// <- Fin variables
-    	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
+    	initJoueurs(nbPersoParZombie, nZombie, xmls);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);
     	Affichage.charger();
-    	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-    	while(!finPartie(nbTotal)) {
+    	while(!finPartie()) {
     		melange();
     		for(int i=0; i<refPersos.size(); i++) {
     			tempHistorique = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100)).jouer();
