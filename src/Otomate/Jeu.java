@@ -3,43 +3,33 @@ package Otomate;
 import Affichage.*;
 import Otomate.historique.Historique;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.io.File;
 
 public class Jeu {
-	
-    public static int random(int min, int max) throws InterruptedException{
-    	Random r = new Random();
-    	int k = min + r.nextInt(max - min);
-
-    	return k;
-    }
     
     //Attributs
     public static Grille plateau;
     public static List<Joueur> joueurs;
-    public static List<$Personnage> persos;
     public static Historique historique;
     
     //Methodes
     
-    public static int initPartie(){
-    	System.out.println("Partie avec deux joueurs.");
-    	System.out.println("On récupére les deux automates des joueurs :");
-    	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
-    	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
-    	joueurs = new ArrayList<Joueur>();
-    	joueurs.add(J1);
-    	joueurs.add(J2);
-    	
-    	plateau = new Grille();
-    	Grille.initialisergrille(joueurs);
-    	
-    	return 0;
-    }
+//    public static int initPartie(){							//NE MARCHE PLUS
+//    	System.out.println("Partie avec deux joueurs.");
+//    	System.out.println("On récupére les deux automates des joueurs :");
+//    	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
+//    	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
+//    	joueurs = new ArrayList<Joueur>();
+//    	joueurs.add(J1);
+//    	joueurs.add(J2);
+//    	
+//    	plateau = new Grille();
+//    	Grille.initialisergrille(joueurs);
+//    	
+//    	return 0;
+//    }
     
 //    public static List<Joueur> addJoueurs(String fichiers) throws InterruptedException {
 //        List<Joueur> joueurs = new LinkedList<Joueur>();
@@ -80,7 +70,15 @@ public class Jeu {
 //        }
 //    }
     
-    public static boolean finPartie() {
+    public static boolean finPartie(int nbTotal) {
+        for(int i=0; i<joueurs.size(); i++) {
+        	if(joueurs.get(i).mechant) {
+        		if((joueurs.get(i).getPersonnages().size()==0) ||
+        		   (joueurs.get(i).getPersonnages().size()==nbTotal)) {
+        			return true;
+        		}
+        	}
+        }
         return false;
     }
     
@@ -121,6 +119,10 @@ public class Jeu {
     	List<String> xmlsMechants;
     	// <- Fin variables
     	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
+    	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
+    	while(!finPartie(nbTotal)) {
+    		Thread.sleep(200);
+    	}
     }
 }
     

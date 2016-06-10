@@ -10,12 +10,14 @@ import java.util.List;
  */
 public class Joueur {
     String name;
+    boolean mechant;
     //Attributs
     private List<$Personnage> personnages;
     
     //M�thodes
-    public Joueur(List<String> xmls, boolean mechant, int nbMechants, int nbPersosParJoueur) {
+    public Joueur(List<String> xmls, boolean estMechant, int nbMechants, int nbPersosParJoueur) {
     	personnages = new LinkedList<>();
+    	mechant = estMechant;
     	if(mechant) {
     		personnages.add(new Mechant(xmls.get(0)));
     		for(int i=1; i<nbMechants; i++) {
