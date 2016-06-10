@@ -8,6 +8,11 @@ import Otomate.Grille;
 
 public class Ramasser extends $Action{
 
+	public Ramasser(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	private boolean drogue = false;
 	int valeur = 9;

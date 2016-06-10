@@ -12,7 +12,12 @@ import javax.swing.JFrame;
  */
 public abstract class FenetreBase extends JFrame {
     
-    public FenetreBase(int l, int h, String nom) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public FenetreBase(int l, int h, String nom) {
         
         super(nom);
         // On force des tailles minimales à la création histoire d'éviter de se retrouver dans de mauvaises situations

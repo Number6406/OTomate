@@ -2,11 +2,17 @@ package Actions;
 
 
 import java.util.List;
+
 import Otomate.$Personnage;
 import Otomate.Mechant;
 import Otomate.Grille;
 
 public class DeplEst extends $Action{
+
+	public DeplEst(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 
 	private boolean effect = false;
 	int valeur = 3;

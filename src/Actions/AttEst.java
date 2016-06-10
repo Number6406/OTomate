@@ -10,6 +10,11 @@ import Otomate.Grille;
 
 public class AttEst extends $Action{
 
+	public AttEst(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	int valeur = 7;
     

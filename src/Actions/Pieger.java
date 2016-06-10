@@ -2,10 +2,16 @@ package Actions;
 
 
 import java.util.List;
+
 import Otomate.$Personnage;
 import Otomate.Grille;
 public class Pieger extends $Action{
 	
+	public Pieger(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	int valeur = 10;
 	

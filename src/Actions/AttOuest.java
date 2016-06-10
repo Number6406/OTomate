@@ -11,6 +11,11 @@ import Otomate.Grille;
 
 public class AttOuest extends $Action{
 
+	public AttOuest(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	int valeur = 8;
     
