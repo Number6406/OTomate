@@ -27,7 +27,7 @@ public class Affichage {
     private static List<$Personnage> perso;
     
     private static Historique h;
-    //M�thodes    
+    //Methodes    
     public static void main(String[] args) {
         jeu = new FenetreJeu();
         
