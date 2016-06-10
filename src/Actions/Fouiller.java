@@ -15,7 +15,10 @@ public class Fouiller extends $Action{
 	
 	private boolean effect = false;
 	private boolean anti = false, pompe = false;
-	int valeur = 15;
+	
+	public Fouiller(){
+		valeur = 15;
+	}
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(p instanceof Gentil){

@@ -13,7 +13,10 @@ public class Pieger extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 10;
+
+	public Pieger(){
+		valeur = 10;
+	}
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if((Grille.Pos(p.getPosition()).piegee==false)&&(l.get(0) == 0 || l.get(0) == 15)){

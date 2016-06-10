@@ -15,7 +15,10 @@ public class DeplEst extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 3;
+
+	public DeplEst(){
+		valeur = 3;
+	}
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(2) == 3){		// 3 = chemin au sud et 3eme element de la liste -> regarde l'est

@@ -14,7 +14,10 @@ public class DeplNord extends $Action{
 	}
 
 	private boolean effect = false;
-	int valeur = 1;
+	
+	public DeplNord(){
+		valeur = 1;
+	}
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(1) == 1){		//1 = chemin au nord avec le deuxieme element de la liste qui regarde la case au nord

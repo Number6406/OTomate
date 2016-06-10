@@ -12,7 +12,9 @@ public class RaF extends $Action{
 		// TODO Auto-generated constructor stub
 	}
 
-	int valeur = 0;
+	public RaF(){
+		valeur = 0;
+	}
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){}
 	

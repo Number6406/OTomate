@@ -247,7 +247,7 @@ public class Grille {
     }
     
     public static $Action takeOne(List<Integer> l){
-        $Action a;
+        $Action a = null;
         if(l.isEmpty() == true){
             a = new RaF();
             return a;
@@ -256,7 +256,38 @@ public class Grille {
         	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
             int i = random(0, l.size());
             System.out.println("Je vais faire l'action : "+l.get(i));
-            if()
+            if(l.get(i) == 0)
+            	a = new RaF();
+            else if(l.get(i) == 1)
+            	a = new DeplNord();
+            else if(l.get(i) == 2)
+            	a = new DeplSud();
+            else if(l.get(i) == 3)
+            	a = new DeplEst();
+            else if(l.get(i) == 4)
+            	a = new DeplOuest();
+            else if(l.get(i) == 5)
+            	a = new AttNord();
+            else if(l.get(i) == 6)
+            	a = new AttSud();
+            else if(l.get(i) == 7)
+            	a = new AttEst();
+            else if(l.get(i) == 8)
+            	a = new AttOuest();
+            else if(l.get(i) == 9)
+            	a = new Ramasser();
+            else if(l.get(i) == 10)
+            	a = new Pieger();
+            else if(l.get(i) == 11)
+            	a = new Manger();
+            else if(l.get(i) == 12)
+            	a = new Soigner();
+            else if(l.get(i) == 13)
+            	a = new Fuir();
+            else if(l.get(i) == 14)
+            	a = new Detruire();
+            else if(l.get(i) == 15)
+            	a = new Fouiller();
             System.out.println("J'ai fait l'action : "+l.get(i));
             return a;
         }
