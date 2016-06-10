@@ -12,63 +12,10 @@ public class Jeu {
     //Attributs
     public static Grille plateau;
     public static List<Joueur> joueurs;
+    public static List<Integer> refPersos;
     public static Historique historique;
     
     //Methodes
-    
-//    public static int initPartie(){							//NE MARCHE PLUS
-//    	System.out.println("Partie avec deux joueurs.");
-//    	System.out.println("On récupére les deux automates des joueurs :");
-//    	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
-//    	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
-//    	joueurs = new ArrayList<Joueur>();
-//    	joueurs.add(J1);
-//    	joueurs.add(J2);
-//    	
-//    	plateau = new Grille();
-//    	Grille.initialisergrille(joueurs);
-//    	
-//    	return 0;
-//    }
-    
-//    public static List<Joueur> addJoueurs(String fichiers) throws InterruptedException {
-//        List<Joueur> joueurs = new LinkedList<Joueur>();
-//      // int k = 1;//random(1,1);
-//        for(int i=0; i<1; i++) {
-//            joueurs.add(new Joueur(fichiers,false/*i==k*/));
-//        }
-//        return joueurs;
-//    }
-    
-//    public static void main(String[] pArgs) throws InterruptedException {
-//        plateau = new Grille();
-//       // File repertoire = new File("../automate/");                // "../automates/" --> r�pertoire des automates en .xml
-//        String fichiers = new File("AutomateenXML.xml").toString();                      // liste des noms de fichiers d'automates
-//        joueurs = addJoueurs(fichiers);
-//        
-//    //    System.out.println("coucou" +1 );
-//        Grille.initialisergrille(joueurs);                                        // cr�ation de la grille
-//       // affichagePartie(plateau, joueurs);                          // lancement de l'affichage graphique
-//   //     System.out.println("coucou");
-//        //Affichage.recharger(plateau,joueurs,historique);
-//        Affichage.charger();
-//        while(/*!finPartie()*/true) {
-//        	System.out.println(joueurs.get(0).getPersonnagesI(0).getPosition().getX() +" "+ joueurs.get(0).getPersonnagesI(0).getPosition().getY());
-//            Thread.sleep(200);                             // (faux) timer 1 seconde
-//            melange();
-//            for(int i=0; i<joueurs.size(); i++) {
-//            	System.out.println("random : " + random(1,5));
-//            	//System.out.println("SBLEU : "+joueurs.get(i).getPersonnagesI(0).etat+"\n");
-//            	
-//            	
-//            	//IL FAUT PARCOURIR LA LISTE DES PERSO CHECK EFFETS PAR TOUR --> voir AttEst
-//            	//on decremente effdrogue apr�s avoir check et piege 
-//            	
-//            	
-//                //joueurs.get(i).getPersonnagesI(0).jouer(plateau, joueurs);
-//            }
-//        }
-//    }
     
     public static boolean finPartie(int nbTotal) {
         for(int i=0; i<joueurs.size(); i++) {
@@ -82,13 +29,23 @@ public class Jeu {
         return false;
     }
     
+    public static void remplir() {
+    	refPersos.clear();
+    	for(int i=0; i<joueurs.size(); i++) {
+    		for(int j=0; j<joueurs.get(i).getPersonnages().size(); j++) {
+    			refPersos.add(i*100+j);
+    		}
+    	}
+    }
+    
     public static void melange() {
+        remplir();
         Random rnd = new Random();
         int k;
-        for(int i=joueurs.size(); i>0 ; i--) {
-            k = rnd.nextInt(i);
-            joueurs.add(joueurs.get(k));
-            joueurs.remove(k);
+        for(int i=refPersos.size(); i>0; i--) {
+        	k = rnd.nextInt(i);
+        	refPersos.add(refPersos.get(k));
+        	refPersos.remove(k);
         }
     }
     
@@ -110,19 +67,28 @@ public class Jeu {
     
     public static void main(String[] pArgs) throws InterruptedException {
     	plateau = new Grille();
+    	historique = new Historique();
     	// Variables définies grâce au menu d'affichage ->
     	int nbJoueurs = 2;
     	int nbPersoParJoueur = 2;
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
-    	List<String> xmlsGentils;
-    	List<String> xmlsMechants;
+    	List<String> xmlsGentils = new LinkedList<String>();
+    	List<String> xmlsMechants = new LinkedList<String>();
     	// <- Fin variables
     	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
+    	refPersos = new LinkedList<Integer>();
+    	String tempHistorique;
+    	Grille.initialisergrille(joueurs);
+    	Affichage.charger();
     	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie(nbTotal)) {
+    		melange();
+    		for(int i=0; i<refPersos.size(); i++) {
+    			tempHistorique = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100)).jouer();
+    			//tempHistorique sera la chaîne renvoyée par l'action d'un joueur
+    		}
     		Thread.sleep(200);
     	}
     }
 }
-    
