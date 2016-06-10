@@ -137,7 +137,37 @@ let automatamere =
     (11, Chemin(D E), Avancer(E), 3); 
     (12, Chemin(D O), Avancer(O), 3);  
   ]
+;;
 
+let automatazombie =
+  (bouger 1 1)
+  @
+  (attaquer 1 2)
+  @
+  (bouger 2 1)
+  @
+  (bouger 3 1)
+  @
+  (bouger 4 1)
+  @
+  (bouger 5 1)
+  @
+  [
+    (2, Ennemi(N), Frapper(N), 2); 
+    (3, Ennemi(S), Frapper(S), 3);
+    (4, Ennemi(E), Frapper(E), 4); 
+    (5, Ennemi(O), Frapper(O), 5);
+    ]
+    ;;
+
+let autosimple =
+
+
+[(1, Chemin(D N), Avancer(N), 1); 
+    (1, Chemin(D S), Avancer(S), 1);
+    (1, Chemin(D E), Avancer(E), 1); 
+    (1, Chemin(D O), Avancer(O), 1);]
+;;
 (* NON DETERMINISME 
 
    Notez que cet automate est non-déterministe. 
@@ -152,6 +182,9 @@ let trad_aut1 = traduction_automate aut1 ;;
 
 let tradtamere = traduction_automate automatamere;;
 
+let tradzombie = traduction_automate automatazombie;;
+
+let tradsimple = traduction_automate autosimple;;
 (* On obtient
    [ (1, 7, 6, 2); 
      (1, 8, 7, 2); 
@@ -205,8 +238,8 @@ let rec ecrireListe(liste:tradautomate)(writefile:out_channel):int =
       fprintf writefile "\t<case>\n";
       fprintf writefile "\t\t<etat>%d</etat>\n" x;
       fprintf writefile "\t\t<condition>%d</condition>\n" y;
-      fprintf writefile "\t\t<transition>%d</transition>\n" z;
-      fprintf writefile "\t\t<action>%d</action>\n" t;
+      fprintf writefile "\t\t<action>%d</action>\n" z;
+      fprintf writefile "\t\t<transition>%d</transition>\n" t;
       fprintf writefile "\t</case>\n";
       ecrireListe s writefile ;
       1
@@ -222,4 +255,5 @@ let toXML(liste:tradautomate)(etat_init:int) =
     close_out writefile ;;
   
 toXML tradtamere 1;;
-
+toXML tradzombie 1;;
+toXML tradsimple 1;;

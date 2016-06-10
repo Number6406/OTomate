@@ -11,10 +11,10 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
-import Otomate.Action2;
+import Actions.$Action;
 
 public class ParserAction{
-	List<Action2> list = new LinkedList<>();
+	List<$Action> list = new LinkedList<>();
 	public ParserAction(String file){
 		
 		try{
