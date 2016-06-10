@@ -24,9 +24,9 @@ public class Pieger extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return ("Attention au piege ! :p");
+			return ("place discretement un piege sur la case.");
 		else
-			return ("Cool ma vie, oh salut les zombies, bien ou bien? sisi la famille bien? :�");
+			return ("ne peut pas poser de piege sur la case.");
 	}
 
 }

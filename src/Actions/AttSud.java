@@ -49,8 +49,8 @@ public class AttSud extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return(" attaque l'ennemi au sud.");
+			return("attaque l'ennemi au sud.");
 		else
-			return (" n'a rien fait, il n'y a pas d'ennemi au sud.");
+			return ("n'a rien fait, il n'y a pas d'ennemi au sud.");
 	}
 }

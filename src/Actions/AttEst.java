@@ -71,8 +71,8 @@ public class AttEst extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return(" attaque l'ennemi a l'est.");
+			return("attaque l'ennemi a l'est.");
 		else
-			return (" n'a rien fait, il n'y a pas d'ennemi a l'est.");
+			return ("n'a rien fait, il n'y a pas d'ennemi a l'est.");
 	}
 }

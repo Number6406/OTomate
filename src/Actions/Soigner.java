@@ -34,8 +34,8 @@ public class Soigner extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return ("a soigne son infection/saignement");
+			return ("a soigne son infection/saignement.");
 		else
-			return ("et ben non dommage");
+			return ("n'a pas pu se soigner.");
 	}
 }

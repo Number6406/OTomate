@@ -8,6 +8,10 @@ import Otomate.Grille;
 
 public class Fouiller extends $Action{
 
+	public Fouiller(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 	private boolean effect = false;
 	private boolean anti = false, pompe = false;
 	int valeur = 15;
@@ -61,6 +65,6 @@ public class Fouiller extends $Action{
 		else if(effect == true)
 			return("a trouve quelque chose.");
 		else
-			return ("Il n'y a rien a fouiller.");
+			return (" mais il n'y a rien a fouiller.");
 	}
 }

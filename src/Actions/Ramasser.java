@@ -78,13 +78,13 @@ public class Ramasser extends $Action{
 	
 	public String toString(){
 		if((effect == true)&&(drogue == false))
-			return("Le personnage a ramasse quelque chose.");
+			return("a ramasse quelque chose.");
 		else if((effect == true)&&(drogue == false)){
-			return("Le personnage a ramasse de la drogue et s'est pique, petit filou.");
+			return("a ramasse de la drogue et s'est pique, petit filou.");
 		}
 		else if(pompe == true)
-			return("Tente de ramasser un couteau mais préfère garder son fusil a pompe.");
+			return("tente de ramasser un couteau mais préfère garder son fusil a pompe.");
 		else
-			return ("Il n'y a rien a recolter");
+			return ("mais il n'y a rien a recolter");
 	}
 }

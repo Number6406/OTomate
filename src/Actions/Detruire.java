@@ -27,7 +27,7 @@ public class Detruire extends $Action {
 		if(effect == true)
 			return("a detruit un cactus et a recolte de l eau.");
 		else
-			return (" mais il n y a pas de chose a detruire ici.");
+			return ("mais il n y a pas de chose a detruire ici.");
 	}
 }
 
