@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Otomate.Gentil;
+import jus.util.assertion.Require;
 
 /**
  * @author alicia
@@ -18,9 +19,8 @@ import Otomate.Gentil;
 public class Historique{
 	
 	// Attributs //
-	
-	private List<Tour> partie;
-	private int tourCourant;
+	private List<Tour> partie; // Liste des tours
+	private int tourCourant; // Numéro du tour courant
 		
 	
 	public Historique(){
@@ -36,9 +36,17 @@ public class Historique{
 	public Tour ceTour(){
 		return partie.get(tourCourant-1);
 	}
-
-	public Tour getTour(int i) {
-		return partie.get(i);
+	/**
+	 * 
+	 * @param i le numéro de tour à récupérer
+	 * @return LE tour i 
+	 * @require TourExistant : i <= nbTour() && i>0
+	 */
+	public Tour getTour(int i) throws Require{
+		if(!(i <= nbTour() && i>0)){
+			throw new Require("TourExistant");
+		}
+		return partie.get(i-1);
 	}
 	
 	public int nbTour(){

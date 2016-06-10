@@ -28,7 +28,7 @@ public class Jeu {
     
     public static int initPartie(){
     	System.out.println("Partie avec deux joueurs.");
-    	System.out.println("On r�cup�re les deux automates des joueurs :");
+    	System.out.println("On récupére les deux automates des joueurs :");
     	Joueur J1 = new Joueur("../../automates/Automate1.xml",false);
     	Joueur J2 = new Joueur("../../automates/Automate2.xml",true);
     	joueurs = new ArrayList<Joueur>();

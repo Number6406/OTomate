@@ -183,8 +183,10 @@ public class FenetreJeu extends JFrame {
         infoConstraints.weighty = 0.5;
         pan_info.add(tp_onglets,infoConstraints);
         
+        
+        // Affichage de l'historique
         tp_onglets.add("Historique",scroll_history);
-        for(int i1 = h.nbTour()-1; i1 >=0;i1--){
+        for(int i1 = h.nbTour(); i1 > 0;i1--){
         	Tour t = h.getTour(i1);
         	for(int j1 = 0; j1 < t.nbEvenement();j1++){
         		Evenement e = t.getEvenement(j1);
