@@ -15,14 +15,14 @@ public class DeplNord extends $Action{
 	
 	public void todo(List<Integer> l, $Personnage p, Grille g){
 		if(l.get(1) == 1){		//1 = chemin au nord avec le deuxieme element de la liste qui regarde la case au nord
-			p.position.setY(p.position.getY()-1);
+			p.getPosition().setX(p.getPosition().getY()-1);
 			effect = true;
 		}
 		if (p instanceof Mechant){
-			if (g.Pos(p.position).piegee==true)
-			((Mechant) p).vie-=20;
+			if (g.Pos(p.getPosition()).piegee==true)
+			((Mechant) p).setVie(((Mechant) p).getVie()-20);
 		}
-	}	
+	}
 	
 	public String toString(){
 		if(effect == true)
