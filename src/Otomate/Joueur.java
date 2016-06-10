@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 
- * Pour l'instant un joueur a UN SEUL Personnage
+ * Pour l'instant un joueur a UN SEUL Personnage  ---> PLUS MAINTENANT LOL MDR XD
  *
  */
 public class Joueur {
@@ -14,13 +14,9 @@ public class Joueur {
     private List<$Personnage> personnages;
     
     //M�thodes
-    public Joueur(String xml, boolean mechant) {
+    public Joueur(List<String> xmls) {
     	personnages = new LinkedList<>();
-        if(mechant) {
-            personnages.add(new Mechant(xml));
-        } else {
-            personnages.add(new Gentil(xml));
-        }
+        for
     }
     public String getName() {
         return name;
