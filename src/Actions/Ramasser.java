@@ -26,7 +26,7 @@ public class Ramasser extends $Action{
 				Grille.Pos(p.getPosition()).setValeur(aux);
 			}
 			if(p instanceof Gentil){
-				if(l.get(0) == 10 || l.get(0) == 14 || l.get(0) == 15){		//couteau ou branche ou pompe
+				if(l.get(0) == 10){		//couteau ou branche ou pompe
 					aux = ((Gentil) p).getArme();
 					((Gentil) p).setArme(Grille.Pos(p.getPosition()).getValeur());
 					Grille.Pos(p.getPosition()).setValeur(aux);
