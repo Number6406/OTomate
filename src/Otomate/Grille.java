@@ -188,29 +188,79 @@ public class Grille {
         Placements(l);
     }
     
+//Retourne une liste de 6 entiers représentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	int s = l.size();
-    	int i = 0;
-    	while(i<s){
-    		if(l.get(i) == true)
-    			listcond.add(e)
-    	}
+    	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
+    		listcond.add(0);		//
+    	else if(l.get(9) == true)	//
+    		listcond.add(9);		//
+    	else if(l.get(10) == true)	//
+    		listcond.add(10);		//
+    	else if(l.get(15) == true)	//
+    		listcond.add(15);		//
+    	else if(l.get(16))			//
+    		listcond.add(16);		//
+    	else if(l.get(18) == true)	//
+    		listcond.add(18);		//
+    	if(l.get(1) == true)		//**********CONDITION AU NORD****************
+    		listcond.add(1);		//
+    	else if(l.get(5) == true)	//
+    		listcond.add(5);		//
+    	else if(l.get(11) == true)	//
+    		listcond.add(11);		//
+    	if(l.get(3) == true)		//*********CONDITION EST*********************
+    		listcond.add(3);		//
+    	else if(l.get(7) == true)	//
+    		listcond.add(7);		//
+    	else if(l.get(13) == true)	//
+    		listcond.add(13);		//
+    	if(l.get(2) == true)		//************CONDITION SUD*******************
+    		listcond.add(2);		//
+    	else if(l.get(6) == true)	//
+    		listcond.add(6);		//
+    	else if(l.get(12) == true)	//
+    		listcond.add(12);		//
+    	if(l.get(4) == true)		//*************CONDITION OUEST***************
+    		listcond.add(4);		//
+    	else if(l.get(8) == true)	//
+    		listcond.add(8);		//
+    	else if(l.get(14) == true)	//
+    		listcond.add(14);		//
+    	if(l.get(17) == true)		//*************CONDITION ETAT*******************
+    		listcond.add(17);		//
+    	else						//
+    		listcond.add(19);		//
+    	return listcond;
     }
     
-//    public static Action takeOne(List<Case> l){
-//        Action a = new Action();
-//        if(l.isEmpty() == true)
-//            return a;
-//        else{
-//        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
-//            int i = random(0, l.size());
-//            System.out.println("Je vais faire l'action : "+l.get(i).element);
-//            a.set_Action(l.get(i).element);
-//            System.out.println("J'ai fait l'action : "+l.get(i).element);
-//            return a;
-//        }
-//    }
+    public List<Integer> actionsPossibles($Personnage p, List<Integer> l){
+    	List<Integer> la = new LinkedList<>();
+    	int i, s = l.size();
+    	for(i=0; i<s; i++){
+    		if(p.getAutomate().transition(l.get(i), p.getEtat()) != 0){
+    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()).getValeur());
+    			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()));
+    		}
+    	}
+    	return la;
+    }
+    
+    public static $Action takeOne(List<Integer> l){
+        $Action a;
+        if(l.isEmpty() == true){
+            a = new RaF();
+            return a;
+        }
+        else{
+        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
+            int i = random(0, l.size());
+            System.out.println("Je vais faire l'action : "+l.get(i));
+            if()
+            System.out.println("J'ai fait l'action : "+l.get(i));
+            return a;
+        }
+    }
 
 //Retourne la case de coordonnees c
     public static Case Pos(Coordonnees c){

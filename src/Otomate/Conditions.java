@@ -22,7 +22,8 @@ public enum Conditions {
 	Fouillable ("est fouillable", 15),
 	Seringue ("la drogue c'est bon", 16),
 	VieManquante ("le personnage a perdu de la vie", 17),
-	Cactus ("Cactus sur ma case", 18);
+	Cactus ("Cactus sur ma case", 18),
+	ViePleine ("Les pvs du personnages sont au max", 19);
 	
     private int id;
     private int value;
