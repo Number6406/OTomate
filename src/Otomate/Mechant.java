@@ -9,6 +9,11 @@ public class Mechant extends $Personnage{
         vie = viemax;
     }
     
+    public Mechant(Mechant cpy){
+    	super(cpy);
+    	vie = viemax;
+    }
+    
     public String toString(){
     	return "// Méchant //\n" + super.toString();
     }

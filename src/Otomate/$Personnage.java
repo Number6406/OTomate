@@ -19,12 +19,23 @@ public abstract class $Personnage {
     {
     	a = new Automate(file);
     	etat = a.etat_initial();
-    	position = new Coordonnees(1,7);
+    	position = new Coordonnees(0,0);
         viemax = 100;
         inventaire = 0;
         nom ="Bob";
         dmg = 10;
         couleur = Color.BLUE; 
+    }
+    
+    protected $Personnage($Personnage cpy) {
+    	a = cpy.getAutomate();
+    	etat = a.etat_initial();
+    	position = new Coordonnees(0,0);
+    	viemax = 100;
+    	inventaire = 0;
+    	nom = "Bob";
+    	dmg = 10;
+    	couleur = Color.BLUE;
     }
     
     //Mthodes
