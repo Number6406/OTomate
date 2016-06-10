@@ -11,6 +11,7 @@ import Otomate.Mechant;
 public class Fuir extends $Action{
 
 	private boolean effect = false;
+	private boolean inno = false;
 	int valeur = 13;
 	
 //Retourne le parcours le plus court (l'entier calculant la 'distance' minimale
@@ -233,6 +234,7 @@ public class Fuir extends $Action{
 					effect = true;
 				}
 			}
+			inno = true;
 		}
 		else if(p instanceof Mechant){
 			Gentil e;
@@ -262,5 +264,15 @@ public class Fuir extends $Action{
 			}
 			effect = true;
 		}
+	}
+	
+	public String toString(){
+		if(effect == true && inno == true)
+			return("s'enfuit.");
+		else if(effect == true){
+			return("a flaire un ennemi a proximite.");
+		}
+		else
+			return ("n'a pas reussi a se deplacer.");
 	}
 }
