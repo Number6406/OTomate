@@ -11,7 +11,6 @@ public class Mechant extends $Personnage{
     public int getVie(){
         return viemax;
     }
-    
 
     public void setVie(int Vie){
         this.vie=Vie;
