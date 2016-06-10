@@ -15,13 +15,21 @@ public class Joueur {
     private List<$Personnage> personnages;
     
     //M�thodes
-    public Joueur(List<String> xmls) {
+    public Joueur(List<String> xmls, boolean mechant, int nbMechants, int nbPersosParJoueur) {
     	personnages = new LinkedList<>();
-    	Random rnd = new Random();
-    	int k = rnd.nextInt(xmls.size());
-        for(int i=0; i<xmls.size(); i++) {
-        	personnages.add(new Gentil(xmls.get(i)));
-        }
+    	if(mechant) {
+    		for(int i=0; i<nbMechants; i++) {
+    			personnages.add(new Mechant(xmls.get(0)));
+    		}
+    	} else {
+    		for(int i=0; i<nbPersosParJoueur; i++) {
+    			if(i<xmls.size()) {
+    				personnages.add(new Gentil(xmls.get(i)));
+    			} else {
+    				personnages.add(new Gentil(xmls.get(0)));
+    			}
+    		}
+    	}
     }
     public String getName() {
         return name;

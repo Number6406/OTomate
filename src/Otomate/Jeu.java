@@ -93,16 +93,33 @@ public class Jeu {
 //        }
 //    }
     
-    public static void initJoueurs(int nbPersoParJoueur, List<String> xmls) {
+    public static void initJoueurs(int nbJoueurs, int nbPersoParJoueur, int nbPersoParZombie, int nZombie, List<String> xmlsGentils, List<String> xmlsMechants) {
     	joueurs = new LinkedList<Joueur>();
-    	joueurs.add(new Joueur(xmls.subList(0, nbPersoParJoueur)));
+    	int nbZ = nbPersoParJoueur*(nbJoueurs-1)/nbPersoParZombie;
+    	for(int i=0; i<nbJoueurs; i++) {
+    		if(i==nZombie) {
+    			joueurs.add(new Joueur(xmlsMechants, true, nbZ, nbPersoParJoueur));
+    		} else {
+    			if(i<nZombie) {
+    				joueurs.add(new Joueur(xmlsGentils.subList(i*nbPersoParJoueur, (i+1)*nbPersoParJoueur), false, nbZ, nbPersoParJoueur));
+    			} else {
+    				joueurs.add(new Joueur(xmlsGentils.subList((i-1)*nbPersoParJoueur, i*nbPersoParJoueur), false, nbZ, nbPersoParJoueur));
+    			}
+    		}
+    	}
     }
     
     public static void main(String[] pArgs) throws InterruptedException {
     	plateau = new Grille();
+    	// Variables définies grâce au menu d'affichage ->
     	int nbJoueurs = 2;
-    	List<String> xmls;
-    	initJoueurs(nbJoueurs, xmls);
+    	int nbPersoParJoueur = 2;
+    	int nZombie = 1;				// Variable possiblement tirée au sort
+    	int nbPersoParZombie = 2;
+    	List<String> xmlsGentils;
+    	List<String> xmlsMechants;
+    	// <- Fin variables
+    	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
     }
 }
     
