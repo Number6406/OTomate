@@ -1,4 +1,5 @@
-package Otomate;
+package Actions;
+
 
 import java.util.List;
 import java.util.Random;
