@@ -7,11 +7,12 @@ import Otomate.Gentil;
 import Otomate.Grille;
 
 public class Fouiller extends $Action{
-
+	
 	public Fouiller(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
+	
 	private boolean effect = false;
 	private boolean anti = false, pompe = false;
 	int valeur = 15;

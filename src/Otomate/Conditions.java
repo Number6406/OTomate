@@ -13,14 +13,14 @@ public enum Conditions {
     EnnemiE ("Ennemi au Est", 7),
     EnnemiO ("Ennemi au Ouest", 8),
     Comestible ("Comestible sur ma Case", 9),
-    //Pompe ("pompe sur ma Case", 10),
-    Couteau ("Couteau sur ma Case", 10),
-	ObstacleN ("Obstacle au nord", 11),
-	ObstacleS ("Obstacle au sud", 12),
-	ObstacleE ("Obstacle à l'est", 13),
-	ObstacleO ("Obstacle à l'ouest", 14),
-	Fouillable ("est fouillable", 15),
-	Seringue ("la drogue c'est bon", 16);
+    Pompe ("pompe sur ma Case", 10),
+    Couteau ("Couteau sur ma Case", 11),
+	ObstacleN ("Obstacle au nord", 12),
+	ObstacleS ("Obstacle au sud", 13),
+	ObstacleE ("Obstacle à l'est", 14),
+	ObstacleO ("Obstacle à l'ouest", 15),
+	Fouillable ("est fouillable", 16),
+	Seringue ("la drogue c'est bon", 17);
 	
     private int id;
     private int value;
