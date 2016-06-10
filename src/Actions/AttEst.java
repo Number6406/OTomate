@@ -1,16 +1,19 @@
 package Actions;
 
 import java.util.List;
-import java.util.Random;
 
 import Otomate.$Personnage;
 import Otomate.Coordonnees;
-import Otomate.Joueur;
 import Otomate.Gentil;
 import Otomate.Mechant;
 import Otomate.Grille;
 
 public class AttEst extends $Action{
+
+	public AttEst(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
 
 	private boolean effect = false;
 	int valeur = 7;
@@ -68,8 +71,8 @@ public class AttEst extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return("Le personnage attaque l'ennemi a l'est.");
+			return(" attaque l'ennemi a l'est.");
 		else
-			return ("Echec, pas d'ennemi a l'est:D.");
+			return (" n'a rien fait, il n'y a pas d'ennemi a l'est.");
 	}
 }

@@ -17,7 +17,11 @@ import javax.swing.JTextField;
  */
 public class GentilPicker extends JLabel {
     
-    List<JTextField> listeChemins = new ArrayList<JTextField>();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	List<JTextField> listeChemins = new ArrayList<JTextField>();
     
     public GentilPicker(int nbPerso) {
         super();

@@ -69,59 +69,59 @@ public class XMLAction extends DefaultHandler{
 				   		 name=lecture;
 				   		 switch(id){
 				   		case 1:
-				   			list.add(new AttNord());
+				   			list.add(new AttNord(name));
 				   			break;
 				   		 
 				   		case 2:
-				   			list.add(new AttEst());
+				   			list.add(new AttEst(name));
 				   			break;
 				   			
 				   		case 3:
-				   			list.add(new AttSud());
+				   			list.add(new AttSud(name));
 				   			break;
 				   			
 				   		case 4:
-				   			list.add(new AttOuest());
+				   			list.add(new AttOuest(name));
 				   			break;
 				   			
 				   		case 5:
-				   			list.add(new DeplNord());
+				   			list.add(new DeplNord(name));
 				   			break;
 				   			
 				   		case 6:
-				   			list.add(new DeplEst());
+				   			list.add(new DeplEst(name));
 				   			break;
 				   		
 				   		case 7:
-				   			list.add(new DeplSud());
+				   			list.add(new DeplSud(name));
 				   			break;
 				   			
 				   		case 8:
-				   			list.add(new DeplOuest());
+				   			list.add(new DeplOuest(name));
 				   			break;
 				   			
 				   		case 9:
-				   			list.add(new Detruire());
+				   			list.add(new Detruire(name));
 				   			break;
 				   			
 				   		case 10:
-				   			list.add(new Fuir());
+				   			list.add(new Fuir(name));
 				   			break;
 				   			
 				   		case 11:
-				   			list.add(new Manger());
+				   			list.add(new Manger(name));
 				   			break;
 				   			
 				   		case 12:
-				   			list.add(new Pieger());
+				   			list.add(new Pieger(name));
 				   			break;
 				   			
 				   		case 13:
-				   			list.add(new Ramasser());
+				   			list.add(new Ramasser(name));
 				   			break;
 				   			
 				   		case 14:
-				   			list.add(new Soigner());
+				   			list.add(new Soigner(name));
 				   			break;
 				   		
 				   		case 15:

@@ -1,15 +1,18 @@
 package Actions;
 
 import java.util.List;
+
 import Otomate.$Personnage;
-import Otomate.Coordonnees;
-import Otomate.Joueur;
-import Otomate.Gentil;
 import Otomate.Mechant;
 import Otomate.Grille;
 
 public class DeplSud extends $Action{
 	
+	public DeplSud(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	private boolean effect = false;
 	int valeur = 2;
 	
@@ -19,15 +22,15 @@ public class DeplSud extends $Action{
 			effect = true;
 		}
 		if (p instanceof Mechant){
-			if (g.Pos(p.getPosition()).piegee==true)
+			if (Grille.Pos(p.getPosition()).piegee==true)
 			((Mechant) p).setVie(((Mechant) p).getVie()-20);
 		}
 	}
 	
 	public String toString(){
 		if(effect == true)
-			return("Le personnage se deplace au sud.");
+			return(" se deplace au sud.");
 		else
-			return ("Echec, le personnage n'a pas franchi l'obstacle :D.");
+			return (" ne peut pas se deplacer au sud, il y a un obstacle.");
 	}
 }
