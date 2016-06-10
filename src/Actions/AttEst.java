@@ -3,6 +3,11 @@ package Actions;
 import java.util.List;
 import java.util.Random;
 
+import Otomate.$Personnage;
+import Otomate.Coordonnees;
+import Otomate.Joueur;
+import Otomate.Gentil
+
 public class AttEst extends $Action{
 
 	private boolean effect = false;

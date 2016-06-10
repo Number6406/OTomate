@@ -2,6 +2,8 @@ package Actions;
 
 import java.util.List;
 
+import Otomate.Gentil;
+
 public class Ramasser extends $Action{
 
 	private boolean effect = false;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import Otomate.$Personnage;
 import Otomate.Coordonnees;
+import Otomate.Gentil;
 import Otomate.Grille;
 
 public class Fuir extends $Action{

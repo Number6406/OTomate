@@ -1,4 +1,4 @@
-package Actions;
+package Otomate;
 
 public class Gentil extends $Personnage{
 	 /*arme = 25.pompe

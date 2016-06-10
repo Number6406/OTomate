@@ -3,6 +3,8 @@ package Actions;
 import java.util.List;
 import java.util.Random;
 
+import Otomate.Gentil;
+
 public class AttSud extends $Action{
 
 	private boolean effect = false;
