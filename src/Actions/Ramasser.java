@@ -18,7 +18,7 @@ public class Ramasser extends $Action{
 	private boolean pompe = false;
 	int valeur = 9;
     
-	public void todo(List<Integer> l, $Personnage p, Grille g){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(0) != 0){		// 0 = case vide
 			int aux;
 			if(l.get(0) == 9){		//comestible

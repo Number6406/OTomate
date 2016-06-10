@@ -16,7 +16,7 @@ public class Fouiller extends $Action{
 	private boolean anti = false, pompe = false;
 	int valeur = 15;
 	
-	public void todo($Personnage p, List<Integer> l){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(p instanceof Gentil){
 			int rnd;
 			if(l.get(0) == 5){		//on se trouve dans un immeuble

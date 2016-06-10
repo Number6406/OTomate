@@ -16,7 +16,7 @@ public class DeplOuest extends $Action{
 	private boolean effect = false;
 	int valeur = 4;
 	
-	public void todo(List<Integer> l, $Personnage p, Grille g){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(4) == 4){		// 4 = chemin a l'ouest et 5eme element de la liste -> regarde l'ouest
 			p.getPosition().setX(p.getPosition().getX()-1);
 			effect = true;

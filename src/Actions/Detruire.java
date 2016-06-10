@@ -14,7 +14,7 @@ public class Detruire extends $Action {
 	private boolean effect = false;
 	int valeur = 14;
 	
-	public void todo(List<Integer> l, $Personnage p, Grille g){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(0) == 13){
 			int aux;
 			aux = p.getInventaire();

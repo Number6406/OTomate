@@ -70,7 +70,7 @@ public class Fuir extends $Action{
 		return e;
 	}
 	
-	public void todo(List<Integer> l, $Personnage p, Grille g, List<$Personnage> lp){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(p instanceof Gentil){
 			Coordonnees cnord, csud, cest, couest;
 			int rnd;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import Otomate.$Personnage;
 import Otomate.Gentil;
+import Otomate.Grille;
 
 public class Soigner extends $Action{
 	
@@ -15,7 +16,7 @@ public class Soigner extends $Action{
 	private boolean effect = false;
 	int valeur = 12;
 	
-	public void todo(List<Integer> l, $Personnage p){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(p instanceof Gentil){
 			if (((Gentil) p).getRemede() == 1){
 				if(((Gentil) p).getInfecte() == true)

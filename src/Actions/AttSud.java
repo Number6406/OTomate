@@ -17,7 +17,7 @@ public class AttSud extends $Action{
 	private boolean effect = false;
 	int valeur = 6;
     
-	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp){
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(3) == 6){		// 6 = ennemi au sud et 3 regard au sud
 			$Personnage e = null;
 			Coordonnees card = p.getPosition();
