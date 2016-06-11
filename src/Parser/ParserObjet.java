@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 import Otomate.Objet;
 
 public class ParserObjet{
-	List<Objet> list = new LinkedList<>();
+	public List<Objet> list = new LinkedList<>();
 	
 	public ParserObjet(String file){
 		

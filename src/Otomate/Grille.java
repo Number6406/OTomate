@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import Actions.*;
+import Parser.ParserConditions;
+import Parser.ParserObjet;
 
 public class Grille {
     
@@ -186,6 +188,29 @@ public class Grille {
         
         coinsAutomates = goAutomates(list, dimh, dimv);
         Placements(l);
+    }
+    
+//Retourne une liste de condtions a partir du parser
+    public List<Conditions2> condparser(String filename){
+    	ParserConditions P = new ParserConditions(filename);
+    	return P.list;
+    }
+    
+//Retourne une liste d'objet a partir du parser
+    public List<Objet> objarser(String filename){
+    	ParserObjet P = new ParserObjet(filename);
+    	return P.list;
+    }
+    
+//Retourne la liste de booleen indiquant les conditions possibles
+    public List<Boolean> recupcond($Personnage p, List<Conditions2> lc, List<Objet> lo, List<Joueur> lj){
+    	List<Boolean> res = new LinkedList<Boolean>();
+    	int s = lc.size();
+    	int i;
+    	for(i=0; i<s; i++){
+    		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
+    	}
+    	return res;
     }
     
 //Retourne une liste de 6 entiers représentant les differentes conditions

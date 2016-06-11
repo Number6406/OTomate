@@ -91,6 +91,9 @@ public class Jeu {
     	int nbPersoParZombie = 2;
     	List<String> xmlsGentils = new LinkedList<String>();
     	List<String> xmlsMechants = new LinkedList<String>();
+    	List<List<String>> xmls = new LinkedList<>();
+    	xmls.add(xmlsGentils);
+    	xmls.add(xmlsMechants);
     	// <- Fin variables
     	initJoueurs(nbPersoParZombie, nZombie, xmls);
     	refPersos = new LinkedList<Integer>();
@@ -101,7 +104,7 @@ public class Jeu {
     		melange();
     		for(int i=0; i<refPersos.size(); i++) {
     			tempHistorique = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100)).jouer();
-    			//tempHistorique sera la chaîne renvoyée par l'action d'un joueur
+    			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
     		}
     		Thread.sleep(200);
     	}
