@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 import Otomate.Conditions2;
 
 public class ParserConditions{
-	List<Conditions2> list = new LinkedList<>();
+	public List<Conditions2> list = new LinkedList<>();
 	
 	public ParserConditions(String file){
 		
