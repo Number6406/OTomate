@@ -45,7 +45,7 @@ List<Joueur> lJoueurs = new ArrayList<Joueur>();
 // Elements SWING
 JTabbedPane ongletsJoueurs = new JTabbedPane();
 
-List<GiletteLaPerfectionAuMasculin> l = new LinkedList<>();
+List<PanelCreationJoueur> l = new LinkedList<>();
 JPanel pan_b = new JPanel(new BorderLayout());
 JButton bValider = new JButton("Commencer");
 JButton bAnnuler = new JButton("Annuler");
@@ -91,13 +91,13 @@ for(i=0;i<l.size();i++){
 	lc.add(i,l.get(i).maCouleur);
 }
 
-/* PrÍt a return :
+/* PrÔøΩt a return :
  *  lls = list de list des chemins vers automate - celui du zombis 
- *  (ex : si 3 joueur dont le joueur 2 est infectÈ, 
+ *  (ex : si 3 joueur dont le joueur 2 est infectÔøΩ, 
  *  lls contient les listes de 1 et 3)
  *  
  *  az = chemin vers l'automate du zombis (String)
- *  id = numÈro du joueur zombis (de 1 ‡ n) 
+ *  id = numÔøΩro du joueur zombis (de 1 ÔøΩ n) 
  *  lc = Liste des Couleurs des Joueurs (List<Color>)
  */
 
@@ -133,7 +133,7 @@ public FenetreCreation(int ratio, int nbP, int nbJ) {
     // Pour tous les joueurs, leur cr√©er un onglet
    
     for(int i=1; i<=nbJ; i++) {
-        GiletteLaPerfectionAuMasculin pJoueur = new GiletteLaPerfectionAuMasculin(nbP, i);
+        PanelCreationJoueur pJoueur = new PanelCreationJoueur(nbP, i);
         l.add(pJoueur);
         ongletsJoueurs.add("Joueur" + i, pJoueur);
         }
