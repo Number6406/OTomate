@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -152,17 +154,26 @@ public class GiletteLaPerfectionAuMasculin extends JPanel {
 		boolean bm,bp;
 		if (mechant==null){
 			bm=false;
-			System.out.println("coucou1");
+			//System.out.println("coucou1");
 		}
 		else bm=mechant.cool();
 		
 		if(listePersos==null){
 			bp=false;
-			System.out.println("coucou3");
+		//	System.out.println("coucou3");
 		}
 		else bp=listePersos.cool();
 		
 		return bm&&bp&&(maCouleur!=null);
+	}
+	
+	List<String> Recup_Strings(){
+		List<String> l=new LinkedList<>();
+		int j;
+		for(j=0;j<nbP;j++){
+			l.add(listePersos.l.get(j).chemin.toString());
+		}
+		return l;
 	}
 
 }
