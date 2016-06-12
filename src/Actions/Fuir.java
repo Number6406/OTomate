@@ -17,7 +17,10 @@ public class Fuir extends $Action{
 
 	private boolean effect = false;
 	private boolean inno = false;
-	int valeur = 13;
+
+	public Fuir(){
+		valeur = 13;
+	}
 	
 //Retourne le parcours le plus court (l'entier calculant la 'distance' minimale
 	public int min($Personnage p, int i, Coordonnees c2){

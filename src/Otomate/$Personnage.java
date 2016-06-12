@@ -44,7 +44,11 @@ public abstract class $Personnage {
         return a.nbetats();
     }
     
-    void setEtat(int symbole){
+    public int getEtat(){
+    	return etat;
+    }
+    
+    public void setEtat(int symbole){
         if(a.transitions[symbole][etat] != 0)
             etat = a.transitions[symbole][etat];
     }

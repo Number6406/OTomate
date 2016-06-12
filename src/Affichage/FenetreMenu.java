@@ -48,17 +48,17 @@ public class FenetreMenu extends FenetreBase {
         panel_b.add(b_credits);
         panel_b.add(b_quitter);
         
-        // Définition des univers en DUR pour le moment
+        // Definition des univers en DUR pour le moment
         univers.add("Humains VS. Zombies");
         univers.add("Robots VS. Virus");
         
         b_jouer.addActionListener((ActionEvent e) -> {
-            // Ouvre une fenêtre de nouvelle partie au clic
+            // Ouvre une fenetre de nouvelle partie au clic
             FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(univers);
         });
         
         b_quitter.addActionListener((ActionEvent e) -> {
-            // Ouvre une fenêtre de nouvelle partie au clic
+            // Ouvre une fenetre de nouvelle partie au clic
             dispose();
         });
         

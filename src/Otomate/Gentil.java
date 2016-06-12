@@ -35,6 +35,8 @@ public class Gentil extends $Personnage{
 		vie = viemax;
 		paralysie = 1;
 		piege = 10;
+		efdrogue = 0;
+		efsaignement = 0;
     }
 	public int getArme(){
         return arme;

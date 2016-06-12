@@ -12,7 +12,10 @@ public class Detruire extends $Action {
 		// TODO Auto-generated constructor stub
 	}
 	private boolean effect = false;
-	int valeur = 14;
+
+	public Detruire(){
+		valeur = 14;
+	}
 	
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(0) == 18){

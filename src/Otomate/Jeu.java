@@ -17,16 +17,24 @@ public class Jeu {
     
     //Methodes
     
-    public static boolean finPartie(int nbTotal) {
+    public static boolean finPartie() {
+    	boolean passe=false, un=false;
         for(int i=0; i<joueurs.size(); i++) {
         	if(joueurs.get(i).mechant) {
-        		if((joueurs.get(i).getPersonnages().size()==0) ||
-        		   (joueurs.get(i).getPersonnages().size()==nbTotal)) {
+        		if(joueurs.get(i).getPersonnages().size()==0) {
         			return true;
+        		} else {
+        			if(un) {return false;}
+            		passe=true;
+        		}
+        	} else {
+        		if(joueurs.get(i).getPersonnages().size()!=0) {
+        			if(passe) {return false;}
+        			un=true;
         		}
         	}
         }
-        return false;
+        return true;
     }
     
     public static void remplir() {
@@ -49,10 +57,27 @@ public class Jeu {
         }
     }
     
+    public static int nbGentils(List<List<String>> xmls, int nZombie) {
+    	int k=0;
+    	for(int i=0; i<xmls.size(); i++) {
+    		if(i!=nZombie) {
+	    		for(int j=0; j<xmls.get(i).size(); j++) {
+	    			k++;
+	    		}
+    		}
+    	}
+    	return k;
+    }
+    
     public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls) {
     	joueurs = new LinkedList<Joueur>();
+    	int nZ = nbGentils(xmls, nZombie)/nbPersoParZombie;
     	for(int i=0; i<xmls.size(); i++) {
-    		
+    		if(i==nZombie) {
+    			joueurs.add(new Joueur(xmls.get(i),true,nZ));
+    		} else {
+    			joueurs.add(new Joueur(xmls.get(i),false,42));
+    		}
     	}
     }
     
@@ -64,12 +89,14 @@ public class Jeu {
     	int nbPersoParJoueur = 2;
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
-    	List<List<String>> xmls = new LinkedList<List<String>>();
+    	List<String> xmlsGentils = new LinkedList<String>();
+    	List<String> xmlsMechants = new LinkedList<String>();
+    	List<List<String>> xmls = new LinkedList<>();
+    	xmls.add(xmlsGentils);
+    	xmls.add(xmlsMechants);
     	// <- Fin variables
-
     	int j,p;
     	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
-
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);
@@ -109,7 +136,7 @@ public class Jeu {
     			}
     			else
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
-    				//tempHistorique sera la chaîne renvoyée par l'action d'un joueur
+    				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
     		}
     		Thread.sleep(200);
     	}

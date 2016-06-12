@@ -15,7 +15,10 @@ public class Ramasser extends $Action{
 
 	private boolean effect = false;
 	private boolean drogue = false;
-	int valeur = 9;
+
+	public Ramasser(){
+		valeur = 9;
+	}
     
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
 		if(l.get(0) != 0){		// 0 = case vide

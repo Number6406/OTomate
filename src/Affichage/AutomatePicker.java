@@ -101,29 +101,29 @@ public class AutomatePicker extends JPanel {
     public boolean checkExtension() {
         String nomFichier = this.chemin.getText();
         try{
-            // Vérification si le fichier existe sur le disque
+            // Verification si le fichier existe sur le disque
             BufferedReader b = new BufferedReader(new FileReader(nomFichier));
             
-            // Vérification de l'extension
+            // Verification de l'extension
             if (nomFichier.lastIndexOf(".") > 0) {
-                // On récupère l'extension du fichier
+                // On recupere l'extension du fichier
                 String ext = nomFichier.substring(nomFichier.lastIndexOf("."));
                 // Si le fichier n'a pas la bonne extension
                 if (!ext.equals(camlExt)) {
-                	System.out.println(nomFichier+" Depuis CheckExt rep1 : false");
+  //              	System.out.println(nomFichier+" Depuis CheckExt rep1 : false");
                     return false;
                 }
             } else {
                 // sinon c'est que le fichier n'a pas d'extension
-            	System.out.println(nomFichier+" Depuis CheckExt rep2 : false");
+     //       	System.out.println(nomFichier+" Depuis CheckExt rep2 : false");
             	return false;
             }
             
         } catch (FileNotFoundException fnfe) {
-        	System.out.println(nomFichier+" Depuis CheckExt rep : false (fnfe)");
+  //      	System.out.println(nomFichier+" Depuis CheckExt rep : false (fnfe)");
         	return false;
         }
-        System.out.println(nomFichier+" Depuis CheckExt rep : true");
+  //      System.out.println(nomFichier+" Depuis CheckExt rep : true");
         return true;
     }
     

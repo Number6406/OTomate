@@ -32,7 +32,7 @@ public class GentilPicker extends JLabel {
 		for(i=0;i<l.size();i++){
 			b=b&&l.get(i).cool();
 		}
-	System.out.println("gentilPicker : " + b);
+//	System.out.println("gentilPicker : " + b);
 	return b;
 	}
 	
