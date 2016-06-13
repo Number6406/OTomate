@@ -110,7 +110,10 @@ public abstract class $Personnage {
     
     /**
      * 
-     * @param listCond 
+     * @param listCond, la liste des conditions
+     * @param G, la grille
+     * @param listCont, la liste des contenus de cases
+     * @param listJoueur, la liste des joueurs
      * @return La description textuelle de l'action effectuée
      */
 	public String jouer(List<Conditions2> listCond, Grille G,List<Objet> listCont,List<Joueur> listJoueur) {
