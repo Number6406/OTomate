@@ -52,7 +52,7 @@ public class Conditions2 {
     				else return false;
     			
     			case 1:
-    				if(l.get(i).type==1 || l.get(i).type==2 || l.get(i).type==3) return true;
+    				if(l.get(i).type==1) return true;
     				else return false;
     			
     			case 2:
@@ -79,6 +79,22 @@ public class Conditions2 {
     			case 4:
     				if(l.get(i).passable==1) return true;
     				else return false;
+        			
+        		case 5:
+        			if(l.get(i).type == 1) return true;
+        			else return false;
+        		
+        		case 6:
+        			if(l.get(i).type == 3) return true;
+        			else return false;
+        			
+        		case 7:
+        			if(l.get(i).type == 6) return true;
+        			else return false;
+        			
+        		case 8:
+        			if(l.get(i).type == 7) return true;
+        			else return false;
     			}
     		}
     	}

@@ -28,6 +28,5 @@ type € { 2 : bloque
        { 4 : chemin
        { 5 : arme
        { 6 : seringue
-       { 7 : cactus
+       { 7 : destructible
        { 8 : fouillable
-       { 9 : vie manquante

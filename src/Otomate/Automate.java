@@ -91,5 +91,13 @@ public class Automate {
     	
     	return s;
 	}
+
+	public void setNbCond(Integer integer) {
+		nbconditions = integer;
+	}
+	
+	public void setNbEtats(Integer integer) {
+		nbetats = integer;
+	}
     
 }

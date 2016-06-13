@@ -20,8 +20,6 @@ public class Gentil extends $Personnage {
 	/*
 	 * remede = 1.antidote 2.bandage
 	 */
-
-	private int vie; // vie actuelle NE PAS DEPASSER viemax
 	private int arme, remede, drogue;
 	private int paralysie, piege; // nb de tour a jouer, att avant prochain
 									// piege
@@ -49,6 +47,10 @@ public class Gentil extends $Personnage {
                 } catch (IOException ex) {
                     System.out.println(ex);
                 }
+	}
+	
+	public Gentil() {
+		
 	}
 
 	public int getArme() {

@@ -9,6 +9,12 @@ import Parser.ParserObjet;
 
 public class Grille {
 
+	/**
+	 * Fonction qui renvoie un enier aléatoire entre deux bornes
+	 * @param min
+	 * @param max
+	 * @return un entier aléatoire entre min et max
+	 */
 	public static int random(int min, int max){
     	Random r = new Random();
     	int k = min + r.nextInt(max - min);
@@ -23,6 +29,9 @@ public class Grille {
     public int tailleX;
     public int tailleY;
     
+    
+    // Getteurs
+    
     public int tailleX(){
     	return tailleX;
     }
@@ -31,19 +40,39 @@ public class Grille {
     	return tailleY;
     }
     
-    
     public List<Coordonnees> getCoinsAutomates(){
     	return coinsAutomates;
-    }
-    
-    public void set(int val, int x, int y){
-    	g[x][y].setValeur(val);
     }
     
     public Case get(int x,int y){
     	return g[x][y];
     }
     
+    //Retourne la case de coordonnees c
+    public static Case Pos(Coordonnees c){
+        return g[c.getX()][c.getY()];
+    }
+    
+	public static List<Integer> getNbetats() {
+		return nbetats;
+	}
+    
+    // Setteurs
+	
+    public void set(int val, int x, int y){
+    	g[x][y].setValeur(val);
+    }
+
+	public static void setNbetats(List<Integer> nbetats) {
+		Grille.nbetats = nbetats;
+	}
+    
+    // Constructeur
+    /**
+     * Crée une grille de taille totale x*y
+     * @param x
+     * @param y
+     */
     public Grille(int x, int y){
     	g = new Case[x][y];
     	tailleX=x;
@@ -56,6 +85,10 @@ public class Grille {
     	}
     }
     
+    /**
+     * POUR DEBUG
+     * Crée une grille carrée de taille 16*16
+     */
     public Grille(){
     	g = new Case[16][16];
     	tailleX=16;
@@ -68,7 +101,7 @@ public class Grille {
     	}
     }
     
-    //Methodes
+    //Méthodes
     
     //Place les automates au bon endroit sur la map
     public static void Placements(List<Joueur> J) {
@@ -145,6 +178,11 @@ public class Grille {
         return res;
     }
     
+    /**
+     * Renvoie l'entier maximal d'une liste d'entiers
+     * @param l, une liste d'entier
+     * @return le maximum de la liste
+     */
     public static int max(List<Integer> l){
         int fin = l.size();
         int i, m=0;
@@ -346,12 +384,6 @@ public class Grille {
         }
     }
     
-  //Retourne la case de coordonnees c
-    public static Case Pos(Coordonnees c){
-        return g[c.getX()][c.getY()];
-    }
-    
-    
 //On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
   
@@ -369,12 +401,16 @@ public class Grille {
         }
     	A.todo(l,P,list, this);
     }
-    
-	public static List<Integer> getNbetats() {
-		return nbetats;
+
+	public void setTailleX(Integer integer) {
+		tailleX = integer;
+	}
+	
+	public void setTailleY(Integer integer) {
+		tailleY = integer;
 	}
 
-	public static void setNbetats(List<Integer> nbetats) {
-		Grille.nbetats = nbetats;
+	public void setP(boolean b, int i, int j) {
+		g[i][j].setPiegee(b);
 	}
 }

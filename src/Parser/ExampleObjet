@@ -12,9 +12,11 @@ i < iMax
 
     { 1 : arme
 t € { 2 : consommable
-    { 3 : antidote ?
+    { 3 : seringue
     { 4 : terrain.
     { 5 : mur
+    { 6 : destructible
+    { 7 : fouillable
 
 h € { si arme = degat
     { si consommable = regen
