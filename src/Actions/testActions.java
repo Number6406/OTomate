@@ -29,7 +29,8 @@ public class testActions {
 		
 		List<$Personnage> listPerso = new ArrayList<>();
 		
-		List<Objet> listContenus = G.objparser("ContenusZombie.xml");
+		List<Objet> listContenus = G.objparser("objet.xml");
+		System.out.println("SIZE :" + listContenus.size());
 		
 		List<Integer> listCond = G.conditions(A,G.recupcond(A, G.condparser("ActionsZombie.xml"),listContenus,listJoueurs));
 		

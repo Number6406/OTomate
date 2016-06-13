@@ -3,6 +3,7 @@
  */
 package Otomate.historique;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class Historique{
 	
 	
 	public static void main(String[] args) {
-		Gentil g = new Gentil("AutomateenXML.xml");
+		Gentil g = new Gentil("AutomateenXML.xml",Color.blue);
 		Historique h = new Historique();
 		Evenement e = new Evenement(g, "mange du chocolat");
 		h.addTour();
