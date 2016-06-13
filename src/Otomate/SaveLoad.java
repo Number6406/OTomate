@@ -85,9 +85,21 @@ public final class SaveLoad {
 					fin.write(new Character(' '));
 					fin.write(((Integer) (((Gentil) pe).getRemede())));
 					fin.write(new Character(' '));
+					fin.write(pe.getEtat());
+					fin.write(new Character(':'));
+					fin.write(pe.getViemax());
+					fin.write(new Character(':'));
+					fin.write( ((Gentil)pe).getVie());
+					fin.write(new Character(':'));
+					fin.write(pe.getDmg());	
 				} else {
 					fin.write(((Integer) (((Mechant) pe).getInventaire())));
 					fin.write(new Character(' '));
+					fin.write(pe.getEtat());
+					fin.write(new Character(':'));
+					fin.write(pe.getViemax());
+					fin.write(new Character(':'));
+					fin.write(pe.getDmg());
 				}
 				fin.write(new Character(';'));
 				fin.write(jeu.plateau.getCoinsAutomates().get(currentChar).getX());
@@ -97,6 +109,9 @@ public final class SaveLoad {
 				fin.write(pe.getAutomate().nbconditions());
 				fin.write(new Character(':'));
 				fin.write(pe.getAutomate().nbetats());
+
+				}
+				
 				currentChar++;
 				fin.write('\n');
 			}
