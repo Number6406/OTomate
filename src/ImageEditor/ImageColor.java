@@ -49,9 +49,7 @@ public class ImageColor {
         
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                System.out.println(iSortie.getRGB(i, j));
                 if(iSortie.getRGB(i, j) == rgbEntree) {
-                    System.out.println("OUI");
                     iSortie.setRGB(i, j, rgbSortie); 
                 }
             }
@@ -64,9 +62,6 @@ public class ImageColor {
         iEntree = ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
         int cEntree = toRGB(10, 64, 7);
         int cSortie = toRGB(0, 0, 255);
-        
-        System.out.println("COULEUR:" + cEntree);
-        System.out.println("COULEUR:" + cSortie);
         
         BufferedImage bf2 = changeColor(cEntree, cSortie);
         
