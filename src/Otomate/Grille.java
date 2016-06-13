@@ -197,6 +197,7 @@ public class Grille {
 //Retourne une liste de condtions a partir du parser
     public List<Conditions2> condparser(String filename){
     	ParserConditions P = new ParserConditions(filename);
+    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -212,13 +213,17 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
+    		//System.out.println("Tu te trouves en x="+p.getPosition().getX()+" y="+p.getPosition().getY());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
     	}
+    	//System.out.println("Au depart taille " + lc.size());
+    	//System.out.println("on retourne une liste de taille "+res.size());
     	return res;
     }
     
 //Retourne une liste de 6 entiers repr�sentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
+    	System.out.println(l.size());
     	List<Integer> listcond = new LinkedList<>();
     	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
     		listcond.add(0);		//
@@ -267,6 +272,8 @@ public class Grille {
     	List<Integer> la = new LinkedList<>();
     	int i, s = l.size();
     	for(i=0; i<s; i++){
+    		System.out.println("symbole "+l.get(i));
+    		System.out.println("etat courant "+p.getEtat());
     		if(p.getAutomate().transition(l.get(i), p.getEtat()) != 0){
     			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()).getValeur());
     			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()));
