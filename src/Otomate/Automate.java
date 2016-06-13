@@ -19,7 +19,8 @@ public class Automate {
         nbetats = P.nb_etat;
         etat_init = P.etat_init;
         nbconditions = 12;
-/*        System.out.println("Actions :");
+        System.out.println("Actions :");
+        int i,j;
         for(i=0; i<nbetats; i++){
         	for(j=0; j<nbconditions; j++){
         		System.out.print(actions[i][j].element+"  ");
@@ -32,7 +33,7 @@ public class Automate {
         		System.out.print(transitions[i][j]+"  ");
         	}
         	System.out.print("\n");
-        }*/
+        }
 
     }
     

@@ -7,6 +7,9 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Joueur;
+import Otomate.Objet;
+import Parser.ParserAction;
 public class testActions {
 
 	public static void main(String[] args) {
@@ -16,20 +19,19 @@ public class testActions {
 		$Personnage B = new Gentil("Automate1.xml");
 		B.setColor(Color.pink);
 		
+		ParserAction P = new ParserAction("ActionsZombie.xml");
+		List<$Action> la = P.list;
+		
 		List<$Personnage> listPerso = new ArrayList<>();
 		
-		List<Integer> listCond = new ArrayList<Integer>(6);
-		listCond.add(1);
-		listCond.add(2);
-		listCond.add(3);
-		listCond.add(4);
-		listCond.add(5);
-		listCond.add(6);
+		//List<Objet> listContenus = G.objparser("ContenusZombie.xml");
+		
+		//List<Integer> listCond = G.recupcond(A, G.condparser("ActionsZombie.xml"),listContenus,listJoueurs);
 		
 		
 		$Action todo = new DeplOuest();	
 		System.out.println(todo.toString());	
-		todo.todo(listCond, A, listPerso, G);
+		//todo.todo(listCond, A, listPerso, G);
 		System.out.println(todo.toString());
 	}
 

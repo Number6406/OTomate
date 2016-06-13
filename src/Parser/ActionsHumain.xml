@@ -1,22 +1,22 @@
 <action>
 	<id>1</id>
-	<succes>mords l'ennemi au nord</succes>
-	<echec>essaye de mordre quelque chose au nord, mais echoue</echec>
+	<succes>attaque l'ennemi au nord</succes>
+	<echec>essaye d'attaquer au nord, mais il n'y a personne</echec>
 </action>
 <action>
 	<id>2</id>
-	<succes>mords l'ennemi a l'est</succes>
-	<echec>essaye de mordre quelque chose a l'est, mais echoue</echec>
+	<succes>attaque l'ennemi a l'est</succes>
+	<echec>essaye d'attaquer a l'est, mais il n'y a personne</echec>
 </action>
 <action>
 	<id>3</id>
-	<succes>mords l'ennemi au sud</succes>
-	<echec>essaye de mordre quelque chose au sud, mais echoue</echec>
+	<succes>attaque l'ennemi au sud</succes>
+	<echec>essaye d'attaquer au sud, mais il n'y a personne</echec>
 </action>
 <action>
 	<id>4</id>
-	<succes>mords l'ennemi a l'ouest</succes>
-	<echec>essaye de mordre quelque chose a l'ouest, mais echoue</echec>
+	<succes>attaque l'ennemi a l'ouest</succes>
+	<echec>essaye d'attaquer a l'ouest, mais il n'y a personne</echec>
 </action>
 <action>
 	<id>5</id>
@@ -45,26 +45,26 @@
 </action>
 <action>
 	<id>10</id>
-	<succes>se rapproche des ennemis</succes>
-	<echec>essaye de se rapprocher des ennemis mais il n'y arrive pas</echec>
+	<succes>fuit comme un lâche</succes>
+	<echec>essaye de fuir, mais il n'y a pas d'issues</echec>
 </action>
 <action>
 	<id>11</id>
 	<succes>mange</succes>
-	<echec>essaye de manger quelque chose mais il ne peut pas manger autre chose que des cerveaux</echec>
+	<echec>essaye de manger quelque chose mais il ne porte rien</echec>
 </action>
 <action>
 	<id>12</id>
-	<succes>piege</succes>
-	<echec>essaye de pieger quelque chose mais il ne peut pas, c'est un zombie</echec>
+	<succes>pose un piége</succes>
+	<echec>essaye de pieger quelque chose mais il ne peut pas</echec>
 </action>
 <action>
 	<id>13</id>
-	<succes>traine un objet qui s'est accroché dans ses pieds</succes>
-	<echec>essaye de rammasser des choses, mais echoue</echec>
+	<succes>ramasse un objet</succes>
+	<echec>essaye de rammasser quelque chose qui ne peut pas l'être</echec>
 </action>
 <action>
 	<id>14</id>
 	<succes>se soigne</succes>
-	<echec>essaye de se soigner mais il ne sait pas ce que cela veut dire</echec>
+	<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
 </action>

@@ -1,8 +1,16 @@
+<list>
 <cond>
 <id>i</id>
 <d>d</d>
 <type>t</type>
 </cond>
+<cond>
+<id>i</id>
+<d>d</d>
+<type>t</type>
+</cond>
+...
+</list>
 
     { 0 : SP
     { 1 : N

@@ -28,6 +28,7 @@ public class ParserConditions{
         parser.parse(f, a);
         
         list=a.list;
+        //ystem.out.println("Dans le parser : "+list.size());
         
 	      } catch (DOMException e) {
 	          e.printStackTrace();
