@@ -59,7 +59,6 @@ public static void melange() {
     	refPersos.add(refPersos.get(k));
     	refPersos.remove(k);
     }
-<<<<<<< HEAD
 }
 
 public static int nbGentils(List<List<String>> xmls, int nZombie) {
@@ -85,74 +84,7 @@ public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<Stri
 		}
 	}
 }
-
-public static void main(String[] pArgs) throws InterruptedException {
-	plateau = new Grille();
-	historique = new Historique();
-	// Variables définies grâce au menu d'affichage ->
-	int nbJoueurs = 2;
-	int nbPersoParJoueur = 2;
-	int nZombie = 1;				// Variable possiblement tirée au sort
-	int nbPersoParZombie = 2;
-	List<String> xmlsGentils = new LinkedList<String>();
-	List<String> xmlsMechants = new LinkedList<String>();
-	List<List<String>> xmls = new LinkedList<>();
-	xmls.add(xmlsGentils);
-	xmls.add(xmlsMechants);
-	// <- Fin variables
-	int j,p;
-	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
-	refPersos = new LinkedList<Integer>();
-	String tempHistorique;
-	Grille.initialisergrille(joueurs);
-	Affichage.charger();
-
-	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-	while(!finPartie(nbTotal)){
-	//Timer t=new Timer(200,null);
-	//t.start();
-	while(!finPartie()) {
-		melange();
-		historique.addTour();
-		for(int i=0; i<refPersos.size(); i++) {
-			j = refPersos.get(i)/100;
-			p = refPersos.get(i)%100;
-			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
-    			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
-				while (gentilperso.getParalysie()>0){
-					if(gentilperso.getEfdrogue() != 0){
-						if(gentilperso.getDrogue() == 3){
-							gentilperso.setVie(gentilperso.getVie()+5);
-							if(gentilperso.getVie() > gentilperso.getViemax())
-								gentilperso.setVie(gentilperso.getViemax());
-						}
-						if(gentilperso.getDrogue() == 4){
-							gentilperso.setVie(gentilperso.getVie()-5);
-						}
-						if(gentilperso.getDrogue() == 5){
-							gentilperso.setParalysie(2);
-						}
-						if(gentilperso.getDrogue() == 6){
-							gentilperso.setParalysie(0);
-						}					
-						//((Gentil) p).efdrogue --;  PENSER A LE METTRE A LA FIN DE LA GRANDE BOUCE DE TOUR
-					}
-					else 
-						gentilperso.setDrogue(0);
-					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
-					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
-					Thread.sleep(200);
-				}
-			}
-			else
-				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
-				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
-			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
-			tempHistorique = persoCourant.jouer(listCond,plateau,listCont,joueurs);
-			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
-    			historique.ceTour().addEvenement(new Evenement(persoCourant, tempHistorique));
-=======
-    
+		
     public static void main(String[] pArgs) throws InterruptedException {
     	plateau = new Grille();
     	historique = new Historique();
@@ -168,13 +100,13 @@ public static void main(String[] pArgs) throws InterruptedException {
     	xmls.add(xmlsMechants);
     	// <- Fin variables
     	int j,p;
-    	initJoueurs(nbJoueurs, nbPersoParJoueur, nbPersoParZombie, nZombie, xmlsGentils, xmlsMechants);
+    	initJoueurs(nbPersoParZombie, nZombie, xmls);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);
     	Affichage.charger();
     	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-    	while(!finPartie(nbTotal)){
+    	while(!finPartie()){
     		melange();
     		historique.addTour();
     		for(int i=0; i<refPersos.size(); i++) {
@@ -218,11 +150,9 @@ public static void main(String[] pArgs) throws InterruptedException {
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
 //    			tempHistorique = persoCourant.jouer();
     			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
->>>>>>> master
     		}
     		Thread.sleep(200);
     		
     	}
     }
-}
 }
