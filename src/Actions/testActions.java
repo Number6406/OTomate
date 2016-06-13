@@ -21,7 +21,7 @@ public class testActions {
 		List<$Action> la = P.list;
 		System.out.println("SIZE : " + la.size());
 		for($Action Ac : la){
-			System.out.println(Ac.toString());
+			if(Ac!=null) System.out.println(Ac.toString());
 		}
 		
 		List<Joueur> listJoueurs = new ArrayList<>();

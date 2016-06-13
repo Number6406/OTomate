@@ -1,6 +1,6 @@
 package Parser;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.xml.sax.Attributes;
@@ -34,11 +34,11 @@ public class XMLAction extends DefaultHandler {
 	boolean bechec = false;
 
 	int id;
-	List<$Action> list = new LinkedList<>();
+	List<$Action> list = new ArrayList<>(nb_actions);
 	String succes;
 	String echec;
 
-	static final int nb_cond = 12;
+	static final int nb_actions = 16;
 
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		if (qName.equalsIgnoreCase("id")) {
@@ -72,67 +72,67 @@ public class XMLAction extends DefaultHandler {
 			echec = lecture;
 			switch (id) {
 			case 0:
-				list.add(new RaF(succes, echec));
+				list.set(id,new RaF(succes, echec));
 				break;
 
 			case 5:
-				list.add(new AttNord(succes, echec));
+				list.set(id, new AttNord(succes, echec));
 				break;
 
 			case 7:
-				list.add(new AttEst(succes, echec));
+				list.set(id, new AttEst(succes, echec));
 				break;
 
 			case 6:
-				list.add(new AttSud(succes, echec));
+				list.set(id, new AttSud(succes, echec));
 				break;
 
 			case 8:
-				list.add(new AttOuest(succes, echec));
+				list.set(id, new AttOuest(succes, echec));
 				break;
 
 			case 1:
-				list.add(new DeplNord(succes, echec));
+				list.set(id, new DeplNord(succes, echec));
 				break;
 
 			case 3:
-				list.add(new DeplEst(succes, echec));
+				list.set(id, new DeplEst(succes, echec));
 				break;
 
 			case 2:
-				list.add(new DeplSud(succes, echec));
+				list.set(id, new DeplSud(succes, echec));
 				break;
 
 			case 4:
-				list.add(new DeplOuest(succes, echec));
+				list.set(id, new DeplOuest(succes, echec));
 				break;
 
 			case 14:
-				list.add(new Detruire(succes, echec));
+				list.set(id, new Detruire(succes, echec));
 				break;
 
 			case 13:
-				list.add(new Fuir(succes, echec));
+				list.set(id, new Fuir(succes, echec));
 				break;
 
 			case 11:
-				list.add(new Manger(succes, echec));
+				list.set(id, new Manger(succes, echec));
 				break;
 
 			case 10:
-				list.add(new Pieger(succes, echec));
+				list.set(id, new Pieger(succes, echec));
 				break;
 
 			case 9:
-				list.add(new Ramasser(succes, echec));
+				list.set(id, new Ramasser(succes, echec));
 				break;
 
 			case 12:
-				list.add(new Soigner(succes, echec));
+				list.set(id, new Soigner(succes, echec));
 				break;
 
 			case 15:
-				list.add(new Fouiller(succes, echec));
+				list.set(id, new Fouiller(succes, echec));
 				break;
 			case 16 :
 				break;
@@ -142,7 +142,9 @@ public class XMLAction extends DefaultHandler {
 	}
 
 	public void startDocument() throws SAXException {
-
+		for(int i = 0; i < nb_actions; i++) {
+			list.add(null);
+		}
 	}
 
 	public void endDocument() throws SAXException {

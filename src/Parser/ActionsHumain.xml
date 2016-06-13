@@ -1,5 +1,10 @@
 <parse>
 	<action>
+		<id>0</id>
+		<succes>compte les brins d'herbe</succes>
+		<echec>n'arrive pas à rien faire</echec>
+	</action>
+	<action>
 		<id>1</id>
 		<succes>avance vaillament vers le nord</succes>
 		<echec>ne peut pas avancer au nord</echec>
