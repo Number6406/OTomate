@@ -70,8 +70,8 @@ public class Ramasser extends $Action {
 		if ((effect == true) && (drogue == false))
 			return ("a ramasse quelque chose.");
 		else if ((effect == true) && (drogue == true)) {
-			return ("a ramasse de la drogue et s'est pique, petit filou.");
+			return ("a ramassé de la drogue et l'a utilisée");
 		} else
-			return ("mais il n'y a rien a rammasser");
+			return ("essaye de ramasser quelque chose. Mais il n'y a rien.");
 	}
 }
