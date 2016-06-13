@@ -26,6 +26,9 @@ import Otomate.Joueur;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import javax.swing.JScrollPane;
@@ -57,6 +60,7 @@ public class FenetreJeu extends JFrame {
     JButton b_start;
     JButton b_pause;
     JButton b_fast;
+    JButton b_step;
     JTabbedPane tp_onglets;
     JScrollPane scroll_history;
     JTable tab_history;
@@ -104,9 +108,10 @@ public class FenetreJeu extends JFrame {
         tab_perso.getTableHeader().setReorderingAllowed(false);
         scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
-        b_start = new JButton("Mettre en pause le jeu", new ImageIcon("../Graphics/Icons/pause.png"));
-        b_pause = new JButton();
-        b_fast = new JButton();
+        b_start = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile()))));
+        b_pause = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/pause.png").getFile()))));
+        b_fast = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/faster.png").getFile()))));
+        b_step = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/step.png").getFile()))));
         tp_onglets = new JTabbedPane();
         tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0) {
             /**
@@ -177,6 +182,7 @@ public class FenetreJeu extends JFrame {
         pan_interraction.add(b_start);
         pan_interraction.add(b_pause);
         pan_interraction.add(b_fast);
+        pan_interraction.add(b_step);
         
         infoConstraints.gridy = 3;
         infoConstraints.gridheight = 1;
