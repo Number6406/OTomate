@@ -23,6 +23,15 @@ public class Grille {
     public int tailleX;
     public int tailleY;
     
+    public int tailleX(){
+    	return tailleX;
+    }
+    
+    public int tailleY(){
+    	return tailleY;
+    }
+    
+    
     public List<Coordonnees> getCoinsAutomates(){
     	return coinsAutomates;
     }

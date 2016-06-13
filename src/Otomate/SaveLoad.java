@@ -32,9 +32,9 @@ public final class SaveLoad {
 		int currentChar=0;
 		
 		int i,j;
-		fin.write(((Integer)jeu.plateau.tailleX)); //tailleX
+		fin.write(((Integer)jeu.plateau.tailleX())); //tailleX
 		fin.write(new Character('\n'));
-		fin.write(((Integer)jeu.plateau.tailleY)); //tailleY
+		fin.write(((Integer)jeu.plateau.tailleY())); //tailleY
 		fin.write((new Character('\n')));
 		for(j=0;j<jeu.plateau.tailleY;j++){
 			for(i=0;i<jeu.plateau.tailleX;i++){

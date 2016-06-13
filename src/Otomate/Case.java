@@ -26,7 +26,11 @@ public class Case {
         element = valeur;
     }
 
+<<<<<<< Updated upstream
 	public void setPiegee(boolean pie) {
+=======
+	public void setPiegee(boolean pie){
+>>>>>>> Stashed changes
     	piegee = pie;
     }
 }
