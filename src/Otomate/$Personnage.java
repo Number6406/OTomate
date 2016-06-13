@@ -1,6 +1,9 @@
 package Otomate;
 
 import java.awt.Color;
+import java.util.List;
+
+import Actions.$Action;
 
 public abstract class $Personnage {
     
@@ -38,7 +41,7 @@ public abstract class $Personnage {
     	couleur = Color.BLUE;
     }
     
-    //Mthodes
+    //Méthodes
     
     public int nbEtat(){
         return a.nbetats();
@@ -104,4 +107,18 @@ public abstract class $Personnage {
     	s += "Etat courant : " + etat;
     	return s;
     }
+    
+    /**
+     * 
+     * @param listCond 
+     * @return La description textuelle de l'action effectuée
+     */
+	public String jouer(List<Conditions2> listCond, Grille G,List<Objet> listCont,List<Joueur> listJoueur) {
+		List<Boolean> lb = G.recupcond(this, listCond, listCont, listJoueur);
+		List<Integer> lc =  G.conditions(this, lb);
+		List<Integer> la = G.actionsPossibles(this,lc);
+		$Action actionAFaire = G.takeOne(la);
+		G.Maj(this, actionAFaire, listJoueur, lc);
+		return actionAFaire.toString();
+	}
 }

@@ -15,6 +15,8 @@ public class Jeu {
     public static List<Joueur> joueurs;
     public static List<Integer> refPersos;
     public static Historique historique;
+    private static List<Conditions2> listCond;
+    private static List<Objet> listCont;
     
     //Methodes
     
