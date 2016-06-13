@@ -5,6 +5,7 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
+import java.awt.Color;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -82,14 +83,14 @@ public class Jeu {
 		return k;
 	}
 
-	public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls) {
+	public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
 		joueurs = new LinkedList<Joueur>();
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
 			if (i == nZombie) {
-				joueurs.add(new Joueur(xmls.get(i), true, nZ));
+				joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
 			} else {
-				joueurs.add(new Joueur(xmls.get(i), false, 42));
+				joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
 			}
 		}
 	}
@@ -121,7 +122,7 @@ public class Jeu {
     	listCont = p2.list;
     	// <- Fin variables
     	int j,p;
-    	initJoueurs(nbPersoParZombie, nZombie, xmls);
+    	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);

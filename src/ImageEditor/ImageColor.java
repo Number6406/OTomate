@@ -22,6 +22,7 @@ import javax.swing.JPanel;
  */
 public class ImageColor {
     
+    // Images en entrée qui sera répliquée et utilisée pour obtenir une image aux bonnes couleurs
     private BufferedImage iEntree;
     
     public ImageColor(BufferedImage i) {
@@ -58,6 +59,10 @@ public class ImageColor {
         
     }
     
+    public void setBuffer(BufferedImage bi) {
+        this.iEntree = bi;
+    }
+     
     public void test() throws IOException {
         iEntree = ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
         int cEntree = toRGB(10, 64, 7);
