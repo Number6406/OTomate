@@ -25,7 +25,7 @@ public final class SaveLoad {
 		this.name = name;
 	}
 
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "static-access", "resource" })
 	public void save() throws IOException{
 		File f=new File(name);
 		FileOutputStream fin =new FileOutputStream(f);
