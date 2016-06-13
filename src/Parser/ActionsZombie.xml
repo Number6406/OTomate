@@ -1,53 +1,53 @@
 <parse>
 	<action>
 		<id>1</id>
-		<succes>mords l'ennemi au nord</succes>
-		<echec>essaye de mordre quelque chose au nord, mais echoue</echec>
+		<succes>avance avec peine vers le nord</succes>
+		<echec>tente d'avancer au nord mais échoue lamentablement</echec>
 	</action>
 	<action>
 		<id>2</id>
-		<succes>mords l'ennemi a l'est</succes>
-		<echec>essaye de mordre quelque chose a l'est, mais echoue</echec>
+		<succes>traine des pieds vers le sud</succes>
+		<echec>tente d'avancer mais échoue lamentablement</echec>
 	</action>
 	<action>
 		<id>3</id>
-		<succes>mords l'ennemi au sud</succes>
-		<echec>essaye de mordre quelque chose au sud, mais echoue</echec>
-	</action>
-	<action>
-		<id>4</id>
-		<succes>mords l'ennemi a l'ouest</succes>
-		<echec>essaye de mordre quelque chose a l'ouest, mais echoue</echec>
-	</action>
-	<action>
-		<id>5</id>
-		<succes>avance avec peine</succes>
-		<echec>tente d'avancer mais échoue lamentablement</echec>
-	</action>
-	<action>
-		<id>6</id>
-		<succes>traine des pieds</succes>
-		<echec>tente d'avancer mais échoue lamentablement</echec>
-	</action>
-	<action>
-		<id>7</id>
 		<succes>galère à avancer</succes>
 		<echec>tente d'avancer mais échoue lamentablement</echec>
 	</action>
 	<action>
-		<id>8</id>
-		<succes>boite</succes>
+		<id>4</id>
+		<succes>boite vers l'ouest</succes>
 		<echec>tente d'avancer en boitant mais échoue lamentablement</echec>
 	</action>
 	<action>
+		<id>5</id>
+		<succes>mords l'ennemi au nord</succes>
+		<echec>essaye de mordre quelque chose au nord, mais echoue</echec>
+	</action>
+	<action>
+		<id>6</id>
+		<succes>mords l'ennemi au sud</succes>
+		<echec>essaye de mordre quelque chose au sud, mais echoue</echec>
+	</action>
+	<action>
+		<id>7</id>
+		<succes>mords l'ennemi a l'est</succes>
+		<echec>essaye de mordre quelque chose a l'est, mais echoue</echec>
+	</action>
+	<action>
+		<id>8</id>
+		<succes>mords l'ennemi a l'ouest</succes>
+		<echec>essaye de mordre quelque chose a l'ouest, mais echoue</echec>
+	</action>
+	<action>
 		<id>9</id>
-		<succes>détruit avec rage</succes>
-		<echec>essaye de détruire quelque chose de plus solide que lui</echec>
+		<succes>traine un objet qui s'est accroché dans ses pieds</succes>
+		<echec>essaye de ramasser des choses, mais echoue</echec>
 	</action>
 	<action>
 		<id>10</id>
-		<succes>se rapproche des ennemis</succes>
-		<echec>essaye de se rapprocher des ennemis mais il n'y arrive pas</echec>
+		<succes>piege</succes>
+		<echec>essaye de pieger quelque chose mais il ne peut pas, c'est un zombie</echec>
 	</action>
 	<action>
 		<id>11</id>
@@ -56,18 +56,18 @@
 	</action>
 	<action>
 		<id>12</id>
-		<succes>piege</succes>
-		<echec>essaye de pieger quelque chose mais il ne peut pas, c'est un zombie</echec>
+		<succes>se soigne</succes>
+		<echec>essaye de se soigner mais il ne sait pas ce que cela veut dire</echec>
 	</action>
 	<action>
 		<id>13</id>
-		<succes>traine un objet qui s'est accroché dans ses pieds</succes>
-		<echec>essaye de rammasser des choses, mais echoue</echec>
+		<succes>se rapproche des ennemis</succes>
+		<echec>essaye de se rapprocher des ennemis mais il n'y arrive pas</echec>
 	</action>
 	<action>
 		<id>14</id>
-		<succes>se soigne</succes>
-		<echec>essaye de se soigner mais il ne sait pas ce que cela veut dire</echec>
+		<succes>détruit avec rage</succes>
+		<echec>essaye de détruire quelque chose de plus solide que lui</echec>
 	</action>
 	<action>
 		<id>15</id>
