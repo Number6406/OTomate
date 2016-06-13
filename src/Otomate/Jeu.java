@@ -1,6 +1,7 @@
 package Otomate;
 
 import Affichage.*;
+import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 
 import java.util.LinkedList;
@@ -104,6 +105,7 @@ public class Jeu {
     	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie(nbTotal)){
     		melange();
+    		historique.addTour();
     		for(int i=0; i<refPersos.size(); i++) {
     			j = refPersos.get(i)/100;
     			p = refPersos.get(i)%100;
@@ -137,6 +139,10 @@ public class Jeu {
     			else
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
     				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
+    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
+    			tempHistorique = persoCourant.jouer();
+    			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
+    			historique.ceTour().addEvenement(new Evenement(persoCourant, tempHistorique));
     		}
     		Thread.sleep(200);
     	}
