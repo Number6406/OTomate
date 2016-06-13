@@ -98,6 +98,7 @@ public final class SaveLoad {
 					fin.write(pe.getViemax());
 					fin.write(new Character(':'));
 					fin.write(pe.getVie());
+					fin.write(new Character(':'));
 				}
 				fin.write(pe.getDmg());
 				fin.write(new Character(':'));
@@ -164,6 +165,7 @@ public final class SaveLoad {
 				pe.setPosition(new Coordonnees(Integer.getInteger(lire(fout, ' ')),Integer.getInteger(lire(fout, ' '))));
 				if(nouv.estMechant()) {
 					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
+					pe.setViemax(Integer.getInteger(lire(fout, ':')));
 				} else {
 					pe.setArme(Integer.getInteger(lire(fout, ' ')));
 					pe.setDrogue(Integer.getInteger(lire(fout, ' ')));
