@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 import Actions.$Action;
 
 public class ParserAction{
-	List<$Action> list = new LinkedList<>();
+	public List<$Action> list = new LinkedList<>();
 	public ParserAction(String file){
 		
 		try{

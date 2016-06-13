@@ -6,31 +6,25 @@ import Otomate.$Personnage;
 import Otomate.Grille;
 
 public class Detruire extends $Action {
-	
-	public Detruire(String name) {
-		super(name);
+
+	public Detruire(String succes, String echec) {
+		super(succes, echec);
 		// TODO Auto-generated constructor stub
 	}
-	private boolean effect = false;
 
-	public Detruire(){
+	public Detruire() {
 		valeur = 14;
 	}
-	
-	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g){
-		if(l.get(0) == 18){
+
+	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
+		if (l.get(0) == 18) {
 			int aux;
 			aux = p.getInventaire();
 			p.setInventaire(8);
 			Grille.Pos(p.getPosition()).setValeur(aux);
-			effect=true;
+			effect = true;
+		} else {
+			effect = false;
 		}
 	}
-	public String toString(){
-		if(effect == true)
-			return("a detruit un cactus et a recolte de l eau.");
-		else
-			return ("mais il n y a pas de chose a detruire ici.");
-	}
 }
-

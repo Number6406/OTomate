@@ -30,6 +30,13 @@ public class Conditions2 {
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
     	Coordonnees next=pos.CalculCase(direction);
     	int i,j,max=l.size();
+    	if(jo.getPosition().getX()>=g.tailleX && direction == 2){next.setX(g.tailleX);}
+    	if(jo.getPosition().getX()<=0 && direction == 4){next.setX(0);}
+    	if(jo.getPosition().getY()>=g.tailleY && direction == 3){next.setY(g.tailleY);}
+    	if(jo.getPosition().getY()<=0 && direction == 1){next.setY(0);}
+    	//System.out.println("next.getX()="+next.getX());
+    	//System.out.println("next.getY()="+next.getY());
+    	
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
     	
     	for(i=0;i<max;i++){

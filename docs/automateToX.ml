@@ -18,6 +18,7 @@ open Printf
 	  | Soigner
 	  | Fuir
 	  | Detruire
+	  | Fouiller
 
 	type condition =
 	  | Vide
@@ -101,6 +102,7 @@ open Printf
 	  | Soigner -> 12
 	  | Fuir -> 13
 	  | Detruire -> 14
+	  | Fouiller -> 15
 	  | _ -> 0
 
 
