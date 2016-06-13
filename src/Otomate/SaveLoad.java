@@ -90,7 +90,6 @@ public final class SaveLoad {
 					fin.write(pe.getViemax());
 					fin.write(new Character(':'));
 					fin.write( ((Gentil)pe).getVie());
-					fin.write(new Character(':'));
 				} else {
 					fin.write(((Integer) (((Mechant) pe).getInventaire())));
 					fin.write(new Character(' '));
@@ -98,6 +97,7 @@ public final class SaveLoad {
 					fin.write(new Character(':'));
 					fin.write(pe.getViemax());
 					fin.write(new Character(':'));
+					fin.write(pe.getVie());
 				}
 				fin.write(pe.getDmg());
 				fin.write(new Character(':'));
