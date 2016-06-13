@@ -8,8 +8,8 @@ import Otomate.Grille;
 
 public class Soigner extends $Action{
 	
-	public Soigner(String name) {
-		super(name);
+	public Soigner(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 

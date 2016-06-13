@@ -10,8 +10,8 @@ import Otomate.Mechant;
 
 public class Fuir extends $Action{
 
-	public Fuir(String name) {
-		super(name);
+	public Fuir(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -146,7 +146,7 @@ public class Fuir extends $Action{
 			}
 			else if(l.get(2) == 7){
 				if(l.get(3) == 6){
-					if(l.get(4) == 8){		//fuite vers le nord seule case non occupée
+					if(l.get(4) == 8){		//fuite vers le nord seule case non occupï¿½e
 						if(Grille.Pos(cnord).getValeur() == 0){
 							p.setPosition(cnord);
 							effect = true;

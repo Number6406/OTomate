@@ -8,8 +8,8 @@ import Otomate.Grille;
 
 public class Fouiller extends $Action{
 	
-	public Fouiller(String name) {
-		super(name);
+	public Fouiller(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -28,7 +28,7 @@ public class Fouiller extends $Action{
 					rnd = Grille.random(0, 101);
 					if(rnd<30)			//trouve des bandages
 						((Gentil) p).setRemede(2);
-					else if(rnd<40){		//trouve un fusil à pompe
+					else if(rnd<40){		//trouve un fusil ï¿½ pompe
 						((Gentil) p).setArme(25);
 						pompe = true;
 					}

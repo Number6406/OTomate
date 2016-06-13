@@ -7,8 +7,8 @@ import Otomate.Grille;
 
 public class Detruire extends $Action {
 	
-	public Detruire(String name) {
-		super(name);
+	public Detruire(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 	private boolean effect = false;

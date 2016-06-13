@@ -9,8 +9,8 @@ import Otomate.Grille;
 
 public class DeplEst extends $Action{
 
-	public DeplEst(String name) {
-		super(name);
+	public DeplEst(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 

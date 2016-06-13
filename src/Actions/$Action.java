@@ -7,10 +7,12 @@ import Otomate.Grille;
 
 public abstract class $Action {
 	protected int valeur;
-	protected String name;
+	protected String succes;
+	protected String echec;
 
-	public $Action(String name){
-		this.name=name;	
+	public $Action(String succes,String echec){
+		this.succes=succes;	
+		this.echec=echec;	
 	}
 	
 	public $Action(){
