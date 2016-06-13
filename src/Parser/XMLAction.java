@@ -52,8 +52,8 @@ public class XMLAction extends DefaultHandler {
 
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-		if (qName.equalsIgnoreCase("Case")) {
-			System.out.println("End Element :" + succes + " " + echec + " " + id);
+		if (qName.equalsIgnoreCase("action")) {
+			System.out.println("End Element : " + succes + " / " + echec + " / " + id);
 		}
 	}
 
@@ -65,6 +65,7 @@ public class XMLAction extends DefaultHandler {
 			bid = false;
 		} else if (bsucces) {
 			succes = lecture;
+			bsucces=false;
 		}
 
 		else if (bechec) {
@@ -136,6 +137,7 @@ public class XMLAction extends DefaultHandler {
 			case 16 :
 				break;
 			}
+			bechec=false;
 		}
 	}
 

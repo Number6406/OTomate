@@ -41,20 +41,26 @@ public class Joueur {
     public List<$Personnage> getPersonnages() {
         return personnages;
     }
-
-    public $Personnage getPersonnagesI(int i) {
-        return personnages.get(i);
+    
+    public void setPersonnages(List<$Personnage> l) {
+    	personnages = l;
+    }
+    
+    public $Personnage getPersonnagesI(int i){
+    	return personnages.get(i);
     }
 
     public int getSizePersonnages() {
         return personnages.size();
     }
-
-    public Color getCouleur() {
-        return couleur;
-    }
-
-    public void setCouleur(Color couleur) {
-        this.couleur = couleur;
-    }
+	public Color getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(Color couleur) {
+		this.couleur = couleur;
+	}
+	
+	public boolean estMechant(){
+		return mechant;
+	}
 }

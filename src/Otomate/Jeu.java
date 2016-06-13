@@ -26,32 +26,40 @@ public class Jeu {
 	//private static List<Objet> listCont;
 
 	// Methodes
-
+	/**
+	 * Verifie la fin de partie dans un jeu. Le jeu est fini quand il n'y a plus que des mechant ou plus que des gentils
+	 * @return vrai si la partie est finie
+	 */
 	public static boolean finPartie() {
 		boolean passe = false, un = false;
 		for (int i = 0; i < joueurs.size(); i++) {
-			if (joueurs.get(i).mechant) {
+			if (joueurs.get(i).estMechant()) {
 				if (joueurs.get(i).getPersonnages().size() == 0) {
-					return true;
+					return true; // Il n'y a plus de mechants.
 				} else {
-					if (un) {
+					if (un) { // Il y a des gentils encore en vie
 						return false;
 					}
-					passe = true;
+					passe = true; // On a passé les méchants
 				}
 			} else {
-				if (joueurs.get(i).getPersonnages().size() != 0) {
-					if (passe) {
+				if (joueurs.get(i).getPersonnages().size() != 0) { // Des gentils sont en vie
+					if (passe) { // Et des méchants !
 						return false;
 					}
-					un = true;
+					un = true; // Il y a des gentils en vie
 				}
 			}
 		}
-		return true;
+		return true; // Tout les gentils n'ont plus de personnages
 	}
-
-	public static void remplir() {
+	
+	/**
+	 * Remplit la table de reference des personnages (avec des entiers) pour la mélanger ensuite
+	 * 101 signifie Joueur 1 personnage 01.
+	 * 340 signifie Joueur 3 personnage 40.
+	 */
+	private static void remplir() {
 		refPersos.clear();
 		for (int i = 0; i < joueurs.size(); i++) {
 			for (int j = 0; j < joueurs.get(i).getPersonnages().size(); j++) {
@@ -59,7 +67,10 @@ public class Jeu {
 			}
 		}
 	}
-
+	
+	/**
+	 * Mélange la table des reférences de personnages pour mélanger les tours de jeu
+	 */
 	public static void melange() {
 		remplir();
 		Random rnd = new Random();
@@ -71,19 +82,29 @@ public class Jeu {
 		}
 	}
 
+	/**
+	 * Renvoie le nombre de personnages gentils du jeu
+	 * @param xmls la liste des fichier xmls pour les automates de personnages
+	 * @param nZombie le numéro du joueur zombie
+	 * @return le nombre de personnages gentils
+	 */
 	public static int nbGentils(List<List<String>> xmls, int nZombie) {
 		int k = 0;
 		for (int i = 0; i < xmls.size(); i++) {
 			if (i != nZombie) {
-				for (int j = 0; j < xmls.get(i).size(); j++) {
-					k++;
-				}
+				k+= xmls.get(i).size();
 			}
 		}
 		return k;
 	}
-
-	public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
+	
+	/**
+	 * Initialise les joueurs de la partie
+	 * @param nbPersoParZombie, le nombre de personnage pour un zombie
+	 * @param nZombie, le numéro du joueur qui joue zombie
+	 * @param xmls, la liste des liste de xmls pour les personnages
+	 */
+	public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls) {
 		joueurs = new LinkedList<Joueur>();
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
@@ -95,7 +116,12 @@ public class Jeu {
 		}
 	}
 
-	
+	/**
+	 * Fonction principale de Jeu
+	 * @param pArgs
+	 * @throws InterruptedException
+	 */
+	// TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException {
     	plateau = new Grille();
     	historique = new Historique();
@@ -153,7 +179,6 @@ public class Jeu {
     						if(gentilperso.getDrogue() == 6){
     							gentilperso.setParalysie(0);
     						}					
-    						//((Gentil) p).efdrogue --;  PENSER A LE METTRE A LA FIN DE LA GRANDE BOUCE DE TOUR
     					}
     					else{
     						gentilperso.setDrogue(0);
@@ -161,6 +186,7 @@ public class Jeu {
     					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
     	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
+    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setEfdrogue(((Gentil) joueurs.get(j).getPersonnagesI(p)).getEfdrogue()-1);
     					Thread.sleep(200);
     				}
     			}
