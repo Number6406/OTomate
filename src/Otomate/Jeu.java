@@ -8,6 +8,7 @@ import Parser.ParserObjet;
 import java.awt.Color;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -108,13 +109,13 @@ public class Jeu {
 		joueurs = new LinkedList<Joueur>();
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
-			System.out.println("nZombie = "+nZombie);
+			//System.out.println("nZombie = "+nZombie);
 			if (i == nZombie) {
-				System.out.println("test");
-				System.out.println(i);
+				//System.out.println("test");
+				//System.out.println(i);
 				joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
 			} else {
-				System.out.println("nope");
+				//System.out.println("nope");
 				joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
 			}
 		}
@@ -124,9 +125,10 @@ public class Jeu {
 	 * Fonction principale de Jeu
 	 * @param pArgs
 	 * @throws InterruptedException
+	 * @throws IOException 
 	 */
 	// TODO : Raccourcir la fonction !
-    public static void main(String[] pArgs) throws InterruptedException {
+    public static void main(String[] pArgs) throws InterruptedException, IOException {
     	plateau = new Grille();
     	historique = new Historique();
     	// Variables définies grâce au menu d'affichage ->
@@ -136,7 +138,7 @@ public class Jeu {
     	int nbPersoParZombie = 2;
     	List<String> xmlsGentils = new LinkedList<String>();
         String fichiers = new File("conditions.xml").toString();
-    	System.out.println(fichiers);
+    	//System.out.println(fichiers);
         xmlsGentils.add("AutomateenXML.xml");
     	List<String> xmlsMechants = new LinkedList<String>();
         xmlsMechants.add("AutomateenXML.xml");
@@ -151,7 +153,7 @@ public class Jeu {
     	
     	ParserConditions p1 = new ParserConditions(fichiers);
     	ParserObjet p2 = new ParserObjet("objet.xml");
-    	System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
+    	//System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
     	listCond = plateau.condparser(fichiers);
     	//System.out.println("Encore avant : " + p1.list.size());
     	listCont = plateau.objparser("objet.xml");
@@ -160,8 +162,8 @@ public class Jeu {
     	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
-    	Grille.initialisergrille(joueurs);
-    	//Affichage.charger();
+    	plateau.initialisergrille(joueurs);
+    	Affichage.charger();
     	//int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie()){
     		melange();
@@ -192,6 +194,7 @@ public class Jeu {
     					else{
     						gentilperso.setDrogue(0);
     					}
+    				
     					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
     	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
@@ -199,6 +202,11 @@ public class Jeu {
     					System.out.println("gentilkijou");
     					Thread.sleep(200);
     				}
+    				if (gentilperso.getParalysie()==0){
+    					System.out.println("passe tour drogue ou drogue dissipe");
+    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(1);
+    				}
+    				
     			}
     			else {
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
@@ -207,7 +215,7 @@ public class Jeu {
         			Thread.sleep(200);
         			}
     			System.out.println("FIN DE TOUR");
-				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
+    			//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
 //    			tempHistorique = persoCourant.jouer();
     			//tempHistorique sera la chaine renvoyee par l'action d'un joueur

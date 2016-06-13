@@ -21,7 +21,7 @@ public class Automate {
         nbconditions = 20;
         System.out.println("Actions :");
         int i,j;
-        for(i=0; i<nbconditions; i++){
+        /*for(i=0; i<nbconditions; i++){
         	for(j=0; j<nbetats; j++){
         		System.out.print(actions[j][i].element+"  ");
         	}
@@ -34,7 +34,7 @@ public class Automate {
         	}
         	System.out.print("\n");
         }
-    	System.out.println("fin");
+    	System.out.println("fin");*/
 
     }
     
