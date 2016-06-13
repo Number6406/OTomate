@@ -8,8 +8,8 @@ import Otomate.Mechant;
 import Otomate.Grille;
 public class DeplNord extends $Action{
 	
-	public DeplNord(String name) {
-		super(name);
+	public DeplNord(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -32,7 +32,7 @@ public class DeplNord extends $Action{
 	
 	public String toString(){
 		if(effect == true)
-			return("se déplace vers le nord.");
+			return("se dï¿½place vers le nord.");
 		else
 			return ("ne peut pas se deplacer au nord, il y a un obstacle.");
 	}

@@ -1,0 +1,70 @@
+<action>
+	<id>1</id>
+	<succes>attaque l'ennemi au nord</succes>
+	<echec>essaye d'attaquer au nord, mais il n'y a personne</echec>
+</action>
+<action>
+	<id>2</id>
+	<succes>attaque l'ennemi a l'est</succes>
+	<echec>essaye d'attaquer a l'est, mais il n'y a personne</echec>
+</action>
+<action>
+	<id>3</id>
+	<succes>attaque l'ennemi au sud</succes>
+	<echec>essaye d'attaquer au sud, mais il n'y a personne</echec>
+</action>
+<action>
+	<id>4</id>
+	<succes>attaque l'ennemi a l'ouest</succes>
+	<echec>essaye d'attaquer a l'ouest, mais il n'y a personne</echec>
+</action>
+<action>
+	<id>5</id>
+	<succes>avance avec peine</succes>
+	<echec>tente d'avancer mais échoue lamentablement</echec>
+</action>
+<action>
+	<id>6</id>
+	<succes>traine des pieds</succes>
+	<echec>tente d'avancer mais échoue lamentablement</echec>
+</action>
+<action>
+	<id>7</id>
+	<succes>galère à avancer</succes>
+	<echec>tente d'avancer mais échoue lamentablement</echec>
+</action>
+<action>
+	<id>8</id>
+	<succes>boite</succes>
+	<echec>tente d'avancer en boitant mais échoue lamentablement</echec>
+</action>
+<action>
+	<id>9</id>
+	<succes>détruit avec rage</succes>
+	<echec>essaye de détruire quelque chose de plus solide que lui</echec>
+</action>
+<action>
+	<id>10</id>
+	<succes>fuit comme un lâche</succes>
+	<echec>essaye de fuir, mais il n'y a pas d'issues</echec>
+</action>
+<action>
+	<id>11</id>
+	<succes>mange</succes>
+	<echec>essaye de manger quelque chose mais il ne porte rien</echec>
+</action>
+<action>
+	<id>12</id>
+	<succes>pose un piége</succes>
+	<echec>essaye de pieger quelque chose mais il ne peut pas</echec>
+</action>
+<action>
+	<id>13</id>
+	<succes>ramasse un objet</succes>
+	<echec>essaye de rammasser quelque chose qui ne peut pas l'être</echec>
+</action>
+<action>
+	<id>14</id>
+	<succes>se soigne</succes>
+	<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
+</action>

@@ -1,20 +1,22 @@
 package Otomate;
 
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * 
- * Pour l'instant un joueur a UN SEUL Personnage  ---> PLUS MAINTENANT LOL MDR XD
+ * Pour l'instant un joueur a UN SEUL Personnage ---> PLUS MAINTENANT LOL MDR XD
  *
  */
 public class Joueur {
     String name;
     boolean mechant;
+    private Color couleur;
     //Attributs
-    private List<$Personnage> personnages;
-    
-    //M�thodes
+private List<$Personnage> personnages;
+
+//M�thodes
     public Joueur(List<String> xmls, boolean estMechant, int nbMechants) {
     	personnages = new LinkedList<>();
     	mechant = estMechant;
@@ -44,5 +46,10 @@ public class Joueur {
     public int getSizePersonnages(){
     	return personnages.size();
     }
-    
+	public Color getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(Color couleur) {
+		this.couleur = couleur;
+	}
 }

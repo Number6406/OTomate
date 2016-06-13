@@ -7,8 +7,8 @@ import Otomate.$Personnage;
 import Otomate.Grille;
 public class Pieger extends $Action{
 	
-	public Pieger(String name) {
-		super(name);
+	public Pieger(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 

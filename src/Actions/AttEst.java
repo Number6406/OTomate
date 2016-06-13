@@ -10,8 +10,8 @@ import Otomate.Grille;
 
 public class AttEst extends $Action{
 
-	public AttEst(String name) {
-		super(name);
+	public AttEst(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 

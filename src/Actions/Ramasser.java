@@ -8,8 +8,8 @@ import Otomate.Grille;
 
 public class Ramasser extends $Action{
 
-	public Ramasser(String name) {
-		super(name);
+	public Ramasser(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 

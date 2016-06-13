@@ -6,8 +6,8 @@ import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
 public class Manger extends $Action{
-	public Manger(String name) {
-		super(name);
+	public Manger(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 	private boolean effect = false;
@@ -30,8 +30,8 @@ public class Manger extends $Action{
 	}
 	public String toString(){
 		if(effect == true)
-			return ("dit : Mmmh c'était bon lol");
+			return ("dit : Mmmh c'ï¿½tait bon lol");
 		else
-			return ("pense : C'est ballo y a rien à manger #Gfaim.");
+			return ("pense : C'est ballo y a rien ï¿½ manger #Gfaim.");
 	}
 }

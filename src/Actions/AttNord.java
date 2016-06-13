@@ -11,8 +11,8 @@ import Otomate.Grille;
 
 public class AttNord extends $Action{
 	
-	public AttNord(String name) {
-		super(name);
+	public AttNord(String succes, String echec) {
+		super(succes,echec);
 		// TODO Auto-generated constructor stub
 	}
 
