@@ -64,11 +64,11 @@ public final class SaveLoad {
 			fin.write(new Character(':'));
 			fin.write(jeu.joueurs.get(i).getName().getBytes());
 			fin.write(new Character('\0'));
-			
+
 			fin.write(jeu.joueurs.get(i).getSizePersonnages());
 			fin.write(new Character('\\'));
-			
-			fin.write(jeu.joueurs.get(i).mechant?(1):(0));
+
+			fin.write(jeu.joueurs.get(i).mechant ? (1) : (0));
 			fin.write(new Character(';'));
 			for (j = 0; j < jeu.joueurs.get(i).getSizePersonnages(); j++) {
 				pe = jeu.joueurs.get(i).getPersonnagesI(j);
@@ -89,7 +89,7 @@ public final class SaveLoad {
 					fin.write(new Character(':'));
 					fin.write(pe.getViemax());
 					fin.write(new Character(':'));
-					fin.write( ((Gentil)pe).getVie());
+					fin.write(((Gentil) pe).getVie());
 				} else {
 					fin.write(((Integer) (((Mechant) pe).getInventaire())));
 					fin.write(new Character(' '));
@@ -111,15 +111,13 @@ public final class SaveLoad {
 				fin.write(new Character(':'));
 				fin.write(pe.getAutomate().nbetats());
 
-				}
-				
-				currentChar++;
-				fin.write('\n');
 			}
-		}
 
+			currentChar++;
+			fin.write('\n');
+		}
 	}
-	
+
 	public String lire(FileInputStream fout, char fin) throws IOException {
 		String buf = "";
 		byte[] b = new byte[1];
@@ -131,6 +129,7 @@ public final class SaveLoad {
 		return buf;
 	}
 
+	@SuppressWarnings("static-access")
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
@@ -145,37 +144,37 @@ public final class SaveLoad {
 		fout.skip(1);
 		Joueur nouv;
 		$Personnage pe;
-		int nbJou = Integer.getInteger(lire(fout, '\n')),nbPers;
+		int nbJou = Integer.getInteger(lire(fout, '\n')), nbPers;
 		List<$Personnage> l;
 		List<Coordonnees> c = new LinkedList<Coordonnees>();
-		for(int i=0; i<nbJou; i++) {
+		for (int i = 0; i < nbJou; i++) {
 			nouv = new Joueur();
-			nouv.setCouleur(new Color(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' '))));
+			nouv.setCouleur(new Color(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' ')),
+					Integer.getInteger(lire(fout, ' '))));
 			fout.skip(1);
 			nouv.setName(lire(fout, '\0'));
 			nbPers = Integer.getInteger(lire(fout, '\\'));
-			nouv.setMechant(Integer.getInteger(lire(fout, ';'))==1);
+			nouv.setMechant(Integer.getInteger(lire(fout, ';')) == 1);
 			l = new LinkedList<$Personnage>();
-			for(int j=0; j<nbPers; j++) {
-				if(nouv.estMechant()) {
+			for (int j = 0; j < nbPers; j++) {
+				if (nouv.estMechant()) {
 					pe = new Mechant();
 				} else {
 					pe = new Gentil();
 				}
-				pe.setPosition(new Coordonnees(Integer.getInteger(lire(fout, ' ')),Integer.getInteger(lire(fout, ' '))));
-				if(nouv.estMechant()) {
+				pe.setPosition(
+						new Coordonnees(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' '))));
+				if (nouv.estMechant()) {
 					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
-					pe.setViemax(Integer.getInteger(lire(fout, ':')));
 				} else {
-					pe.setArme(Integer.getInteger(lire(fout, ' ')));
-					pe.setDrogue(Integer.getInteger(lire(fout, ' ')));
+					((Gentil) pe).setArme(Integer.getInteger(lire(fout, ' ')));
+					((Gentil) pe).setDrogue(Integer.getInteger(lire(fout, ' ')));
 					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
-					pe.setRemede(Integer.getInteger(lire(fout, ' ')));
+					((Gentil) pe).setRemede(Integer.getInteger(lire(fout, ' ')));
 					pe.setEtat(Integer.getInteger(lire(fout, ':')));
-					pe.setVieMax(Integer.getInteger(lire(fout, ':')));
-					pe.setViemax(Integer.getInteger(lire(fout, ':')));
 				}
 				pe.setViemax(Integer.getInteger(lire(fout, ':')));
+				pe.setVie(Integer.getInteger(lire(fout, ':')));
 				fout.skip(1);
 				c.add(new Coordonnees(Integer.getInteger(lire(fout, ':')), Integer.getInteger(lire(fout, ' '))));
 				pe.getAutomate().setNbCond(Integer.getInteger(lire(fout, ':')));

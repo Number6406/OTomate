@@ -44,6 +44,10 @@ public abstract class $Personnage {
 		couleur = cpy.getCouleur();
 		sprite = cpy.getSprite();
 	}
+	
+	public $Personnage() {
+		
+	}
 
 	// Getteurs
 
@@ -137,7 +141,7 @@ public abstract class $Personnage {
 		return s;
 	}
 
-	// Méthodes
+	// Mï¿½thodes
 	/**
 	 * 
 	 * @param listCond
@@ -158,4 +162,5 @@ public abstract class $Personnage {
 		G.Maj(this, actionAFaire, listJoueur, lc);
 		return actionAFaire.toString();
 	}
+	
 }

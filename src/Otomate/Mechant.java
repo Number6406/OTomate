@@ -24,6 +24,10 @@ public class Mechant extends $Personnage {
 		vie = viemax;
 	}
 
+	public Mechant() {
+		super();
+	}
+
 	public String toString() {
 		return "// Méchant //\n" + super.toString();
 	}

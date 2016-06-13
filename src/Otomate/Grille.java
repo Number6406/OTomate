@@ -401,4 +401,16 @@ public class Grille {
         }
     	A.todo(l,P,list, this);
     }
+
+	public void setTailleX(Integer integer) {
+		tailleX = integer;
+	}
+	
+	public void setTailleY(Integer integer) {
+		tailleY = integer;
+	}
+
+	public void setP(boolean b, int i, int j) {
+		g[i][j].setPiegee(b);
+	}
 }

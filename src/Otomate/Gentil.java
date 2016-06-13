@@ -48,6 +48,10 @@ public class Gentil extends $Personnage {
                     System.out.println(ex);
                 }
 	}
+	
+	public Gentil() {
+		
+	}
 
 	public int getArme() {
 		return arme;
