@@ -1,0 +1,82 @@
+<parse>
+	<action>
+		<id>0</id>
+		<succes>compte les brins d'herbe</succes>
+		<echec>n'arrive pas à rien faire</echec>
+	</action>
+	<action>
+		<id>1</id>
+		<succes>avance vaillament vers le nord</succes>
+		<echec>ne peut pas avancer au nord</echec>
+	</action>
+	<action>
+		<id>2</id>
+		<succes>descends vers le sud</succes>
+		<echec>tente d'aller au sud mais rencontre de l'adversité</echec>
+	</action>
+	<action>
+		<id>3</id>
+		<succes>se dirige vers l'est</succes>
+		<echec>est bloqué dans sa course vers l'est</echec>
+	</action>
+	<action>
+		<id>4</id>
+		<succes>pars à l'ouest</succes>
+		<echec>ne peut pas aller à l'ouest</echec>
+	</action>
+	<action>
+		<id>5</id>
+		<succes>attaque l'ennemi au nord</succes>
+		<echec>essaye d'attaquer au nord, mais il n'y a personne</echec>
+	</action>
+	<action>
+		<id>6</id>
+		<succes>attaque l'ennemi au sud</succes>
+		<echec>essaye d'attaquer au sud, mais il n'y a personne</echec>
+	</action>
+	<action>
+		<id>7</id>
+		<succes>attaque l'ennemi a l'est</succes>
+		<echec>essaye d'attaquer a l'est, mais il n'y a personne</echec>
+	</action>
+	<action>
+		<id>8</id>
+		<succes>attaque l'ennemi a l'ouest</succes>
+		<echec>essaye d'attaquer a l'ouest, mais il n'y a personne</echec>
+	</action>
+	<action>
+		<id>9</id>
+		<succes>ramasse un objet</succes>
+		<echec>essaye de rammasser quelque chose qui ne peut pas l'être</echec>
+	</action>
+	<action>
+		<id>10</id>
+		<succes>pose un piége</succes>
+		<echec>essaye de pieger quelque chose qui ne peut pas l'être</echec>
+	</action>
+	<action>
+		<id>11</id>
+		<succes>mange, ça lui fait du bien</succes>
+		<echec>a faim et a un inventaire vide</echec>
+	</action>
+	<action>
+		<id>12</id>
+		<succes>se soigne</succes>
+		<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
+	</action>
+	<action>
+		<id>13</id>
+		<succes>fuit comme un lâche</succes>
+		<echec>essaye de fuir, mais il n'y a pas d'issues</echec>
+	</action>
+	<action>
+		<id>14</id>
+		<succes>détruit l'obstacle</succes>
+		<echec>frappe l'objet. Cela n'est pas très efficace</echec>
+	</action>
+	<action>
+		<id>15</id>
+		<succes>fouille un batiment à la recherche de trésors</succes>
+		<echec>veux fouiller mais échoue</echec>
+	</action>
+</parse>

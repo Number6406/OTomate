@@ -1,259 +1,215 @@
 open Printf
+
 (* LES TYPES *)
-    
-type direction =
-  | N
-  | S
-  | E
-  | O
-    
-type cellule =
-  | C (* case *)
-  | D of direction
 
-type action =
-  | Avancer of direction
-  | Ramasser
-  | Frapper of direction
-  | Rien
+	type direction =
+	  | N
+	  | S
+	  | E
+	  | O
 
-type armes =
-  | Arc
-  | Sabre
+	type action =
+	  | Rien
+	  | Avancer of direction
+	  | Attaquer of direction
+	  | Ramasser
+	  | Pieger
+	  | Utiliser
+	  | Soigner
+	  | Fuir
+	  | Detruire
+	  | Fouiller
 
-type condition =
-  | Chemin of cellule
-  | Ennemi of direction
-  | Comestible
-  | Arme of armes
-
-type etat = int
-type transition = etat * condition * action * etat
-type automate = transition list
-type tradautomate = (int * int * int * int) list
-
+	type condition =
+	  | Vide
+	  | Chemin of direction
+	  | Ennemi of direction
+	  | Comestible
+	  | Arme1
+	  | Obstacle of direction
+	  | Fouillable
+	  | Surprise
+	  | Destructible
+	type etat = int
+	type transition = etat * condition * action * etat
+	type automate = transition list
+	type tradautomate = (int * int * int * int) list
+	
+	let listeDesConditions = [
+	Vide;
+	Chemin(N);
+	Chemin(S);
+	Chemin(E);
+	Chemin(O);
+	Ennemi(N);
+	Ennemi(S);
+	Ennemi(E);
+	Ennemi(O);
+	Comestible;
+	Arme1;
+	Obstacle(N);
+	Obstacle(S);
+	Obstacle(E);
+	Obstacle(O);
+	Fouillable;
+	Surprise;
+	Destructible
+	]
   
 (* TRADUCTION DES CONDITIONS COMPLEXES EN ENTIER *)
    
-    
-let (dir_to_int: direction -> int) = function
-  | N -> 0
-  | S -> 1
-  | E -> 2
-  | O -> 3
-  
-let (cellule_to_int: cellule -> int) = function
-  | C -> 0
-  | D(x) -> 1 + (dir_to_int x)
- 
+	(* SPECIFICATION
+	| PROFIL |
+	| dir_to_int : direction -> int
+	| BUT |
+	| renvoie la représentation numérique d'une direction
+	*)    
+	let (dir_to_int: direction -> int) = function
+	  | N -> 0
+	  | S -> 1
+	  | E -> 2
+	  | O -> 3
 
-let (arme_to_int : armes -> int) = function
-  | Arc -> 0
-  | Sabre -> 1
+	(* SPECIFICATION
+	| PROFIL |
+	| condition_to_int : condition -> int
+	| BUT |
+	| renvoie la représentation numérique d'une condition
+	*)  
+	let (condition_to_int: condition -> int) =  function
+	  | Vide -> 0
+	  | Chemin(dir) -> 1 + (dir_to_int dir) (* 1..4 *)
+	  | Ennemi(dir) -> 5 + (dir_to_int dir) (* 5..8 *)
+	  | Comestible -> 9
+	  | Arme1 -> 10
+	  | Obstacle(dir) -> 11 + (dir_to_int dir) (* 11..14 *)
+	  | Fouillable -> 15
+	  | Surprise -> 16
+	  | Destructible -> 16
+	  | _ -> 0
+
+	(* SPECIFICATION
+	| PROFIL |
+	| action_to_int : action -> int
+	| BUT |
+	| renvoie la représentation numérique d'une action
+	*) 
+	let (action_to_int: action -> int) = function
+	  | Rien -> 0
+	  | Avancer(dir) -> 1 + (dir_to_int dir) (* 1..4 *)
+	  | Attaquer(dir) -> 5 + (dir_to_int dir) (* 5..8 *)
+	  | Ramasser -> 9
+	  | Pieger -> 10
+	  | Utiliser -> 11
+	  | Soigner -> 12
+	  | Fuir -> 13
+	  | Detruire -> 14
+	  | Fouiller -> 15
+	  | _ -> 0
 
 
-let (condition_to_int: condition -> int) =  function
-  | Chemin(cellule) -> (cellule_to_int cellule) (* 1..4 *)
-  | Ennemi(direction) -> 5 + (dir_to_int direction) (* 5..8 *)
-  | Comestible -> 9
-  | Arme(armes) -> 10 + (arme_to_int armes) (* 10..11 *)
-  | _ -> 0
-
-let (action_to_int: action -> int) = function
-  | Rien -> 1
-  | Avancer(direction) -> 2 + (dir_to_int direction) (* 2..5 *)
-  | Ramasser -> 6
-  | Frapper(direction) -> 7 + (dir_to_int direction) (* 7..10 *)
-  | _ -> 0
-
+(* TRADUCTION DE TRANSITION ET D'AUTOMATE *)
    
-let (traduction_transition: transition -> int * int * int * int) = fun (src,condition,action,tgt) ->
-   (src, condition_to_int condition, action_to_int action, tgt)
+	(* SPECIFICATION
+	| PROFIL |
+	| traduction_transition : transition -> int * int * int * int
+	| BUT |
+	| renvoie la représentation numérique d'une transition
+	*)
+	let (traduction_transition: transition -> int * int * int * int) = fun (src,condition,action,tgt) ->
+	   (src, condition_to_int condition, action_to_int action, tgt)
+	   
+	(* SPECIFICATION
+	| PROFIL |
+	| traduction_automate : automate -> (int * int * int * int) list
+	| BUT |
+	| renvoie la représentation numérique d'un automate
+	*)
+	let (traduction_automate: automate -> (int * int * int * int) list) = fun automate ->
+	   List.map traduction_transition automate ;;
 
-let (traduction_automate: automate -> (int * int * int * int) list) = fun automate ->
-   List.map traduction_transition automate ;;
 
 
-
-
-(* EXEMPLE D'AUTOMATE *)
+(* CREATION D'AUTOMATE *)
    
-(* ON PEUT GÉNÉRER CERTAINES PARTIES DE L'AUTOMATE *)
-let (bouger: etat -> etat -> automate) = fun src tgt ->
-      List.map  (fun directions -> (src, Chemin(D directions), Avancer(directions), tgt) ) [N;S;E;O]
+	(* FONCTIONS POUR GÉNÉRER CERTAINES PARTIES DE L'AUTOMATE *)
+	(* SPECIFICATION
+	| PROFIL |
+	| bouger : etat -> etat -> automate
+	| BUT |
+	| Renvoie un automate qui fais bouger dans chaque direction depuis un etat vers l'autre 
+	| EXEMPLE |
+	| bouger 1 2 renvoie
+	| [(1,Chemin(N),Avancer(N),2); (1,Chemin(E),Avancer(E),2); (1,Chemin(S),Avancer(S),2); (1,Chemin(O),Avancer(O),2);
+	*)
+	let (bouger: etat -> etat -> automate) = fun src tgt ->
+		  List.map  (fun directions -> (src, Chemin(directions), Avancer(directions), tgt) ) [N;S;E;O]
+	
+	(* SPECIFICATION
+	| PROFIL |
+	| attaquer : etat -> etat -> automate
+	| BUT |
+	| Renvoie un automate qui fais attaquer dans chaque direction depuis un etat vers l'autre 
+	| EXEMPLE |
+	| attaquer 1 2 renvoie
+	| [(1,Ennemi(N),Attaquer(N),2); (1,Ennemi(E),Attaquer(E),2); (1,Ennemi(S),Attaquer(S),2); (1,Ennemi(O),Attaquer(O),2);
+	*)
+	let (attaquer: etat -> etat -> automate) = fun src tgt ->
+		  List.map  (fun direction -> (src, Ennemi(direction), Attaquer(direction), (tgt+(dir_to_int direction)) )) [N;S;E;O]
 
-let (attaquer: etat -> etat -> automate) = fun src tgt ->
-      List.map  (fun direction -> (src, Ennemi(direction), Frapper(direction), (tgt+(dir_to_int direction)) )) [N;S;E;O]
+	(* SPECIFICATION
+	| PROFIL |
+	| fairePourTout : etat -> action -> etat -> automate
+	| BUT |
+	| Renvoie un automate qui fais l'action pour toutes les conditions depuis l'état donné vers un autre
+	| EXEMPLE |
+	| fairepourtout 3 Soigner 4
+	*)
+	let (fairePourTout: etat -> action -> etat -> automate) = fun src act tgt ->
+		  List.map  (fun condition -> (src, condition, act, tgt)) listeDesConditions
+		  
 
-let aut1 =
-  (bouger 1 1) 
-    @
-  (bouger 2 2) 
-    @
-  (bouger 3 3) 
-    @
-  (attaquer 1 4) 
-    @
-  (attaquer 2 4) 
-    @
-  (attaquer 3 4) 
-    @
-  (attaquer 4 4) 
-    @
-  [ (1, Arme(Arc), Ramasser, 2) ;
-    (1, Arme(Sabre), Ramasser, 3) ;
-    (1, Comestible, Ramasser, 1) ;
-  
-    (2, Arme(Sabre), Ramasser, 3) ;
-    
-    (4, Arme(Arc), Ramasser, 2) ;
-    (4, Arme(Sabre), Ramasser, 3) ;
-    (4, Comestible, Ramasser, 1) ;
-    (4, Chemin(C), Rien, 1) ;
-  ]
-;;
+(* ECRITURE DE L'AUTOMATE EN XML *)
+	(* SPECIFICATION
+	| PROFIL |
+	| nbetats : (int*int*int*int) list -> int
+	| BUT |
+	| Renvoie le nombre d'etats de l'automate : ie. le nombre le plus grand *) 
+	let rec nbetats (liste:(int*int*int*int) list): int = match liste with
+	  |[]->0
+	  |(x,y,z,t)::s -> max (max x t) (nbetats s) ;;
 
-let automatamere =
-  (bouger 1 1) 
-    @
-  [ (1, Comestible, Ramasser, 1) ]
-    @
-  (bouger 2 2) 
-    @
-  (attaquer 2 5)
-    @
-  [ (2, Arme(Sabre), Ramasser, 3) ]
-    @
-  (attaquer 3 9)
-    @
-  (bouger 3 3) 
-    @
-  [ (5, Chemin(D N), Avancer(N), 2); 
-    (6, Chemin(D S), Avancer(S), 2);
-    (7, Chemin(D E), Avancer(E), 2); 
-    (8, Chemin(D O), Avancer(O), 2);  
-    (9, Chemin(D N), Avancer(N), 3); 
-    (10, Chemin(D S), Avancer(S), 3);
-    (11, Chemin(D E), Avancer(E), 3); 
-    (12, Chemin(D O), Avancer(O), 3);  
-  ]
-;;
-
-let automatazombie =
-  (bouger 1 1)
-  @
-  (attaquer 1 2)
-  @
-  (bouger 2 1)
-  @
-  (bouger 3 1)
-  @
-  (bouger 4 1)
-  @
-  (bouger 5 1)
-  @
-  [
-    (2, Ennemi(N), Frapper(N), 2); 
-    (3, Ennemi(S), Frapper(S), 3);
-    (4, Ennemi(E), Frapper(E), 4); 
-    (5, Ennemi(O), Frapper(O), 5);
-    ]
-    ;;
-
-let autosimple =
-
-
-[(1, Chemin(D N), Avancer(N), 1); 
-    (1, Chemin(D S), Avancer(S), 1);
-    (1, Chemin(D E), Avancer(E), 1); 
-    (1, Chemin(D O), Avancer(O), 1);]
-;;
-(* NON DETERMINISME 
-
-   Notez que cet automate est non-déterministe. 
-   Il se peut qu'il y ait un ennemi au nord et au sud ;
-   dans ce cas les deux premières transitions sont exécutables.
-
-   Dans le simulateur java :
-   Il faut en choisir par tirage au sort une parmi celles qui sont exécutables.
-*)
-
-let trad_aut1 = traduction_automate aut1 ;;
-
-let tradtamere = traduction_automate automatamere;;
-
-let tradzombie = traduction_automate automatazombie;;
-
-let tradsimple = traduction_automate autosimple;;
-(* On obtient
-   [ (1, 7, 6, 2); 
-     (1, 8, 7, 2); 
-     (1, 9, 8, 2); 
-     (1, 10, 9, 2); 
-     (2, 7, 3, 3);
-     (3, 0, 1, 4); 
-     (4, 0, 0, 1) ]
-
-  à partir duquel on peut constuire le tableau des transitions et celui des actions.
-
- *)
-
-   
-(* LE SIMULATEUR examine le voisinage de la position (x,y) du personnage 
-   
-         ?      |  Ennemi(N)    |  ?
- ------------------------------------------------
-  Comestible(O) | Comestible(C) | Comestible(E)
- ------------------------------------------------
-         ?      |  Ennemi(S)    |  ?
-
-qui correspond aux conditions 
-
-    ?  | 7  | ?
-    15 | 11 | 14
-     ? | 8  | ? 
-
-Supposons que l'automate du personnage soit dans l'état 1,
-le simulateur cherche les transitions exécutables de l'automate 
-dans l'état 1 sur les conditions/symboles {7,8,11,14,15}
-il y en a deux transitions possibles :
-
- (1, 7, 6, 2)  et (1, 8, 7, 2);
-
-Le simulateur en prend tire une parmi celle là est l'exécute.
-*)
- 
-(* Renvoie le nombre d'etats de l'automate : ie. le nombre le plus grand *) 
-let rec nbetatsauto (liste:(int*int*int*int) list): int = match liste with
-  |[]->0
-  |(x,y,z,t)::s -> max x (nbetatsauto s) ;;
-
-(*Met le nombre d'etats dans une variable*)
-let nb_etats = (nbetatsauto tradtamere);;
-let rec ecrireListe(liste:tradautomate)(writefile:out_channel):int =
-  match liste with 
-  |[]->fprintf writefile "";
-    0
-  |(x,y,z,t)::s->
-      fprintf writefile "\t<case>\n";
-      fprintf writefile "\t\t<etat>%d</etat>\n" x;
-      fprintf writefile "\t\t<condition>%d</condition>\n" y;
-      fprintf writefile "\t\t<action>%d</action>\n" z;
-      fprintf writefile "\t\t<transition>%d</transition>\n" t;
-      fprintf writefile "\t</case>\n";
-      ecrireListe s writefile ;
-      1
-;;
-
-let toXML(liste:tradautomate)(etat_init:int) =
-  let writefile = open_out "AutomateenXML.xml" in
-    fprintf writefile "<automate>\n";
-    fprintf writefile "\t<nb_etats>%d</nb_etats>\n" (nbetatsauto liste);
-    fprintf writefile "\t<etat_init>%d</etat_init>\n" etat_init;
-    ecrireListe liste writefile;
-    fprintf writefile "</automate>\n";
-    close_out writefile ;;
-  
-toXML tradtamere 1;;
-toXML tradzombie 1;;
-toXML tradsimple 1;;
+	(* SPECIFICATION
+	| PROFIL |
+	| ecrireListe : (int*int*int*int) list -> out_channel -> int
+	| BUT |
+	| Ecrit une liste dans un fichier (l'entiers sert à eviter des beugs) *) 
+	let rec ecrireListe(liste:tradautomate)(writefile:out_channel):int =
+	  match liste with 
+	  |[]->fprintf writefile "";
+		0
+	  |(x,y,z,t)::s->
+		  fprintf writefile "\t<case>\n";
+		  fprintf writefile "\t\t<etat>%d</etat>\n" x;
+		  fprintf writefile "\t\t<condition>%d</condition>\n" y;
+		  fprintf writefile "\t\t<action>%d</action>\n" z;
+		  fprintf writefile "\t\t<transition>%d</transition>\n" t;
+		  fprintf writefile "\t</case>\n";
+		  ecrireListe s writefile ;
+		  1
+	;;
+	
+	(* SPECIFICATION
+	| PROFIL |
+	| toXML : automate -> int -> String 
+	| BUT |
+	| Ecrit un automate d'etat initial donné dans le fichier dont le nom et fourni en paramètre *) 
+	let toXML(automate:automate)(etat_init:int)(name) =
+	  let liste = traduction_automate automate in
+	  let writefile = open_out name in
+		fprintf writefile "<automate>\n";
+		fprintf writefile "\t<nb_etats>%d</nb_etats>\n" (nbetats liste);
+		fprintf writefile "\t<etat_init>%d</etat_init>\n" etat_init;
+		ecrireListe liste writefile;
+		fprintf writefile "</automate>\n";
+		close_out writefile ;;

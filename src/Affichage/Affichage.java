@@ -31,6 +31,7 @@ public class Affichage {
     public static void main(String[] args) throws IOException {
         jeu = new FenetreJeu();
         
+        
       //  Jeu.initPartie();
         Grille g=new Grille(20,20);
         int i,j;
@@ -41,14 +42,13 @@ public class Affichage {
         }
         
         perso = new ArrayList<>();
-        perso.add(new Gentil("../Parser/AutomateenXML.xml"));
-        perso.add(new Mechant("../Parser/AutomateenXML.xml"));
+        perso.add(new Gentil("../Parser/AutomateenXML.xml",Color.PINK));
+        perso.add(new Mechant("../Parser/AutomateenXML.xml", Color.BLACK));
         
         perso.get(0).getPosition().setX(1);
         perso.get(0).getPosition().setY(1);
         perso.get(1).getPosition().setX(5);
         perso.get(1).getPosition().setY(10);
-        perso.get(1).setColor(Color.PINK);;
         
         h = new Historique();
         h.addTour(); 

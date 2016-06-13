@@ -28,7 +28,7 @@ public class ParserObjet{
         parser.parse(f, a);
         
         list=a.list;
-        
+        System.out.println(list.size()+ " rip");
 	      } catch (DOMException e) {
 	          e.printStackTrace();
 	       } catch (ParserConfigurationException e) {

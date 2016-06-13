@@ -20,7 +20,7 @@ public class XMLAutomate extends DefaultHandler{
 	int[][] auto;
 	Case[][] act;
 	int nb_etats;
-	static final int nb_cond=12;
+	static final int nb_cond=20;
 	int i,j;
 	public void startElement(String uri, 
 			   String localName, String qName, Attributes attributes)
@@ -49,7 +49,7 @@ public class XMLAutomate extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("Case")) {
-			         //System.out.println("End Element :" + qName + " " + j +" "+ i+ " "+act[j-1][i].element + " "+ auto[j-1][i]);
+			    //     System.out.println("End Element :" + qName + " " + j +" "+ i+ " "+act[j-1][i].element + " "+ auto[j-1][i]);
 			      }
 			   }
 
@@ -85,8 +85,10 @@ public class XMLAutomate extends DefaultHandler{
 			    	 bTransition = false;
 			      } else if (bAction) {
 			    	 act[j-1][i].element=Integer.parseInt(lecture);
+			    	 System.out.println((act[j-1][i]).element);
 			         bAction = false;
 			      }
+				   	
 			   }
 			   
 			   public void startDocument() throws SAXException {

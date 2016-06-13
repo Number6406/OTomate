@@ -8,7 +8,13 @@ import Parser.ParserConditions;
 import Parser.ParserObjet;
 
 public class Grille {
-    
+
+	/**
+	 * Fonction qui renvoie un enier aléatoire entre deux bornes
+	 * @param min
+	 * @param max
+	 * @return un entier aléatoire entre min et max
+	 */
 	public static int random(int min, int max){
     	Random r = new Random();
     	int k = min + r.nextInt(max - min);
@@ -23,14 +29,50 @@ public class Grille {
     public int tailleX;
     public int tailleY;
     
-    public void set(int val, int x, int y){
-    	g[x][y].setValeur(val);
+    
+    // Getteurs
+    
+    public int tailleX(){
+    	return tailleX;
+    }
+    
+    public int tailleY(){
+    	return tailleY;
+    }
+    
+    public List<Coordonnees> getCoinsAutomates(){
+    	return coinsAutomates;
     }
     
     public Case get(int x,int y){
     	return g[x][y];
     }
     
+    //Retourne la case de coordonnees c
+    public static Case Pos(Coordonnees c){
+        return g[c.getX()][c.getY()];
+    }
+    
+	public static List<Integer> getNbetats() {
+		return nbetats;
+	}
+    
+    // Setteurs
+	
+    public void set(int val, int x, int y){
+    	g[x][y].setValeur(val);
+    }
+
+	public static void setNbetats(List<Integer> nbetats) {
+		Grille.nbetats = nbetats;
+	}
+    
+    // Constructeur
+    /**
+     * Crée une grille de taille totale x*y
+     * @param x
+     * @param y
+     */
     public Grille(int x, int y){
     	g = new Case[x][y];
     	tailleX=x;
@@ -43,10 +85,14 @@ public class Grille {
     	}
     }
     
+    /**
+     * POUR DEBUG
+     * Crée une grille carrée de taille 16*16
+     */
     public Grille(){
-    	g = new Case[16][16];
-    	tailleX=16;
-    	tailleY=16;
+    	g = new Case[50][50];
+    	tailleX=50;
+    	tailleY=50;
     	int i,j;
     	for(i=0;i<tailleX;i++){
     		for(j=0;j<tailleY;j++){
@@ -55,7 +101,7 @@ public class Grille {
     	}
     }
     
-    //Methodes
+    //Méthodes
     
     //Place les automates au bon endroit sur la map
     public static void Placements(List<Joueur> J) {
@@ -132,6 +178,11 @@ public class Grille {
         return res;
     }
     
+    /**
+     * Renvoie l'entier maximal d'une liste d'entiers
+     * @param l, une liste d'entier
+     * @return le maximum de la liste
+     */
     public static int max(List<Integer> l){
         int fin = l.size();
         int i, m=0;
@@ -142,7 +193,7 @@ public class Grille {
         return m;
     }
     
-    public static void initialisergrille(List<Joueur> l) {
+    public void initialisergrille(List<Joueur> l) {
         int i,j,k;
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
@@ -163,12 +214,12 @@ public class Grille {
         setNbetats(taille);
         int maxi = max(taille);
         int dimh = maxi * list.size();
-        if(dimh<20)
-            dimh = 20;
+        if(dimh<50)
+            dimh = 50;
         maxi = l.get(0).getPersonnagesI(0).a.nbconditions();
         int dimv = maxi * list.size();
-        if(dimv<20)
-            dimv = 20;
+        if(dimv<50)
+            dimv = 50;
             
       //cration die la map dimh/dimv avec minimum 150/150
         
@@ -193,12 +244,14 @@ public class Grille {
 //Retourne une liste de condtions a partir du parser
     public List<Conditions2> condparser(String filename){
     	ParserConditions P = new ParserConditions(filename);
+    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
 //Retourne une liste d'objet a partir du parser
-    public List<Objet> objarser(String filename){
+    public List<Objet> objparser(String filename){
     	ParserObjet P = new ParserObjet(filename);
+    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -208,54 +261,65 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
+    		//System.out.println("Tu te trouves en x="+p.getPosition().getX()+" y="+p.getPosition().getY());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
+    		//System.out.println("res a pour valeur " + res.get(i));
     	}
+    	//System.out.println("Au depart taille " + lc.size());
+    	//System.out.println("on retourne une liste de taille "+res.size());
     	return res;
     }
     
-//Retourne une liste de 6 entiers repr�sentant les differentes conditions
+//Retourne une liste de 6 entiers repr�sentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
+    	System.out.println("taille debut : "+l.size() );
     	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
-    		listcond.add(0);		//
+    		listcond.add(0);
     	else if(l.get(9) == true)	//
     		listcond.add(9);		//
     	else if(l.get(10) == true)	//
     		listcond.add(10);		//
     	else if(l.get(15) == true)	//
     		listcond.add(15);		//
-    	else if(l.get(16))			//
+    	else if(l.get(16) == true)			//
     		listcond.add(16);		//
     	else if(l.get(18) == true)	//
     		listcond.add(18);		//
+    	//System.out.println("taille 0 : "+listcond.size());
     	if(l.get(1) == true)		//**********CONDITION AU NORD****************
     		listcond.add(1);		//
     	else if(l.get(5) == true)	//
     		listcond.add(5);		//
     	else if(l.get(11) == true)	//
     		listcond.add(11);		//
+    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(3) == true)		//*********CONDITION EST*********************
     		listcond.add(3);		//
     	else if(l.get(7) == true)	//
     		listcond.add(7);		//
     	else if(l.get(13) == true)	//
     		listcond.add(13);		//
+    	//System.out.println("taille +1 : "+listcond.size() +" "+listcond.get(0));
     	if(l.get(2) == true)		//************CONDITION SUD*******************
     		listcond.add(2);		//
     	else if(l.get(6) == true)	//
     		listcond.add(6);		//
     	else if(l.get(12) == true)	//
     		listcond.add(12);		//
+    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(4) == true)		//*************CONDITION OUEST***************
     		listcond.add(4);		//
     	else if(l.get(8) == true)	//
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
+    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(17) == true)		//*************CONDITION ETAT*******************
     		listcond.add(17);		//
     	else						//
     		listcond.add(19);		//
+    	//System.out.println("taille fin : "+listcond.size() );
     	return listcond;
     }
     
@@ -263,6 +327,8 @@ public class Grille {
     	List<Integer> la = new LinkedList<>();
     	int i, s = l.size();
     	for(i=0; i<s; i++){
+    		//System.out.println("symbole "+l.get(i));
+    		//System.out.println("etat courant "+p.getEtat());
     		if(p.getAutomate().transition(l.get(i), p.getEtat()) != 0){
     			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()).getValeur());
     			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()));
@@ -271,16 +337,16 @@ public class Grille {
     	return la;
     }
     
-    public static $Action takeOne(List<Integer> l){
+    public $Action takeOne(List<Integer> l){
         $Action a = null;
         if(l.isEmpty() == true){
             a = new RaF();
             return a;
         }
         else{
-        	System.out.println("Je peux faire : "+l.size()+" choses differentes.");
+        	//System.out.println("Je peux faire : "+l.size()+" choses differentes.");
             int i = random(0, l.size());
-            System.out.println("Je vais faire l'action : "+l.get(i));
+            //System.out.println("Je vais faire l'action : "+l.get(i));
             if(l.get(i) == 0)
             	a = new RaF();
             else if(l.get(i) == 1)
@@ -317,12 +383,6 @@ public class Grille {
             return a;
         }
     }
-
-//Retourne la case de coordonnees c
-    public static Case Pos(Coordonnees c){
-        return g[c.getX()][c.getY()];
-    }
-    
     
 //On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
@@ -341,12 +401,16 @@ public class Grille {
         }
     	A.todo(l,P,list, this);
     }
-    
-	public static List<Integer> getNbetats() {
-		return nbetats;
+
+	public void setTailleX(Integer integer) {
+		tailleX = integer;
+	}
+	
+	public void setTailleY(Integer integer) {
+		tailleY = integer;
 	}
 
-	public static void setNbetats(List<Integer> nbetats) {
-		Grille.nbetats = nbetats;
+	public void setP(boolean b, int i, int j) {
+		g[i][j].setPiegee(b);
 	}
 }

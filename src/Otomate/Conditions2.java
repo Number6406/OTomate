@@ -30,10 +30,21 @@ public class Conditions2 {
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
     	Coordonnees next=pos.CalculCase(direction);
     	int i,j,max=l.size();
-    	int Cid=g.get(next.getX(), next.getY()).getValeur();
+    	if(jo.getPosition().getX()>=g.tailleX && direction == 2){next.setX(g.tailleX);}
+    	if(jo.getPosition().getX()<=0 && direction == 4){next.setX(0);}
+    	if(jo.getPosition().getY()>=g.tailleY && direction == 3){next.setY(g.tailleY);}
+    	if(jo.getPosition().getY()<=0 && direction == 1){next.setY(0);}
+    	//System.out.println("next.getX()="+next.getX());
+    	//System.out.println("next.getY()="+next.getY());
     	
+    	int Cid=g.get(next.getX(), next.getY()).getValeur();
+    	//System.out.println("direction : "+direction);
+    	//System.out.println("contenu : "+ Cid);
+    	//System.out.println(max);
     	for(i=0;i<max;i++){
+    		//System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
     		if(l.get(i).id==Cid){
+    			//System.out.println("tamer");
     			switch(type){
     			
     			case 0:
@@ -41,7 +52,7 @@ public class Conditions2 {
     				else return false;
     			
     			case 1:
-    				if(l.get(i).type==1 || l.get(i).type==2 || l.get(i).type==3) return true;
+    				if(l.get(i).type==1) return true;
     				else return false;
     			
     			case 2:
@@ -68,9 +79,26 @@ public class Conditions2 {
     			case 4:
     				if(l.get(i).passable==1) return true;
     				else return false;
+        			
+        		case 5:
+        			if(l.get(i).type == 1) return true;
+        			else return false;
+        		
+        		case 6:
+        			if(l.get(i).type == 3) return true;
+        			else return false;
+        			
+        		case 7:
+        			if(l.get(i).type == 6) return true;
+        			else return false;
+        			
+        		case 8:
+        			if(l.get(i).type == 7) return true;
+        			else return false;
     			}
     		}
     	}
+    	//System.out.println("coucou");
     	return false;
     }
     

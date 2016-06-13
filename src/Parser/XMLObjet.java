@@ -36,7 +36,7 @@ public class XMLObjet extends DefaultHandler{
 			         btype = true;
 			      } else if (qName.equalsIgnoreCase("name")){
 			    	  bname=true;
-			      } else if (qName.equalsIgnoreCase("passable")){
+			      } else if (qName.equalsIgnoreCase("passage")){
 			    	  bpas=true;
 			      }
 			   }
@@ -44,7 +44,7 @@ public class XMLObjet extends DefaultHandler{
 			   @Override
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
-			      if (qName.equalsIgnoreCase("cond")) {
+			      if (qName.equalsIgnoreCase("objet")) {
 			         System.out.println("End Element :" + name + " " + id +" "+ type + " "+ use + " " + passable);
 			      }
 			   }
