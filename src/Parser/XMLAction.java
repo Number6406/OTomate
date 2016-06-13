@@ -65,6 +65,7 @@ public class XMLAction extends DefaultHandler {
 			bid = false;
 		} else if (bsucces) {
 			succes = lecture;
+			bsucces=false;
 		}
 
 		else if (bechec) {
@@ -136,6 +137,7 @@ public class XMLAction extends DefaultHandler {
 			case 16 :
 				break;
 			}
+			bechec=false;
 		}
 	}
 

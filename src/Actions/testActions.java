@@ -14,13 +14,17 @@ public class testActions {
 
 	public static void main(String[] args) {
 		Grille G = new Grille();
-		$Personnage A = new Gentil("Automate1.xml");
+		$Personnage A = new Gentil("AutomateenXML.xml");
 		A.setColor(Color.cyan);
-		$Personnage B = new Gentil("Automate1.xml");
+		$Personnage B = new Gentil("AutomateenXML.xml");
 		B.setColor(Color.pink);
 		
-		ParserAction P = new ParserAction("ActionsZombie.xml");
+		ParserAction P = new ParserAction("ActionsHumain.xml");
 		List<$Action> la = P.list;
+		System.out.println("SIZE : " + la.size());
+		for($Action Ac : la){
+			System.out.println(Ac.toString());
+		}
 		
 		List<$Personnage> listPerso = new ArrayList<>();
 		
@@ -28,11 +32,12 @@ public class testActions {
 		
 		//List<Integer> listCond = G.recupcond(A, G.condparser("ActionsZombie.xml"),listContenus,listJoueurs);
 		
-		
+		/*
 		$Action todo = new DeplOuest();	
 		System.out.println(todo.toString());	
 		//todo.todo(listCond, A, listPerso, G);
 		System.out.println(todo.toString());
+		*/
 	}
 
 }
