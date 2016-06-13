@@ -20,6 +20,13 @@ public abstract class $Action {
 		valeur = -1;
 	}
 	
+	/**
+	 * 
+	 * @param l, la liste des conditions environnantes
+	 * @param p, le personnage qui fait l'action
+	 * @param lp, la liste des personnages du jeu
+	 * @param g, la grille de jeu
+	 */
 	public abstract void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g);
 	
 	public String toString(){
