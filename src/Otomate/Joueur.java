@@ -33,6 +33,13 @@ public class Joueur {
             }
         }
     }
+    
+    /** FOR DEBUG PURPOSE */
+    public Joueur($Personnage p) {
+        personnages = new LinkedList<>();
+        setCouleur(Color.pink);
+        personnages.add(p);
+    }
 
     public String getName() {
         return name;
