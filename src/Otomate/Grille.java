@@ -213,6 +213,7 @@ public class Grille {
 //Retourne une liste d'objet a partir du parser
     public List<Objet> objparser(String filename){
     	ParserObjet P = new ParserObjet(filename);
+    	System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -234,7 +235,7 @@ public class Grille {
 //Retourne une liste de 6 entiers repr�sentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	
+    	System.out.println("taille debut : "+l.size() );
     	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
     		listcond.add(0);
     	else if(l.get(9) == true)	//
@@ -247,35 +248,40 @@ public class Grille {
     		listcond.add(16);		//
     	else if(l.get(18) == true)	//
     		listcond.add(18);		//
-    	System.out.println("lolilol "+listcond.get(0));
+    	System.out.println("taille 0 : "+listcond.size());
     	if(l.get(1) == true)		//**********CONDITION AU NORD****************
     		listcond.add(1);		//
     	else if(l.get(5) == true)	//
     		listcond.add(5);		//
     	else if(l.get(11) == true)	//
     		listcond.add(11);		//
+    	System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(3) == true)		//*********CONDITION EST*********************
     		listcond.add(3);		//
     	else if(l.get(7) == true)	//
     		listcond.add(7);		//
     	else if(l.get(13) == true)	//
     		listcond.add(13);		//
+    	System.out.println("taille +1 : "+listcond.size() +" "+listcond.get(0));
     	if(l.get(2) == true)		//************CONDITION SUD*******************
     		listcond.add(2);		//
     	else if(l.get(6) == true)	//
     		listcond.add(6);		//
     	else if(l.get(12) == true)	//
     		listcond.add(12);		//
+    	System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(4) == true)		//*************CONDITION OUEST***************
     		listcond.add(4);		//
     	else if(l.get(8) == true)	//
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
+    	System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(17) == true)		//*************CONDITION ETAT*******************
     		listcond.add(17);		//
     	else						//
     		listcond.add(19);		//
+    	System.out.println("taille fin : "+listcond.size() );
     	return listcond;
     }
     

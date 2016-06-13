@@ -38,8 +38,11 @@ public class Conditions2 {
     	//System.out.println("next.getY()="+next.getY());
     	
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
-    	
+    	System.out.println("direction : "+direction);
+    	System.out.println("contenu : "+ Cid);
+    	System.out.println(max);
     	for(i=0;i<max;i++){
+    		System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
     		if(l.get(i).id==Cid){
     			System.out.println("tamer");
     			switch(type){
