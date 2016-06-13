@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 /*Grille
  * Couleur:id:
  * (Personnage)
@@ -89,17 +90,16 @@ public final class SaveLoad {
 			fin.write(pe.getAutomate().nbetats());
 			currentChar++;
 			fin.write('\n');
-			
-		}
+		}}
 
 	}
-	
+
 	public String lire(FileInputStream fout, char fin) throws IOException {
-		String buf="";
+		String buf = "";
 		byte[] b = new byte[1];
 		fout.read(b);
 		while (b[0] != fin) {
-			buf+=b[0];
+			buf += b[0];
 			fout.read(b);
 		}
 		return buf;
@@ -108,32 +108,15 @@ public final class SaveLoad {
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
-		jeu.plateau.tailleX = Integer.getInteger(lire(fout, ' '));
-		buf="";
-		fout.read(b);
-		while (b[0] != '\n') {
-			buf+=b[0];
-			fout.read(b);
-		}
-		jeu.plateau.tailleY = Integer.getInteger(buf);
-		buf="";
-		for(int j=0;j<jeu.plateau.tailleX;j++) {
-			for(int i=0;i<jeu.plateau.tailleY;i++) {
-				fout.read(b);
-				while(b[0] != ':') {
-					buf+=b[0];
-					fout.read(b);
-				}
-				jeu.plateau.set(Integer.getInteger(buf),i,j);
-				buf="";
-				fout.read(b);
-				buf+=b[0];
-				fout.read(b);
-				jeu.plateau.setP(((Integer.getInteger(buf)==1)?(true):(false)),i,j);
-				buf="";
+		jeu.plateau.tailleX = Integer.getInteger(lire(fout, '\n'));
+		jeu.plateau.tailleY = Integer.getInteger(lire(fout, '\n'));
+		for (int j = 0; j < jeu.plateau.tailleX; j++) {
+			for (int i = 0; i < jeu.plateau.tailleY; i++) {
+				jeu.plateau.set(Integer.getInteger(lire(fout, ':')), i, j);
+				jeu.plateau.setP(((Integer.getInteger(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
 			}
 		}
-		
+
 	}
 
 }
