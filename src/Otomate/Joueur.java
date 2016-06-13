@@ -39,6 +39,10 @@ private List<$Personnage> personnages;
         return personnages;
     }
     
+    public void setPersonnages(List<$Personnage> l) {
+    	personnages = l;
+    }
+    
     public $Personnage getPersonnagesI(int i){
     	return personnages.get(i);
     }
