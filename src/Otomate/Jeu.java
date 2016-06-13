@@ -141,11 +141,13 @@ public class Jeu {
     	xmls.add(xmlsMechants);
     	List<Conditions2> listCond = new LinkedList<>();
     	List<Objet> listCont = new LinkedList<>();
+    	
     	ParserConditions p1 = new ParserConditions(fichiers);
-    	ParserObjet p2 = new ParserObjet(fichiers);
+    	ParserObjet p2 = new ParserObjet("objet.xml");
+    	System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
     	listCond = plateau.condparser(fichiers);
     	//System.out.println("Encore avant : " + p1.list.size());
-    	listCont = p2.list;
+    	listCont = plateau.objparser("objet.xml");
     	// <- Fin variables
     	int j,p;
     	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);

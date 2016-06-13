@@ -27,6 +27,7 @@ public abstract class $Personnage {
         protected String spriteURL = "../Graphics/Chara/1.png";
 
 	// Constructeur
+<<<<<<< Updated upstream
 	protected $Personnage(String file, Color couleur) {
             a = new Automate(file);
             etat = a.etat_initial();
@@ -36,6 +37,17 @@ public abstract class $Personnage {
             nom = "Bob";
             dmg = 10;
             this.couleur = couleur;
+=======
+	protected $Personnage(String file) {
+		a = new Automate(file);
+		etat = a.etat_initial();
+		position = new Coordonnees(5, 5);
+		viemax = 100;
+		inventaire = 0;
+		nom = "Bob";
+		dmg = 10;
+		couleur = Color.BLUE;
+>>>>>>> Stashed changes
 	}
 
 	protected $Personnage($Personnage cpy) {
