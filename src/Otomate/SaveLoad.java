@@ -24,7 +24,7 @@ public final class SaveLoad {
 		this.name = name;
 	}
 
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "static-access", "resource" })
 	public void save() throws IOException{
 		File f=new File(name);
 		FileOutputStream fin =new FileOutputStream(f);
@@ -93,7 +93,7 @@ public final class SaveLoad {
 		}
 
 	}
-	
+	}
 	public String lire(FileInputStream fout, char fin) throws IOException {
 		String buf="";
 		byte[] b = new byte[1];
