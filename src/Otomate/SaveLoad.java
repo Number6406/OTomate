@@ -91,7 +91,6 @@ public final class SaveLoad {
 					fin.write(new Character(':'));
 					fin.write( ((Gentil)pe).getVie());
 					fin.write(new Character(':'));
-					fin.write(pe.getDmg());	
 				} else {
 					fin.write(((Integer) (((Mechant) pe).getInventaire())));
 					fin.write(new Character(' '));
@@ -99,8 +98,9 @@ public final class SaveLoad {
 					fin.write(new Character(':'));
 					fin.write(pe.getViemax());
 					fin.write(new Character(':'));
-					fin.write(pe.getDmg());
 				}
+				fin.write(pe.getDmg());
+				fin.write(new Character(':'));
 				fin.write(new Character(';'));
 				fin.write(jeu.plateau.getCoinsAutomates().get(currentChar).getX());
 				fin.write(new Character(':'));
@@ -169,7 +169,11 @@ public final class SaveLoad {
 					pe.setDrogue(Integer.getInteger(lire(fout, ' ')));
 					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
 					pe.setRemede(Integer.getInteger(lire(fout, ' ')));
+					pe.setEtat(Integer.getInteger(lire(fout, ':')));
+					pe.setVieMax(Integer.getInteger(lire(fout, ':')));
+					pe.setViemax(Integer.getInteger(lire(fout, ':')));
 				}
+				pe.setViemax(Integer.getInteger(lire(fout, ':')));
 				fout.skip(1);
 				c.add(new Coordonnees(Integer.getInteger(lire(fout, ':')), Integer.getInteger(lire(fout, ' '))));
 				pe.getAutomate().setNbCond(Integer.getInteger(lire(fout, ':')));
