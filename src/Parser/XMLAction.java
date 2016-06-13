@@ -10,21 +10,21 @@ import org.xml.sax.helpers.DefaultHandler;
 import Actions.*;
 
 /*
-1 : AttNord
-2 : AttEst
-3 : AttSud
-4 : AttOuest
-5 : deplNord
-6 : deplEst
-7 : deplSud
-8 : deplOuest
-9 : Detruire
-10 : Fuir
-11 : Manger
-12 : Pieger
-13 : Ramasser
-14 : Soigner
-15 :
+    1 Deplacement Nord
+    2 Deplacement Sud
+    3 Deplacement Est
+    4 Deplacement Ouest
+    5 Attaque Nord
+    6 Attaque Sud
+    7 Attaque Est
+    8 Attaque Ouest
+    9 Ramasser
+    10 Piéger
+    11 Manger/Restaurer
+    12 Soigner
+    13 Fuir
+    14 Détruire
+    15 Fouiller
  */
 
 public class XMLAction extends DefaultHandler {
@@ -74,43 +74,43 @@ public class XMLAction extends DefaultHandler {
 				list.add(new RaF(succes, echec));
 				break;
 
-			case 1:
+			case 5:
 				list.add(new AttNord(succes, echec));
 				break;
 
-			case 2:
+			case 7:
 				list.add(new AttEst(succes, echec));
 				break;
 
-			case 3:
+			case 6:
 				list.add(new AttSud(succes, echec));
 				break;
 
-			case 4:
+			case 8:
 				list.add(new AttOuest(succes, echec));
 				break;
 
-			case 5:
+			case 1:
 				list.add(new DeplNord(succes, echec));
 				break;
 
-			case 6:
+			case 3:
 				list.add(new DeplEst(succes, echec));
 				break;
 
-			case 7:
+			case 2:
 				list.add(new DeplSud(succes, echec));
 				break;
 
-			case 8:
+			case 4:
 				list.add(new DeplOuest(succes, echec));
 				break;
 
-			case 9:
+			case 14:
 				list.add(new Detruire(succes, echec));
 				break;
 
-			case 10:
+			case 13:
 				list.add(new Fuir(succes, echec));
 				break;
 
@@ -118,19 +118,22 @@ public class XMLAction extends DefaultHandler {
 				list.add(new Manger(succes, echec));
 				break;
 
-			case 12:
+			case 10:
 				list.add(new Pieger(succes, echec));
 				break;
 
-			case 13:
+			case 9:
 				list.add(new Ramasser(succes, echec));
 				break;
 
-			case 14:
+			case 12:
 				list.add(new Soigner(succes, echec));
 				break;
 
 			case 15:
+				list.add(new Fouiller(succes, echec));
+				break;
+			case 16 :
 				break;
 			}
 		}

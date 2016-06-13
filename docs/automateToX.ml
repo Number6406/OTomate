@@ -18,6 +18,7 @@ open Printf
 	  | Soigner
 	  | Fuir
 	  | Detruire
+	  | Fouiller
 
 	type condition =
 	  | Vide
@@ -93,14 +94,15 @@ open Printf
 	*) 
 	let (action_to_int: action -> int) = function
 	  | Rien -> 0
-	  | Attaquer(dir) -> 1 + (dir_to_int dir) (* 1..4 *)
-	  | Avancer(dir) -> 5 + (dir_to_int dir) (* 5..8 *)
-	  | Detruire -> 9
-	  | Fuir -> 10
+	  | Avancer(dir) -> 1 + (dir_to_int dir) (* 1..4 *)
+	  | Attaquer(dir) -> 5 + (dir_to_int dir) (* 5..8 *)
+	  | Ramasser -> 9
+	  | Pieger -> 10
 	  | Utiliser -> 11
-	  | Pieger -> 12
-	  | Ramasser -> 13
-	  | Soigner -> 14
+	  | Soigner -> 12
+	  | Fuir -> 13
+	  | Detruire -> 14
+	  | Fouiller -> 15
 	  | _ -> 0
 
 
