@@ -108,9 +108,13 @@ public class Jeu {
 		joueurs = new LinkedList<Joueur>();
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
+			System.out.println("nZombie = "+nZombie);
 			if (i == nZombie) {
+				System.out.println("test");
+				System.out.println(i);
 				joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
 			} else {
+				System.out.println("nope");
 				joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
 			}
 		}
@@ -142,6 +146,8 @@ public class Jeu {
     	List<Conditions2> listCond = new LinkedList<>();
     	List<Objet> listCont = new LinkedList<>();
     	List<Color> couleurs = new LinkedList<>();
+    	couleurs.add(Color.red);
+    	couleurs.add(Color.black);
     	
     	ParserConditions p1 = new ParserConditions(fichiers);
     	ParserObjet p2 = new ParserObjet("objet.xml");
