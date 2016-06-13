@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.Timer;
 public class Jeu {
     
     //Attributs
@@ -104,8 +105,12 @@ public class Jeu {
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);
     	Affichage.charger();
+
     	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie(nbTotal)){
+    	//Timer t=new Timer(200,null);
+    	//t.start();
+    	while(!finPartie()) {
     		melange();
     		historique.addTour();
     		for(int i=0; i<refPersos.size(); i++) {
@@ -147,6 +152,7 @@ public class Jeu {
     			historique.ceTour().addEvenement(new Evenement(persoCourant, tempHistorique));
     		}
     		Thread.sleep(200);
+    		
     	}
     }
 }
