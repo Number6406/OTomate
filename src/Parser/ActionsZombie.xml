@@ -1,0 +1,56 @@
+<action>
+	<id>1</id>
+	<name>Mords</name>
+</action>
+<action>
+	<id>2</id>
+	<name>Mords</name>
+</action>
+<action>
+	<id>3</id>
+	<name>Mords</name>
+</action>
+<action>
+	<id>4</id>
+	<name>Mords</name>
+</action>
+<action>
+	<id>5</id>
+	<name>Avance</name>
+</action>
+<action>
+	<id>6</id>
+	<name>Traine des pieds</name>
+</action>
+<action>
+	<id>7</id>
+	<name>Galère à avancer</name>
+</action>
+<action>
+	<id>8</id>
+	<name>Boite</name>
+</action>
+<action>
+	<id>9</id>
+	<name>Détruit avec rage</name>
+</action>
+<action>
+	<id>10</id>
+	<name>Fuit</name>
+</action>
+<action>
+	<id>11</id>
+	<name>Mange</name>
+</action>
+<action>
+	<id>12</id>
+	<name>Piege</name>
+</action>
+<action>
+	<id>13</id>
+	<name>Ramasse</name>
+</action>
+<action>
+	<id>14</id>
+	<name>Soigne</name>
+</action>
