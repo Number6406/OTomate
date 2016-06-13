@@ -152,7 +152,6 @@ public class Jeu {
     						if(gentilperso.getDrogue() == 6){
     							gentilperso.setParalysie(0);
     						}					
-    						//((Gentil) p).efdrogue --;  PENSER A LE METTRE A LA FIN DE LA GRANDE BOUCE DE TOUR
     					}
     					else{
     						gentilperso.setDrogue(0);
@@ -160,6 +159,7 @@ public class Jeu {
     					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
     	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
+    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setEfdrogue(((Gentil) joueurs.get(j).getPersonnagesI(p)).getEfdrogue()-1);
     					Thread.sleep(200);
     				}
     			}

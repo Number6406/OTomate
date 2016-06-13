@@ -211,6 +211,7 @@ public class Grille {
     	for(i=0; i<s; i++){
     		//System.out.println("Tu te trouves en x="+p.getPosition().getX()+" y="+p.getPosition().getY());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
+    		System.out.println("res a pour valeur " + res.get(i));
     	}
     	//System.out.println("Au depart taille " + lc.size());
     	//System.out.println("on retourne une liste de taille "+res.size());
@@ -219,20 +220,21 @@ public class Grille {
     
 //Retourne une liste de 6 entiers repr�sentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
-    	System.out.println(l.size());
     	List<Integer> listcond = new LinkedList<>();
+    	
     	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
-    		listcond.add(0);		//
+    		listcond.add(0);
     	else if(l.get(9) == true)	//
     		listcond.add(9);		//
     	else if(l.get(10) == true)	//
     		listcond.add(10);		//
     	else if(l.get(15) == true)	//
     		listcond.add(15);		//
-    	else if(l.get(16))			//
+    	else if(l.get(16) == true)			//
     		listcond.add(16);		//
     	else if(l.get(18) == true)	//
     		listcond.add(18);		//
+    	System.out.println("lolilol "+listcond.get(0));
     	if(l.get(1) == true)		//**********CONDITION AU NORD****************
     		listcond.add(1);		//
     	else if(l.get(5) == true)	//
