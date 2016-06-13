@@ -26,7 +26,7 @@ public class Case {
         element = valeur;
     }
 
-	public void setPiegee(boolean pie) {
+	public void setPiegee(boolean pie) {
     	piegee = pie;
     }
 }

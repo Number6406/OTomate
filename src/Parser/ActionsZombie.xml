@@ -1,4 +1,4 @@
-<pars>
+<parse>
 	<action>
 		<id>1</id>
 		<succes>mords l'ennemi au nord</succes>
@@ -69,4 +69,4 @@
 		<succes>se soigne</succes>
 		<echec>essaye de se soigner mais il ne sait pas ce que cela veut dire</echec>
 	</action>
-</pars>
+</parse>
