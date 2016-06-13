@@ -115,8 +115,9 @@ public class Jeu {
     					if(gentilperso.getEfdrogue() != 0){
     						if(gentilperso.getDrogue() == 3){
     							gentilperso.setVie(gentilperso.getVie()+5);
-    							if(gentilperso.getVie() > gentilperso.getViemax())
+    							if(gentilperso.getVie() > gentilperso.getViemax()){
     								gentilperso.setVie(gentilperso.getViemax());
+    							}
     						}
     						if(gentilperso.getDrogue() == 4){
     							gentilperso.setVie(gentilperso.getVie()-5);
@@ -129,20 +130,23 @@ public class Jeu {
     						}					
     						//((Gentil) p).efdrogue --;  PENSER A LE METTRE A LA FIN DE LA GRANDE BOUCE DE TOUR
     					}
-    					else 
+    					else{
     						gentilperso.setDrogue(0);
+    					}
     					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
+    	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
     					Thread.sleep(200);
     				}
     			}
-    			else
+    			else {
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
-    				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
-    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
-    			tempHistorique = persoCourant.jouer();
+        			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
+    			}
+				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
+//    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
+//    			tempHistorique = persoCourant.jouer();
     			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
-    			historique.ceTour().addEvenement(new Evenement(persoCourant, tempHistorique));
     		}
     		Thread.sleep(200);
     	}
