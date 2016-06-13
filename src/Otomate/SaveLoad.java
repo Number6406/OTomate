@@ -107,15 +107,16 @@ public final class SaveLoad {
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
-		jeu.plateau.tailleX = Integer.getInteger(lire(fout, '\n'));
-		jeu.plateau.tailleY = Integer.getInteger(lire(fout, '\n'));
+		jeu.plateau.setTailleX(Integer.getInteger(lire(fout, '\n')));
+		jeu.plateau.setTailleY(Integer.getInteger(lire(fout, '\n')));
 		for (int j = 0; j < jeu.plateau.tailleX; j++) {
 			for (int i = 0; i < jeu.plateau.tailleY; i++) {
 				jeu.plateau.set(Integer.getInteger(lire(fout, ':')), i, j);
 				jeu.plateau.setP(((Integer.getInteger(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
 			}
 		}
-
+		fout.skip(1);
+		
 	}
 
 }
