@@ -4,6 +4,13 @@ import java.awt.Color;
 import java.util.List;
 
 import Actions.$Action;
+import ImageEditor.ImageColor;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public abstract class $Personnage {
 
@@ -16,17 +23,31 @@ public abstract class $Personnage {
 	protected String nom;
 	protected int dmg;
 	protected Color couleur;
+        protected BufferedImage sprite = null;
+        protected String spriteURL = "../Graphics/Chara/1.png";
 
 	// Constructeur
+<<<<<<< Updated upstream
+	protected $Personnage(String file, Color couleur) {
+            a = new Automate(file);
+            etat = a.etat_initial();
+            position = new Coordonnees(0, 0);
+            viemax = 100;
+            inventaire = 0;
+            nom = "Bob";
+            dmg = 10;
+            this.couleur = couleur;
+=======
 	protected $Personnage(String file) {
 		a = new Automate(file);
 		etat = a.etat_initial();
-		position = new Coordonnees(0, 0);
+		position = new Coordonnees(5, 5);
 		viemax = 100;
 		inventaire = 0;
 		nom = "Bob";
 		dmg = 10;
 		couleur = Color.BLUE;
+>>>>>>> Stashed changes
 	}
 
 	protected $Personnage($Personnage cpy) {
@@ -37,7 +58,8 @@ public abstract class $Personnage {
 		inventaire = 0;
 		nom = "Bob";
 		dmg = 10;
-		couleur = Color.BLUE;
+		couleur = cpy.getCouleur();
+                sprite = cpy.getSprite();
 	}
 
 	// M�thodes
@@ -100,9 +122,17 @@ public abstract class $Personnage {
 		return couleur;
 	}
 
-	public void setColor(Color c) {
+	public void setCouleur(Color c) {
 		this.couleur = c;
 	}
+        
+        public BufferedImage getSprite() {
+            return this.sprite;
+        }
+        
+        public void setSpriteURL(String url) {
+            this.spriteURL = url;
+        }
     
     //Override
     public String toString(){

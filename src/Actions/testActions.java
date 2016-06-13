@@ -13,7 +13,7 @@ import Parser.ParserAction;
 public class testActions {
 
 	public static void main(String[] args) {
-		//Grille G = new Grille();
+		Grille G = new Grille();
 		$Personnage A = new Gentil("AutomateenXML.xml");
 		A.setColor(Color.cyan);
 		$Personnage B = new Gentil("AutomateenXML.xml");
@@ -28,16 +28,16 @@ public class testActions {
 		
 		List<$Personnage> listPerso = new ArrayList<>();
 		
-		//List<Objet> listContenus = G.objparser("ContenusZombie.xml");
+		List<Objet> listContenus = G.objparser("ContenusZombie.xml");
 		
-		//List<Integer> listCond = G.recupcond(A, G.condparser("ActionsZombie.xml"),listContenus,listJoueurs);
+		List<Integer> listCond = G.recupcond(A, G.condparser("ActionsZombie.xml"),listContenus,listJoueurs);
 		
-		/*
+		
 		$Action todo = new DeplOuest();	
 		System.out.println(todo.toString());	
 		//todo.todo(listCond, A, listPerso, G);
 		System.out.println(todo.toString());
-		*/
+		
 	}
 
 }

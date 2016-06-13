@@ -5,6 +5,7 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
+import java.awt.Color;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -108,9 +109,9 @@ public class Jeu {
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
 			if (i == nZombie) {
-				joueurs.add(new Joueur(xmls.get(i), true, nZ));
+				joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
 			} else {
-				joueurs.add(new Joueur(xmls.get(i), false, 42));
+				joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
 			}
 		}
 	}
@@ -140,14 +141,16 @@ public class Jeu {
     	xmls.add(xmlsMechants);
     	List<Conditions2> listCond = new LinkedList<>();
     	List<Objet> listCont = new LinkedList<>();
+    	
     	ParserConditions p1 = new ParserConditions(fichiers);
-    	ParserObjet p2 = new ParserObjet(fichiers);
+    	ParserObjet p2 = new ParserObjet("objet.xml");
+    	System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
     	listCond = plateau.condparser(fichiers);
     	//System.out.println("Encore avant : " + p1.list.size());
-    	listCont = p2.list;
+    	listCont = plateau.objparser("objet.xml");
     	// <- Fin variables
     	int j,p;
-    	initJoueurs(nbPersoParZombie, nZombie, xmls);
+    	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);

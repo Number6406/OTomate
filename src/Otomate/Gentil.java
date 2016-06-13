@@ -1,5 +1,12 @@
 package Otomate;
 
+import ImageEditor.ImageColor;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 public class Gentil extends $Personnage {
 	/*
 	 * arme = 25.pompe 15.couteau 5 .branche correspond au degats supp
@@ -21,9 +28,13 @@ public class Gentil extends $Personnage {
 	private int efdrogue, efsaignement; // calcule le nombre de tours restant et
 										// effet a effectuer
 	private boolean infecte, saignement;
+        
+        protected static BufferedImage basicSprite = null;
+        protected static ImageColor ic = new ImageColor(basicSprite);
+        protected static int basicColor = ic.toRGB(10, 64, 7);
 
-	public Gentil(String file) {
-		super(file);
+	public Gentil(String file, Color couleur) {
+		super(file, couleur);
 		arme = remede = drogue = 0;
 		infecte = saignement = false;
 		vie = viemax;
@@ -31,6 +42,12 @@ public class Gentil extends $Personnage {
 		piege = 10;
 		efdrogue = 0;
 		efsaignement = 0;
+                try {
+                    basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
+                    sprite = ic.changeColor(basicColor, couleur.getRGB());
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
 	}
 
 	public int getArme() {
