@@ -15,8 +15,6 @@ public class Fuir extends $Action {
 		// TODO Auto-generated constructor stub
 	}
 
-	private boolean inno = false;
-
 	public Fuir() {
 		valeur = 13;
 	}
@@ -221,7 +219,6 @@ public class Fuir extends $Action {
 					effect = true;
 				}
 			}
-			inno = true;
 		} else if (p instanceof Mechant) {
 			Gentil e;
 			int x, y, x2, y2;

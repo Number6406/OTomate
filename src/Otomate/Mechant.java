@@ -9,8 +9,6 @@ import javax.imageio.ImageIO;
 
 public class Mechant extends $Personnage {
 
-	private int vie;
-
 	public Mechant(String file, Color couleur) {
             super(file, couleur);
             vie = viemax;
@@ -19,14 +17,6 @@ public class Mechant extends $Personnage {
             } catch (IOException ex) {
                 Logger.getLogger(Mechant.class.getName()).log(Level.SEVERE, null, ex);
             }
-	}
-
-	public int getVie() {
-		return viemax;
-	}
-
-	public void setVie(int Vie) {
-		this.vie = Vie;
 	}
 
 	public Mechant($Personnage cpy) {
