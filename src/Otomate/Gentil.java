@@ -30,8 +30,7 @@ public class Gentil extends $Personnage {
 	private boolean infecte, saignement;
         
         protected static BufferedImage basicSprite = null;
-        protected static ImageColor ic = new ImageColor(basicSprite);
-        protected static int basicColor = ic.toRGB(10, 64, 7);
+        protected static ImageColor ic;
 
 	public Gentil(String file, Color couleur) {
 		super(file, couleur);
@@ -44,6 +43,8 @@ public class Gentil extends $Personnage {
 		efsaignement = 0;
                 try {
                     basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
+                    ic = new ImageColor(basicSprite);
+                    int basicColor = ic.toRGB(10, 64, 7);
                     sprite = ic.changeColor(basicColor, couleur.getRGB());
                 } catch (IOException ex) {
                     System.out.println(ex);

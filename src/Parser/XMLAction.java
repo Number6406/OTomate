@@ -52,13 +52,8 @@ public class XMLAction extends DefaultHandler {
 
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-<<<<<<< Updated upstream
 		if (qName.equalsIgnoreCase("action")) {
 			System.out.println("End Element : " + succes + " / " + echec + " / " + id);
-=======
-		if (qName.equalsIgnoreCase("Case")) {
-			//System.out.println("End Element :" + succes + " " + echec + " " + id);
->>>>>>> Stashed changes
 		}
 	}
 

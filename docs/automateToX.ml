@@ -29,7 +29,7 @@ open Printf
 	  | Obstacle of direction
 	  | Fouillable
 	  | Surprise
-
+	  | Destructible
 	type etat = int
 	type transition = etat * condition * action * etat
 	type automate = transition list
@@ -52,7 +52,8 @@ open Printf
 	Obstacle(E);
 	Obstacle(O);
 	Fouillable;
-	Surprise
+	Surprise;
+	Destructible
 	]
   
 (* TRADUCTION DES CONDITIONS COMPLEXES EN ENTIER *)
@@ -84,6 +85,7 @@ open Printf
 	  | Obstacle(dir) -> 11 + (dir_to_int dir) (* 11..14 *)
 	  | Fouillable -> 15
 	  | Surprise -> 16
+	  | Destructible -> 16
 	  | _ -> 0
 
 	(* SPECIFICATION

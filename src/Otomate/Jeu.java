@@ -108,9 +108,13 @@ public class Jeu {
 		joueurs = new LinkedList<Joueur>();
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
+			System.out.println("nZombie = "+nZombie);
 			if (i == nZombie) {
+				System.out.println("test");
+				System.out.println(i);
 				joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
 			} else {
+				System.out.println("nope");
 				joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
 			}
 		}
@@ -131,7 +135,7 @@ public class Jeu {
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
     	List<String> xmlsGentils = new LinkedList<String>();
-        String fichiers = new File("auto.xml").toString();
+        String fichiers = new File("conditions.xml").toString();
     	System.out.println(fichiers);
         xmlsGentils.add("AutomateenXML.xml");
     	List<String> xmlsMechants = new LinkedList<String>();
@@ -142,6 +146,8 @@ public class Jeu {
     	List<Conditions2> listCond = new LinkedList<>();
     	List<Objet> listCont = new LinkedList<>();
     	List<Color> couleurs = new LinkedList<>();
+    	couleurs.add(Color.red);
+    	couleurs.add(Color.black);
     	
     	ParserConditions p1 = new ParserConditions(fichiers);
     	ParserObjet p2 = new ParserObjet("objet.xml");
@@ -190,19 +196,23 @@ public class Jeu {
     	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setEfdrogue(((Gentil) joueurs.get(j).getPersonnagesI(p)).getEfdrogue()-1);
+    					System.out.println("gentilkijou");
     					Thread.sleep(200);
     				}
     			}
     			else {
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
         			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
-    			}
+        			System.out.println("mechantkijou");
+        			Thread.sleep(200);
+        			}
+    			System.out.println("FIN DE TOUR");
 				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
 //    			tempHistorique = persoCourant.jouer();
     			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
     		}
-    		Thread.sleep(200);
+    		
     		
     	}
     }
