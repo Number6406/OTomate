@@ -197,7 +197,7 @@ public class Grille {
     }
     
 //Retourne une liste d'objet a partir du parser
-    public List<Objet> objarser(String filename){
+    public List<Objet> objparser(String filename){
     	ParserObjet P = new ParserObjet(filename);
     	return P.list;
     }
@@ -213,7 +213,7 @@ public class Grille {
     	return res;
     }
     
-//Retourne une liste de 6 entiers représentant les differentes conditions
+//Retourne une liste de 6 entiers reprï¿½sentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
     	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
@@ -271,7 +271,7 @@ public class Grille {
     	return la;
     }
     
-    public static $Action takeOne(List<Integer> l){
+    public $Action takeOne(List<Integer> l){
         $Action a = null;
         if(l.isEmpty() == true){
             a = new RaF();

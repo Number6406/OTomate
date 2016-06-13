@@ -15,6 +15,8 @@ public class Jeu {
     public static List<Joueur> joueurs;
     public static List<Integer> refPersos;
     public static Historique historique;
+    private static List<Conditions2> listCond;
+    private static List<Objet> listCont;
     
     //Methodes
     
@@ -140,7 +142,7 @@ public class Jeu {
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
     				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
     			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
-    			tempHistorique = persoCourant.jouer();
+				tempHistorique = persoCourant.jouer(listCond,plateau,listCont,joueurs);
     			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
     			historique.ceTour().addEvenement(new Evenement(persoCourant, tempHistorique));
     		}
