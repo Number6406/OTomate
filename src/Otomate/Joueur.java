@@ -1,5 +1,6 @@
 package Otomate;
 
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class Joueur {
     String name;
     boolean mechant;
+    private Color couleur;
     //Attributs
     private List<$Personnage> personnages;
     
@@ -44,5 +46,11 @@ public class Joueur {
     public int getSizePersonnages(){
     	return personnages.size();
     }
+	public Color getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(Color couleur) {
+		this.couleur = couleur;
+	}
     
 }
