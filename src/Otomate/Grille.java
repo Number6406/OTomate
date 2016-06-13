@@ -331,6 +331,30 @@ public class Grille {
         }
     }
     
+  //Retourne la case de coordonnees c
+    public static Case Pos(Coordonnees c){
+        return g[c.getX()][c.getY()];
+    }
+    
+    
+//On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
+//on garde +1 pour l'est en abs et -1 pour l'ouest
+  
+//Met a jour la map = change le numero si besoin est
+    public void Maj($Personnage P, $Action A, List<Joueur> J, List<Integer> l){
+    	int i,j;
+    	List<$Personnage> list = new LinkedList<>();
+    	int longperso = J.size();
+    	for(i=0; i<longperso; i++){
+        	for(j=0;j<J.get(i).getSizePersonnages();j++){
+        	    list.add(J.get(i).getPersonnagesI(j));    	
+        	}
+        	
+            i += J.get(i).getSizePersonnages();
+        }
+    	A.todo(l,P,list, this);
+    }
+    
 	public static List<Integer> getNbetats() {
 		return nbetats;
 	}
