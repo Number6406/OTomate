@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /*Grille
  * Couleur:id:
@@ -85,6 +87,7 @@ public final class SaveLoad {
 					fin.write(new Character(' '));
 				} else {
 					fin.write(((Integer) (((Mechant) pe).getInventaire())));
+					fin.write(new Character(' '));
 				}
 				fin.write(new Character(';'));
 				fin.write(jeu.plateau.getCoinsAutomates().get(currentChar).getX());
@@ -127,16 +130,38 @@ public final class SaveLoad {
 		Joueur nouv;
 		$Personnage pe;
 		int nbJou = Integer.getInteger(lire(fout, '\n')),nbPers;
+		List<$Personnage> l;
+		List<Coordonnees> c = new LinkedList<Coordonnees>();
 		for(int i=0; i<nbJou; i++) {
 			nouv = new Joueur();
 			nouv.setCouleur(new Color(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' '))));
 			fout.skip(1);
 			nouv.setName(lire(fout, '\0'));
 			nbPers = Integer.getInteger(lire(fout, '\\'));
-			nouv.mechant = Integer.getInteger(lire(fout, ';'))==1;
+			nouv.setMechant(Integer.getInteger(lire(fout, ';'))==1);
+			l = new LinkedList<$Personnage>();
 			for(int j=0; j<nbPers; j++) {
-				
+				if(nouv.estMechant()) {
+					pe = new Mechant();
+				} else {
+					pe = new Gentil();
+				}
+				pe.setPosition(new Coordonnees(Integer.getInteger(lire(fout, ' ')),Integer.getInteger(lire(fout, ' '))));
+				if(nouv.estMechant()) {
+					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
+				} else {
+					pe.setArme(Integer.getInteger(lire(fout, ' ')));
+					pe.setDrogue(Integer.getInteger(lire(fout, ' ')));
+					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
+					pe.setRemede(Integer.getInteger(lire(fout, ' ')));
+				}
+				fout.skip(1);
+				c.add(new Coordonnees(Integer.getInteger(lire(fout, ':')), Integer.getInteger(lire(fout, ' '))));
+				pe.getAutomate().setNbCond(Integer.getInteger(lire(fout, ':')));
+				pe.getAutomate().setNbEtats(Integer.getInteger(lire(fout, '\n')));
+				l.add(pe);
 			}
+			jeu.joueurs.add(nouv);
 		}
 	}
 
