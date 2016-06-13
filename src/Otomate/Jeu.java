@@ -151,8 +151,11 @@ public static void main(String[] pArgs) throws InterruptedException {
 			tempHistorique = persoCourant.jouer(listCond,plateau,listCont,joueurs);
 			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
     			historique.ceTour().addEvenement(new Evenement(persoCourant, tempHistorique));
-=======
-    
+		}
+	}
+	}
+}
+		
     public static void main(String[] pArgs) throws InterruptedException {
     	plateau = new Grille();
     	historique = new Historique();
@@ -218,11 +221,9 @@ public static void main(String[] pArgs) throws InterruptedException {
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
 //    			tempHistorique = persoCourant.jouer();
     			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
->>>>>>> master
     		}
     		Thread.sleep(200);
     		
     	}
     }
-}
 }
