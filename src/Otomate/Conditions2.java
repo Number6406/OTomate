@@ -41,6 +41,7 @@ public class Conditions2 {
     	
     	for(i=0;i<max;i++){
     		if(l.get(i).id==Cid){
+    			System.out.println("tamer");
     			switch(type){
     			
     			case 0:
@@ -78,6 +79,7 @@ public class Conditions2 {
     			}
     		}
     	}
+    	System.out.println("coucou");
     	return false;
     }
     

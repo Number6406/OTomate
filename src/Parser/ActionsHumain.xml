@@ -69,4 +69,9 @@
 		<succes>se soigne</succes>
 		<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
 	</action>
+	<action>
+		<id>15</id>
+		<succes>fouille un batiment à la recherche de trésors</succes>
+		<echec>veux fouiller mais échoue</echec>
+	</action>
 </parse>

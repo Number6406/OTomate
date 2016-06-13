@@ -13,7 +13,7 @@ import Parser.ParserAction;
 public class testActions {
 
 	public static void main(String[] args) {
-		Grille G = new Grille();
+		//Grille G = new Grille();
 		$Personnage A = new Gentil("AutomateenXML.xml");
 		A.setColor(Color.cyan);
 		$Personnage B = new Gentil("AutomateenXML.xml");

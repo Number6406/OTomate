@@ -56,4 +56,8 @@ private List<$Personnage> personnages;
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
+	
+	public boolean estMechant(){
+		return mechant;
+	}
 }
