@@ -60,7 +60,11 @@ public class Joueur {
 		this.couleur = couleur;
 	}
 	
-	public boolean estMechant(){
+	public boolean estMechant() {
 		return mechant;
+	}
+
+	public void setMechant(boolean estMechant) {
+		mechant = estMechant;
 	}
 }
