@@ -3,7 +3,10 @@ package Otomate;
 import Affichage.*;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
+import Parser.ParserConditions;
+import Parser.ParserObjet;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +19,7 @@ public static Grille plateau;
 public static List<Joueur> joueurs;
 public static List<Integer> refPersos;
 public static Historique historique;
-private static List<Conditions2> listCond;
+//private static List<Conditions2> listCond;
 private static List<Objet> listCont;
 
 //Methodes
@@ -94,18 +97,29 @@ public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<Stri
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
     	List<String> xmlsGentils = new LinkedList<String>();
+        String fichiers = new File("auto.xml").toString();
+    	System.out.println(fichiers);
+        xmlsGentils.add("AutomateenXML.xml");
     	List<String> xmlsMechants = new LinkedList<String>();
+        xmlsMechants.add("AutomateenXML.xml");
     	List<List<String>> xmls = new LinkedList<>();
     	xmls.add(xmlsGentils);
     	xmls.add(xmlsMechants);
+    	List<Conditions2> listCond = new LinkedList<>();
+    	List<Objet> listCont = new LinkedList<>();
+    	ParserConditions p1 = new ParserConditions(fichiers);
+    	ParserObjet p2 = new ParserObjet(fichiers);
+    	listCond = plateau.condparser(fichiers);
+    	//System.out.println("Encore avant : " + p1.list.size());
+    	listCont = p2.list;
     	// <- Fin variables
     	int j,p;
     	initJoueurs(nbPersoParZombie, nZombie, xmls);
     	refPersos = new LinkedList<Integer>();
     	String tempHistorique;
     	Grille.initialisergrille(joueurs);
-    	Affichage.charger();
-    	int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
+    	//Affichage.charger();
+    	//int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie()){
     		melange();
     		historique.addTour();
