@@ -93,7 +93,6 @@ public final class SaveLoad {
 		}}
 
 	}
-
 	public String lire(FileInputStream fout, char fin) throws IOException {
 		String buf = "";
 		byte[] b = new byte[1];
