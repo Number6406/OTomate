@@ -67,7 +67,7 @@
 	<action>
 		<id>14</id>
 		<succes>détruit l'obstacle</succes>
-		<echec>frappe l'obbjet. Cela n'est pas très efficace</echec>
+		<echec>frappe l'objet. Cela n'est pas très efficace</echec>
 	</action>
 	<action>
 		<id>15</id>
