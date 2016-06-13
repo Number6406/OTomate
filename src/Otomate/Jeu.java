@@ -135,14 +135,14 @@ public class Jeu {
     					else{
     						gentilperso.setDrogue(0);
     					}
-    					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
+    					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
     	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
     					Thread.sleep(200);
     				}
     			}
     			else {
-    				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer();
+    				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
         			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
     			}
 				//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
