@@ -23,6 +23,10 @@ public class Grille {
     public int tailleX;
     public int tailleY;
     
+    public List<Coordonnees> getCoinsAutomates(){
+    	return coinsAutomates;
+    }
+    
     public void set(int val, int x, int y){
     	g[x][y].setValeur(val);
     }
