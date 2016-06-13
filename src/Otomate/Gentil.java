@@ -1,42 +1,42 @@
 package Otomate;
 
 public class Gentil extends $Personnage{
-	 /*arme = 25.pompe
-	  * 	  15.couteau
-	  * 	  5 .branche
-	  * correspond au degats supp
-	  */
-	
-	/*type drogue = 0.nickel
-	 * 			1.bonus hp max
-	 * 			2.malus hp.max
-	 * 			3. + hp/tour
-	 * 			4. - hp/tour
-	 * 			5.adrenaline
-	 * 			6. passe
-	 * 			7. + vie
-	 * 			8. - vie
-	 */
-	
-	/*remede = 1.antidote
-	 * 			2.bandage
-	 */
-	
-	private int vie;		//vie actuelle NE PAS DEPASSER viemax
-	private int arme, remede, drogue;
-	private int paralysie, piege;			//nb de tour a jouer, att avant prochain piege
-	private int efdrogue, efsaignement; //calcule le nombre de tours restant et effet a effectuer
-	private boolean infecte, saignement;
+    /*arme = 25.pompe
+     * 	  15.couteau
+     * 	  5 .branche
+     * correspond au degats supp
+     */
+
+    /*type drogue = 0.nickel
+    * 			1.bonus hp max
+    * 			2.malus hp.max
+    * 			3. + hp/tour
+    * 			4. - hp/tour
+    * 			5.adrenaline
+    * 			6. passe
+    * 			7. + vie
+    * 			8. - vie
+    */
+
+    /*remede = 1.antidote
+    * 			2.bandage
+    */
+
+    private int vie;		//vie actuelle NE PAS DEPASSER viemax
+    private int arme, remede, drogue;
+    private int paralysie, piege;			//nb de tour a jouer, att avant prochain piege
+    private int efdrogue, efsaignement; //calcule le nombre de tours restant et effet a effectuer
+    private boolean infecte, saignement;
     
-	public Gentil(String file){
-		super(file);
-		arme = remede = drogue  = 0;
-		infecte = saignement = false;
-		vie = viemax;
-		paralysie = 1;
-		piege = 10;
-		efdrogue = 0;
-		efsaignement = 0;
+    public Gentil(String file){
+        super(file);
+        arme = remede = drogue  = 0;
+        infecte = saignement = false;
+        vie = viemax;
+        paralysie = 1;
+        piege = 10;
+        efdrogue = 0;
+        efsaignement = 0;
     }
 	public int getArme(){
         return arme;
@@ -91,4 +91,5 @@ public class Gentil extends $Personnage{
 	public void setDrogue(int Drogue){
         this.drogue=Drogue;
     }
+        
 }
