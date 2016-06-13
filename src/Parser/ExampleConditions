@@ -4,6 +4,7 @@
 <d>d</d>
 <type>t</type>
 </cond>
+
 <cond>
 <id>i</id>
 <d>d</d>
@@ -21,7 +22,12 @@ d € { 2 : E
 i < condMax
 
        { 0 : mur
-       { 1 : objet
+       { 1 : Comestible
 type € { 2 : bloque
        { 3 : ennemi
        { 4 : chemin
+       { 5 : arme
+       { 6 : seringue
+       { 7 : cactus
+       { 8 : fouillable
+       { 9 : vie manquante
