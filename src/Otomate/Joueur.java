@@ -33,8 +33,19 @@ public class Joueur {
             }
         }
     }
+    
+    /** FOR DEBUG PURPOSE */
+    public Joueur($Personnage p) {
+        personnages = new LinkedList<>();
+        setCouleur(Color.pink);
+        personnages.add(p);
+    }
 
-    public String getName() {
+    public Joueur() {
+    	
+	}
+
+	public String getName() {
         return name;
     }
 
@@ -66,5 +77,9 @@ public class Joueur {
 
 	public void setMechant(boolean estMechant) {
 		mechant = estMechant;
+	}
+
+	public void setName(String l) {
+		name = l;
 	}
 }

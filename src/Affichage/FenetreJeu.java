@@ -19,12 +19,17 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
+import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import javax.swing.JScrollPane;
 
@@ -55,6 +60,7 @@ public class FenetreJeu extends JFrame {
     JButton b_start;
     JButton b_pause;
     JButton b_fast;
+    JButton b_step;
     JTabbedPane tp_onglets;
     JScrollPane scroll_history;
     JTable tab_history;
@@ -76,14 +82,14 @@ public class FenetreJeu extends JFrame {
     	List<$Personnage> persoL = new LinkedList<>();
     	Historique h = Jeu.historique;
     	List<Joueur> l = Jeu.joueurs;
-	 	   int i,j,max=l.size(),max2;
-	 	   
-	 	   for(i=0;i<max;i++){
-	                 max2=l.get(i).getSizePersonnages();
-	                 for(j=0;j<max2;j++){
-	                     persoL.add(l.get(i).getPersonnagesI(j));
-	                 }
-	 	   }
+        int i,j,max=l.size(),max2;
+
+        for(i=0;i<max;i++){
+              max2=l.get(i).getSizePersonnages();
+              for(j=0;j<max2;j++){
+                  persoL.add(l.get(i).getPersonnagesI(j));
+              }
+        }
     	
         // Chargement des différents éléments des fenetres
         toolbar = new JMenuBar();
@@ -102,9 +108,10 @@ public class FenetreJeu extends JFrame {
         tab_perso.getTableHeader().setReorderingAllowed(false);
         scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
-        b_start = new JButton();
-        b_pause = new JButton();
-        b_fast = new JButton();
+        b_start = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile()))));
+        b_pause = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/pause.png").getFile()))));
+        b_fast = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/faster.png").getFile()))));
+        b_step = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/step.png").getFile()))));
         tp_onglets = new JTabbedPane();
         tab_history = new JTable(new DefaultTableModel(new Object[] {"Tour", "Action"}, 0) {
             /**
@@ -173,11 +180,9 @@ public class FenetreJeu extends JFrame {
         pan_interraction.setLayout(new GridLayout());
         
         pan_interraction.add(b_start);
-        b_start.setText("►");
         pan_interraction.add(b_pause);
-        b_pause.setText("■");
         pan_interraction.add(b_fast);
-        b_fast.setText("»");
+        pan_interraction.add(b_step);
         
         infoConstraints.gridy = 3;
         infoConstraints.gridheight = 1;
@@ -198,6 +203,11 @@ public class FenetreJeu extends JFrame {
         
         tp_onglets.add("Legende",scroll_legende);
         
+    }
+    
+    public static void main(String[] args) throws IOException {
+        FenetreJeu f = new FenetreJeu();
+        f.charger();
     }
 
 }
