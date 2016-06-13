@@ -104,7 +104,7 @@ public class Jeu {
 	 * @param nZombie, le numéro du joueur qui joue zombie
 	 * @param xmls, la liste des liste de xmls pour les personnages
 	 */
-	public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls) {
+	public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
 		joueurs = new LinkedList<Joueur>();
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
@@ -141,6 +141,7 @@ public class Jeu {
     	xmls.add(xmlsMechants);
     	List<Conditions2> listCond = new LinkedList<>();
     	List<Objet> listCont = new LinkedList<>();
+    	List<Color> couleurs = new LinkedList<>();
     	
     	ParserConditions p1 = new ParserConditions(fichiers);
     	ParserObjet p2 = new ParserObjet("objet.xml");
