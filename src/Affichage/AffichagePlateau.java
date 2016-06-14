@@ -101,7 +101,7 @@ public class AffichagePlateau extends JPanel {
             }
 	}
 	
-	AffichagePlateau(Grille g,List<$Personnage> perso,List<Objet> lo){
+	public AffichagePlateau(Grille g,List<$Personnage> perso,List<Objet> lo){
             gr =g ;
             this.perso=perso;
             loadTiles(lo);

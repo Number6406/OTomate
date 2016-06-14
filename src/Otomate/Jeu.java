@@ -23,6 +23,7 @@ public class Jeu {
 	public static List<Joueur> joueurs;
 	public static List<Integer> refPersos;
 	public static Historique historique;
+	public static Univers univers;
 	//private static List<Conditions2> listCond;
 	//private static List<Objet> listCont;
 
@@ -59,7 +60,7 @@ public class Jeu {
 	 * Initialise toutes les variables pour lancer la partie.
 	 */
 	public static void debutPartie(){
-		Univers univers = new Univers(1); // TODO récupérer depuis l'interface
+		univers = new Univers(1); // TODO récupérer depuis l'interface
 		historique = new Historique();
 		plateau = new Grille();
 		// TODO pour reduire la taille du main
@@ -217,11 +218,10 @@ public class Jeu {
 	 */
 	// TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
-    	plateau = new Grille();
-    	historique = new Historique();
+    	debutPartie();
     	// Variables définies grâce au menu d'affichage ->
-    	int nbJoueurs = 2;
-    	int nbPersoParJoueur = 2;
+    	//int nbJoueurs = 2;
+    	//int nbPersoParJoueur = 2;
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
     	List<String> xmlsGentils = new LinkedList<String>();
@@ -239,8 +239,6 @@ public class Jeu {
     	couleurs.add(Color.black);
     	
     	//ParserConditions p1 = new ParserConditions(fichiers);
-    	listCond = plateau.condparser(fichiers);
-    	listCont = plateau.objparser("objet.xml");
     	//ParserObjet p2 = new ParserObjet("ObjetsZombie.xml");
     	listCond = plateau.condparser(fichiers);
     	listCont = plateau.objparser("ObjetsZombie.xml");
