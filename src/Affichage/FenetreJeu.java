@@ -23,14 +23,16 @@ import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
+import Otomate.Objet;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
+
 import java.awt.Image;
 import java.io.File;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import javax.swing.JScrollPane;
 
 /**
@@ -79,6 +81,7 @@ public class FenetreJeu extends JFrame {
     public void charger() throws IOException {
     	
     	Grille g = Jeu.plateau;
+    	List<Objet> lo = Jeu.univers.getObjets();
     	List<$Personnage> persoL = new LinkedList<>();
     	Historique h = Jeu.historique;
     	List<Joueur> l = Jeu.joueurs;
@@ -137,7 +140,7 @@ public class FenetreJeu extends JFrame {
         });
         tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
-        pan_plateau = new AffichagePlateau(g,persoL);
+        pan_plateau = new AffichagePlateau(g,persoL,lo);
         pan_plateau.setBackground(Color.LIGHT_GRAY);
         scroll_plateau = new JScrollPane(pan_plateau);
         
