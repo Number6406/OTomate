@@ -17,12 +17,12 @@ use � { si arme = degat
 public class Objet {
 	
 	// Attributs
-	int id;
-	int type;
-	int use;
-	String name;
-	boolean passable;
-	String path;
+	private int id;
+	private int type;
+	private int use;
+	private String name;
+	private boolean passable;
+	private String path;
 	
 	// Constructeur
 	public Objet(int id, int type, int use, String name, boolean passable, String path) {
@@ -35,6 +35,10 @@ public class Objet {
 	}
 	
 	// Getteurs
+        public int getId() {
+            return id;
+        }
+        
 	public int getType() {
 		return type;
 	}
