@@ -126,6 +126,29 @@ public class Jeu {
 			}
 		}
 	}
+	
+	public void gereParalysie($Personnage P){
+		while(((Gentil)P).getParalysie() != 0){
+			
+		}
+	}
+	
+	public void effetsDrogue($Personnage P){
+		if(((Gentil)P).getEfdrogue() != 0){
+			if(((Gentil) P).getDrogue() == 3){
+				((Gentil) P).setVie(((Gentil) P).getVie()+5);
+				if (P.getVie() > P.getViemax()){
+					P.setVie(P.getViemax());
+				}
+			}
+			if(((Gentil)P).getDrogue() == 4)
+				P.setVie(P.getVie()-5);
+			if(((Gentil)P).getDrogue() == 5)
+				((Gentil)P).setParalysie(2);
+			if(((Gentil)P).getDrogue() == 6)
+				((Gentil)P).setParalysie(0);
+		}
+	}
 
 	/**
 	 * Fonction principale de Jeu
@@ -179,7 +202,7 @@ public class Jeu {
     			p = refPersos.get(i)%100;
     			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
         			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
-    				while (gentilperso.getParalysie()>0){
+    				/*while (gentilperso.getParalysie()>0){
     					if(gentilperso.getEfdrogue() != 0){
     						if(gentilperso.getDrogue() == 3){
     							gentilperso.setVie(gentilperso.getVie()+5);
@@ -207,10 +230,10 @@ public class Jeu {
     					((Gentil) joueurs.get(j).getPersonnagesI(p)).setEfdrogue(((Gentil) joueurs.get(j).getPersonnagesI(p)).getEfdrogue()-1);
     					System.out.println("gentilkijou");
     					Thread.sleep(200);
-    				}
-    				if (gentilperso.getParalysie()==0){
+    				}*/
+    				if (gentilperso.getParalysie()<1){
     					System.out.println("passe tour drogue ou drogue dissipe");
-    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(1);
+    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(joueurs.get(j).getPersonnagesI(p)).getParalysie()+1);
     				}
     				
     			}
