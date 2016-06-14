@@ -11,7 +11,7 @@ public class Conditions2 {
     /*
      *      { 0 : SP
     		{ 1 : N
-	   d €  { 2 : E
+	   d ï¿½  { 2 : E
     		{ 3 : S
     		{ 4 : O
 
@@ -19,7 +19,7 @@ public class Conditions2 {
 
        		{ 0 : mur
        		{ 1 : objet
-	type € 	{ 2 : bloque
+	type ï¿½ 	{ 2 : bloque
        		{ 3 : ennemi
        		{ 4 : chemin
  
@@ -48,7 +48,7 @@ public class Conditions2 {
     			switch(type){
     			
     			case 0:
-    				if(l.get(i).type==5 && l.get(i).passable==0) return true;
+    				if(l.get(i).type==5 && !(l.get(i).estPassable())) return true;
     				else return false;
     			
     			case 1:
@@ -56,7 +56,7 @@ public class Conditions2 {
     				else return false;
     			
     			case 2:
-    				if(l.get(i).passable==0) return true;
+    				if(!(l.get(i).estPassable())) return true;
     				return false;
     			
     			case 3:
@@ -77,7 +77,7 @@ public class Conditions2 {
     				return false;
     			
     			case 4:
-    				if(l.get(i).passable==1) return true;
+    				if(l.get(i).estPassable()) return true;
     				else return false;
         			
         		case 5:
