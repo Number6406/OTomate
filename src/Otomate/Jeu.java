@@ -188,6 +188,26 @@ public class Jeu {
 		}
 		return false;
 	}
+	
+	public static void tour($Personnage P, List<Conditions2> listCond, List<Objet> listCont) throws InterruptedException{
+		String tempHistorique;
+		if (P instanceof Gentil){
+			Gentil gentilperso=((Gentil) P);
+			if(soinInstantane(gentilperso) == false){
+    			gereParalysie(gentilperso, listCond, listCont);
+				if (gentilperso.getParalysie()<1){
+					System.out.println("passe tour drogue ou drogue dissipe");
+					((Gentil) P).setParalysie(((Gentil) P).getParalysie()+1);
+				}    				
+			}
+		}
+		else {
+			tempHistorique = P.jouer(listCond,plateau,listCont,joueurs);
+			historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
+			System.out.println("mechantkijou");
+			Thread.sleep(200);
+		}
+	}
 
 	/**
 	 * Fonction principale de Jeu
@@ -241,22 +261,7 @@ public class Jeu {
     		for(int i=0; i<refPersos.size(); i++) {
     			j = refPersos.get(i)/100;
     			p = refPersos.get(i)%100;
-    			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
-        			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
-        			if(soinInstantane(gentilperso) == false){
-	        			gereParalysie(gentilperso, listCond, listCont);
-	    				if (gentilperso.getParalysie()<1){
-	    					System.out.println("passe tour drogue ou drogue dissipe");
-	    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()+1);
-	    				}    				
-	    			}
-    			}
-    			else {
-    				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
-        			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
-        			System.out.println("mechantkijou");
-        			Thread.sleep(200);
-    			}
+    			tour(joueurs.get(j).getPersonnagesI(p), listCond, listCont);
     			System.out.println("FIN DE TOUR");
     			//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
