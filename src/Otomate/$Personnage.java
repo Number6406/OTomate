@@ -99,6 +99,13 @@ public abstract class $Personnage {
 	public BufferedImage getSprite() {
 		return this.sprite;
 	}
+        
+        public String getEffets() {
+            if (vie <= 0) {
+                return "Mort ";
+            }
+            return "";
+        }
 
 	// Setteurs
 
