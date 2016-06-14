@@ -58,7 +58,7 @@ fprintf(f,"%s\n",deb);
         affiche_dejaEcrit(current);
         To[current].id=current+1;
         printf("\nPour quitter : '-1' lors de type\n\n");
-        printf("Recap : type(1:arme;2:consommable;3:antidote?;4:terrain;5:mur)\n");
+        printf("Recap : type(1:arme 2:consommable 3:antidote 4:terrain 5:mur 6:seringue 7:destructible 8:fouillable)\n");
         printf("        use=degat si arme ; use= heal si consommable\n\n");
         printf("direction=");
         scanf(" %d",&rep);
