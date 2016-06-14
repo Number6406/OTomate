@@ -5,6 +5,11 @@ import java.util.List;
 
 import Actions.$Action;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public abstract class $Personnage {
 
@@ -100,6 +105,14 @@ public abstract class $Personnage {
 		return this.sprite;
 	}
         
+        public void setSprite() {
+            try {
+                ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
+            } catch (IOException ex) {
+                Logger.getLogger($Personnage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         public String getEffets() {
             if (vie <= 0) {
                 return "Mort ";
@@ -108,7 +121,10 @@ public abstract class $Personnage {
         }
 
 	// Setteurs
-
+        public void setNom(String nom) {
+            this.nom = nom;
+        }
+        
 	public void setEtat(int symbole) {
 		if (a.transitions[symbole][etat] != 0)
 			etat = a.transitions[symbole][etat];

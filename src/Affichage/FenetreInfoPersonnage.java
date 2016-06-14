@@ -11,6 +11,11 @@ import Otomate.Gentil;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,14 +35,16 @@ public class FenetreInfoPersonnage extends JDialog  {
         JPanel entete = new JPanel(new BorderLayout());
         this.add(entete, BorderLayout.NORTH);
         
-        JPanel infoEntete = new JPanel(new GridLayout(1,3));
+        JPanel infoEntete = new JPanel(new GridLayout(3,1));
         // #TODO :Set le sprite du perso dans la partie gauche !//
+        
+        
         entete.add(infoEntete);
-        infoEntete.add(new JLabel("Nom : " + p.getNomHtml()));
+        infoEntete.add(new JLabel("<html>"+p.getNomHtml()+"</html>"));
         infoEntete.add(new JLabel("PV : " + p.getVie() + "/" + p.getViemax()));
         infoEntete.add(new JLabel("Effets : " + p.getEffets()));
         
-        JPanel items = new JPanel(new GridLayout(1,3));
+        JPanel items = new JPanel(new GridLayout(3,1));
         this.add(items, BorderLayout.CENTER);
         if(p instanceof Gentil) {
             items.add(new JLabel("Arme : " + ((Gentil) p).getArme()));
@@ -55,6 +62,8 @@ public class FenetreInfoPersonnage extends JDialog  {
         JFrame f = new FenetreMenu();
         Gentil p = new Gentil();
         p.setCouleur(Color.red);
+        p.setNom("BOB");
+        p.setSprite();
         p.setVie(200);
         FenetreInfoPersonnage fi = new FenetreInfoPersonnage(f, p);
     }
