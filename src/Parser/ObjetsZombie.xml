@@ -53,7 +53,7 @@
 		<use>0</use>
 		<name>RONCES</name>
 		<passage>0</passage>
-		<path>../Graphics/Tiles/Zombie/herbe.jpg</path>
+		<path>../Graphics/Tiles/Zombie/grass.png</path>
 	</objet>
 	<objet>
 		<id>7</id>
