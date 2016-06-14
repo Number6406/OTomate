@@ -26,8 +26,8 @@ public class AffichagePlateau extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int TAILLECASE = 32;
-	private int MINCASE=32;
+	private int TAILLECASE = 24;
+	private int MINCASE=24;
 	
 	private Grille gr;
 	private List<$Personnage> perso;
@@ -45,7 +45,7 @@ public class AffichagePlateau extends JPanel {
             try {
                 for(int i=0; i<lo.size(); i++) {
                     BufferedImage img;
-                    System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
+           //         System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
                     System.out.println(lo.get(i).getPath());
                     img = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPath()).getFile())); //Version Linux
                     tiles.add(img);
