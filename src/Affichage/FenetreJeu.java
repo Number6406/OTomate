@@ -201,17 +201,14 @@ public class FenetreJeu extends JFrame {
         pan_interraction.add(b_pause);
         pan_interraction.add(b_fast);
         b_fast.addActionListener((ActionEvent e) -> { // Listener pour la vitesse du jeu
-            if (Jeu.period <= 250) { // Si vitesse maximale, on revient à une vitesse minimale
-                Jeu.period = 1000;
-                b_fast.setIcon(fast2);
-            } else if (Jeu.period <= 500) { // Vitesse intermédiaire vers vitesse max
-                Jeu.period = 250;
+            Jeu.changeSpeed();
+            if (Jeu.period <= Jeu.vitesse1) {
                 b_fast.setIcon(fast1);
-            } else { // Vitesse minimale vers intermédiaire
-                Jeu.period = 500;
+            } else if (Jeu.period <= Jeu.vitesse2) {
+                b_fast.setIcon(fast2);
+            } else {
                 b_fast.setIcon(fast3);
             }
-            System.out.println("Vitesse de jeu : " + Jeu.period);
         });
         pan_interraction.add(b_step);
 
