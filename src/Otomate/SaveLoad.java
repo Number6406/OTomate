@@ -27,6 +27,11 @@ public final class SaveLoad {
 		this.jeu = jeu;
 		this.name = name;
 	}
+	
+	SaveLoad(String nam) {
+		jeu = new Jeu();
+		name = nam;
+	}
 
 	@SuppressWarnings({ "static-access", "resource" })
 	public void save() throws IOException {
@@ -35,9 +40,9 @@ public final class SaveLoad {
 		int currentChar = 0;
 
 		int i, j;
-		fin.write(((Integer) jeu.plateau.tailleX)); // tailleX
+		fin.write((jeu.plateau.tailleX)); // tailleX
 		fin.write(new Character('\n'));
-		fin.write(((Integer) jeu.plateau.tailleY)); // tailleY
+		fin.write((jeu.plateau.tailleY)); // tailleY
 		fin.write((new Character('\n')));
 		for (j = 0; j < jeu.plateau.tailleY; j++) {
 			for (i = 0; i < jeu.plateau.tailleX; i++) {
@@ -61,9 +66,10 @@ public final class SaveLoad {
 			fin.write(((Integer) jeu.joueurs.get(i).getCouleur().getBlue()));
 			fin.write(new Character(' '));
 
-			fin.write(new Character(':'));
+			fin.write(new Character(':'));/*
+			System.out.println(jeu.joueurs.get(i).getName());
 			fin.write(jeu.joueurs.get(i).getName().getBytes());
-			fin.write(new Character('\0'));
+			fin.write(new Character('\0'));*/
 
 			fin.write(jeu.joueurs.get(i).getSizePersonnages());
 			fin.write(new Character('\\'));
@@ -113,9 +119,11 @@ public final class SaveLoad {
 
 			}
 
-			currentChar++;
+			//currentChar++;
 			fin.write('\n');
 		}
+		fin.close();
+		System.out.println("SAVE.FINISHED\n");
 	}
 
 	public String lire(FileInputStream fout, char fin) throws IOException {
@@ -133,8 +141,8 @@ public final class SaveLoad {
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
-		jeu.plateau.setTailleX(Integer.getInteger(lire(fout, '\n')));
-		jeu.plateau.setTailleY(Integer.getInteger(lire(fout, '\n')));
+		System.out.println(Integer.getInteger(lire(fout, '\n')));
+		jeu.plateau = new Grille(Integer.getInteger(lire(fout, '\n')), Integer.getInteger(lire(fout, '\n')));
 		for (int j = 0; j < jeu.plateau.tailleX; j++) {
 			for (int i = 0; i < jeu.plateau.tailleY; i++) {
 				jeu.plateau.set(Integer.getInteger(lire(fout, ':')), i, j);
@@ -152,7 +160,7 @@ public final class SaveLoad {
 			nouv.setCouleur(new Color(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' ')),
 					Integer.getInteger(lire(fout, ' '))));
 			fout.skip(1);
-			nouv.setName(lire(fout, '\0'));
+			//nouv.setName(lire(fout, '\0'));
 			nbPers = Integer.getInteger(lire(fout, '\\'));
 			nouv.setMechant(Integer.getInteger(lire(fout, ';')) == 1);
 			l = new LinkedList<$Personnage>();
@@ -183,6 +191,8 @@ public final class SaveLoad {
 			}
 			jeu.joueurs.add(nouv);
 		}
+		fout.close();
+		System.out.println("LOAD.FINISHED\n");
 	}
 
 }

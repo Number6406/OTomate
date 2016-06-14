@@ -54,11 +54,11 @@ public class Grille {
 		Grille.nbetats = nbetats;
 	}
 
-	public void setTailleX(Integer integer) {
+	public void setTailleX(int integer) {
 		tailleX = integer;
 	}
 	
-	public void setTailleY(Integer integer) {
+	public void setTailleY(int integer) {
 		tailleY = integer;
 	}
 
@@ -86,7 +86,7 @@ public class Grille {
     
     /**
      * POUR DEBUG
-     * Crée une grille carrée de taille 16*16
+     * Crée une grille carrée de taille 50*50
      */
     public Grille(){
     	g = new Case[50][50];
@@ -205,7 +205,7 @@ public class Grille {
         return res;
     }
     
-    public void initialisergrille(List<Joueur> l) {
+    public static void initialisergrille(List<Joueur> l) {
         int i,j,k;
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){

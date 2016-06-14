@@ -110,6 +110,7 @@ public class Jeu {
 		int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
 		for (int i = 0; i < xmls.size(); i++) {
 			//System.out.println("nZombie = "+nZombie);
+			System.out.println(i);
 			if (i == nZombie) {
 				//System.out.println("test");
 				//System.out.println(i);

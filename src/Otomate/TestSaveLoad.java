@@ -20,7 +20,7 @@ public class TestSaveLoad {
 		// Variables définies grâce au menu d'affichage ->
 		int nbJoueurs = 2;
 		int nbPersoParJoueur = 2;
-		int nZombie = 1; // Variable possiblement tirée au sort
+		int nZombie = 2; // Variable possiblement tirée au sort
 		int nbPersoParZombie = 2;
 		List<String> xmlsGentils = new LinkedList<String>();
 		String fichiers = new File("auto.xml").toString();
@@ -33,12 +33,14 @@ public class TestSaveLoad {
 		List<Conditions2> listCond = new LinkedList<>();
 		List<Objet> listCont = new LinkedList<>();
 		List<Color> couleurs = new LinkedList<>();
+		couleurs.add(Color.RED);
+		couleurs.add(Color.BLUE);
 
 		ParserConditions p1 = new ParserConditions(fichiers);
-		ParserObjet p2 = new ParserObjet("objet.xml");
+		//ParserObjet p2 = new ParserObjet("objet.xml");
 		listCond = jeu.plateau.condparser(fichiers);
 		// System.out.println("Encore avant : " + p1.list.size());
-		listCont = jeu.plateau.objparser("objet.xml");
+		//listCont = jeu.plateau.objparser("objet.xml");
 		// <- Fin variables
 		int j, p;
 		jeu.initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
@@ -46,5 +48,7 @@ public class TestSaveLoad {
 		Grille.initialisergrille(jeu.joueurs);
 		SaveLoad s = new SaveLoad(jeu, "TAMER.txt");
 		s.save();
+		SaveLoad suu = new SaveLoad("TAMER.txt");
+		suu.load();
 	}
 }
