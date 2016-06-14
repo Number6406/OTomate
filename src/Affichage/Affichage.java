@@ -7,6 +7,7 @@ import Otomate.Joueur;
 import Otomate.Mechant;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
+import Otomate.historique.Tour;
 import Otomate.$Personnage;
 
 import java.awt.Color;
@@ -82,6 +83,10 @@ public class Affichage {
 		   jeu = new FenetreJeu();
 		   jeu.charger();
 		   
+	  }
+	  
+	  public static void ajouterTour(Tour t){
+		  jeu.ajouterTourHistorique(t);
 	  }
     
 }

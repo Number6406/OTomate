@@ -302,7 +302,7 @@ public class Jeu {
 		int j,p;
 		
 		melange(); // Mélange la liste des personnages
-		historique.addTour(); // Ajout un tour àl'historique
+		historique.addTour(); // Ajout un tour à l'historique
 		
 		
 		for(int i=0; i<refPersos.size(); i++) {
@@ -314,6 +314,7 @@ public class Jeu {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			Affichage.ajouterTour(historique.ceTour());
 			//System.out.println("FIN DE TOUR");
 		}
 		// TODO enlever les morts.
