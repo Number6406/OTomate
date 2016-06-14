@@ -156,7 +156,6 @@ public class Jeu {
 		for(i=0;i<max;i++){
 			saigne(lp.get(i));
 			gereParalysie(lp.get(i),listCond,listCont);
-			effetsDrogue(lp.get(i));
 		}
 	}
 	
