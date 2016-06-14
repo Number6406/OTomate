@@ -269,7 +269,7 @@ public class Grille {
     	//System.out.println("on retourne une liste de taille "+res.size());
     	return res;
     }
-    
+ // TODO CHANGER LES TRUCS PARKE 5 ICI WESH
 //Retourne une liste de 6 entiers repr�sentant les differentes conditions
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();

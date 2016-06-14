@@ -17,10 +17,15 @@ public class testActions {
 		$Personnage A = new Gentil("AutomateenXML.xml",Color.cyan);
 		$Personnage B = new Gentil("AutomateenXML.xml",Color.pink);
 		
-		ParserAction P = new ParserAction("ActionsHumain.xml");
-		List<$Action> la = P.list;
-		System.out.println("SIZE : " + la.size());
-		for($Action Ac : la){
+		ParserAction Pz = new ParserAction("ActionsHumain.xml");
+		List<$Action> laz = Pz.list;
+		ParserAction Ph = new ParserAction("ActionsZombie.xml");
+		List<$Action> lah = Ph.list;
+		System.out.println("SIZE : " + lah.size());
+		for($Action Ac : lah){
+			if(Ac!=null) System.out.println(Ac.toString());
+		}
+		for($Action Ac : laz){
 			if(Ac!=null) System.out.println(Ac.toString());
 		}
 		
