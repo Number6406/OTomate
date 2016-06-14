@@ -15,12 +15,15 @@ public class XMLObjet extends DefaultHandler{
 	boolean btype=false;
 	boolean bname=false;
 	boolean bpas=false;
+	boolean bpath=false;
+	
 	
 	int id;
 	int use;
 	int type;
 	String name;
-	int passable;
+	boolean passable;
+	String path;
 	Objet c;
 	List<Objet> list= new LinkedList<Objet>();
 	
@@ -38,6 +41,8 @@ public class XMLObjet extends DefaultHandler{
 			    	  bname=true;
 			      } else if (qName.equalsIgnoreCase("passage")){
 			    	  bpas=true;
+			      } else if (qName.equalsIgnoreCase("path")){
+			    	  bpath=true;
 			      }
 			   }
 
@@ -45,13 +50,12 @@ public class XMLObjet extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("objet")) {
-			         System.out.println("End Element :" + name + " " + id +" "+ type + " "+ use + " " + passable);
+			         System.out.println("End Element :" + name + " " + id +" "+ type + " "+ use + " " + passable + " " + path);
 			      }
 			   }
 
 			   @Override
-			   public void characters(char ch[], 
-			      int start, int length) throws SAXException {
+			   public void characters(char ch[], int start, int length) throws SAXException {
 				   String lecture = new String(ch,start,length);
 				   	if (bid){
 				   		id=Integer.parseInt(lecture);
@@ -66,12 +70,15 @@ public class XMLObjet extends DefaultHandler{
 				  } else if (btype) {
 					 	type=Integer.parseInt(lecture);
 					 	btype=false;
-				  }
-				  else if (bpas){
-					   passable=Integer.parseInt(lecture);
-					   c=new Objet(id,type,use,name,passable);
-					   list.add(c);
+				  }else if (bpas){
+					   passable=(Integer.parseInt(lecture)==1);
 					   bpas=false;
+				  }
+				  else if (bpath){
+					   path=lecture;
+					   c=new Objet(id,type,use,name,passable,path);
+					   list.add(c);
+					   bpath=false;
 				  }
 			   }
 			   
