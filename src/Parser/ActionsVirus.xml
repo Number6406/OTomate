@@ -1,0 +1,82 @@
+<parse>
+	<action>
+		<id>0</id>
+		<succes>est en pause</succes>
+		<echec>n'arrive pas à rien faire</echec>
+	</action>
+	<action>
+		<id>1</id>
+		<succes>avance vers le nord</succes>
+		<echec>tente d'avancer au nord mais est bloqué</echec>
+	</action>
+	<action>
+		<id>2</id>
+		<succes>évolue vers le sud</succes>
+		<echec>tente d'avancer vers le sud</echec>
+	</action>
+	<action>
+		<id>3</id>
+		<succes>avance à l'est</succes>
+		<echec>tente d'avancer vers l'est</echec>
+	</action>
+	<action>
+		<id>4</id>
+		<succes>va à l'ouest</succes>
+		<echec>ne peut pas aller à l'ouest</echec>
+	</action>
+	<action>
+		<id>5</id>
+		<succes>pirate le robot au nord</succes>
+		<echec>essaye de pirater au nord, mais il n'y a personne</echec>
+	</action>
+	<action>
+		<id>6</id>
+		<succes>pirate le robot au sud</succes>
+		<echec>essaye de pirater au sud, mais echoue</echec>
+	</action>
+	<action>
+		<id>7</id>
+		<succes>pirate le robot a l'est</succes>
+		<echec>essaye de pirater a l'est, mais echoue</echec>
+	</action>
+	<action>
+		<id>8</id>
+		<succes>pirate le robot a l'ouest</succes>
+		<echec>essaye de pirater a l'ouest, mais echoue</echec>
+	</action>
+	<action>
+		<id>9</id>
+		<succes>absorbe un composant</succes>
+		<echec>: il n'y a rien à absorber</echec>
+	</action>
+	<action>
+		<id>10</id>
+		<succes>piége un bout de circuit</succes>
+		<echec>essaye de pieger quelque chose mais il ne peut pas, c'est un virus</echec>
+	</action>
+	<action>
+		<id>11</id>
+		<succes>repare des bouts de code</succes>
+		<echec>essaye de réparer son code et échoue. C'est un virus</echec>
+	</action>
+	<action>
+		<id>12</id>
+		<succes>se soigne</succes>
+		<echec>essaye de se soigner mais il ne sait pas ce que cela veut dire</echec>
+	</action>
+	<action>
+		<id>13</id>
+		<succes>se rapproche des robots</succes>
+		<echec>essaye de se rapprocher des robots mais il n'y arrive pas</echec>
+	</action>
+	<action>
+		<id>14</id>
+		<succes>détruit l'obstacle</succes>
+		<echec>essaye de détruire quelque chose de plus robuste que lui</echec>
+	</action>
+	<action>
+		<id>15</id>
+		<succes>fouille un tas d'objets à la recherche de trésors</succes>
+		<echec>veux fouiller mais échoue</echec>
+	</action>
+</parse>
