@@ -55,19 +55,16 @@ public class Jeu {
 		return true; // Tout les gentils n'ont plus de personnages
 	}
 	
-<<<<<<< HEAD
-=======
 	/**
 	 * Initialise toutes les variables pour lancer la partie.
 	 */
 	public static void debutPartie(){
-		univers = new Univers(1); // TODO récupérer depuis l'interface
+		Univers univers = new Univers(1); // TODO récupérer depuis l'interface
 		historique = new Historique();
 		plateau = new Grille();
 		// TODO pour reduire la taille du main
 	}
 	
->>>>>>> master
 	/**
 	 * Remplit la table de reference des personnages (avec des entiers) pour la mélanger ensuite
 	 * 101 signifie Joueur 1 personnage 01.
@@ -196,17 +193,14 @@ public class Jeu {
     	couleurs.add(Color.black);
     	
     	ParserConditions p1 = new ParserConditions(fichiers);
-<<<<<<< HEAD
-    	ParserObjet p2 = new ParserObjet("objet.xml");
+    	//ParserObjet p2 = new ParserObjet("objet.xml");
     	listCond = plateau.condparser(fichiers);
     	listCont = plateau.objparser("objet.xml");
-=======
     	ParserObjet p2 = new ParserObjet("ObjetsZombie.xml");
     	//System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
     	listCond = plateau.condparser(fichiers);
     	//System.out.println("Encore avant : " + p1.list.size());
     	listCont = plateau.objparser("ObjetsZombie.xml");
->>>>>>> master
     	// <- Fin variables
     	int j,p;
     	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
