@@ -76,6 +76,7 @@ public class Ramasser extends $Action {
 							((Gentil) p).setDrogue(8);
 						}
 						drogue = true;
+						Grille.Pos(p.getPosition()).setValeur(0);
 					}
 				}
 			}
