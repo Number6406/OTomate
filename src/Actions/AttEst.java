@@ -20,7 +20,7 @@ public class AttEst extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(2) == 7) { // 7 = ennemi a l'est et 3 regard a l'est
+		if (l.get(2) == 7) { // 7 = ennemi a l'est et 2 regard a l'est
 			$Personnage e = null;
 			Coordonnees card = p.getPosition();
 			card.setX(card.getX() + 1);
