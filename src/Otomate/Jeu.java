@@ -59,6 +59,34 @@ public class Jeu {
 		historique = new Historique();
 		plateau = new Grille();
 		// TODO pour reduire la taille du main
+
+    	// Variables définies grâce au menu d'affichage ->
+    	//int nbJoueurs = 2;
+    	//int nbPersoParJoueur = 2;
+    	int nZombie = 1;				// Variable possiblement tirée au sort
+    	int nbPersoParZombie = 2;
+    	List<String> xmlsGentils = new LinkedList<String>();
+        xmlsGentils.add("AutomateenXML.xml");
+    	List<String> xmlsMechants = new LinkedList<String>();
+        xmlsMechants.add("AutomateenXML.xml");
+    	List<List<String>> xmls = new LinkedList<>();
+    	xmls.add(xmlsGentils);
+    	xmls.add(xmlsMechants);
+    	List<Color> couleurs = new LinkedList<>();
+    	couleurs.add(Color.red);
+    	couleurs.add(Color.black);
+    	
+    	// <- Fin variables
+    	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
+    	refPersos = new LinkedList<Integer>();
+    	//String tempHistorique;
+    	plateau.initialisergrille(joueurs);
+    	try {
+			Affichage.charger();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -243,6 +271,7 @@ public class Jeu {
 			}
 			System.out.println("FIN DE TOUR");
 		}
+		// TODO enlever les morts.
 	}
 	
 	/**
@@ -254,39 +283,10 @@ public class Jeu {
 	// TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
     	debutPartie(1);
-    	// Variables définies grâce au menu d'affichage ->
-    	//int nbJoueurs = 2;
-    	//int nbPersoParJoueur = 2;
-    	int nZombie = 1;				// Variable possiblement tirée au sort
-    	int nbPersoParZombie = 2;
-    	List<String> xmlsGentils = new LinkedList<String>();
-        String fichiers = new File("conditions.xml").toString();
-        xmlsGentils.add("AutomateenXML.xml");
-    	List<String> xmlsMechants = new LinkedList<String>();
-        xmlsMechants.add("AutomateenXML.xml");
-    	List<List<String>> xmls = new LinkedList<>();
-    	xmls.add(xmlsGentils);
-    	xmls.add(xmlsMechants);
-    	List<Conditions2> listCond = new LinkedList<>();
-    	List<Objet> listCont = new LinkedList<>();
-    	List<Color> couleurs = new LinkedList<>();
-    	couleurs.add(Color.red);
-    	couleurs.add(Color.black);
-    	
-    	//ParserConditions p1 = new ParserConditions(fichiers);
-    	//ParserObjet p2 = new ParserObjet("ObjetsZombie.xml");
-    	listCond = plateau.condparser(fichiers);
-    	listCont = plateau.objparser("ObjetsZombie.xml");
-    	// <- Fin variables
-    	int j,p;
-    	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
-    	refPersos = new LinkedList<Integer>();
-    	//String tempHistorique;
-    	plateau.initialisergrille(joueurs);
-    	Affichage.charger();
     	//int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie()){
     		tour();    		
     	}
+    	// TODO Annoncer gagnant
     }
 }
