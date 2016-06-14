@@ -191,6 +191,14 @@ public class Jeu {
 		return false;
 	}
 	
+	public static void veriftransfo($Personnage P, Mechant E){
+		if(P instanceof Gentil){
+			if(P.getVie() == 0 && ((Gentil) P).getInfecte() == true){
+				P = new Mechant(E);
+			}
+		}
+	}
+	
 	public static void tour($Personnage P, List<Conditions2> listCond, List<Objet> listCont) throws InterruptedException{
 		String tempHistorique;
 		if (P instanceof Gentil){

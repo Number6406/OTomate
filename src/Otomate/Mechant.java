@@ -19,7 +19,7 @@ public class Mechant extends $Personnage {
             }
 	}
 
-	public Mechant($Personnage cpy) {
+	public Mechant(Mechant cpy) {
 		super(cpy);
 		vie = viemax;
 	}

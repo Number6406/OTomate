@@ -13,8 +13,8 @@ public class Grille {
     private static Case[][] g;
     private static List<Coordonnees> coinsAutomates;
     private static List<Integer> nbetats;
-    public int tailleX;
-    public int tailleY;
+    public static int tailleX;
+    public static int tailleY;
     
     
     // Getteurs
@@ -98,6 +98,42 @@ public class Grille {
     			g[i][j] = new Case();
     		}
     	}
+    }
+    
+    public Grille(List<Joueur> l){
+    	int i,j;
+        List<$Personnage> list = new LinkedList<>();
+        for(i=0; i<l.size(); i++){
+        	for(j=0;j<l.get(i).getSizePersonnages();j++){
+        		list.add(l.get(i).getPersonnagesI(j));    	
+        	}
+        	
+            i += l.get(i).getSizePersonnages();
+        }
+        List<Integer> taille = new LinkedList<Integer>();
+        for(i=0; i<l.size(); i++){
+            for(j=0; j<l.get(i).getSizePersonnages(); j++){
+            	taille.add(l.get(i).getPersonnagesI(j).nbEtat());
+            }
+        }
+        setNbetats(taille);
+        int maxi = max(taille);
+        int dimh = maxi * list.size();
+        if(dimh<50)
+            dimh = 50;
+        maxi = l.get(0).getPersonnagesI(0).a.nbconditions();
+        int dimv = maxi * list.size();
+        if(dimv<50)
+            dimv = 50;
+            
+      //cration die la map dimh/dimv avec minimum 150/150
+        
+        g = new Case[dimh][dimv];
+        for(i=0;i<dimh;i++){
+        	for(j=0;j<dimv;j++){
+        		g[i][j]=new Case();
+        	}
+        }
     }
     
     //Méthodes
@@ -206,50 +242,24 @@ public class Grille {
     }
     
     public static void initialisergrille(List<Joueur> l) {
-        int i,j,k;
-        List<$Personnage> list = new LinkedList<>();
-        for(i=0; i<l.size(); i++){
-        	for(j=0;j<l.get(i).getSizePersonnages();j++){
-        	list.add(l.get(i).getPersonnagesI(j));    	
-        	}
-        	
-            i += l.get(i).getSizePersonnages();
-        }
-        List<Integer> taille = new LinkedList<Integer>();
-        for(i=0; i<l.size(); i++){
-            for(j=0; j<l.get(i).getSizePersonnages(); j++){
-                for(k=0; k<j; k++){
-                    taille.add(l.get(i).getPersonnagesI(k).nbEtat());
-                }
-            }
-        }
-        setNbetats(taille);
-        int maxi = max(taille);
-        int dimh = maxi * list.size();
-        if(dimh<50)
-            dimh = 50;
-        maxi = l.get(0).getPersonnagesI(0).a.nbconditions();
-        int dimv = maxi * list.size();
-        if(dimv<50)
-            dimv = 50;
-            
-      //cration die la map dimh/dimv avec minimum 150/150
-        
-        g = new Case[dimh][dimv];
-        for(i=0;i<dimh;i++){
-        	for(j=0;j<dimv;j++){
-        		g[i][j]=new Case();
-        	}
-        }
-        
-        for(i=0; i<dimh; i++){
-            for(j=0; j<dimv; j++){
+    	int i,j,k;
+        for(i=0; i<tailleX; i++){
+            for(j=0; j<tailleY; j++){
                 k = random(0, 16);        //car 10 actions possibles numrotes de 1  10 
                 g[i][j].element = k;
             }
         }
+
+        List<$Personnage> list = new LinkedList<>();
+        for(i=0; i<l.size(); i++){
+        	for(j=0;j<l.get(i).getSizePersonnages();j++){
+        		list.add(l.get(i).getPersonnagesI(j));    	
+        	}
+        	
+            i += l.get(i).getSizePersonnages();
+        }
         
-        coinsAutomates = goAutomates(list, dimh, dimv);
+        coinsAutomates = goAutomates(list, tailleX, tailleY);
         Placements(l);
     }
     
