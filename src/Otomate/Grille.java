@@ -9,20 +9,7 @@ import Parser.ParserObjet;
 
 public class Grille {
 
-	/**
-	 * Fonction qui renvoie un enier aléatoire entre deux bornes
-	 * @param min
-	 * @param max
-	 * @return un entier aléatoire entre min et max
-	 */
-	public static int random(int min, int max){
-    	Random r = new Random();
-    	int k = min + r.nextInt(max - min);
-
-    	return k;
-    }
-    
-    //Attributs
+	//Attributs
     private static Case[][] g;
     private static List<Coordonnees> coinsAutomates;
     private static List<Integer> nbetats;
@@ -66,7 +53,19 @@ public class Grille {
 	public static void setNbetats(List<Integer> nbetats) {
 		Grille.nbetats = nbetats;
 	}
-    
+
+	public void setTailleX(Integer integer) {
+		tailleX = integer;
+	}
+	
+	public void setTailleY(Integer integer) {
+		tailleY = integer;
+	}
+
+	public void setP(boolean b, int i, int j) {
+		g[i][j].setPiegee(b);
+	}
+
     // Constructeur
     /**
      * Crée une grille de taille totale x*y
@@ -103,6 +102,34 @@ public class Grille {
     
     //Méthodes
     
+    /**
+	 * Fonction qui renvoie un enier aléatoire entre deux bornes
+	 * @param min
+	 * @param max
+	 * @return un entier aléatoire entre min et max
+	 */
+	public static int random(int min, int max){
+    	Random r = new Random();
+    	int k = min + r.nextInt(max - min);
+
+    	return k;
+    }
+
+    /**
+     * Renvoie l'entier maximal d'une liste d'entiers
+     * @param l, une liste d'entier
+     * @return le maximum de la liste
+     */
+    public static int max(List<Integer> l){
+        int fin = l.size();
+        int i, m=0;
+        for(i=0; i<fin; i++){
+            if(m<l.get(i))
+                m=l.get(i);
+        }
+        return m;
+    }
+	
     //Place les automates au bon endroit sur la map
     public static void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
@@ -178,21 +205,6 @@ public class Grille {
         return res;
     }
     
-    /**
-     * Renvoie l'entier maximal d'une liste d'entiers
-     * @param l, une liste d'entier
-     * @return le maximum de la liste
-     */
-    public static int max(List<Integer> l){
-        int fin = l.size();
-        int i, m=0;
-        for(i=0; i<fin; i++){
-            if(m<l.get(i))
-                m=l.get(i);
-        }
-        return m;
-    }
-    
     public void initialisergrille(List<Joueur> l) {
         int i,j,k;
         List<$Personnage> list = new LinkedList<>();
@@ -241,21 +253,36 @@ public class Grille {
         Placements(l);
     }
     
-//Retourne une liste de condtions a partir du parser
+/**
+ * Retourne une liste de condtions a partir du parser
+ * @param filename
+ * @return
+ */
     public List<Conditions2> condparser(String filename){
     	ParserConditions P = new ParserConditions(filename);
     	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
-//Retourne une liste d'objet a partir du parser
+/**
+ * Retourne une liste d'objet a partir du parser
+ * @param filename
+ * @return
+ */
     public List<Objet> objparser(String filename){
     	ParserObjet P = new ParserObjet(filename);
     	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
-//Retourne la liste de booleen indiquant les conditions possibles
+/**
+ * Retourne la liste de booleen indiquant les conditions possibles
+ * @param p
+ * @param lc
+ * @param lo
+ * @param lj
+ * @return
+ */
     public List<Boolean> recupcond($Personnage p, List<Conditions2> lc, List<Objet> lo, List<Joueur> lj){
     	List<Boolean> res = new LinkedList<Boolean>();
     	int s = lc.size();
@@ -270,7 +297,12 @@ public class Grille {
     	return res;
     }
  // TODO CHANGER LES TRUCS PARKE 5 ICI WESH
-//Retourne une liste de 6 entiers repr�sentant les differentes conditions
+/**
+ * Retourne une liste de 6 entiers repr�sentant les differentes conditions
+ * @param p
+ * @param l
+ * @return
+ */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
     	System.out.println("taille debut : "+l.size() );
@@ -323,6 +355,12 @@ public class Grille {
     	return listcond;
     }
     
+    /**
+     * 
+     * @param p
+     * @param l
+     * @return
+     */
     public List<Integer> actionsPossibles($Personnage p, List<Integer> l){
     	List<Integer> la = new LinkedList<>();
     	int i, s = l.size();
@@ -337,6 +375,11 @@ public class Grille {
     	return la;
     }
     
+    /**
+     * 
+     * @param l
+     * @return
+     */
     public $Action takeOne(List<Integer> l){
         $Action a = null;
         if(l.isEmpty() == true){
@@ -401,16 +444,4 @@ public class Grille {
         }
     	A.todo(l,P,list, this);
     }
-
-	public void setTailleX(Integer integer) {
-		tailleX = integer;
-	}
-	
-	public void setTailleY(Integer integer) {
-		tailleY = integer;
-	}
-
-	public void setP(boolean b, int i, int j) {
-		g[i][j].setPiegee(b);
-	}
 }

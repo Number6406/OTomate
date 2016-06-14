@@ -1,64 +1,75 @@
 package Otomate;
 /*
- * b € [0,1] € |N
+ * b ï¿½ [0,1] ï¿½ |N
 
 i < iMax
 
     	{ 1 : arme
-type €  { 2 : consommable
+type ï¿½  { 2 : consommable
     	{ 3 : antidote ?
     	{ 4 : terrain
     	{ 5 : mur
 
-use € { si arme = degat
+use ï¿½ { si arme = degat
     { si consommable = regen
  */
 
 public class Objet {
-int id;
-int type;
-int use;
-String name;
-int passable;
+	
+	// Attributs
+	int id;
+	int type;
+	int use;
+	String name;
+	int passable;
+	String path;
+	
+	// Constructeur
+	public Objet(int id, int type, int use, String name, int passable) {
+		this.id = id;
+		this.type = type;
+		this.use = use;
+		this.name = name;
+		this.passable = passable;
+	}
+	
+	// Getteurs
+	public int getType() {
+		return type;
+	}
 
-public Objet(int id,int type,int use,String name, int passable){
-	this.id=id;
-	this.type=type;
-	this.use=use;
-	this.name=name;
-	this.passable=passable;
-}
+	public int getUse() {
+		return use;
+	}
 
-public int getType(){
-	return type;
-}
+	public String getName() {
+		return name;
+	}
 
-public int getUse(){
-	return use;
-}
+	public int getPassable() {
+		return passable;
+	}
+	
+	public String getPath(){
+		return path;
+	}
+	
+	
+	// Setteurs
+	public void setType(int i) {
+		type = i;
+	}
 
-public String getName(){
-	return name;
-}
+	public void setUse(int i) {
+		use = i;
+	}
 
-public int getPassable(){
-	return passable;
-}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-public void setType(int i){
-	type=i;
-}
-
-public void setUse(int i){
-	use=i;
-}
-
-public void setName(String name){
-	this.name=name;
-}
-
-public void setPassable(int i){
-	passable=i;
-}
+	public void setPassable(int i) {
+		passable = i;
+	}
 
 }
