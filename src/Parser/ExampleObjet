@@ -4,19 +4,22 @@
 <use>h</use>
 <name>NOM</name>
 <passage>b</passage>
+<path>p</path>
 </objet>
 
-b € [0,1] € |N
+b ï¿½ [0,1] ï¿½ |N
 
 i < iMax
 
     { 1 : arme
-t € { 2 : consommable
+t ï¿½ { 2 : consommable
     { 3 : seringue
     { 4 : terrain.
     { 5 : mur
     { 6 : destructible
     { 7 : fouillable
 
-h € { si arme = degat
+h ï¿½ { si arme = degat
     { si consommable = regen
+    
+p le chemin de l'image de l'objet

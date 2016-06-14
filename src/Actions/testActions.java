@@ -7,6 +7,7 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.Objet;
 import Parser.ParserAction;
@@ -36,9 +37,8 @@ public class testActions {
 		
 		
 		List<$Personnage> listPerso = new ArrayList<>();
-		*/
-		List<Objet> listContenus = G.objparser("ObjetsZombie.xml");
-		System.out.println("SIZE :" + listContenus.size());
+		*/		
+		Jeu.debutPartie();
 		/*
 		List<Boolean> lc = G.recupcond(A, G.condparser("conditions.xml") ,listContenus,listJoueurs);
 

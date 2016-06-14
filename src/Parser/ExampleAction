@@ -1,4 +1,10 @@
 <action>
-<id>i</id>
-<name>s</name>
+	<id>i</id>
+	<succes>ms</succes>
+	<echec>me</echec>
 </action>
+
+ms : message en cas de succes de l'action
+me : message si l'action échoue
+
+de la forme "a fait l'action"
