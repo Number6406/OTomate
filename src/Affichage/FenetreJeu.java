@@ -26,6 +26,7 @@ import Otomate.Objet;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
+import java.awt.Image;
 
 import java.io.File;
 
@@ -126,14 +127,21 @@ public class FenetreJeu extends JFrame {
         });
         tab_history.getTableHeader().setReorderingAllowed(false);
         scroll_history = new JScrollPane(tab_history);
-        tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Obs", "Dgt"}, 0) {
+        tab_legende = new JTable(new DefaultTableModel(new Object[] {"Id", "Img", "Nom", "Obstacle"}, 0) {
             /**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+            * 
+            */
+            private static final long serialVersionUID = 1L;
 
-			public boolean isCellEditable(int row,int column){
+            public boolean isCellEditable(int row,int column){
                 return false;
+            }
+            
+            @Override
+            public Class getColumnClass(int column)
+            {
+                if (column == 1) return ImageIcon.class; 
+                return Object.class;
             }
         });
         tab_legende.getTableHeader().setReorderingAllowed(false);
@@ -203,6 +211,18 @@ public class FenetreJeu extends JFrame {
         }
         
         tp_onglets.add("Legende",scroll_legende);
+        for(Objet o : lo) {
+            String obs;
+            if(o.estPassable()) obs = "NON"; else obs = "OUI";
+            ((DefaultTableModel) tab_legende.getModel()).addRow(
+                new Object[]{
+                    o.getId(),
+                    new ImageIcon(getClass().getResource(o.getPath())),
+                    o.getName(),
+                    obs
+                }
+            );
+        }
         
     }
     
