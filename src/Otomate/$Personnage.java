@@ -24,7 +24,7 @@ public abstract class $Personnage {
 	protected int dmg;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
-	protected String spriteURL = "../Graphics/Chara/1.png";
+	protected String spriteURL = "../Graphics/Sprites/1.png";
 
 	// Constructeur
 	protected $Personnage(String file, Color couleur) {
@@ -107,7 +107,7 @@ public abstract class $Personnage {
         
         public void setSprite() {
             try {
-                ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
+                ImageIO.read(new File(this.getClass().getResource("../Graphics/Sprites/1.png").getFile()));
             } catch (IOException ex) {
                 Logger.getLogger($Personnage.class.getName()).log(Level.SEVERE, null, ex);
             }

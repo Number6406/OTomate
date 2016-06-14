@@ -11,6 +11,7 @@ public class Mechant extends $Personnage {
 
 	public Mechant(String file, Color couleur) {
             super(file, couleur);
+            spriteURL = "../Graphics/Sprites/mechant.png";
             vie = viemax;
             try {
                 sprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
