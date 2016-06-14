@@ -22,12 +22,15 @@ public class DeplOuest extends $Action {
 								// -> regarde l'ouest
 			p.getPosition().setX(p.getPosition().getX() - 1);
 			effect = true;
-		} else {
+		}
+		else {
 			effect = false;
 		}
 		if (p instanceof Mechant) {
-			if (Grille.Pos(p.getPosition()).piegee == true)
+			if (Grille.Pos(p.getPosition()).piegee == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);
+				Grille.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
+			}
 		}
 	}
 }
