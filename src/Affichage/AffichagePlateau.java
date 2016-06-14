@@ -32,12 +32,11 @@ public class AffichagePlateau extends JPanel {
 	private Grille gr;
 	private List<$Personnage> perso;
         private List<BufferedImage> tiles;
-        Image chara;
 	
-	void Affiche_perso(Graphics graph,int i,int x,int y){
-            graph.setColor(Color_int(11));
-            graph.drawImage(chara, x*TAILLECASE, y*TAILLECASE, TAILLECASE, TAILLECASE, this);
-            //graph.fillOval(TAILLECASE*x, TAILLECASE*y, TAILLECASE, TAILLECASE);
+	void Affiche_perso(Graphics graph, $Personnage p){
+            graph.drawImage(p.getSprite(), p.positionX()*TAILLECASE, p.positionY()*TAILLECASE, TAILLECASE, TAILLECASE, this);
+            //graph.setColor(Color_int(11));
+            //graph.fillOval(TAILLECASE*p.positionX(), TAILLECASE*p.positionY(), TAILLECASE, TAILLECASE);
 	}
         
         void loadTiles(List<Objet> lo) {
@@ -155,7 +154,7 @@ public class AffichagePlateau extends JPanel {
             }
 
             for(i=0;i<Nb;i++){
-                Affiche_perso(g,i,perso.get(i).getPosition().getX(),perso.get(i).getPosition().getY());
+                Affiche_perso(g,perso.get(i));
             }
 
             }

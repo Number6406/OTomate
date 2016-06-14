@@ -83,6 +83,14 @@ public abstract class $Personnage {
 	public Coordonnees getPosition() {
 		return this.position;
 	}
+        
+        public int positionX() {
+            return this.position.getX();
+        }
+        
+        public int positionY() {
+            return this.position.getY();
+        }
 
 	public int getInventaire() {
 		return inventaire;
