@@ -107,8 +107,6 @@ public class Grille {
         	for(j=0;j<l.get(i).getSizePersonnages();j++){
         		list.add(l.get(i).getPersonnagesI(j));    	
         	}
-        	
-            i += l.get(i).getSizePersonnages();
         }
         List<Integer> taille = new LinkedList<Integer>();
         for(i=0; i<l.size(); i++){
@@ -170,8 +168,6 @@ public class Grille {
         	for(j=0;j<J.get(i).getSizePersonnages();j++){
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
-        	
-            i += J.get(i).getSizePersonnages();
         }
         
         for(i=0;i<l;i++){
@@ -214,24 +210,42 @@ public class Grille {
     public static List<Coordonnees> goAutomates(List<$Personnage> list, int dimh, int dimv){
         List<Coordonnees> res = new LinkedList<Coordonnees>();
         Random rnd = new Random();
-        Coordonnees newc = new Coordonnees();
-        int nb = list.size();
         int i, j, k;
+        Coordonnees[] newc = new Coordonnees[list.size()];
+        for(i=0;i<list.size();i++){
+        	newc[i] = new Coordonnees();
+        }
+        int nb = list.size();
+        
         for(k=0; k<list.size(); k++){
-            i = rnd.nextInt(nb);       //donne le numro de la case "h"
-            newc.setX(i*dimh/nb);              //abscisse correspondant
+        	System.out.println("debut "+res);
+        	//System.out.println(":'(:'(:'(:'(:'(:'(:''(:'(:'(");
+            i = rnd.nextInt(nb);       //donne le numro de la case "h" abscisse correspondant
+            //System.out.println("i="+i);
+            System.out.println("fin "+res);
+            newc[k].setX(i*dimh/nb);
+            System.out.println("presquefin "+res);
+            //System.out.println("ça donne quoi i*dimh/nb "+i*dimh/nb);
             j = rnd.nextInt(nb);
-            newc.setY(j*dimv/nb);
+            //System.out.println("j="+j);
+            newc[k].setY(j*dimv/nb);
+            //System.out.println("ça donne quoi j*dimh/nb "+j*dimh/nb);
             j=k;
             for(i=0; i<k; i++){
-                if(newc.getX() == res.get(i).getX() && newc.getY() == res.get(i).getY()){
+                if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
+                	//System.out.println(res.toString());
+                	//System.out.println("compare "+res.get(i).getX()+"et "+res.get(i).getY());
                     i=k;
                     k--;           // la c'est pour refaire le meme tour puisque la case est deja occupee
                 }
             }
             if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
-                res.add(newc);
+                res.add(newc[k]);
+                System.out.println("TAMER");
             }
+
+        	System.out.println("fin2 "+res);
+
         }
         return res;
     }
@@ -250,11 +264,10 @@ public class Grille {
         	for(j=0;j<l.get(i).getSizePersonnages();j++){
         		list.add(l.get(i).getPersonnagesI(j));    	
         	}
-        	
-            i += l.get(i).getSizePersonnages();
         }
         
         coinsAutomates = goAutomates(list, tailleX, tailleY);
+        System.out.println(coinsAutomates);
         Placements(l);
     }
     
@@ -441,8 +454,6 @@ public class Grille {
         	for(j=0;j<J.get(i).getSizePersonnages();j++){
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
-        	
-            i += J.get(i).getSizePersonnages();
         }
     	A.todo(l,P,list, this);
     }

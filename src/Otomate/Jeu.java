@@ -57,7 +57,6 @@ public class Jeu {
 	public static void debutPartie(int numeroUnivers){
 		univers = new Univers(numeroUnivers);
 		historique = new Historique();
-		plateau = new Grille();
 		// TODO pour reduire la taille du main
 
     	// Variables définies grâce au menu d'affichage ->
@@ -78,6 +77,9 @@ public class Jeu {
     	
     	// <- Fin variables
     	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
+    	System.out.println("taille joueurs "+joueurs.size());
+    	plateau = new Grille(joueurs);
+    	System.out.println("taille joueurs 2 "+joueurs.size());
     	refPersos = new LinkedList<Integer>();
     	//String tempHistorique;
     	plateau.initialisergrille(joueurs);
