@@ -5,8 +5,8 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
-import java.awt.Color;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -145,6 +145,20 @@ public class Jeu {
 		Thread.sleep(200);
 	}
 	
+	public static void saigne($Personnage P){
+		if(P instanceof Gentil){
+			if(((Gentil)P).getSaignement()) P.setVie(P.getVie()-5);
+		}
+	}
+	
+	public static void junky(List<$Personnage> lp,List<Conditions2> listCond,List<Objet>listCont) throws InterruptedException{
+		int i,max=lp.size();
+		for(i=0;i<max;i++){
+			saigne(lp.get(i));
+			gereParalysie(lp.get(i),listCond,listCont);
+		}
+	}
+	
 	public static void effetsDrogue($Personnage P){
 		if(((Gentil)P).getEfdrogue() != 0){
 			if(((Gentil) P).getDrogue() == 3){
@@ -161,6 +175,18 @@ public class Jeu {
 				((Gentil)P).setParalysie(0);
 			((Gentil) P).setEfdrogue(((Gentil)P).getEfdrogue()-1);
 		}
+	}
+	
+	public static boolean soinInstantane($Personnage P){
+		if(((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2){
+			((Gentil) P).setSaignement(false);
+			return true;
+		}
+		else if(((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1){
+			((Gentil) P).setInfecte(false);
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -217,19 +243,20 @@ public class Jeu {
     			p = refPersos.get(i)%100;
     			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
         			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
-        			gereParalysie(gentilperso, listCond, listCont);
-    				if (gentilperso.getParalysie()<1){
-    					System.out.println("passe tour drogue ou drogue dissipe");
-    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()+1);
-    				}
-    				
+        			if(soinInstantane(gentilperso) == false){
+	        			gereParalysie(gentilperso, listCond, listCont);
+	    				if (gentilperso.getParalysie()<1){
+	    					System.out.println("passe tour drogue ou drogue dissipe");
+	    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()+1);
+	    				}    				
+	    			}
     			}
     			else {
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
         			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
         			System.out.println("mechantkijou");
         			Thread.sleep(200);
-        			}
+    			}
     			System.out.println("FIN DE TOUR");
     			//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
