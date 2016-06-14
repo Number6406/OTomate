@@ -25,7 +25,8 @@ public class Manger extends $Action {
 					((Gentil) p).setVie(((Gentil) p).getViemax());
 				p.setInventaire(0);
 				effect = true;
-			} else {
+			}
+			else {
 				effect = false;
 			}
 		}

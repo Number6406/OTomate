@@ -238,20 +238,17 @@ public class Jeu {
     	couleurs.add(Color.red);
     	couleurs.add(Color.black);
     	
-    	ParserConditions p1 = new ParserConditions(fichiers);
-    	//ParserObjet p2 = new ParserObjet("objet.xml");
+    	//ParserConditions p1 = new ParserConditions(fichiers);
     	listCond = plateau.condparser(fichiers);
     	listCont = plateau.objparser("objet.xml");
-    	ParserObjet p2 = new ParserObjet("ObjetsZombie.xml");
-    	//System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
+    	//ParserObjet p2 = new ParserObjet("ObjetsZombie.xml");
     	listCond = plateau.condparser(fichiers);
-    	//System.out.println("Encore avant : " + p1.list.size());
     	listCont = plateau.objparser("ObjetsZombie.xml");
     	// <- Fin variables
     	int j,p;
     	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
     	refPersos = new LinkedList<Integer>();
-    	String tempHistorique;
+    	//String tempHistorique;
     	plateau.initialisergrille(joueurs);
     	Affichage.charger();
     	//int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
