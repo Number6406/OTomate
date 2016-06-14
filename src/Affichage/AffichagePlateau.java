@@ -52,6 +52,7 @@ public class AffichagePlateau extends JPanel {
                 System.out.println(e);
             }
             
+            
             //test perso
             try {
                 chara = new ImageIcon(this.getClass().getResource("../Graphics/Chara/1.gif")).getImage();
