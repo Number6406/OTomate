@@ -3,8 +3,6 @@ package Otomate;
 import Affichage.*;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
-import Parser.ParserConditions;
-import Parser.ParserObjet;
 
 import java.awt.Color;
 import java.io.File;
@@ -13,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.Timer;
 
 public class Jeu {
 

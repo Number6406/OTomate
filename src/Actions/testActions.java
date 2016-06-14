@@ -7,11 +7,8 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
-import Otomate.Jeu;
 import Otomate.Joueur;
-import Otomate.Objet;
 import Otomate.Univers;
-import Parser.ParserAction;
 public class testActions {
 
 	public static void main(String[] args) {

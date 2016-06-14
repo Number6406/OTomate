@@ -35,8 +35,8 @@ public class Affichage {
       //  Jeu.initPartie();
         Grille g=new Grille(20,20);
         int i,j;
-        for(i=0;i<g.tailleX;i++){
-        	for(j=0;j<g.tailleY;j++){
+        for(i=0;i<g.tailleX();i++){
+        	for(j=0;j<g.tailleY();j++){
         		g.set(random(1,3),i,j);
         	}
         }

@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Parser.ParserConditions;
-import Parser.ParserObjet;
 
 public class TestSaveLoad {
 	

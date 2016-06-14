@@ -8,7 +8,6 @@ package ImageEditor;
 import Affichage.FenetreBase;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;

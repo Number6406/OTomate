@@ -19,7 +19,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
-import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
@@ -28,7 +27,6 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
 
-import java.awt.Image;
 import java.io.File;
 
 import javax.imageio.ImageIO;

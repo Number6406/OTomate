@@ -118,16 +118,16 @@ public class AffichagePlateau extends JPanel {
             TAILLECASE=16;
             // System.out.println("Version 1 : Width : " + this.getWidth() + " Height : " + this.getHeight());
 
-            this.setPreferredSize( new Dimension(gr.tailleX*16,gr.tailleY*16));
+            this.setPreferredSize( new Dimension(gr.tailleX()*16,gr.tailleY()*16));
             maxx=maxx/TAILLECASE;
             maxy=maxy/TAILLECASE;
 
-            if(gr.tailleX<maxx){
-                maxx=gr.tailleX;
+            if(gr.tailleX()<maxx){
+                maxx=gr.tailleX();
             }
 
-            if(gr.tailleY<maxy){
-                maxy=gr.tailleY;
+            if(gr.tailleY()<maxy){
+                maxy=gr.tailleY();
             }
 
 
