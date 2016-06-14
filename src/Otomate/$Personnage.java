@@ -179,9 +179,13 @@ public abstract class $Personnage {
 	 */
 	public String jouer(List<Conditions2> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
 		List<Boolean> lb = G.recupcond(this, listCond, listCont, listJoueur);
+		System.out.println("cond total : "+lb.toString());
 		List<Integer> lc = G.conditions(this, lb);
+		System.out.println("cond possible"+lc.toString());
 		List<Integer> la = G.actionsPossibles(this, lc);
+		System.out.println("Actions possible "+la.toString());
 		$Action actionAFaire = G.takeOne(la);
+		System.out.println("choix :" + actionAFaire);
 		G.Maj(this, actionAFaire, listJoueur, lc);
 		return actionAFaire.toString();
 	}

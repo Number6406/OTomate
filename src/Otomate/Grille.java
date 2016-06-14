@@ -311,18 +311,19 @@ public class Grille {
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
     	System.out.println("taille debut : "+l.size() );
-    	if(l.get(0) == true)		//**********CONDITION SUR CASE***************
-    		listcond.add(0);
-    	else if(l.get(9) == true)	//
+    								//**********CONDITION SUR CASE***************
+    	if(l.get(9) == true)		//
     		listcond.add(9);		//
     	else if(l.get(10) == true)	//
     		listcond.add(10);		//
     	else if(l.get(15) == true)	//
     		listcond.add(15);		//
-    	else if(l.get(16) == true)			//
+    	else if(l.get(16) == true)	//
     		listcond.add(16);		//
-    	else if(l.get(18) == true)	//
-    		listcond.add(18);		//
+    	else if(l.get(17) == true)	//
+    		listcond.add(17);
+    	else listcond.add(0);
+    								//
     	//System.out.println("taille 0 : "+listcond.size());
     	if(l.get(1) == true)		//**********CONDITION AU NORD****************
     		listcond.add(1);		//
@@ -351,11 +352,6 @@ public class Grille {
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
-    	//System.out.println("taille +1 : "+listcond.size() );
-    	if(l.get(17) == true)		//*************CONDITION ETAT*******************
-    		listcond.add(17);		//
-    	else						//
-    		listcond.add(19);		//
     	//System.out.println("taille fin : "+listcond.size() );
     	return listcond;
     }
@@ -372,9 +368,10 @@ public class Grille {
     	for(i=0; i<s; i++){
     		//System.out.println("symbole "+l.get(i));
     		//System.out.println("etat courant "+p.getEtat());
-    		if(p.getAutomate().transition(l.get(i), p.getEtat()) != 0){
-    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()).getValeur());
-    			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()));
+    		//System.out.println(p.a.toString());
+    		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
+    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur()-1);
+    			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
     		}
     	}
     	return la;

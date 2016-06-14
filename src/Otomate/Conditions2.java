@@ -11,7 +11,7 @@ public class Conditions2 {
     /*
      *      { 0 : SP
     		{ 1 : N
-	   d �  { 2 : E
+	   d �{ 2 : E
     		{ 3 : S
     		{ 4 : O
 
@@ -19,7 +19,7 @@ public class Conditions2 {
 
        		{ 0 : mur
        		{ 1 : objet
-	type � 	{ 2 : bloque
+	type �{ 2 : bloque
        		{ 3 : ennemi
        		{ 4 : chemin
  
@@ -28,12 +28,16 @@ public class Conditions2 {
     //Constructeur
     
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
+    	if(pos.getX()==g.tailleX())return type==0||type==2;
+    	if(pos.getY()==g.tailleY())return type==0||type==2;
+    	
     	Coordonnees next=pos.CalculCase(direction);
+    	
     	int i,j,max=l.size();
-    	if(jo.getPosition().getX()>=g.tailleX() && direction == 2){next.setX(g.tailleX());}
-    	if(jo.getPosition().getX()<=0 && direction == 4){next.setX(0);}
-    	if(jo.getPosition().getY()>=g.tailleY() && direction == 3){next.setY(g.tailleY());}
-    	if(jo.getPosition().getY()<=0 && direction == 1){next.setY(0);}
+    	if(next.getX()>g.tailleX() && direction == 2){return type==0||type==2;}
+    	if(next.getX()<0 && direction == 4){return type==0||type==2;}
+    	if(next.getY()>g.tailleY() && direction == 3){return type==0||type==2;}
+    	if(next.getY()<0 && direction == 1){return type==0 ||type==2;}
     	//System.out.println("next.getX()="+next.getX());
     	//System.out.println("next.getY()="+next.getY());
     	
@@ -63,7 +67,7 @@ public class Conditions2 {
     				for(i=0;i<lj.size();i++){
     					List<$Personnage> lp=lj.get(i).getPersonnages();
     					for(j=0;j<lp.size();j++){
-    						if(lp.get(j).getPosition().getX()==jo.getPosition().getX() && lp.get(j).getPosition().getY()==jo.getPosition().getY()){
+    						if(lp.get(j).getPosition().getX()==next.getX() && lp.get(j).getPosition().getY()==next.getY()){
     						if(jo instanceof Gentil){
     							if(lp.get(j) instanceof Mechant) return true;
     						}
@@ -77,7 +81,7 @@ public class Conditions2 {
     				return false;
     			
     			case 4:
-    				if(l.get(i).estPassable()) return true;
+    				if(l.get(i).estPassable() && !(new Conditions2(20,direction,3).estVrai(g, pos, l, jo, lj)) ) return true;
     				else return false;
         			
         		case 5:

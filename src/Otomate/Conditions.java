@@ -15,7 +15,8 @@ public enum Conditions {
     Comestible ("Comestible sur ma Case", 9),
     //Pompe ("pompe sur ma Case", 10),
     Arme ("un arme sur la case", 10),	//pompe ou couteau ou branche
-	ObstacleN ("Obstacle au nord", 11),
+	
+    ObstacleN ("Obstacle au nord", 11),
 	ObstacleS ("Obstacle au sud", 12),
 	ObstacleE ("Obstacle à l'est", 13),
 	ObstacleO ("Obstacle à l'ouest", 14),

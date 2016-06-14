@@ -165,9 +165,9 @@ public class Jeu {
 			th = P.jouer(univers.getConditions(),plateau,univers.getObjets(),joueurs);
 		}
 		historique.ceTour().addEvenement(new Evenement(P, th));
-		((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
-		((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
-		System.out.println("gentilkijou");
+		//((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
+		//((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
+		//System.out.println("gentilkijou");
 		Thread.sleep(200);
 	}
 	
@@ -242,6 +242,18 @@ public class Jeu {
 				}
 			}
 		}
+		else{
+			if(P.getVie() == 0){
+				int i,j;
+				for(i=0; i<l.size(); i++){
+					for(j=0; j<l.get(i).getSizePersonnages(); j++){
+						if(l.get(i).getPersonnagesI(j) == P){
+							l.get(i).getPersonnages().remove(j);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	// UN TOUR DE JEU
@@ -252,22 +264,33 @@ public class Jeu {
 	 */
 	public static void tourDePerso($Personnage P) throws InterruptedException{
 		String tempHistorique;
+		Mechant E = new Mechant();
 		if (P instanceof Gentil){
 			Gentil gentilperso=((Gentil) P);
+			System.out.println(gentilperso.getParalysie());
 			if(soinInstantane(gentilperso) == false){
     			gereParalysie(gentilperso);
 				if (gentilperso.getParalysie()<1){
-					System.out.println("passe tour drogue ou drogue dissipe");
-					((Gentil) P).setParalysie(((Gentil) P).getParalysie()+1);
+			//		System.out.println("passe tour drogue ou drogue dissipe");
+					gentilperso.setParalysie(gentilperso.getParalysie()+1);
 				}    				
+			}
+			int i,j;
+			for(i=0; i<joueurs.size(); i++){
+				for(j=0; j<joueurs.get(i).getSizePersonnages(); j++){
+					if(joueurs.get(i).getPersonnagesI(j) instanceof Mechant)
+						E = ((Mechant) joueurs.get(i).getPersonnagesI(j));
+				}
 			}
 		}
 		else {
 			tempHistorique = P.jouer(univers.getConditions(),plateau,univers.getObjets(),joueurs);
+			E = ((Mechant) P);
 			historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-			System.out.println("mechantkijou");
+			//System.out.println("mechantkijou");
 			Thread.sleep(200);
 		}
+		veriftransfo(P, E, joueurs);
 	}
 	
 	/**
@@ -290,7 +313,7 @@ public class Jeu {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("FIN DE TOUR");
+			//System.out.println("FIN DE TOUR");
 		}
 		// TODO enlever les morts.
 	}

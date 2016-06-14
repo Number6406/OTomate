@@ -5,6 +5,24 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Grille;
 
+/*
+Actions :
+    1 Deplacement Nord
+    2 Deplacement Sud
+    3 Deplacement Est
+    4 Deplacement Ouest
+    5 Attaque Nord
+    6 Attaque Sud
+    7 Attaque Est
+    8 Attaque Ouest
+    9 Ramasser
+    10 Piéger
+    11 Manger/Restaurer
+    12 Soigner
+    13 Fuir
+    14 Détruire
+    15 Fouiller
+*/
 public abstract class $Action {
 	protected int valeur;
 	protected String succes;
