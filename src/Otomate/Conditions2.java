@@ -43,16 +43,16 @@ public class Conditions2 {
     	//System.out.println(max);
     	for(i=0;i<max;i++){
     		//System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
-    		if(l.get(i).id==Cid){
+    		if(l.get(i).getId()==Cid){
     			//System.out.println("tamer");
     			switch(type){
     			
     			case 0:
-    				if(l.get(i).type==5 && !(l.get(i).estPassable())) return true;
+    				if(l.get(i).getType()==5 && !(l.get(i).estPassable())) return true;
     				else return false;
     			
     			case 1:
-    				if(l.get(i).type==1) return true;
+    				if(l.get(i).getType()==1) return true;
     				else return false;
     			
     			case 2:
@@ -81,19 +81,19 @@ public class Conditions2 {
     				else return false;
         			
         		case 5:
-        			if(l.get(i).type == 1) return true;
+        			if(l.get(i).getType() == 1) return true;
         			else return false;
         		
         		case 6:
-        			if(l.get(i).type == 3) return true;
+        			if(l.get(i).getType() == 3) return true;
         			else return false;
         			
         		case 7:
-        			if(l.get(i).type == 6) return true;
+        			if(l.get(i).getType() == 6) return true;
         			else return false;
         			
         		case 8:
-        			if(l.get(i).type == 7) return true;
+        			if(l.get(i).getType() == 7) return true;
         			else return false;
     			}
     		}
