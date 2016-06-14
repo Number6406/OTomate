@@ -168,17 +168,20 @@ public class Grille {
         	for(j=0;j<J.get(i).getSizePersonnages();j++){
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
-        }
-        
+	        }
+	        
         for(i=0;i<l;i++){
+        	int ix=coinsAutomates.get(i).getX();
+        	int iy=coinsAutomates.get(i).getY();
+        	int tailleix=list.get(i).nbEtat();
+        	int tailleiy=list.get(i).getAutomate().nbconditions;
             for(j=i+1; j<l; j++){
-                if(coinsAutomates.get(i).abs < coinsAutomates.get(j).abs && coinsAutomates.get(i).abs + list.get(i).getPosition().getX() < coinsAutomates.get(j).abs){}
-                else if(coinsAutomates.get(i).getX() < coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() < coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() + nbCond < coinsAutomates.get(j).getY()){}
-                else if(coinsAutomates.get(i).getX() < coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() + nbCond){}
-                else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() + list.get(j).getPosition().getX()){}
-                else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() < coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() + nbCond < coinsAutomates.get(j).getY()){}
-                else if(coinsAutomates.get(i).getX() > coinsAutomates.get(j).getX() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() && coinsAutomates.get(i).getY() > coinsAutomates.get(j).getY() + nbCond){}
-                else
+            	int jx=coinsAutomates.get(j).getX();
+            	int jy=coinsAutomates.get(j).getY();
+            	int taillejx=list.get(j).nbEtat();
+            	int taillejy=list.get(j).getAutomate().nbconditions;
+                if(!(ix+tailleix>=jx && ix<=jx+taillejx && iy+tailleiy>=jy && iy<=jy+taillejy)){System.out.println("ok");}
+            	else
                     System.out.println("Erreur les automates se superposent on a un probleme pour la generation de leur coordonnees : erreur dans goAutomates !");
             }
         }
@@ -189,20 +192,21 @@ public class Grille {
         {
             y=0;
             s = J.get(x).getSizePersonnages();
+            System.out.println("tamer");
             while(y<s && i<l)
             {
-                //for(i=0;i<l;i++){               //nombre d'automates a placer
+            	
                     jdeb = coinsAutomates.get(i).getX();
-                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat()/*nbetats.get(i)+jdeb*/; j++){      //parcours de lignes
+                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat(); j++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).getY();
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
                             g[j][k] = J.get(x).getPersonnagesI(y).a.getActions(k-kdeb, j-jdeb);
                         }
                     }
-                //}
                 y++;
                 i++;
             }
+            
             x++;
         }
     }
