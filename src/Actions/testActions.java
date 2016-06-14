@@ -10,26 +10,20 @@ import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.Objet;
+import Otomate.Univers;
 import Parser.ParserAction;
 public class testActions {
 
 	public static void main(String[] args) {
 		
-		Grille G = new Grille();/*
+		Grille G = new Grille();
+		Univers U = new Univers(1);
+		
+		
 		$Personnage A = new Gentil("AutomateenXML.xml",Color.cyan);
 		$Personnage B = new Gentil("AutomateenXML.xml",Color.pink);
 		
-		ParserAction Pz = new ParserAction("ActionsHumain.xml");
-		List<$Action> laz = Pz.list;
-		ParserAction Ph = new ParserAction("ActionsZombie.xml");
-		List<$Action> lah = Ph.list;
-		System.out.println("SIZE : " + lah.size());
-		for($Action Ac : lah){
-			if(Ac!=null) System.out.println(Ac.toString());
-		}
-		for($Action Ac : laz){
-			if(Ac!=null) System.out.println(Ac.toString());
-		}
+		System.out.println(A.getAutomate().toString());
 		
 		List<Joueur> listJoueurs = new ArrayList<>();
 		listJoueurs.add(new Joueur(A));
@@ -37,10 +31,10 @@ public class testActions {
 		
 		
 		List<$Personnage> listPerso = new ArrayList<>();
-		*/		
-		Jeu.debutPartie();
-		/*
-		List<Boolean> lc = G.recupcond(A, G.condparser("conditions.xml") ,listContenus,listJoueurs);
+		listPerso.add(A);
+		listPerso.add(B);
+		
+		List<Boolean> lc = G.recupcond(A, G.condparser("conditions.xml") ,U.getObjets(),listJoueurs);
 
 		System.out.println("SIZE bool : " + lc.size());
 		
@@ -57,7 +51,7 @@ public class testActions {
 		System.out.println(todo.toString());	
 		todo.todo(listCond, A, listPerso, G);
 		System.out.println(todo.toString());
-		*/
+		
 	}
 
 }

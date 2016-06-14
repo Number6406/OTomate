@@ -177,6 +177,18 @@ public class Jeu {
 			((Gentil) P).setEfdrogue(((Gentil)P).getEfdrogue()-1);
 		}
 	}
+	
+	public static boolean soinInstantane($Personnage P){
+		if(((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2){
+			((Gentil) P).setSaignement(false);
+			return true;
+		}
+		else if(((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1){
+			((Gentil) P).setInfecte(false);
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * Fonction principale de Jeu
@@ -232,19 +244,20 @@ public class Jeu {
     			p = refPersos.get(i)%100;
     			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
         			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
-        			gereParalysie(gentilperso, listCond, listCont);
-    				if (gentilperso.getParalysie()<1){
-    					System.out.println("passe tour drogue ou drogue dissipe");
-    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()+1);
-    				}
-    				
+        			if(soinInstantane(gentilperso) == false){
+	        			gereParalysie(gentilperso, listCond, listCont);
+	    				if (gentilperso.getParalysie()<1){
+	    					System.out.println("passe tour drogue ou drogue dissipe");
+	    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()+1);
+	    				}    				
+	    			}
     			}
     			else {
     				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
         			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
         			System.out.println("mechantkijou");
         			Thread.sleep(200);
-        			}
+    			}
     			System.out.println("FIN DE TOUR");
     			//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));

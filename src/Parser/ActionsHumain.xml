@@ -61,7 +61,7 @@
 	</action>
 	<action>
 		<id>12</id>
-		<succes>se soigne</succes>
+		<succes>a mal et se soigne automatiquement</succes>
 		<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
 	</action>
 	<action>
