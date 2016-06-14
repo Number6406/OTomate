@@ -12,6 +12,8 @@ let automate = [(1,Chemin(N),Avancer(N),1);
 ]
 @
 (fairePourTout 3 Soigner 4)
+@
+(fairePourTout 4 (Avancer(S)) 1)
 ;;
 
 toXML automate 1 "automate1.xml";;
