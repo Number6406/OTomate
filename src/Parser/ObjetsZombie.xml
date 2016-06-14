@@ -109,7 +109,7 @@
 		<use>0</use>
 		<name>SERINGUE</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/pills.png</path>
+		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
 	<objet>
 		<id>14</id>
