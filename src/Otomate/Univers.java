@@ -4,6 +4,7 @@ import java.util.List;
 
 import Actions.$Action;
 import Parser.ParserAction;
+import Parser.ParserConditions;
 import Parser.ParserObjet;
 
 /**
@@ -19,6 +20,7 @@ public class Univers {
 	List<$Action> actionsGentil;
 	List<$Action> actionsMechant;
 	List<Objet> objets;
+	List<Conditions2> conditions;
 	String nomUnivers;
 	
 	// Getteurs
@@ -35,6 +37,10 @@ public class Univers {
 		return  objets;
 	}
 	
+	public List<Conditions2> getConditions(){
+		return  conditions;
+	}
+	
 	public String getNom(){
 		return nomUnivers;
 	}
@@ -44,6 +50,7 @@ public class Univers {
 	public Univers(int numeroUnivers){
 		ParserAction Pg,Pm;
 		ParserObjet Po;
+		ParserConditions Pc;
 		switch(numeroUnivers){
 		case 1 :
 			Pg = new ParserAction("ActionsHumain.xml");
@@ -66,6 +73,8 @@ public class Univers {
 		actionsGentil = Pg.list;
 		actionsMechant = Pm.list;
 		objets = Po.list;
+		Pc = new ParserConditions("Conditions.xml");
+		conditions = Pc.list;
 	}
 	
 	

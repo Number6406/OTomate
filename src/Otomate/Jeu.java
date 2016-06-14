@@ -24,8 +24,6 @@ public class Jeu {
 	public static List<Integer> refPersos;
 	public static Historique historique;
 	public static Univers univers;
-	//private static List<Conditions2> listCond;
-	//private static List<Objet> listCont;
 
 	// Methodes
 	/**
@@ -59,8 +57,8 @@ public class Jeu {
 	/**
 	 * Initialise toutes les variables pour lancer la partie.
 	 */
-	public static void debutPartie(){
-		univers = new Univers(1); // TODO récupérer depuis l'interface
+	public static void debutPartie(int numeroUnivers){
+		univers = new Univers(numeroUnivers);
 		historique = new Historique();
 		plateau = new Grille();
 		// TODO pour reduire la taille du main
@@ -133,12 +131,13 @@ public class Jeu {
 		}
 	}
 	
-	public static void gereParalysie($Personnage P, List<Conditions2> listCond, List<Objet> listCont) throws InterruptedException{
+	// FONCTIONS DE GESTION DE STATUS
+	public static void gereParalysie($Personnage P) throws InterruptedException{
 		String th = new String();
 		while(((Gentil)P).getParalysie()>0){
 			((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
 			effetsDrogue(P);
-			th = P.jouer(listCond,plateau,listCont,joueurs);
+			th = P.jouer(univers.getConditions(),plateau,univers.getObjets(),joueurs);
 		}
 		historique.ceTour().addEvenement(new Evenement(P, th));
 		((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
@@ -153,11 +152,11 @@ public class Jeu {
 		}
 	}
 	
-	public static void junky(List<$Personnage> lp,List<Conditions2> listCond,List<Objet>listCont) throws InterruptedException{
+	public static void junky(List<$Personnage> lp) throws InterruptedException{
 		int i,max=lp.size();
 		for(i=0;i<max;i++){
 			saigne(lp.get(i));
-			gereParalysie(lp.get(i),listCond,listCont);
+			gereParalysie(lp.get(i));
 		}
 	}
 	
@@ -199,12 +198,18 @@ public class Jeu {
 		}
 	}
 	
-	public static void tour($Personnage P, List<Conditions2> listCond, List<Objet> listCont) throws InterruptedException{
+	// UN TOUR DE JEU
+	/**
+	 * Fait jouer Un personnage.
+	 * @param P
+	 * @throws InterruptedException
+	 */
+	public static void tourDePerso($Personnage P) throws InterruptedException{
 		String tempHistorique;
 		if (P instanceof Gentil){
 			Gentil gentilperso=((Gentil) P);
 			if(soinInstantane(gentilperso) == false){
-    			gereParalysie(gentilperso, listCond, listCont);
+    			gereParalysie(gentilperso);
 				if (gentilperso.getParalysie()<1){
 					System.out.println("passe tour drogue ou drogue dissipe");
 					((Gentil) P).setParalysie(((Gentil) P).getParalysie()+1);
@@ -212,13 +217,37 @@ public class Jeu {
 			}
 		}
 		else {
-			tempHistorique = P.jouer(listCond,plateau,listCont,joueurs);
+			tempHistorique = P.jouer(univers.getConditions(),plateau,univers.getObjets(),joueurs);
 			historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
 			System.out.println("mechantkijou");
 			Thread.sleep(200);
 		}
 	}
-
+	
+	/**
+	 * Effectue un tour de jeu en changeant l'ordre de jeu de chaque personnage
+	 */
+	public static void tour(){
+		
+		int j,p;
+		
+		melange(); // Mélange la liste des personnages
+		historique.addTour(); // Ajout un tour àl'historique
+		
+		
+		for(int i=0; i<refPersos.size(); i++) {
+			j = refPersos.get(i)/100;
+			p = refPersos.get(i)%100;
+			try {
+				tourDePerso(joueurs.get(j).getPersonnagesI(p));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("FIN DE TOUR");
+		}
+	}
+	
 	/**
 	 * Fonction principale de Jeu
 	 * @param pArgs
@@ -227,7 +256,7 @@ public class Jeu {
 	 */
 	// TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
-    	debutPartie();
+    	debutPartie(1);
     	// Variables définies grâce au menu d'affichage ->
     	//int nbJoueurs = 2;
     	//int nbPersoParJoueur = 2;
@@ -260,20 +289,7 @@ public class Jeu {
     	Affichage.charger();
     	//int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
     	while(!finPartie()){
-    		melange();
-    		historique.addTour();
-    		for(int i=0; i<refPersos.size(); i++) {
-    			j = refPersos.get(i)/100;
-    			p = refPersos.get(i)%100;
-    			tour(joueurs.get(j).getPersonnagesI(p), listCond, listCont);
-    			System.out.println("FIN DE TOUR");
-    			//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
-//    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));
-//    			tempHistorique = persoCourant.jouer();
-    			//tempHistorique sera la chaine renvoyee par l'action d'un joueur
-    		}
-    		
-    		
+    		tour();    		
     	}
     }
 }
