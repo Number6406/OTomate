@@ -164,13 +164,12 @@ public class Jeu {
 			((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
 			effetsDrogue(P);
 			th = P.jouer(univers.getConditions(),plateau,univers.getObjets(),joueurs);
-			Thread.sleep(200);
+			Thread.sleep(period);
 		}
 		historique.ceTour().addEvenement(new Evenement(P, th));
 		//((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
 		//((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
 		//System.out.println("gentilkijou");
-		Thread.sleep(period);
 	}
 	
 	public static void saigne($Personnage P){
@@ -290,7 +289,7 @@ public class Jeu {
 			E = ((Mechant) P);
 			historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
 			//System.out.println("mechantkijou");
-			Thread.sleep(200);
+			Thread.sleep(period);
 		}
 		veriftransfo(P, E, joueurs);
 	}

@@ -53,7 +53,7 @@
 		<use>0</use>
 		<name>RONCES</name>
 		<passage>0</passage>
-		<path>../Graphics/Tiles/Zombie/grass.png</path>
+		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
 	<objet>
 		<id>7</id>
@@ -117,7 +117,7 @@
 		<use>5</use>
 		<name>BRANCHE</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/grass.png</path>
+		<path>../Graphics/Tiles/Zombie/branch.png</path>
 	</objet>
 	<objet>
 		<id>15</id>
