@@ -120,5 +120,15 @@ public class Gentil extends $Personnage {
 	public void setDrogue(int Drogue) {
 		this.drogue = Drogue;
 	}
+        
+        @Override
+        public String getEffets() {
+            String effets = super.getEffets();
+            
+            if(infecte) { effets += "Infecte "; }
+            if(saignement) { effets += "Saignement "; }
+            
+            return effets;
+        }
 
 }
