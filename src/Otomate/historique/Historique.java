@@ -31,7 +31,7 @@ public class Historique{
 	
 	public void addTour(){
 		tourCourant++;
-		partie.add(new Tour());
+		partie.add(new Tour(tourCourant));
 	}
 	
 	public Tour ceTour(){

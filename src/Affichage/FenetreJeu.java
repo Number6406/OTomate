@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -66,7 +67,7 @@ public class FenetreJeu extends JFrame {
     JButton b_step;
     JTabbedPane tp_onglets;
     JScrollPane scroll_history;
-    JTable tab_history;
+    static JTable tab_history;
     JScrollPane scroll_legende;
     JTable tab_legende;
 
@@ -253,7 +254,18 @@ public class FenetreJeu extends JFrame {
         }
 
     }
-
+    
+    public void ajouterTourHistorique(Tour t){
+    	for(int j1 = 0; j1 < t.nbEvenement();j1++){
+    		Evenement e = t.getEvenement(j1);
+            ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{t.getNumero(), e.toString()});
+    	}
+        // Ne descend que jusque l'avant dernier
+        JScrollBar verticalScrollBar = scroll_history.getVerticalScrollBar();
+        verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+    	
+    }
+    
     public static void main(String[] args) throws IOException {
         FenetreJeu f = new FenetreJeu();
         f.charger();
