@@ -36,7 +36,7 @@
 		<type>4</type>
 		<use>0</use>
 		<name>EAU</name>
-		<passage>1</passage>
+		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/4.jpg</path>
 	</objet>
 	<objet>
@@ -51,8 +51,8 @@
 		<id>6</id>
 		<type>4</type>
 		<use>0</use>
-		<name>EAU CONTAMINEE</name>
-		<passage>1</passage>
+		<name>RONCES</name>
+		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/6.jpg</path>
 	</objet>
 	<objet>

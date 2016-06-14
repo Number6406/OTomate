@@ -23,6 +23,7 @@ public class Jeu {
 	public static List<Joueur> joueurs;
 	public static List<Integer> refPersos;
 	public static Historique historique;
+	public static Univers univers;
 	//private static List<Conditions2> listCond;
 	//private static List<Objet> listCont;
 
@@ -53,6 +54,11 @@ public class Jeu {
 			}
 		}
 		return true; // Tout les gentils n'ont plus de personnages
+	}
+	
+	
+	public static void debutPartie(){
+		// TODO pour reduire la taille du main
 	}
 	
 	/**
