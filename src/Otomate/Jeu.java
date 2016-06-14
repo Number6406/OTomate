@@ -21,6 +21,7 @@ public class Jeu {
 	public static List<Integer> refPersos;
 	public static Historique historique;
 	public static Univers univers;
+        public static int period = 1000;
 
 	// Methodes
 	/**
@@ -168,7 +169,7 @@ public class Jeu {
 		//((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
 		//((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
 		//System.out.println("gentilkijou");
-		Thread.sleep(200);
+		Thread.sleep(period);
 	}
 	
 	public static void saigne($Personnage P){
