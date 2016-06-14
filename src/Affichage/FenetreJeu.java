@@ -34,6 +34,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 
@@ -61,8 +62,7 @@ public class FenetreJeu extends JFrame {
     JScrollPane scroll_perso;
     JTable tab_perso;
     JPanel pan_interraction;
-    JButton b_start;
-    JButton b_pause;
+    JButton b_playpause;
     JButton b_fast;
     JButton b_step;
     JTabbedPane tp_onglets;
@@ -113,14 +113,22 @@ public class FenetreJeu extends JFrame {
         tab_perso.getTableHeader().setReorderingAllowed(false);
         scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
-        b_start = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile()))));
-        b_pause = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/pause.png").getFile()))));
+        
+        ImageIcon play = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile())));
+        ImageIcon pause = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/pause.png").getFile())));
+        b_playpause = new JButton(pause);
+        b_playpause.setToolTipText("Mettre en pause la simulation.");
+        
         ImageIcon fast1 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/fast1.png").getFile())));
         ImageIcon fast2 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/fast2.png").getFile())));
         ImageIcon fast3 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/fast3.png").getFile())));
-        b_fast = new JButton(fast2);
+        b_fast = new JButton(fast1);
+        b_fast.setToolTipText("Accélérer la simulation (Vitesse 1)");
 
         b_step = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/step.png").getFile()))));
+        b_step.setToolTipText("Jouer un tour : Accessible quand la pause est active uniquement.");
+        b_step.setEnabled(false);
+        
         tp_onglets = new JTabbedPane();
         tab_history = new JTable(new DefaultTableModel(new Object[]{"Tour", "Action"}, 0) {
             /**
@@ -197,20 +205,41 @@ public class FenetreJeu extends JFrame {
         pan_interraction.setLayout(new GridLayout());
         
         // Insertion de tous les boutons de gestion du temps dans l'affichage
-        pan_interraction.add(b_start);
-        pan_interraction.add(b_pause);
+        pan_interraction.add(b_playpause);
+        b_playpause.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Jeu.play_pause();
+                if(Jeu.pause) {
+                    b_playpause.setIcon(play);
+                    b_playpause.setToolTipText("Jouer la simulation");
+                    b_step.setEnabled(true);
+                } else {
+                    b_playpause.setIcon(pause);
+                    b_playpause.setToolTipText("Mettre en pause la simulation.");
+                    b_step.setEnabled(false);
+                }
+            }
+        });
+        
         pan_interraction.add(b_fast);
         b_fast.addActionListener((ActionEvent e) -> { // Listener pour la vitesse du jeu
             Jeu.changeSpeed();
-            if (Jeu.period <= Jeu.vitesse1) {
-                b_fast.setIcon(fast1);
+            if (Jeu.period <= Jeu.vitesse3) {
+                b_fast.setIcon(fast3);
+                b_fast.setToolTipText("Accélérer la simulation (Vitesse 3)");
             } else if (Jeu.period <= Jeu.vitesse2) {
                 b_fast.setIcon(fast2);
+                b_fast.setToolTipText("Accélérer la simulation (Vitesse 2)");
             } else {
-                b_fast.setIcon(fast3);
+                b_fast.setIcon(fast1);
+                b_fast.setToolTipText("Accélérer la simulation (Vitesse 1)");
             }
         });
         pan_interraction.add(b_step);
+        b_step.addActionListener((ActionEvent e) -> {
+            Jeu.step();
+        });
 
         infoConstraints.gridy = 3;
         infoConstraints.gridheight = 1;

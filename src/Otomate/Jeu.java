@@ -21,6 +21,8 @@ public class Jeu {
     public static Univers univers;
     public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 250;
     public static int period = vitesse1;
+    public static boolean pause = false;
+    public static boolean step = false;
 
     // Methodes
     /**
@@ -333,6 +335,15 @@ public class Jeu {
         }
     }
     
+    public static void play_pause() {
+        if(pause) pause = false;
+        else pause = true;
+    }
+    
+    public static void step() {
+        step = true;
+    }
+    
     /**
      * Fonction principale de Jeu
      *
@@ -345,6 +356,7 @@ public class Jeu {
         debutPartie(1);
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
+            while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
             tour();
         }
         // TODO Annoncer gagnant
