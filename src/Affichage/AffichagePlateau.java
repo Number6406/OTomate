@@ -26,7 +26,8 @@ public class AffichagePlateau extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int TAILLECASE = 16;
+	private int TAILLECASE = 32;
+	private int MINCASE=32;
 	
 	private Grille gr;
 	private List<$Personnage> perso;
@@ -42,9 +43,10 @@ public class AffichagePlateau extends JPanel {
         void loadTiles(List<Objet> lo) {
             tiles = new ArrayList<>();
             try {
-                for(int i=0; i<=lo.size(); i++) {
+                for(int i=0; i<lo.size(); i++) {
                     BufferedImage img;
                     System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
+                    System.out.println(lo.get(i).getPath());
                     img = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPath()).getFile())); //Version Linux
                     tiles.add(img);
                 }
@@ -116,10 +118,10 @@ public class AffichagePlateau extends JPanel {
             int maxx=this.getWidth();
             int maxy=this.getHeight();
             int i,j;
-            TAILLECASE=16;
+            TAILLECASE=MINCASE;
             // System.out.println("Version 1 : Width : " + this.getWidth() + " Height : " + this.getHeight());
 
-            this.setPreferredSize( new Dimension(gr.tailleX()*16,gr.tailleY()*16));
+            this.setPreferredSize( new Dimension(gr.tailleX()*MINCASE,gr.tailleY()*MINCASE));
             maxx=maxx/TAILLECASE;
             maxy=maxy/TAILLECASE;
 
@@ -132,7 +134,7 @@ public class AffichagePlateau extends JPanel {
             }
 
 
-            if(maxx<(this.getWidth()/16) || maxy<(this.getHeight()/16)){
+            if(maxx<(this.getWidth()/MINCASE) || maxy<(this.getHeight()/MINCASE)){
                 TAILLECASE=((this.getWidth())/maxx);
 
                 if(TAILLECASE > (this.getHeight()/maxy)){
