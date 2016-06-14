@@ -5,8 +5,8 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
-import java.awt.Color;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -143,6 +143,21 @@ public class Jeu {
 		((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
 		System.out.println("gentilkijou");
 		Thread.sleep(200);
+	}
+	
+	public static void saigne($Personnage P){
+		if(P instanceof Gentil){
+			if(((Gentil)P).getSaignement()) P.setVie(P.getVie()-5);
+		}
+	}
+	
+	public static void junky(List<$Personnage> lp,List<Conditions2> listCond,List<Objet>listCont) throws InterruptedException{
+		int i,max=lp.size();
+		for(i=0;i<max;i++){
+			saigne(lp.get(i));
+			gereParalysie(lp.get(i),listCond,listCont);
+			effetsDrogue(lp.get(i));
+		}
 	}
 	
 	public static void effetsDrogue($Personnage P){
