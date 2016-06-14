@@ -2,7 +2,8 @@
 
 typedef struct o{
 int id;
-char name[50];
+char ms[500];
+char me[500];
 }objet;
 
 
@@ -13,7 +14,7 @@ void affiche_dejaEcrit(int max){
 int i;
 
 for(i=0;i<max;i++){
-   printf("%d,%s\n",To[i].id,To[i].name);
+   printf("%d? %s : %s\n",To[i].id,To[i].ms,To[i].me);
 }
 
 }
@@ -33,17 +34,30 @@ char  idE[]="</id>";
 char  useB[]="<use>";
 char  useE[]="</use>";
 
-char  nameB[]="<name>";
-char  nameE[]="</name>";
+char  nameB[]="<succes>";
+char  nameE[]="</succes>";
 
-char  passageB[]="<passage>";
-char  passageE[]="</passage>";
+char  passageB[]="<echec>";
+char  passageE[]="</echec>";
+
+void recup_string(char * s){
+int i=0;
+char c='a';
+printf("(Caractere de fin de String : '$') ");
+while (c!='$'){
+scanf("\n%c",&c);
+s[i]=c;
+i++;
+}
+s[i-1]='\0';
+}
 
 void Ecrit(int id,FILE* f){
 
 fprintf(f,"%s\n",objetB);
 fprintf(f,"%s%d%s\n",idB,To[id].id,idE);
-fprintf(f,"%s%s%s\n",nameB,To[id].name,nameE);
+fprintf(f,"%s%s%s\n",nameB,To[id].ms,nameE);
+fprintf(f,"%s%s%s\n",passageB,To[id].me,passageE);
 fprintf(f,"%s\n",objetE);
 }
 
@@ -56,7 +70,7 @@ printf("entrez le fichier ou ecrire le xml :");
 scanf(" %s",&name);
 FILE *f=fopen(name,"w+");
 int rep;
-char nameO[50];
+char nameO[500];
 int current=0;
 fprintf(f,"%s\n",deb);
     while(rep!=-1){
@@ -67,9 +81,13 @@ fprintf(f,"%s\n",deb);
         printf("id=");
         scanf(" %d",&rep);
         To[current].id=rep;
-        printf("name=");
-        scanf("%s",&nameO);
-        strcpy(To[current].name,nameO);
+        printf("message succes=");
+        //recup_string(nameO);
+        scanf("\n%s",&nameO);
+        strcpy(To[current].ms,nameO);
+        printf("message echec=");
+        scanf("\n%s",&nameO);
+        strcpy(To[current].me,nameO);
 
         if(rep!=-1) Ecrit(current,f);
         current++;

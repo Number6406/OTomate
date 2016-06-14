@@ -3,6 +3,7 @@
 typedef struct o{
 int id,type,use,passage;
 char name[50];
+char path[150];
 }objet;
 
 
@@ -13,7 +14,7 @@ void affiche_dejaEcrit(int max){
 int i;
 
 for(i=0;i<max;i++){
-   printf("%d,%s : type:%d use:%d passage:%d\n",To[i].id,To[i].name,To[i].type,To[i].use,To[i].passage);
+   printf("%d,%s : type:%d use:%d passage:%d %s\n",To[i].id,To[i].name,To[i].type,To[i].use,To[i].passage,To[i].path);
 }
 
 }
@@ -39,6 +40,9 @@ char  nameE[]="</name>";
 char  passageB[]="<passage>";
 char  passageE[]="</passage>";
 
+char pathB[] ="<path>";
+char pathE[] ="</path>";
+
 void Ecrit(int id,FILE* f){
 
 fprintf(f,"%s\n",objetB);
@@ -47,6 +51,7 @@ fprintf(f,"%s%d%s\n",typeB,To[id].type,typeE);
 fprintf(f,"%s%d%s\n",useB,To[id].use,useE);
 fprintf(f,"%s%s%s\n",nameB,To[id].name,nameE);
 fprintf(f,"%s%d%s\n",passageB,To[id].passage,passageE);
+fprintf(f,"%s%s%s\n",pathB,To[id].path,pathE);
 fprintf(f,"%s\n",objetE);
 }
 
@@ -59,14 +64,14 @@ printf("entrez le fichier ou ecrire le xml :");
 scanf(" %s",&name);
 FILE *f=fopen(name,"w+");
 int rep;
-char nameO[50];
+char nameO[150];
 int current=0;
 fprintf(f,"%s\n",deb);
     while(rep!=-1){
         affiche_dejaEcrit(current);
         To[current].id=current+1;
         printf("\nPour quitter : '-1' lors de passage\n\n");
-        printf("Recap : type(1:arme;2:consommable;3:antidote?;4:terrain;5:mur)\n");
+        printf("Recap : type(1:arme;2:consommable;3:antidote?;4:terrain;5:mur 6:destructible 7:fouillable)\n");
         printf("        use=degat si arme ; use= heal si consommable\n\n");
         printf("Type=");
         scanf(" %d",&rep);
@@ -80,6 +85,10 @@ fprintf(f,"%s\n",deb);
         printf("name=");
         scanf("%s",&nameO);
         strcpy(To[current].name,nameO);
+
+        printf("path=");
+        scanf("%s",&nameO);
+        strcpy(To[current].path,nameO);
 
         if(rep!=-1) Ecrit(current,f);
         current++;

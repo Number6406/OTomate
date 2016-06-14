@@ -11,7 +11,7 @@ public class Conditions2 {
     /*
      *      { 0 : SP
     		{ 1 : N
-	   d €  { 2 : E
+	   d ï¿½  { 2 : E
     		{ 3 : S
     		{ 4 : O
 
@@ -19,7 +19,7 @@ public class Conditions2 {
 
        		{ 0 : mur
        		{ 1 : objet
-	type € 	{ 2 : bloque
+	type ï¿½ 	{ 2 : bloque
        		{ 3 : ennemi
        		{ 4 : chemin
  
@@ -43,20 +43,20 @@ public class Conditions2 {
     	//System.out.println(max);
     	for(i=0;i<max;i++){
     		//System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
-    		if(l.get(i).id==Cid){
+    		if(l.get(i).getId()==Cid){
     			//System.out.println("tamer");
     			switch(type){
     			
     			case 0:
-    				if(l.get(i).type==5 && l.get(i).passable==0) return true;
+    				if(l.get(i).getType()==5 && !(l.get(i).estPassable())) return true;
     				else return false;
     			
     			case 1:
-    				if(l.get(i).type==1) return true;
+    				if(l.get(i).getType()==1) return true;
     				else return false;
     			
     			case 2:
-    				if(l.get(i).passable==0) return true;
+    				if(!(l.get(i).estPassable())) return true;
     				return false;
     			
     			case 3:
@@ -77,23 +77,23 @@ public class Conditions2 {
     				return false;
     			
     			case 4:
-    				if(l.get(i).passable==1) return true;
+    				if(l.get(i).estPassable()) return true;
     				else return false;
         			
         		case 5:
-        			if(l.get(i).type == 1) return true;
+        			if(l.get(i).getType() == 1) return true;
         			else return false;
         		
         		case 6:
-        			if(l.get(i).type == 3) return true;
+        			if(l.get(i).getType() == 3) return true;
         			else return false;
         			
         		case 7:
-        			if(l.get(i).type == 6) return true;
+        			if(l.get(i).getType() == 6) return true;
         			else return false;
         			
         		case 8:
-        			if(l.get(i).type == 7) return true;
+        			if(l.get(i).getType() == 7) return true;
         			else return false;
     			}
     		}

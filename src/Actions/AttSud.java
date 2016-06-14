@@ -20,7 +20,7 @@ public class AttSud extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(3) == 6) { // 6 = ennemi au sud et 3 regard au sud
+		if (l.get(3) == 6) { // 6 = ennemi au sud et 4eme element regard au sud
 			$Personnage e = null;
 			Coordonnees card = p.getPosition();
 			card.setY(card.getY() + 1);
@@ -35,12 +35,12 @@ public class AttSud extends $Action {
 			if (p instanceof Gentil) {
 				if (e != null && e instanceof Mechant)
 					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getArme()));
-
-			} else if (e != null && e instanceof Gentil) {
+			}
+			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());
-				if (Grille.random(0, 101) > 24)
+				if (Grille.random(0, 101) > 24)	//75% de chances de souffrir de saignement apres une attaque de zombies
 					((Gentil) e).setSaignement(true);
-				if (Grille.random(0, 101) > 4)
+				if (Grille.random(0, 101) > 4)	//95% de chances d'etre infecte
 					((Gentil) e).setInfecte(true);
 			}
 			effect = true;

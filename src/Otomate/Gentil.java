@@ -23,7 +23,7 @@ public class Gentil extends $Personnage {
 	private int arme, remede, drogue;
 	private int paralysie, piege; // nb de tour a jouer, att avant prochain
 									// piege
-	private int efdrogue, efsaignement; // calcule le nombre de tours restant et
+	private int efdrogue; // calcule le nombre de tours restant et
 										// effet a effectuer
 	private boolean infecte, saignement;
         
@@ -38,7 +38,6 @@ public class Gentil extends $Personnage {
 		paralysie = 1;
 		piege = 10;
 		efdrogue = 0;
-		efsaignement = 0;
                 try {
                     basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
                     ic = new ImageColor(basicSprite);
@@ -120,5 +119,15 @@ public class Gentil extends $Personnage {
 	public void setDrogue(int Drogue) {
 		this.drogue = Drogue;
 	}
+        
+        @Override
+        public String getEffets() {
+            String effets = super.getEffets();
+            
+            if(infecte) { effets += "Infecte "; }
+            if(saignement) { effets += "Saignement "; }
+            
+            return effets;
+        }
 
 }

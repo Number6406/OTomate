@@ -17,23 +17,28 @@ use � { si arme = degat
 public class Objet {
 	
 	// Attributs
-	int id;
-	int type;
-	int use;
-	String name;
-	int passable;
-	String path;
+	private int id;
+	private int type;
+	private int use;
+	private String name;
+	private boolean passable;
+	private String path;
 	
 	// Constructeur
-	public Objet(int id, int type, int use, String name, int passable) {
+	public Objet(int id, int type, int use, String name, boolean passable, String path) {
 		this.id = id;
 		this.type = type;
 		this.use = use;
 		this.name = name;
 		this.passable = passable;
+		this.path = path;
 	}
 	
 	// Getteurs
+        public int getId() {
+            return id;
+        }
+        
 	public int getType() {
 		return type;
 	}
@@ -46,7 +51,7 @@ public class Objet {
 		return name;
 	}
 
-	public int getPassable() {
+	public boolean estPassable() {
 		return passable;
 	}
 	
@@ -68,8 +73,8 @@ public class Objet {
 		this.name = name;
 	}
 
-	public void setPassable(int i) {
-		passable = i;
+	public void setPassable(boolean b) {
+		passable = b;
 	}
 
 }

@@ -5,8 +5,8 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
-import java.awt.Color;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -23,6 +23,7 @@ public class Jeu {
 	public static List<Joueur> joueurs;
 	public static List<Integer> refPersos;
 	public static Historique historique;
+	public static Univers univers;
 	//private static List<Conditions2> listCond;
 	//private static List<Objet> listCont;
 
@@ -53,6 +54,16 @@ public class Jeu {
 			}
 		}
 		return true; // Tout les gentils n'ont plus de personnages
+	}
+	
+	/**
+	 * Initialise toutes les variables pour lancer la partie.
+	 */
+	public static void debutPartie(){
+		univers = new Univers(1); // TODO récupérer depuis l'interface
+		historique = new Historique();
+		plateau = new Grille();
+		// TODO pour reduire la taille du main
 	}
 	
 	/**
@@ -121,6 +132,84 @@ public class Jeu {
 			}
 		}
 	}
+	
+	public static void gereParalysie($Personnage P, List<Conditions2> listCond, List<Objet> listCont) throws InterruptedException{
+		String th = new String();
+		while(((Gentil)P).getParalysie()>0){
+			((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
+			effetsDrogue(P);
+			th = P.jouer(listCond,plateau,listCont,joueurs);
+		}
+		historique.ceTour().addEvenement(new Evenement(P, th));
+		((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
+		((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
+		System.out.println("gentilkijou");
+		Thread.sleep(200);
+	}
+	
+	public static void saigne($Personnage P){
+		if(P instanceof Gentil){
+			if(((Gentil)P).getSaignement()) P.setVie(P.getVie()-5);
+		}
+	}
+	
+	public static void junky(List<$Personnage> lp,List<Conditions2> listCond,List<Objet>listCont) throws InterruptedException{
+		int i,max=lp.size();
+		for(i=0;i<max;i++){
+			saigne(lp.get(i));
+			gereParalysie(lp.get(i),listCond,listCont);
+		}
+	}
+	
+	public static void effetsDrogue($Personnage P){
+		if(((Gentil)P).getEfdrogue() != 0){
+			if(((Gentil) P).getDrogue() == 3){
+				((Gentil) P).setVie(((Gentil) P).getVie()+5);
+				if (P.getVie() > P.getViemax()){
+					P.setVie(P.getViemax());
+				}
+			}
+			if(((Gentil)P).getDrogue() == 4)
+				P.setVie(P.getVie()-5);
+			if(((Gentil)P).getDrogue() == 5)
+				((Gentil)P).setParalysie(2);
+			if(((Gentil)P).getDrogue() == 6)
+				((Gentil)P).setParalysie(0);
+			((Gentil) P).setEfdrogue(((Gentil)P).getEfdrogue()-1);
+		}
+	}
+	
+	public static boolean soinInstantane($Personnage P){
+		if(((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2){
+			((Gentil) P).setSaignement(false);
+			return true;
+		}
+		else if(((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1){
+			((Gentil) P).setInfecte(false);
+			return true;
+		}
+		return false;
+	}
+	
+	public static void tour($Personnage P, List<Conditions2> listCond, List<Objet> listCont) throws InterruptedException{
+		String tempHistorique;
+		if (P instanceof Gentil){
+			Gentil gentilperso=((Gentil) P);
+			if(soinInstantane(gentilperso) == false){
+    			gereParalysie(gentilperso, listCond, listCont);
+				if (gentilperso.getParalysie()<1){
+					System.out.println("passe tour drogue ou drogue dissipe");
+					((Gentil) P).setParalysie(((Gentil) P).getParalysie()+1);
+				}    				
+			}
+		}
+		else {
+			tempHistorique = P.jouer(listCond,plateau,listCont,joueurs);
+			historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
+			System.out.println("mechantkijou");
+			Thread.sleep(200);
+		}
+	}
 
 	/**
 	 * Fonction principale de Jeu
@@ -130,16 +219,14 @@ public class Jeu {
 	 */
 	// TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
-    	plateau = new Grille();
-    	historique = new Historique();
+    	debutPartie();
     	// Variables définies grâce au menu d'affichage ->
-    	int nbJoueurs = 2;
-    	int nbPersoParJoueur = 2;
+    	//int nbJoueurs = 2;
+    	//int nbPersoParJoueur = 2;
     	int nZombie = 1;				// Variable possiblement tirée au sort
     	int nbPersoParZombie = 2;
     	List<String> xmlsGentils = new LinkedList<String>();
         String fichiers = new File("conditions.xml").toString();
-    	//System.out.println(fichiers);
         xmlsGentils.add("AutomateenXML.xml");
     	List<String> xmlsMechants = new LinkedList<String>();
         xmlsMechants.add("AutomateenXML.xml");
@@ -152,17 +239,15 @@ public class Jeu {
     	couleurs.add(Color.red);
     	couleurs.add(Color.black);
     	
-    	ParserConditions p1 = new ParserConditions(fichiers);
-    	ParserObjet p2 = new ParserObjet("objet.xml");
-    	//System.out.println(p2.list.size()+" +++++++++++++++++++++++++++++++++");
+    	//ParserConditions p1 = new ParserConditions(fichiers);
+    	//ParserObjet p2 = new ParserObjet("ObjetsZombie.xml");
     	listCond = plateau.condparser(fichiers);
-    	//System.out.println("Encore avant : " + p1.list.size());
-    	listCont = plateau.objparser("objet.xml");
+    	listCont = plateau.objparser("ObjetsZombie.xml");
     	// <- Fin variables
     	int j,p;
     	initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
     	refPersos = new LinkedList<Integer>();
-    	String tempHistorique;
+    	//String tempHistorique;
     	plateau.initialisergrille(joueurs);
     	Affichage.charger();
     	//int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
@@ -172,49 +257,7 @@ public class Jeu {
     		for(int i=0; i<refPersos.size(); i++) {
     			j = refPersos.get(i)/100;
     			p = refPersos.get(i)%100;
-    			if (joueurs.get(j).getPersonnagesI(p) instanceof Gentil){
-        			Gentil gentilperso=((Gentil) joueurs.get(j).getPersonnagesI(p));
-    				while (gentilperso.getParalysie()>0){
-    					if(gentilperso.getEfdrogue() != 0){
-    						if(gentilperso.getDrogue() == 3){
-    							gentilperso.setVie(gentilperso.getVie()+5);
-    							if(gentilperso.getVie() > gentilperso.getViemax()){
-    								gentilperso.setVie(gentilperso.getViemax());
-    							}
-    						}
-    						if(gentilperso.getDrogue() == 4){
-    							gentilperso.setVie(gentilperso.getVie()-5);
-    						}
-    						if(gentilperso.getDrogue() == 5){
-    							gentilperso.setParalysie(2);
-    						}
-    						if(gentilperso.getDrogue() == 6){
-    							gentilperso.setParalysie(0);
-    						}					
-    					}
-    					else{
-    						gentilperso.setDrogue(0);
-    					}
-    				
-    					tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
-    	    			historique.ceTour().addEvenement(new Evenement(gentilperso, tempHistorique));
-    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(((Gentil) joueurs.get(j).getPersonnagesI(p)).getParalysie()-1);
-    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setEfdrogue(((Gentil) joueurs.get(j).getPersonnagesI(p)).getEfdrogue()-1);
-    					System.out.println("gentilkijou");
-    					Thread.sleep(200);
-    				}
-    				if (gentilperso.getParalysie()==0){
-    					System.out.println("passe tour drogue ou drogue dissipe");
-    					((Gentil) joueurs.get(j).getPersonnagesI(p)).setParalysie(1);
-    				}
-    				
-    			}
-    			else {
-    				tempHistorique = joueurs.get(j).getPersonnagesI(p).jouer(listCond,plateau,listCont,joueurs);
-        			historique.ceTour().addEvenement(new Evenement(joueurs.get(j).getPersonnagesI(p), tempHistorique));
-        			System.out.println("mechantkijou");
-        			Thread.sleep(200);
-        			}
+    			tour(joueurs.get(j).getPersonnagesI(p), listCond, listCont);
     			System.out.println("FIN DE TOUR");
     			//tempHistorique sera la chaîne renvoyée par l'action d'un joueu
 //    			$Personnage persoCourant = joueurs.get(refPersos.get(i)/100).getPersonnagesI(refPersos.get(i)-(refPersos.get(i)/100));

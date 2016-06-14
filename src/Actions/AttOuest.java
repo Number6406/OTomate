@@ -35,16 +35,17 @@ public class AttOuest extends $Action {
 			if (p instanceof Gentil) {
 				if (e != null && e instanceof Mechant)
 					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getArme()));
-
-			} else if (e != null && e instanceof Gentil) {
+			}
+			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());
-				if (Grille.random(0, 101) > 24)
+				if (Grille.random(0, 101) > 24)	//75% de chances de souffrir de saignement apres une attaque de zombies
 					((Gentil) e).setSaignement(true);
-				if (Grille.random(0, 101) > 4)
+				if (Grille.random(0, 101) > 4)	//95% de chances d'etre infecte
 					((Gentil) e).setInfecte(true);
 			}
 			effect = true;
-		} else {
+		}
+		else {
 			effect = false;
 		}
 	}

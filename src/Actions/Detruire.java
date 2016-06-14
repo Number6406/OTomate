@@ -17,13 +17,14 @@ public class Detruire extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(0) == 18) {
+		if (l.get(0) == 17) {	//objet destructible sur ma case?
 			int aux;
 			aux = p.getInventaire();
-			p.setInventaire(8);
+			p.setInventaire(8);	//on récupère l'objet 8 en detruisant l'objet 12
 			Grille.Pos(p.getPosition()).setValeur(aux);
 			effect = true;
-		} else {
+		}
+		else {
 			effect = false;
 		}
 	}

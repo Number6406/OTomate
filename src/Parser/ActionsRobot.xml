@@ -1,7 +1,7 @@
 <parse>
 	<action>
 		<id>0</id>
-		<succes>compte les brins d'herbe</succes>
+		<succes>observe les petits éléctrons qui courent</succes>
 		<echec>n'arrive pas à rien faire</echec>
 	</action>
 	<action>
@@ -26,28 +26,28 @@
 	</action>
 	<action>
 		<id>5</id>
-		<succes>attaque l'ennemi au nord</succes>
+		<succes>attaque le virus au nord</succes>
 		<echec>essaye d'attaquer au nord, mais il n'y a personne</echec>
 	</action>
 	<action>
 		<id>6</id>
-		<succes>attaque l'ennemi au sud</succes>
+		<succes>attaque le virus au sud</succes>
 		<echec>essaye d'attaquer au sud, mais il n'y a personne</echec>
 	</action>
 	<action>
 		<id>7</id>
-		<succes>attaque l'ennemi a l'est</succes>
+		<succes>attaque le virus a l'est</succes>
 		<echec>essaye d'attaquer a l'est, mais il n'y a personne</echec>
 	</action>
 	<action>
 		<id>8</id>
-		<succes>attaque l'ennemi a l'ouest</succes>
+		<succes>attaque le virus a l'ouest</succes>
 		<echec>essaye d'attaquer a l'ouest, mais il n'y a personne</echec>
 	</action>
 	<action>
 		<id>9</id>
-		<succes>ramasse un objet</succes>
-		<echec>essaye de rammasser quelque chose qui ne peut pas l'être</echec>
+		<succes>ramasse un composant</succes>
+		<echec>essaye de ramasser quelque chose qui ne peut pas l'être</echec>
 	</action>
 	<action>
 		<id>10</id>
@@ -56,13 +56,13 @@
 	</action>
 	<action>
 		<id>11</id>
-		<succes>mange, ça lui fait du bien</succes>
-		<echec>a faim et a un inventaire vide</echec>
+		<succes>se recharge. Il est revigoré</succes>
+		<echec>est vidé de son énérgie et a un inventaire vide</echec>
 	</action>
 	<action>
 		<id>12</id>
-		<succes>a mal et se soigne automatiquement</succes>
-		<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
+		<succes>est endommagé. Il se répare automatiquement</succes>
+		<echec>essaye de se réparer mais manque d'outils</echec>
 	</action>
 	<action>
 		<id>13</id>
@@ -76,7 +76,7 @@
 	</action>
 	<action>
 		<id>15</id>
-		<succes>fouille un batiment à la recherche de trésors</succes>
+		<succes>fouille un tas de composants</succes>
 		<echec>veux fouiller mais échoue</echec>
 	</action>
 </parse>

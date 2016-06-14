@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
+import Otomate.Objet;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -38,13 +39,13 @@ public class AffichagePlateau extends JPanel {
             //graph.fillOval(TAILLECASE*x, TAILLECASE*y, TAILLECASE, TAILLECASE);
 	}
         
-        void loadTiles() {
+        void loadTiles(List<Objet> lo) {
             tiles = new ArrayList<>();
             try {
-                for(int i=0; i<=10; i++) {
+                for(int i=0; i<=lo.size(); i++) {
                     BufferedImage img;
                     System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
-                    img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/Zombie/"+i+".jpg").getFile())); //Version Linux
+                    img = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPath()).getFile())); //Version Linux
                     tiles.add(img);
                 }
             } catch (IOException e) {
@@ -100,10 +101,10 @@ public class AffichagePlateau extends JPanel {
             }
 	}
 	
-	AffichagePlateau(Grille g,List<$Personnage> perso){
+	public AffichagePlateau(Grille g,List<$Personnage> perso,List<Objet> lo){
             gr =g ;
             this.perso=perso;
-            loadTiles();
+            loadTiles(lo);
 	}
 	
         @Override
