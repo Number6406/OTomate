@@ -97,8 +97,8 @@ public abstract class $Personnage {
 	}
 
 	public String getNomHtml() {
-		return "<font color=\"rgb(" + couleur.getRed() + "," + couleur.getGreen() + "," + couleur.getBlue() + ")\">"
-				+ nom + "</font>";
+		return "<b><font color=\"rgb(" + couleur.getRed() + "," + couleur.getGreen() + "," + couleur.getBlue() + ")\">"
+				+ nom + "</font></b>";
 	}
 
 	public BufferedImage getSprite() {

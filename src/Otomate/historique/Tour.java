@@ -9,13 +9,19 @@ import java.util.List;
  */
 public class Tour {
 	private List<Evenement> evenements;
+	private int numero;
 	
-	public Tour(){
+	public Tour(int num){
 		evenements = new ArrayList<Evenement>();
+		numero = num;
 	}
 
 	public Evenement getEvenement(int i) {
 		return evenements.get(i);
+	}
+	
+	public int getNumero() {
+		return numero;
 	}
 	
 	public void removeEvenement(int i) {
@@ -38,4 +44,5 @@ public class Tour {
 		}
 		return s;
 	}
+
 }
