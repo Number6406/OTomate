@@ -21,16 +21,17 @@ public class Objet {
 	int type;
 	int use;
 	String name;
-	int passable;
+	boolean passable;
 	String path;
 	
 	// Constructeur
-	public Objet(int id, int type, int use, String name, int passable) {
+	public Objet(int id, int type, int use, String name, boolean passable, String path) {
 		this.id = id;
 		this.type = type;
 		this.use = use;
 		this.name = name;
 		this.passable = passable;
+		this.path = path;
 	}
 	
 	// Getteurs
@@ -46,7 +47,7 @@ public class Objet {
 		return name;
 	}
 
-	public int getPassable() {
+	public boolean estPassable() {
 		return passable;
 	}
 	
@@ -68,8 +69,8 @@ public class Objet {
 		this.name = name;
 	}
 
-	public void setPassable(int i) {
-		passable = i;
+	public void setPassable(boolean b) {
+		passable = b;
 	}
 
 }
