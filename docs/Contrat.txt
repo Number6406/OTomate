@@ -1,0 +1,15 @@
+2.2 Contrat
+
+• Deux univers différents : Humains vs Zombies, Robots vs Virus
+
+• Ordonnanceur
+
+– [play, pause, step by step]
+
+• Sauvegarge et chargement de partie
+
+• Présence d’objets inﬂuençant le comportement des personnages
+
+• Un personnage peut changer de camp : un gentil peut prendre le comportement d’un méchant en cours de partie.
+
+• Pas d’interactions avec les joueurs au cours de la simulation
