@@ -18,7 +18,9 @@ public class Evenement{
 	
 	@Override
 	public String toString(){
+		if(personnage!=null){
 		return "<html>" + personnage.getNomHtml() + " " + description + "</html>";
+		} else return description;
 	}
 	
 	
