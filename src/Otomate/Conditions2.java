@@ -28,8 +28,8 @@ public class Conditions2 {
     //Constructeur
     
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
-    	if(pos.getX()==g.tailleX())return type==0||type==2;
-    	if(pos.getY()==g.tailleY())return type==0||type==2;
+    	if(pos.getX()==g.tailleX()-1 && direction==2) return type==0||type==2;
+    	if(pos.getY()==g.tailleY()-1 && direction==3) return type==0||type==2;
     	
     	Coordonnees next=pos.CalculCase(direction);
     	
@@ -52,7 +52,7 @@ public class Conditions2 {
     			switch(type){
     			
     			case 0:
-    				if(l.get(i).getType()==5 && !(l.get(i).estPassable())) return true;
+    				if(l.get(i).getType()==2 && !(l.get(i).estPassable())) return true;
     				else return false;
     			
     			case 1:

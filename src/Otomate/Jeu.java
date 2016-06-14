@@ -164,6 +164,7 @@ public class Jeu {
 			((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
 			effetsDrogue(P);
 			th = P.jouer(univers.getConditions(),plateau,univers.getObjets(),joueurs);
+			Thread.sleep(200);
 		}
 		historique.ceTour().addEvenement(new Evenement(P, th));
 		//((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
