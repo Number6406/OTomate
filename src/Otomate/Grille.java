@@ -128,12 +128,7 @@ public class Grille {
             
       //cration die la map dimh/dimv avec minimum 150/150
         
-        g = new Case[dimh][dimv];
-        for(i=0;i<dimh;i++){
-        	for(j=0;j<dimv;j++){
-        		g[i][j]=new Case();
-        	}
-        }
+        new Grille(dimh, dimv);
     }
     
     //Méthodes
