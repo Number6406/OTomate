@@ -24,7 +24,7 @@ public abstract class $Personnage {
 	protected int dmg;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
-	protected String spriteURL = "../Graphics/Sprites/1.png";
+	protected String spriteURL = "../Graphics/Sprites/1.gif";
 
 	// Constructeur
 	protected $Personnage(String file, Color couleur) {
@@ -115,7 +115,7 @@ public abstract class $Personnage {
         
         public void setSprite() {
             try {
-                ImageIO.read(new File(this.getClass().getResource("../Graphics/Sprites/1.png").getFile()));
+                ImageIO.read(new File(this.getClass().getResource("../Graphics/Sprites/1.gif").getFile()));
             } catch (IOException ex) {
                 Logger.getLogger($Personnage.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -208,7 +208,12 @@ public abstract class $Personnage {
 		$Action actionAFaire; //= G.takeOne(la);
 		//System.out.println("choix :" + actionAFaire);
 		
-		int numaction = la.get(Grille.random(0, la.size()));
+		int numaction;
+		if(la.size()!=0){
+			numaction = la.get(Grille.random(0, la.size()));
+		} else {
+			numaction = 0; // Ne rien faire
+		}
 		System.out.println("numaction : "+numaction);
 		
 		if(this instanceof Gentil){

@@ -358,6 +358,7 @@ public class Jeu {
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
             tour();
+            Affichage.again();
         }
         // TODO Annoncer gagnant
     }
