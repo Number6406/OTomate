@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Otomate.$Personnage;
+import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
@@ -100,7 +101,7 @@ public class FenetreJeu extends JFrame {
         toolbar = new JMenuBar();
         pan_info = new JPanel();
         label_perso = new JLabel();
-        tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV"}, 0) {
+        tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Consom.", "Arme", "Remede"}, 0) {
             /**
              *
              */
@@ -111,6 +112,8 @@ public class FenetreJeu extends JFrame {
             }
         });
         tab_perso.getTableHeader().setReorderingAllowed(false);
+        majTabPersos(); // Mise à jour de l'affichage de l'état des personnages
+        
         scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
         
@@ -195,7 +198,6 @@ public class FenetreJeu extends JFrame {
         infoConstraints.gridheight = 1;
         infoConstraints.weighty = 0.2;
         pan_info.add(scroll_perso, infoConstraints);
-        ((DefaultTableModel) tab_perso.getModel()).addRow(new Object[]{"TEST", 18});
 
         infoConstraints.gridy = 2;
         infoConstraints.gridheight = 1;
@@ -290,6 +292,40 @@ public class FenetreJeu extends JFrame {
         JScrollBar verticalScrollBar = scroll_history.getVerticalScrollBar();
         verticalScrollBar.setValue(verticalScrollBar.getMaximum());
     	
+    }
+    
+    public void majTabPersos() {
+        int nbRow = tab_perso.getModel().getRowCount();
+        for(int i = nbRow - 1; i >= 0; i--) {
+            ((DefaultTableModel) tab_perso.getModel()).removeRow(i);
+        }
+        for(Joueur j : Jeu.joueurs) {
+            for($Personnage p : j.getPersonnages()) {
+                // Récupération des icones d'images pour les afficher.
+                ImageIcon consommable = null;
+                ImageIcon arme = null;
+                ImageIcon remede = null;
+                
+                String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
+                if(p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
+                    String iconeArme = Jeu.univers.getObjets().get(((Gentil) p).getArme()).getPath();
+                    arme = new ImageIcon(getClass().getResource(iconeArme));
+                    String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
+                    remede = new ImageIcon(getClass().getResource(iconeRemede));
+                }
+                
+                // Mise à jour de l'affichage
+                ((DefaultTableModel) tab_perso.getModel()).addRow(
+                    new Object[]{
+                        "<html>" + p.getNomHtml() + "</html>",
+                        p.getVie() + "/" + p.getViemax(),
+                        consommable, // Affichage de l'icone
+                        arme,
+                        remede
+                    }
+                );
+            }
+        }
     }
     
     public static void main(String[] args) throws IOException {
