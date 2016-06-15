@@ -71,6 +71,10 @@ public abstract class $Personnage {
 
 	// Getteurs
 
+	public $Personnage() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Automate getAutomate() {
 		return a;
 	}

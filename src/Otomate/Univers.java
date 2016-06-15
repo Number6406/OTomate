@@ -23,6 +23,7 @@ public class Univers {
 	List<Conditions> conditions;
 	String nomUnivers;
 	String imageGentil, imageMechant;
+	int numero;
 	
 	// Getteurs
 	
@@ -52,6 +53,10 @@ public class Univers {
 	
 	public String spriteMechant(){
 		return imageMechant;
+	}
+	
+	public int numero(){
+		return numero;
 	}
 	
 	
@@ -87,6 +92,7 @@ public class Univers {
 		
 		Pc = new ParserConditions("Conditions.xml");
 		conditions = Pc.list;
+		this.numero = numeroUnivers;
 	}
 	
 	
