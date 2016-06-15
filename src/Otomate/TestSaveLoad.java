@@ -43,7 +43,7 @@ public class TestSaveLoad {
 		int j, p;
 		jeu.initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
 		jeu.refPersos = new LinkedList<Integer>();
-		Grille.initialisergrille(jeu.joueurs);
+		jeu.plateau.initialisergrille(jeu.joueurs);
 		SaveLoad s = new SaveLoad(jeu, "TAMER.txt");
 		s.save();
 		SaveLoad suu = new SaveLoad("TAMER.txt");
