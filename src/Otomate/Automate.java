@@ -21,6 +21,10 @@ public class Automate {
         nbconditions = 20;
     }
     
+    public Automate() {
+    	
+    }
+    
     // Getteurs
     public int transition(int symbole, int etatCourant) {  // renvoie le nouvel etat
         return transitions[etatCourant][symbole];

@@ -51,7 +51,7 @@ public abstract class $Personnage {
 	}
 	
 	public $Personnage() {
-		
+		a = new Automate();
 	}
 
 	// Getteurs
@@ -137,6 +137,10 @@ public abstract class $Personnage {
 		if (a.transitions[symbole][etat] != 0)
 			etat = a.transitions[symbole][etat];
 	}
+	
+	public void forceSetEtat(int pEtat) {
+		etat = pEtat;
+	}
 
 	public void setVie(int Vie) {
 		this.vie = Vie;
@@ -160,6 +164,10 @@ public abstract class $Personnage {
 
 	public void setSpriteURL(String url) {
 		this.spriteURL = url;
+	}
+	
+	public void setDmg(int d) {
+		dmg = d;
 	}
 
 	// Override
