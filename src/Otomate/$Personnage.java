@@ -208,7 +208,12 @@ public abstract class $Personnage {
 		$Action actionAFaire; //= G.takeOne(la);
 		//System.out.println("choix :" + actionAFaire);
 		
-		int numaction = la.get(Grille.random(0, la.size()));
+		int numaction;
+		if(la.size()!=0){
+			numaction = la.get(Grille.random(0, la.size()));
+		} else {
+			numaction = 0; // Ne rien faire
+		}
 		System.out.println("numaction : "+numaction);
 		
 		if(this instanceof Gentil){
