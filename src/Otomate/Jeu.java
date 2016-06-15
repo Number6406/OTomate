@@ -157,7 +157,7 @@ public class Jeu {
                 //System.out.println(i);
                 joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
             } else {
-                //System.out.println("nope");
+                //System.out.println("nope"); 
                 joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
             }
         }
@@ -169,7 +169,7 @@ public class Jeu {
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
-            th = P.jouer(univers.getConditions(), plateau, univers.getObjets(), joueurs);
+            th = P.jouer(plateau, joueurs,univers);
             Thread.sleep(period);
         }
         historique.ceTour().addEvenement(new Evenement(P, th));
@@ -291,7 +291,7 @@ public class Jeu {
                 }
             }
         } else {
-            tempHistorique = P.jouer(univers.getConditions(), plateau, univers.getObjets(), joueurs);
+            tempHistorique = P.jouer(plateau,joueurs,univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
             //System.out.println("mechantkijou");
