@@ -374,6 +374,20 @@ public class Jeu {
         step = true;
     }
     
+    public static void finDeJeu(){
+    	String gagnant = "erreur";
+        for(int i=0; i<joueurs.size(); i++) {
+        	if(joueurs.get(i).getPersonnages().size()!=0) {
+        		if(joueurs.get(i).mechant) {gagnant = "Partie finie : les " + univers.getNomMechants()+" ont gagné !";}
+        		else { gagnant = "Partie finie : les " + univers.getNomGentils() + " ont gagné !";}
+        	}
+        }
+    	historique.addTour();
+        historique.ceTour().addEvenement(new Evenement(null, "<html><b>"+gagnant+"</b></html>"));
+        Affichage.ajouterTour(historique.ceTour());
+        Affichage.again();
+    }
+    
     public static void setNbZombie(int nb) {
         nZombie = nb;
     }
@@ -415,16 +429,7 @@ public class Jeu {
             tour();
             Affichage.again();
         }
-        historique.addTour();
-        historique.ceTour().addEvenement(new Evenement(null, "Fin de Jeu !"));
-        Affichage.ajouterTour(historique.ceTour());
-        for(int i=0; i<joueurs.size(); i++) {
-        	if(joueurs.get(i).getPersonnages().size()!=0) {
-        		if(joueurs.get(i).mechant) {System.out.println("Partie finie : les zombies ont gagné !");}
-        		else {System.out.println("Partie finie : les humains ont gagné !");}
-        	}
-        }
-        Affichage.again();
+        finDeJeu();
         System.out.println("partie finie lol");
         // TODO Annoncer gagnant
     }

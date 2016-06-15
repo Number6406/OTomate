@@ -57,7 +57,14 @@ public abstract class $Personnage {
                 }
 	}
 
-	protected $Personnage($Personnage cpy) {
+	protected $Personnage($Personnage cpy, Color couleur) {
+
+        if(this instanceof Gentil) {
+            spriteURL = Jeu.univers.spriteGentil();
+        } else {
+            spriteURL = Jeu.univers.spriteMechant();
+        }
+        
 		a = cpy.getAutomate();
 		etat = a.etat_initial();
 		position = new Coordonnees(0, 0);
@@ -65,8 +72,16 @@ public abstract class $Personnage {
 		inventaire = 0;
 		nom = "Bob";
 		dmg = 10;
-		couleur = cpy.getCouleur();
-		sprite = cpy.getSprite();
+		this.couleur = couleur;
+		try {
+            System.out.println(spriteURL);
+            basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
+            ic = new ImageColor(basicSprite);
+            int basicColor = ic.toRGB(10, 64, 7);
+            sprite = ic.changeColor(basicColor, couleur.getRGB());
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
 	}
 
 	// Getteurs

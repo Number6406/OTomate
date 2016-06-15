@@ -20,9 +20,8 @@ public class Mechant extends $Personnage {
 	}
 
 	public Mechant($Personnage perso, Color couleur) {
-		super(perso);
+		super(perso,couleur);
 		vie = viemax;
-		this.couleur = couleur;
         nom = "Mechant";
 	}
 
