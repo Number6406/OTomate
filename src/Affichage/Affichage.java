@@ -78,6 +78,9 @@ public class Affichage {
 	   jeu.charger();
 	   
    }
+   		public static void again(){
+   		jeu.scroll_plateau.setSize(jeu.scroll_plateau.getSize());
+   		}
    
 	  public static void charger() throws IOException{
 		   jeu = new FenetreJeu();
@@ -88,5 +91,8 @@ public class Affichage {
 	  public static void ajouterTour(Tour t){
 		  jeu.ajouterTourHistorique(t);
 	  }
+	  
+	  
+	  
     
 }
