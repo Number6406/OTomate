@@ -221,34 +221,20 @@ public class Grille {
         int nb = list.size();
         
         for(k=0; k<list.size(); k++){
-        	System.out.println("debut "+res);
-        	//System.out.println(":'(:'(:'(:'(:'(:'(:''(:'(:'(");
             i = rnd.nextInt(nb);       //donne le numro de la case "h" abscisse correspondant
-            //System.out.println("i="+i);
-            System.out.println("fin "+res);
             newc[k].setX(i*dimh/nb);
-            System.out.println("presquefin "+res);
-            //System.out.println("�a donne quoi i*dimh/nb "+i*dimh/nb);
             j = rnd.nextInt(nb);
-            //System.out.println("j="+j);
             newc[k].setY(j*dimv/nb);
-            //System.out.println("�a donne quoi j*dimh/nb "+j*dimh/nb);
             j=k;
             for(i=0; i<k; i++){
                 if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
-                	//System.out.println(res.toString());
-                	//System.out.println("compare "+res.get(i).getX()+"et "+res.get(i).getY());
                     i=k;
                     k--;           // la c'est pour refaire le meme tour puisque la case est deja occupee
                 }
             }
             if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
                 res.add(newc[k]);
-                System.out.println("TAMER");
             }
-
-        	System.out.println("fin2 "+res);
-
         }
         return res;
     }
@@ -257,7 +243,7 @@ public class Grille {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(0, 16);        //car 10 actions possibles numrotes de 1  10 
+                k = random(0, 16);        //car 16 actions possibles numerotees de 0 a 15 
                 g[i][j].element = k;
             }
         }
@@ -270,7 +256,6 @@ public class Grille {
         }
         
         coinsAutomates = goAutomates(list, tailleX, tailleY);
-        System.out.println(coinsAutomates);
         Placements(l);
     }
     
@@ -281,7 +266,6 @@ public class Grille {
  */
     public List<Conditions> condparser(String filename){
     	ParserConditions P = new ParserConditions(filename);
-    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -292,7 +276,6 @@ public class Grille {
  */
     public List<Objet> objparser(String filename){
     	ParserObjet P = new ParserObjet(filename);
-    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -309,12 +292,8 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
-    		//System.out.println("Tu te trouves en x="+p.getPosition().getX()+" y="+p.getPosition().getY());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
-    		//System.out.println("res a pour valeur " + res.get(i));
     	}
-    	//System.out.println("Au depart taille " + lc.size());
-    	//System.out.println("on retourne une liste de taille "+res.size());
     	return res;
     }
  // TODO CHANGER LES TRUCS PARKE 5 ICI WESH
@@ -326,7 +305,6 @@ public class Grille {
  */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	System.out.println("taille debut : "+l.size() );
     								//**********CONDITION SUR CASE***************
     	if(l.get(9) == true)		//
     		listcond.add(9);		//
@@ -339,36 +317,30 @@ public class Grille {
     	else if(l.get(17) == true)	//
     		listcond.add(17);
     	else listcond.add(0);
-    								//
-    	//System.out.println("taille 0 : "+listcond.size());
     	if(l.get(1) == true)		//**********CONDITION AU NORD****************
     		listcond.add(1);		//
     	else if(l.get(5) == true)	//
     		listcond.add(5);		//
     	else if(l.get(11) == true)	//
     		listcond.add(11);		//
-    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(3) == true)		//*********CONDITION EST*********************
     		listcond.add(3);		//
     	else if(l.get(7) == true)	//
     		listcond.add(7);		//
     	else if(l.get(13) == true)	//
     		listcond.add(13);		//
-    	//System.out.println("taille +1 : "+listcond.size() +" "+listcond.get(0));
     	if(l.get(2) == true)		//************CONDITION SUD*******************
     		listcond.add(2);		//
     	else if(l.get(6) == true)	//
     		listcond.add(6);		//
     	else if(l.get(12) == true)	//
     		listcond.add(12);		//
-    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(4) == true)		//*************CONDITION OUEST***************
     		listcond.add(4);		//
     	else if(l.get(8) == true)	//
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
-    	//System.out.println("taille fin : "+listcond.size() );
     	return listcond;
     }
     
@@ -382,9 +354,6 @@ public class Grille {
     	List<Integer> la = new LinkedList<>();
     	int i, s = l.size();
     	for(i=0; i<s; i++){
-    		//System.out.println("symbole "+l.get(i));
-    		//System.out.println("etat courant "+p.getEtat());
-    		//System.out.println(p.a.toString());
     		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
     			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur()-1);
     			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
@@ -405,9 +374,7 @@ public class Grille {
             return a;
         }
         else{
-        	//System.out.println("Je peux faire : "+l.size()+" choses differentes.");
             int i = random(0, l.size());
-            //System.out.println("Je vais faire l'action : "+l.get(i));
             if(l.get(i) == 0)
             	a = new RaF();
             else if(l.get(i) == 1)
@@ -440,7 +407,6 @@ public class Grille {
             	a = new Detruire();
             else if(l.get(i) == 15)
             	a = new Fouiller();
-            System.out.println("J'ai fait l'action : "+l.get(i));
             return a;
         }
     }
