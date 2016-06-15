@@ -5,7 +5,6 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 
 import java.awt.Color;
-import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -84,7 +83,8 @@ public class Jeu {
         System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
-        plateau.initialisergrille(joueurs);
+       // plateau.initialisergrille(joueurs);
+        System.out.println("FIN INIT");
         try {
             Affichage.charger();
         } catch (IOException e) {
@@ -150,14 +150,10 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            //System.out.println("nZombie = "+nZombie);
             System.out.println(i);
             if (i == nZombie) {
-                //System.out.println("test");
-                //System.out.println(i);
                 joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
             } else {
-                //System.out.println("nope"); 
                 joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
             }
         }
@@ -173,9 +169,6 @@ public class Jeu {
             Thread.sleep(period);
         }
         historique.ceTour().addEvenement(new Evenement(P, th));
-        //((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
-        //((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
-        //System.out.println("gentilkijou");
     }
 
     public static void saigne($Personnage P) {
@@ -274,11 +267,9 @@ public class Jeu {
         Mechant E = new Mechant();
         if (P instanceof Gentil) {
             Gentil gentilperso = ((Gentil) P);
-            System.out.println(gentilperso.getParalysie());
             if (soinInstantane(gentilperso) == false) {
                 gereParalysie(gentilperso);
                 if (gentilperso.getParalysie() < 1) {
-                    //		System.out.println("passe tour drogue ou drogue dissipe");
                     gentilperso.setParalysie(gentilperso.getParalysie() + 1);
                 }
             }
@@ -294,7 +285,6 @@ public class Jeu {
             tempHistorique = P.jouer(plateau,joueurs,univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            //System.out.println("mechantkijou");
             Thread.sleep(period);
         }
         veriftransfo(P, E, joueurs);
@@ -354,9 +344,11 @@ public class Jeu {
     // TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
         debutPartie(1);
+        System.out.println("Fin init");
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
+            System.out.println("TOUR");
             tour();
             Affichage.again();
         }

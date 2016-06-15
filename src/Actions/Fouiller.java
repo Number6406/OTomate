@@ -23,7 +23,7 @@ public class Fouiller extends $Action {
 		if (p instanceof Gentil) {
 			int rnd;
 			if (l.get(0) == 15) {
-				if (Grille.Pos(p.getPosition()).getValeur() == 5) { // on se
+				if (g.Pos(p.getPosition()).getValeur() == 5) { // on se
 																	// trouve
 																	// dans un
 																	// immeuble
@@ -39,7 +39,7 @@ public class Fouiller extends $Action {
 					else // trouve une bouteille 30% chances
 						p.setInventaire(8);
 				}
-				else if (Grille.Pos(p.getPosition()).getValeur() == 10) {	//on se trouve dans un hopital
+				else if (g.Pos(p.getPosition()).getValeur() == 10) {	//on se trouve dans un hopital
 					rnd = Grille.random(0, 101);
 					if (rnd < 50) { // Recupere un antidote 50% chances
 						((Gentil) p).setRemede(1);
@@ -48,7 +48,7 @@ public class Fouiller extends $Action {
 					else // Recupere des bandages 50% chances
 						((Gentil) p).setRemede(2);
 				}
-				else if (Grille.Pos(p.getPosition()).getValeur() == 11) {	//on se trouve dans un grange
+				else if (g.Pos(p.getPosition()).getValeur() == 11) {	//on se trouve dans un grange
 					rnd = Grille.random(0, 101);
 					if (rnd < 25) { // S'equipe d'un fusil a pompe 25% chances
 						((Gentil) p).setArme(25);

@@ -27,9 +27,9 @@ public class DeplSud extends $Action {
 			effect = false;
 		}
 		if (p instanceof Mechant) {
-			if (Grille.Pos(p.getPosition()).piegee == true){
+			if (g.Pos(p.getPosition()).piegee == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);
-				Grille.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
+				g.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
 			}
 		}
 	}
