@@ -406,6 +406,8 @@ public class Jeu {
         		else {System.out.println("Partie finie : les humains ont gagné !");}
         	}
         }
+        Affichage.again();
+        System.out.println("partie finie lol");
         // TODO Annoncer gagnant
     }
 }
