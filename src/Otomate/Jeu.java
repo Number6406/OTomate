@@ -365,7 +365,12 @@ public class Jeu {
             tour();
             Affichage.again();
         }
-        System.out.println("partie finie lol");
+        for(int i=0; i<joueurs.size(); i++) {
+        	if(joueurs.get(i).getPersonnages().size()!=0) {
+        		if(joueurs.get(i).mechant) {System.out.println("Partie finie : les zombies ont gagné !");}
+        		else {System.out.println("Partie finie : les humains ont gagné !");}
+        	}
+        }
         // TODO Annoncer gagnant
     }
 }
