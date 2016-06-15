@@ -43,7 +43,8 @@ public class Fuir extends $Action {
 				aux2 = -aux2;
 			aux += aux2;
 		}
-		if (aux < i)
+		System.out.println("aux="+aux);
+		if (aux < i && aux != 0)
 			i = aux;
 		return i;
 	}

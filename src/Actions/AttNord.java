@@ -22,7 +22,7 @@ public class AttNord extends $Action {
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		if (l.get(1) == 5) { // 5 = ennemi au nord et 2eme element regard au nord
 			$Personnage e = null;
-			Coordonnees card = p.getPosition();
+			Coordonnees card = new Coordonnees(p.getPosition());
 			card.setY(card.getY() - 1);
 			int s = lp.size();
 			int i = 0;
@@ -31,6 +31,7 @@ public class AttNord extends $Action {
 					e = lp.get(i);
 					i = s;
 				}
+				i++;
 			}
 			if (p instanceof Gentil) {
 				if (e != null && e instanceof Mechant)

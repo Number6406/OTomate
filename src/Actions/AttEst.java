@@ -22,7 +22,7 @@ public class AttEst extends $Action {
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		if (l.get(2) == 7) { // 7 = ennemi a l'est et 3eme element regard a l'est
 			$Personnage e = null;
-			Coordonnees card = p.getPosition();
+			Coordonnees card = new Coordonnees(p.getPosition());
 			card.setX(card.getX() + 1);
 			int s = lp.size();
 			int i = 0;
@@ -31,6 +31,7 @@ public class AttEst extends $Action {
 					e = lp.get(i);
 					i = s;
 				}
+				i++;
 			}
 			if (p instanceof Gentil) {
 				if (e != null && e instanceof Mechant)

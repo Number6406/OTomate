@@ -28,19 +28,20 @@ public class Conditions {
     //Constructeur
     
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
+    	System.out.println("Le type est a : "+ type);
     	if(pos.getX()==g.tailleX()-1 && direction==2) return type==0||type==2;
     	if(pos.getY()==g.tailleY()-1 && direction==3) return type==0||type==2;
     	
     	Coordonnees next=pos.CalculCase(direction);
     	
     	int i,j,max=l.size();
-    	if(next.getX()>g.tailleX() && direction == 2){return type==0||type==2;}
+    	if(next.getX()>g.tailleX()-1 && direction == 2){return type==0||type==2;}
     	if(next.getX()<0 && direction == 4){return type==0||type==2;}
-    	if(next.getY()>g.tailleY() && direction == 3){return type==0||type==2;}
+    	if(next.getY()>g.tailleY()-1 && direction == 3){return type==0||type==2;}
     	if(next.getY()<0 && direction == 1){return type==0 ||type==2;}
+    	//System.out.println("direction="+direction);
     	//System.out.println("next.getX()="+next.getX());
     	//System.out.println("next.getY()="+next.getY());
-    	
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
     	//System.out.println("direction : "+direction);
     	//System.out.println("contenu : "+ Cid);
@@ -64,6 +65,7 @@ public class Conditions {
     				return false;
     			
     			case 3:
+    				System.out.println("on rentre dans le case 3");
     				for(i=0;i<lj.size();i++){
     					List<$Personnage> lp=lj.get(i).getPersonnages();
     					for(j=0;j<lp.size();j++){

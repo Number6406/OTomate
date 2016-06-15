@@ -151,7 +151,7 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            System.out.println(i);
+            System.out.println("i="+i);
             if (i == nZombie) {
                 joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
             } else {

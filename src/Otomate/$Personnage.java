@@ -217,8 +217,10 @@ public abstract class $Personnage {
 		
 		if(this instanceof Gentil){
 			actionAFaire = U.getActionsGentil().get(numaction);
+			System.out.println("On recupere l'action gentille : "+numaction);
 		} else {
 			actionAFaire = U.getActionsMechant().get(numaction);
+			System.out.println("On recupere l'action mechante : "+numaction);
 		}
 		G.Maj(this, actionAFaire, listJoueur, lc);
 		return actionAFaire.toString();
