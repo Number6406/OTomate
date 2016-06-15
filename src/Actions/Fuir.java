@@ -237,24 +237,8 @@ public class Fuir extends $Action {
 					effect = true;
 				}
 			}
-			else { // aucun ennemi a proximite on se deplace aleatoirement
-				rnd = Grille.random(1, 5);
-				if (rnd == 1 && g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
-					p.setPosition(cnord);
-					effect = true;
-				}
-				else if (rnd == 2 && g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getX()<g.tailleX()-1) {	//passage est
-					p.setPosition(cest);
-					effect = true;
-				}
-				else if (rnd == 3 && g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage sud
-					p.setPosition(csud);
-					effect = true;
-				}
-				else if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
-					p.setPosition(couest);
-					effect = true;
-				}
+			else { // aucun ennemi a proximite ne fait rien
+				
 			}
 		}
 		else if (p instanceof Mechant) {
@@ -271,7 +255,7 @@ public class Fuir extends $Action {
 				y2 = -y;
 			else
 				y2 = y;
-			if (((x2 < y2 && x2 != 0) || y == 0)&&((g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6)&&(g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6))) {
+			if (((x2 < y2 && x2 != 0) || y == 0)) {
 				if (x < 0){
 					if (g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6)
 						p.getPosition().setX(p.getPosition().getX() + 1);
@@ -281,7 +265,7 @@ public class Fuir extends $Action {
 							p.getPosition().setX(p.getPosition().getX() - 1);
 					}
 			}
-			else if(((g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6)&&(g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6))){
+			else if(((g.Pos(cest).getValeur() != 4))){
 				if (y < 0){
 					if (g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6)
 						p.getPosition().setY(p.getPosition().getY() + 1);
