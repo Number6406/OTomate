@@ -25,11 +25,12 @@ open Printf
 	  | Chemin of direction
 	  | Ennemi of direction
 	  | Comestible
-	  | Arme1
+	  | Arme
 	  | Obstacle of direction
 	  | Fouillable
 	  | Surprise
 	  | Destructible
+	  
 	type etat = int
 	type transition = etat * condition * action * etat
 	type automate = transition list
@@ -46,7 +47,7 @@ open Printf
 	Ennemi(E);
 	Ennemi(O);
 	Comestible;
-	Arme1;
+	Arme;
 	Obstacle(N);
 	Obstacle(S);
 	Obstacle(E);
@@ -81,7 +82,7 @@ open Printf
 	  | Chemin(dir) -> 1 + (dir_to_int dir) (* 1..4 *)
 	  | Ennemi(dir) -> 5 + (dir_to_int dir) (* 5..8 *)
 	  | Comestible -> 9
-	  | Arme1 -> 10
+	  | Arme -> 10
 	  | Obstacle(dir) -> 11 + (dir_to_int dir) (* 11..14 *)
 	  | Fouillable -> 15
 	  | Surprise -> 16

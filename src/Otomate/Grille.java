@@ -309,6 +309,7 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
+    		System.out.println("position "+p.getPosition().toString());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
     	}
     	return res;
@@ -322,6 +323,7 @@ public class Grille {
  */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
+    	System.out.println("l.toString():"+l.toString());
     								//**********CONDITION SUR CASE***************
     	if(l.get(9) == true)		//
     		listcond.add(9);		//
@@ -358,6 +360,7 @@ public class Grille {
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
+    	System.out.println("listcond.to..."+listcond.toString());
     	return listcond;
     }
     
@@ -441,6 +444,7 @@ public class Grille {
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
         }
+    	System.out.println("La boucle for de grille a fini");
     	A.todo(l,P,list, this);
     }
 }

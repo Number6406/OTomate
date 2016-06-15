@@ -66,7 +66,7 @@ public class Jeu {
         int nZombie = 1;				// Variable possiblement tir√©e au sort
         int nbPersoParZombie = 2;
         List<String> xmlsGentils = new LinkedList<String>();
-        xmlsGentils.add("humain.xml");
+        xmlsGentils.add("automateDeplacement.xml");
         List<String> xmlsMechants = new LinkedList<String>();
         xmlsMechants.add("Zomibie.xml");
         List<List<String>> xmls = new LinkedList<>();
@@ -151,7 +151,7 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            System.out.println(i);
+            System.out.println("i="+i);
             if (i == nZombie) {
                 joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
             } else {
@@ -175,6 +175,13 @@ public class Jeu {
     public static void saigne($Personnage P) {
         if (P instanceof Gentil) {
             if (((Gentil) P).getSaignement()) {
+                P.setVie(P.getVie() - 5);
+            }
+        }
+    }
+    public static void infecte($Personnage P) {
+        if (P instanceof Gentil) {
+            if (((Gentil) P).getInfecte()) {
                 P.setVie(P.getVie() - 5);
             }
         }
@@ -210,7 +217,7 @@ public class Jeu {
     }
 
     public static boolean soinInstantane($Personnage P) {
-    	//System.out.println("pk tu viens l‡ wesh");
+    	//System.out.println("pk tu viens lÔøΩ wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             return true;
@@ -269,6 +276,8 @@ public class Jeu {
         Mechant E;
         if (P instanceof Gentil) {
             Gentil gentilperso = ((Gentil) P);
+            saigne(gentilperso);
+            infecte(gentilperso);
             if (soinInstantane(gentilperso) == false) {
                 gereParalysie(gentilperso);
                 if (gentilperso.getParalysie() < 1) {

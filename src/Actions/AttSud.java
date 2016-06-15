@@ -22,19 +22,21 @@ public class AttSud extends $Action {
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		if (l.get(3) == 6) { // 6 = ennemi au sud et 4eme element regard au sud
 			$Personnage e = null;
-			Coordonnees card = p.getPosition();
+			Coordonnees card = new Coordonnees(p.getPosition());
 			card.setY(card.getY() + 1);
 			int s = lp.size();
 			int i = 0;
 			while (i < s) {
-				if (lp.get(i).getPosition() == card) {
+				if ((lp.get(i).getPosition().getX() == card.getX())&&(lp.get(i).getPosition().getY() == card.getY())){
 					e = lp.get(i);
 					i = s;
 				}
+				i++;
 			}
 			if (p instanceof Gentil) {
-				if (e != null && e instanceof Mechant)
-					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getDmg()));
+				if (e != null && e instanceof Mechant){
+					((Mechant) e).setVie(((Mechant) e).getVie() - ((Gentil) p).getDmg());
+				}
 			}
 			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());
