@@ -366,7 +366,7 @@ public class Grille {
     	int i, s = l.size();
     	for(i=0; i<s; i++){
     		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
-    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur()-1);
+    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur());
     			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
     		}
     	}

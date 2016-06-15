@@ -66,9 +66,9 @@ public class Jeu {
         int nZombie = 1;				// Variable possiblement tirée au sort
         int nbPersoParZombie = 2;
         List<String> xmlsGentils = new LinkedList<String>();
-        xmlsGentils.add("AutomateenXML.xml");
+        xmlsGentils.add("humain.xml");
         List<String> xmlsMechants = new LinkedList<String>();
-        xmlsMechants.add("AutomateenXML.xml");
+        xmlsMechants.add("Zomibie.xml");
         List<List<String>> xmls = new LinkedList<>();
         xmls.add(xmlsGentils);
         xmls.add(xmlsMechants);
@@ -78,6 +78,7 @@ public class Jeu {
 
         // <- Fin variables
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
+        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(0,1));
         System.out.println("taille joueurs " + joueurs.size());
         plateau = new Grille(joueurs);
         System.out.println("taille joueurs 2 " + joueurs.size());
@@ -209,6 +210,7 @@ public class Jeu {
     }
 
     public static boolean soinInstantane($Personnage P) {
+    	//System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             return true;
@@ -281,11 +283,14 @@ public class Jeu {
                     }
                 }
             }
+            System.out.println("tour gentil");
         } else {
             tempHistorique = P.jouer(plateau,joueurs,univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
+            System.out.println("temps choisit "+period);
             Thread.sleep(period);
+            System.out.println("tour mechant");
         }
         veriftransfo(P, E, joueurs);
     }
@@ -323,6 +328,7 @@ public class Jeu {
         } else { // Vitesse minimale vers intermédiaire
             period = vitesse2;
         }
+       
     }
     
     public static void play_pause() {
@@ -352,6 +358,7 @@ public class Jeu {
             tour();
             Affichage.again();
         }
+        System.out.println("partie finie lol");
         // TODO Annoncer gagnant
     }
 }
