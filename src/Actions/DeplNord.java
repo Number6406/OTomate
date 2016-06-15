@@ -20,7 +20,7 @@ public class DeplNord extends $Action {
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		if (l.get(1) == 1) { // 1 = chemin au nord et 2eme element de
 								// la liste qui regarde la case au nord
-			p.getPosition().setX(p.getPosition().getY() - 1);
+			p.getPosition().setY(p.getPosition().getY() - 1);
 			effect = true;
 		}
 		else {
