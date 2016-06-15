@@ -73,7 +73,10 @@ public class Jeu {
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
        // int nZombie = 1;				// Variable possiblement tirée au sort
         joueurZombie = nZombie;
        // int nbPersoParZombie = 2;
