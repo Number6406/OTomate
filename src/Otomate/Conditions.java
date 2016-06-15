@@ -1,48 +1,119 @@
 package Otomate;
 
-public enum Conditions {
+import java.util.List;
+
+public class Conditions {
     
     //Objets directement construits
-	CaseVide ("Case vide", 0),
-    CheminN ("Chemin au Nord", 1),
-    CheminS ("Chemin au Sud", 2),
-    CheminE ("Chemin au Est", 3),
-    CheminO ("Chemin au Ouest", 4),
-    EnnemiN ("Ennemi au Nord", 5),
-    EnnemiS ("Ennemi au Sud", 6),
-    EnnemiE ("Ennemi au Est", 7),
-    EnnemiO ("Ennemi au Ouest", 8),
-    Comestible ("Comestible sur ma Case", 9),
-    //Pompe ("pompe sur ma Case", 10),
-    Arme ("un arme sur la case", 10),	//pompe ou couteau ou branche
-	
-    ObstacleN ("Obstacle au nord", 11),
-	ObstacleS ("Obstacle au sud", 12),
-	ObstacleE ("Obstacle à l'est", 13),
-	ObstacleO ("Obstacle à l'ouest", 14),
-	Fouillable ("est fouillable", 15),
-	Seringue ("la drogue c'est bon", 16),
-	Destructible ("Objet destructible sur ma case", 17);
-	
     private int id;
-    private int value;
+    private int direction;
     private int type;
-    private String name = "";
-    
+    /*
+     *      { 0 : SP
+    		{ 1 : N
+	   d ï¿½{ 2 : E
+    		{ 3 : S
+    		{ 4 : O
+
+	i < condMax
+
+       		{ 0 : mur
+       		{ 1 : objet
+	type ï¿½{ 2 : bloque
+       		{ 3 : ennemi
+       		{ 4 : chemin
+ 
+     */
+ 
     //Constructeur
-    Conditions(String name,int value){
-        this.value = value;
-        this.name = name;
+    
+    public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
+    	if(pos.getX()==g.tailleX()-1 && direction==2) return type==0||type==2;
+    	if(pos.getY()==g.tailleY()-1 && direction==3) return type==0||type==2;
+    	
+    	Coordonnees next=pos.CalculCase(direction);
+    	
+    	int i,j,max=l.size();
+    	if(next.getX()>g.tailleX() && direction == 2){return type==0||type==2;}
+    	if(next.getX()<0 && direction == 4){return type==0||type==2;}
+    	if(next.getY()>g.tailleY() && direction == 3){return type==0||type==2;}
+    	if(next.getY()<0 && direction == 1){return type==0 ||type==2;}
+    	//System.out.println("next.getX()="+next.getX());
+    	//System.out.println("next.getY()="+next.getY());
+    	
+    	int Cid=g.get(next.getX(), next.getY()).getValeur();
+    	//System.out.println("direction : "+direction);
+    	//System.out.println("contenu : "+ Cid);
+    	//System.out.println(max);
+    	for(i=0;i<max;i++){
+    		//System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
+    		if(l.get(i).getId()==Cid){
+    			//System.out.println("tamer");
+    			switch(type){
+    			
+    			case 0:
+    				if(l.get(i).getType()==2 && !(l.get(i).estPassable())) return true;
+    				else return false;
+    			
+    			case 1:
+    				if(l.get(i).getType()==1) return true;
+    				else return false;
+    			
+    			case 2:
+    				if(!(l.get(i).estPassable())) return true;
+    				return false;
+    			
+    			case 3:
+    				for(i=0;i<lj.size();i++){
+    					List<$Personnage> lp=lj.get(i).getPersonnages();
+    					for(j=0;j<lp.size();j++){
+    						if(lp.get(j).getPosition().getX()==next.getX() && lp.get(j).getPosition().getY()==next.getY()){
+    						if(jo instanceof Gentil){
+    							if(lp.get(j) instanceof Mechant) return true;
+    						}
+    						else{
+    							if(lp.get(j) instanceof Gentil) return true;
+    						}
+    						}
+    					}
+    					
+    				}
+    				return false;
+    			
+    			case 4:
+    				if(l.get(i).estPassable() && !(new Conditions(20,direction,3).estVrai(g, pos, l, jo, lj)) ) return true;
+    				else return false;
+        			
+        		case 5:
+        			if(l.get(i).getType() == 1) return true;
+        			else return false;
+        		
+        		case 6:
+        			if(l.get(i).getType() == 3) return true;
+        			else return false;
+        			
+        		case 7:
+        			if(l.get(i).getType() == 6) return true;
+        			else return false;
+        			
+        		case 8:
+        			if(l.get(i).getType() == 7) return true;
+        			else return false;
+    			}
+    		}
+    	}
+    	//System.out.println("coucou");
+    	return false;
     }
     
-    Conditions(int id,int value,int type){
+    public Conditions(int id,int direction,int type){
     	this.id=id;
-    	this.value=value;
+    	this.direction=direction;
     	this.type=type;
     }
     
     public int getValue(){
-    	return value;
+    	return direction;
     }
     
     public int getType(){
@@ -62,44 +133,12 @@ public enum Conditions {
     }
     
     public void setValeur(int val){
-    	value=val;
+    	direction=val;
     }
     
     public int getValeur(){
-        return value;    
+        return direction;    
     }
-    
-    public String toString(){
-        return name;
-    }
-    
-    /*public static Conditions fromint(int x){
-        switch(x) {
-        case 1:
-            return CheminN;
-        case 2:
-            return CheminS;
-        case 3:
-            return CheminE;
-        case 4:
-            return CheminO;
-        case 5:
-            return EnnemiN;
-        case 6:
-            return EnnemiS;
-        case 7:
-            return EnnemiE;
-        case 8:
-            return EnnemiO;
-        case 9:
-            return Comestible;
-        case 10:
-            return Arc;
-        case 11:
-            return Sabre;
-        }
-        return null;
-    }*/
     
     
 }

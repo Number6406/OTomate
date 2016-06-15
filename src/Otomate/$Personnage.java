@@ -51,7 +51,7 @@ public abstract class $Personnage {
 	}
 	
 	public $Personnage() {
-		
+		a = new Automate();
 	}
 
 	// Getteurs
@@ -137,6 +137,10 @@ public abstract class $Personnage {
 		if (a.transitions[symbole][etat] != 0)
 			etat = a.transitions[symbole][etat];
 	}
+	
+	public void forceSetEtat(int pEtat) {
+		etat = pEtat;
+	}
 
 	public void setVie(int Vie) {
 		this.vie = Vie;
@@ -160,6 +164,10 @@ public abstract class $Personnage {
 
 	public void setSpriteURL(String url) {
 		this.spriteURL = url;
+	}
+	
+	public void setDmg(int d) {
+		dmg = d;
 	}
 
 	// Override
@@ -185,7 +193,7 @@ public abstract class $Personnage {
 	 *            la liste des joueurs
 	 * @return La description textuelle de l'action effectu�e
 	 */
-	public String jouer(List<Conditions2> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
+	public String jouer(List<Conditions> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
 		List<Boolean> lb = G.recupcond(this, listCond, listCont, listJoueur);
 		System.out.println("cond total : "+lb.toString());
 		List<Integer> lc = G.conditions(this, lb);

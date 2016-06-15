@@ -23,9 +23,9 @@ public class Gentil extends $Personnage {
      */
     private int arme, remede, drogue;
     private int paralysie, piege; // nb de tour a jouer, att avant prochain
-    // piege
+    							// piege
     private int efdrogue; // calcule le nombre de tours restant et
-    // effet a effectuer
+    					// effet a effectuer
     private boolean infecte, saignement;
 
     protected static BufferedImage basicSprite = null;
@@ -119,6 +119,14 @@ public class Gentil extends $Personnage {
 
     public void setDrogue(int Drogue) {
         this.drogue = Drogue;
+    }
+    
+    public int getPiege(){
+    	return piege;
+    }
+    
+    public void setPiege(int nbtour){
+    	piege = nbtour;
     }
 
     @Override

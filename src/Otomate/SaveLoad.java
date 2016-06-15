@@ -96,6 +96,7 @@ public final class SaveLoad {
 					fin.write(pe.getViemax());
 					fin.write(new Character(':'));
 					fin.write(((Gentil) pe).getVie());
+					fin.write(new Character(':'));
 				} else {
 					fin.write(((Integer) (((Mechant) pe).getInventaire())));
 					fin.write(new Character(' '));
@@ -116,9 +117,8 @@ public final class SaveLoad {
 				fin.write(pe.getAutomate().nbconditions());
 				fin.write(new Character(':'));
 				fin.write(pe.getAutomate().nbetats());
-
+				fin.write(new Character('\n'));
 			}
-
 			//currentChar++;
 			fin.write('\n');
 		}
@@ -141,28 +141,33 @@ public final class SaveLoad {
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
-		System.out.println(Integer.getInteger(lire(fout, '\n')));
-		jeu.plateau = new Grille(Integer.getInteger(lire(fout, '\n')), Integer.getInteger(lire(fout, '\n')));
+		jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')), Integer.parseInt(lire(fout, '\n')));
 		for (int j = 0; j < jeu.plateau.tailleX; j++) {
 			for (int i = 0; i < jeu.plateau.tailleY; i++) {
-				jeu.plateau.set(Integer.getInteger(lire(fout, ':')), i, j);
-				jeu.plateau.setP(((Integer.getInteger(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
+				jeu.plateau.set(Integer.parseInt(lire(fout, ':')), i, j);
+				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
 			}
 		}
 		fout.skip(1);
 		Joueur nouv;
 		$Personnage pe;
-		int nbJou = Integer.getInteger(lire(fout, '\n')), nbPers;
+		int nbJou = Integer.parseInt(lire(fout, '\n')), nbPers;
 		List<$Personnage> l;
 		List<Coordonnees> c = new LinkedList<Coordonnees>();
+		int r,g,b;
 		for (int i = 0; i < nbJou; i++) {
 			nouv = new Joueur();
-			nouv.setCouleur(new Color(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' ')),
-					Integer.getInteger(lire(fout, ' '))));
+			r = Integer.parseInt(lire(fout,' '));
+			g = Integer.parseInt(lire(fout,' '));
+			b = Integer.parseInt(lire(fout,' '));
+			if(r<0) {r+=256;}
+			if(g<0) {g+=256;}
+			if(b<0) {b+=256;}
+			nouv.setCouleur(new Color(r,g,b));
 			fout.skip(1);
 			//nouv.setName(lire(fout, '\0'));
-			nbPers = Integer.getInteger(lire(fout, '\\'));
-			nouv.setMechant(Integer.getInteger(lire(fout, ';')) == 1);
+			nbPers = Integer.parseInt(lire(fout, '\\'));
+			nouv.setMechant(Integer.parseInt(lire(fout, ';')) == 1);
 			l = new LinkedList<$Personnage>();
 			for (int j = 0; j < nbPers; j++) {
 				if (nouv.estMechant()) {
@@ -170,25 +175,26 @@ public final class SaveLoad {
 				} else {
 					pe = new Gentil();
 				}
-				pe.setPosition(
-						new Coordonnees(Integer.getInteger(lire(fout, ' ')), Integer.getInteger(lire(fout, ' '))));
+				pe.setPosition(new Coordonnees(Integer.parseInt(lire(fout, ' ')), Integer.parseInt(lire(fout, ' '))));
 				if (nouv.estMechant()) {
-					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
+					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 				} else {
-					((Gentil) pe).setArme(Integer.getInteger(lire(fout, ' ')));
-					((Gentil) pe).setDrogue(Integer.getInteger(lire(fout, ' ')));
-					pe.setInventaire(Integer.getInteger(lire(fout, ' ')));
-					((Gentil) pe).setRemede(Integer.getInteger(lire(fout, ' ')));
-					pe.setEtat(Integer.getInteger(lire(fout, ':')));
+					((Gentil) pe).setArme(Integer.parseInt(lire(fout, ' ')));
+					((Gentil) pe).setDrogue(Integer.parseInt(lire(fout, ' ')));
+					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
+					((Gentil) pe).setRemede(Integer.parseInt(lire(fout, ' ')));
+					pe.forceSetEtat(Integer.parseInt(lire(fout, ':')));
 				}
-				pe.setViemax(Integer.getInteger(lire(fout, ':')));
-				pe.setVie(Integer.getInteger(lire(fout, ':')));
+				pe.setViemax(Integer.parseInt(lire(fout, ':')));
+				pe.setVie(Integer.parseInt(lire(fout, ':')));
+				pe.setDmg(Integer.parseInt(lire(fout, ':')));
 				fout.skip(1);
-				c.add(new Coordonnees(Integer.getInteger(lire(fout, ':')), Integer.getInteger(lire(fout, ' '))));
-				pe.getAutomate().setNbCond(Integer.getInteger(lire(fout, ':')));
-				pe.getAutomate().setNbEtats(Integer.getInteger(lire(fout, '\n')));
+				c.add(new Coordonnees(Integer.parseInt(lire(fout, ':')), Integer.parseInt(lire(fout, ' '))));
+				pe.getAutomate().setNbCond(Integer.parseInt(lire(fout, ':')));
+				pe.getAutomate().setNbEtats(Integer.parseInt(lire(fout, '\n')));
 				l.add(pe);
 			}
+			fout.skip(1);
 			jeu.joueurs.add(nouv);
 		}
 		fout.close();
