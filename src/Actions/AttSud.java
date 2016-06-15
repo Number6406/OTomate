@@ -26,18 +26,17 @@ public class AttSud extends $Action {
 			card.setY(card.getY() + 1);
 			int s = lp.size();
 			int i = 0;
-			System.out.println("PAS dans la boucle");
 			while (i < s) {
-				if (lp.get(i).getPosition() == card) {
+				if ((lp.get(i).getPosition().getX() == card.getX())&&(lp.get(i).getPosition().getY() == card.getY())){
 					e = lp.get(i);
 					i = s;
 				}
 				i++;
 			}
-			System.out.println("sortit de la boucle");
 			if (p instanceof Gentil) {
-				if (e != null && e instanceof Mechant)
-					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getDmg()));
+				if (e != null && e instanceof Mechant){
+					((Mechant) e).setVie(((Mechant) e).getVie() - ((Gentil) p).getDmg());
+				}
 			}
 			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());

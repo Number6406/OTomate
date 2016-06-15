@@ -11,6 +11,7 @@ public class Mechant extends $Personnage {
 
 	public Mechant(String file, Color couleur) {
             super(file, couleur);
+            vie = viemax;
 	}
 
 	public Mechant($Personnage cpy) {

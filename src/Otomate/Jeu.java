@@ -179,6 +179,13 @@ public class Jeu {
             }
         }
     }
+    public static void infecte($Personnage P) {
+        if (P instanceof Gentil) {
+            if (((Gentil) P).getInfecte()) {
+                P.setVie(P.getVie() - 5);
+            }
+        }
+    }
 
     public static void junky(List<$Personnage> lp) throws InterruptedException {
         int i, max = lp.size();
@@ -269,6 +276,8 @@ public class Jeu {
         Mechant E;
         if (P instanceof Gentil) {
             Gentil gentilperso = ((Gentil) P);
+            saigne(gentilperso);
+            infecte(gentilperso);
             if (soinInstantane(gentilperso) == false) {
                 gereParalysie(gentilperso);
                 if (gentilperso.getParalysie() < 1) {
