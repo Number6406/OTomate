@@ -31,7 +31,7 @@ public class Fouiller extends $Action {
 					if (rnd < 30) // trouve des bandages 30% de chances
 						((Gentil) p).setRemede(2);
 					else if (rnd < 40) { // trouve un fusil a pompe 10% de chances
-						((Gentil) p).setArme(25);
+						((Gentil) p).setArme(g.getUnivers().getObjets().get(15));
 						pompe = true;
 					}
 					else if (rnd < 70) // trouve une boite de conserve 30% de chances
@@ -51,7 +51,7 @@ public class Fouiller extends $Action {
 				else if (g.Pos(p.getPosition()).getValeur() == 11) {	//on se trouve dans un grange
 					rnd = Grille.random(0, 101);
 					if (rnd < 25) { // S'equipe d'un fusil a pompe 25% chances
-						((Gentil) p).setArme(25);
+						((Gentil) p).setArme(g.getUnivers().getObjets().get(15));
 						pompe = true;
 					} else if (rnd < 40) // Trouve des bandages 15% chances
 						((Gentil) p).setRemede(2);

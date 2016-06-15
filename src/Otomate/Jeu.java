@@ -79,7 +79,7 @@ public class Jeu {
         // <- Fin variables
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         System.out.println("taille joueurs " + joueurs.size());
-        plateau = new Grille(joueurs);
+        plateau = new Grille(joueurs,univers);
         System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;

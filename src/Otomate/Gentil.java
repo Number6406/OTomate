@@ -10,7 +10,8 @@ import javax.imageio.ImageIO;
 public class Gentil extends $Personnage {
 
     /*
-	 * arme = 25.pompe 15.couteau 5 .branche correspond au degats supp
+	 * arme = numero de l'objet
+	 * (25.pompe 15.couteau 5 .branche correspond au degats supp)
      */
 
  /*
@@ -21,7 +22,9 @@ public class Gentil extends $Personnage {
  /*
 	 * remede = 1.antidote 2.bandage
      */
-    private int arme, remede, drogue;
+	
+	private Objet arme;
+    private int remede, drogue;
     private int paralysie, piege; // nb de tour a jouer, att avant prochain
     							// piege
     private int efdrogue; // calcule le nombre de tours restant et
@@ -33,7 +36,8 @@ public class Gentil extends $Personnage {
 
     public Gentil(String file, Color couleur) {
         super(file, couleur);
-        arme = remede = drogue = 0;
+        arme = null;
+        remede = drogue = 0;
         infecte = saignement = false;
         vie = viemax;
         paralysie = 1;
@@ -49,15 +53,18 @@ public class Gentil extends $Personnage {
         }
     }
 
-    public Gentil() {
-
-    }
-
-    public int getArme() {
+   
+    
+    public int getDmg() {
+    	if(arme==null){return dmg;}
+    	else return arme.getUse();
+	}
+    
+    public Objet getArme() {
         return arme;
     }
 
-    public void setArme(int Arme) {
+    public void setArme(Objet Arme) {
         this.arme = Arme;
     }
 
@@ -78,7 +85,7 @@ public class Gentil extends $Personnage {
     }
 
     public int getEfdrogue() {
-        return arme;
+        return efdrogue;
     }
 
     public void setEfdrogue(int Efdrogue) {
