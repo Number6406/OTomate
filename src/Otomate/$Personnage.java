@@ -53,7 +53,7 @@ public abstract class $Personnage {
 	// Getteurs
 
 	public $Personnage() {
-		// TODO Auto-generated constructor stub
+		a = new Automate();
 	}
 
 	public Automate getAutomate() {

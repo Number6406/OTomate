@@ -55,7 +55,13 @@ public class Gentil extends $Personnage {
 
    
     
-    public int getDmg() {
+    public Gentil() {
+		super();
+	}
+
+
+
+	public int getDmg() {
     	if(arme==null){return dmg;}
     	else return arme.getUse();
 	}
