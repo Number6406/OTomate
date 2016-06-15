@@ -20,7 +20,7 @@ public class Univers {
 	List<$Action> actionsGentil;
 	List<$Action> actionsMechant;
 	List<Objet> objets;
-	List<Conditions2> conditions;
+	List<Conditions> conditions;
 	String nomUnivers;
 	
 	// Getteurs
@@ -37,7 +37,7 @@ public class Univers {
 		return  objets;
 	}
 	
-	public List<Conditions2> getConditions(){
+	public List<Conditions> getConditions(){
 		return  conditions;
 	}
 	

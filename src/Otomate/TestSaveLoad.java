@@ -28,7 +28,7 @@ public class TestSaveLoad {
 		List<List<String>> xmls = new LinkedList<>();
 		xmls.add(xmlsGentils);
 		xmls.add(xmlsMechants);
-		List<Conditions2> listCond = new LinkedList<>();
+		List<Conditions> listCond = new LinkedList<>();
 		List<Objet> listCont = new LinkedList<>();
 		List<Color> couleurs = new LinkedList<>();
 		couleurs.add(Color.RED);

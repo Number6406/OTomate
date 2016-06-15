@@ -185,7 +185,7 @@ public abstract class $Personnage {
 	 *            la liste des joueurs
 	 * @return La description textuelle de l'action effectu�e
 	 */
-	public String jouer(List<Conditions2> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
+	public String jouer(List<Conditions> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
 		List<Boolean> lb = G.recupcond(this, listCond, listCont, listJoueur);
 		System.out.println("cond total : "+lb.toString());
 		List<Integer> lc = G.conditions(this, lb);

@@ -10,11 +10,11 @@ import Parser.ParserObjet;
 public class Grille {
 
 	//Attributs
-    private static Case[][] g;
-    private static List<Coordonnees> coinsAutomates;
-    private static List<Integer> nbetats;
-    public static int tailleX;
-    public static int tailleY;
+    private Case[][] g;
+    private List<Coordonnees> coinsAutomates;
+    private  List<Integer> nbetats;
+    public  int tailleX;
+    public  int tailleY;
     
     
     // Getteurs
@@ -36,11 +36,11 @@ public class Grille {
     }
     
     //Retourne la case de coordonnees c
-    public static Case Pos(Coordonnees c){
+    public Case Pos(Coordonnees c){
         return g[c.getX()][c.getY()];
     }
     
-	public static List<Integer> getNbetats() {
+	public  List<Integer> getNbetats() {
 		return nbetats;
 	}
     
@@ -50,8 +50,8 @@ public class Grille {
     	g[x][y].setValeur(val);
     }
 
-	public static void setNbetats(List<Integer> nbetats) {
-		Grille.nbetats = nbetats;
+	public void setNbetats(List<Integer> nbetats) {
+		this.nbetats = nbetats;
 	}
 
 	public void setTailleX(int integer) {
@@ -149,7 +149,7 @@ public class Grille {
      * @param l, une liste d'entier
      * @return le maximum de la liste
      */
-    public static int max(List<Integer> l){
+    public int max(List<Integer> l){
         int fin = l.size();
         int i, m=0;
         for(i=0; i<fin; i++){
@@ -160,7 +160,7 @@ public class Grille {
     }
 	
     //Place les automates au bon endroit sur la map
-    public static void Placements(List<Joueur> J) {
+    public void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
         List<$Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutomate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
@@ -210,7 +210,7 @@ public class Grille {
         }
     }
     
-    public static List<Coordonnees> goAutomates(List<$Personnage> list, int dimh, int dimv){
+    public  List<Coordonnees> goAutomates(List<$Personnage> list, int dimh, int dimv){
         List<Coordonnees> res = new LinkedList<Coordonnees>();
         Random rnd = new Random();
         int i, j, k;
@@ -228,11 +228,11 @@ public class Grille {
             System.out.println("fin "+res);
             newc[k].setX(i*dimh/nb);
             System.out.println("presquefin "+res);
-            //System.out.println("ça donne quoi i*dimh/nb "+i*dimh/nb);
+            //System.out.println("ï¿½a donne quoi i*dimh/nb "+i*dimh/nb);
             j = rnd.nextInt(nb);
             //System.out.println("j="+j);
             newc[k].setY(j*dimv/nb);
-            //System.out.println("ça donne quoi j*dimh/nb "+j*dimh/nb);
+            //System.out.println("ï¿½a donne quoi j*dimh/nb "+j*dimh/nb);
             j=k;
             for(i=0; i<k; i++){
                 if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
@@ -253,7 +253,7 @@ public class Grille {
         return res;
     }
     
-    public static void initialisergrille(List<Joueur> l) {
+    public void initialisergrille(List<Joueur> l) {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
@@ -279,7 +279,7 @@ public class Grille {
  * @param filename
  * @return
  */
-    public List<Conditions2> condparser(String filename){
+    public List<Conditions> condparser(String filename){
     	ParserConditions P = new ParserConditions(filename);
     	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
@@ -304,7 +304,7 @@ public class Grille {
  * @param lj
  * @return
  */
-    public List<Boolean> recupcond($Personnage p, List<Conditions2> lc, List<Objet> lo, List<Joueur> lj){
+    public List<Boolean> recupcond($Personnage p, List<Conditions> lc, List<Objet> lo, List<Joueur> lj){
     	List<Boolean> res = new LinkedList<Boolean>();
     	int s = lc.size();
     	int i;
