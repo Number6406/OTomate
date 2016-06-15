@@ -25,7 +25,7 @@ public abstract class $Personnage {
 	protected int dmg;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
-	protected String spriteURL = "../Graphics/Sprites/1.png";
+	protected String spriteURL = null;
         protected static BufferedImage basicSprite = null;
         protected static ImageColor ic;
 
@@ -47,6 +47,7 @@ public abstract class $Personnage {
 		dmg = 10;
 		this.couleur = couleur;
                 try {
+                    System.out.println(spriteURL);
                     basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
                     ic = new ImageColor(basicSprite);
                     int basicColor = ic.toRGB(10, 64, 7);

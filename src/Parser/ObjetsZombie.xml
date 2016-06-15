@@ -1,6 +1,6 @@
 <fic>
-	<imageG>../Graphics/sprites/1.png</imageG>
-	<imageM>../Graphics/sprites/mechant.png</imageM>
+	<imageG>../Graphics/Sprites/1.png</imageG>
+	<imageM>../Graphics/Sprites/mechant.png</imageM>
 	<objet>
 		<id>0</id>
 		<type>4</type>
