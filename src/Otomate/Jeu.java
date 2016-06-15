@@ -80,7 +80,7 @@ public class Jeu {
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(0,1));
         System.out.println("taille joueurs " + joueurs.size());
-        plateau = new Grille(joueurs);
+        plateau = new Grille(joueurs,univers);
         System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
@@ -167,9 +167,11 @@ public class Jeu {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs,univers);
+            historique.ceTour().addEvenement(new Evenement(P, th));
+            System.out.println(historique.toString());
             Thread.sleep(period);
         }
-        historique.ceTour().addEvenement(new Evenement(P, th));
+        //historique.ceTour().addEvenement(new Evenement(P, th));
     }
 
     public static void saigne($Personnage P) {
@@ -314,9 +316,8 @@ public class Jeu {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            Affichage.ajouterTour(historique.ceTour());
-            //System.out.println("FIN DE TOUR");
         }
+        Affichage.ajouterTour(historique.ceTour());
         // TODO enlever les morts.
     }
 

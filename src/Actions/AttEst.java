@@ -34,7 +34,7 @@ public class AttEst extends $Action {
 			}
 			if (p instanceof Gentil) {
 				if (e != null && e instanceof Mechant)
-					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getArme()));
+					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getDmg()));
 				}
 			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());

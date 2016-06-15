@@ -5,6 +5,7 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Objet;
 
 public class Ramasser extends $Action {
 
@@ -29,9 +30,9 @@ public class Ramasser extends $Action {
 			}
 			if (p instanceof Gentil) {
 				if (l.get(0) == 10) { // arme
-					aux = ((Gentil) p).getArme();
-					((Gentil) p).setArme(g.Pos(p.getPosition()).getValeur());
-					g.Pos(p.getPosition()).setValeur(aux);
+					Objet arme = ((Gentil) p).getArme();
+					((Gentil) p).setArme(g.getUnivers().getObjets().get(g.Pos(p.getPosition()).getValeur()));
+					g.Pos(p.getPosition()).setValeur(arme.getId());
 				}
 				else if (l.get(0) == 16) { // seringue
 					if (((Gentil) p).getDrogue() == 0) {	//dans le cas ou le personnage est sain
