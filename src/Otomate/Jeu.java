@@ -74,24 +74,7 @@ public class Jeu {
         // Variables définies grâce au menu d'affichage ->
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
-<<<<<<< HEAD
-        int nZombie = 1;				// Variable possiblement tirée au sort
-        int nbPersoParZombie = 2;
-        List<String> xmlsGentils = new LinkedList<String>();
-        //xmlsGentils.add("automateDeplacement.xml");
-        xmlsGentils.add("humain.xml");
-        List<String> xmlsMechants = new LinkedList<String>();
-        xmlsMechants.add("Zomibie.xml");
-        List<List<String>> xmls = new LinkedList<>();
-        xmls.add(xmlsGentils);
-        xmls.add(xmlsMechants);
-        List<Color> couleurs = new LinkedList<>();
-        couleurs.add(Color.red);
-        couleurs.add(Color.black);
 
-        // <- Fin variables
-=======
->>>>>>> master
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12,12));
         System.out.println("taille joueurs " + joueurs.size());
