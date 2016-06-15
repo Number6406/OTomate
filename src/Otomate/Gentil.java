@@ -39,6 +39,7 @@ public class Gentil extends $Personnage {
         paralysie = 1;
         piege = 10;
         efdrogue = 0;
+        nom = "Gentil";
     }
 
     public int getDmg() {
@@ -48,6 +49,10 @@ public class Gentil extends $Personnage {
             return arme.getUse();
         }
     }
+
+    public Gentil() {
+		super();
+	}
 
     public Objet getArme() {
         return arme;

@@ -12,15 +12,17 @@ public class Mechant extends $Personnage {
 	public Mechant(String file, Color couleur) {
             super(file, couleur);
             vie = viemax;
-	}
-
-	public Mechant($Personnage cpy) {
-		super(cpy);
-		vie = viemax;
+            nom = "Mechant";
 	}
 
 	public Mechant() {
 		super();
+	}
+
+	public Mechant($Personnage perso, Color couleur) {
+		super(perso,couleur);
+		vie = viemax;
+        nom = "Mechant";
 	}
 
 	public String toString() {

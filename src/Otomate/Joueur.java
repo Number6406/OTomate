@@ -25,7 +25,7 @@ public class Joueur {
         if (mechant) {
             personnages.add(new Mechant(xmls.get(0), couleur));
             for (int i = 1; i < nbMechants; i++) {
-                personnages.add(new Mechant(personnages.get(0)));
+                personnages.add(new Mechant(personnages.get(0),couleur));
             }
         } else {
             for (int i = 0; i < xmls.size(); i++) {

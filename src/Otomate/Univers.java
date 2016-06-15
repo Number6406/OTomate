@@ -22,6 +22,8 @@ public class Univers {
 	List<Objet> objets;
 	List<Conditions> conditions;
 	String nomUnivers;
+	String nomGentils;
+	String nomMechants;
 	String imageGentil, imageMechant;
 	int numero;
 	
@@ -45,6 +47,14 @@ public class Univers {
 	
 	public String getNom(){
 		return nomUnivers;
+	}
+
+	public String getNomGentils() {
+		return nomGentils;
+	}
+
+	public String getNomMechants() {
+		return nomMechants;
 	}
 	
 	public String spriteGentil(){
@@ -71,23 +81,34 @@ public class Univers {
 			Pm = new ParserAction("ActionsZombie.xml");
 			Po = new ParserObjet("ObjetsZombie.xml");
 			nomUnivers = "Humains vs. Zombies";
+			nomGentils = "humains";
+			nomMechants = "zombies";
 			break;
 		case 2 :
 			Pg = new ParserAction("ActionsRobot.xml");
 			Pm = new ParserAction("ActionsVirus.xml");
 			Po = new ParserObjet("ObjetsRobot.xml");
 			nomUnivers = "Robots vs. Virus";
+			nomGentils = "robots";
+			nomMechants = "virus";
 			break;
 		default :
 			Pg = new ParserAction("ActionsHumain.xml");
 			Pm = new ParserAction("ActionsZombie.xml");
 			Po = new ParserObjet("ObjetsZombie.xml");
 			nomUnivers = "Humains vs. Zombies";
+			nomGentils = "humains";
+			nomMechants = "zombies";
 		}
+                System.out.println("1");
 		actionsGentil = Pg.list;
+                System.out.println("2");
 		actionsMechant = Pm.list;
+                System.out.println("3");
 		objets = Po.list;
+                System.out.println("4");
 		imageGentil = Po.imageGentil;
+                System.out.println("5");
 		imageMechant = Po.imageMechant;
 		
 		Pc = new ParserConditions("Conditions.xml");
