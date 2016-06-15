@@ -194,10 +194,9 @@ public class Grille {
             s = J.get(x).getSizePersonnages();
             System.out.println("tamer");
             while(y<s && i<l)
-            {
-            	
+            {            	
                     jdeb = coinsAutomates.get(i).getX();
-                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat(); j++){      //parcours de lignes
+                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat()+jdeb; j++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).getY();
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
                             g[j][k] = J.get(x).getPersonnagesI(y).a.getActions(k-kdeb, j-jdeb);
