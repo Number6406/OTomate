@@ -21,7 +21,7 @@ public class TestSaveLoad {
 		int nZombie = 2; // Variable possiblement tirée au sort
 		int nbPersoParZombie = 2;
 		List<String> xmlsGentils = new LinkedList<String>();
-		String fichiers = new File("auto.xml").toString();
+		String fichiers = new File("Conditions.xml").toString();
 		xmlsGentils.add("AutomateenXML.xml");
 		List<String> xmlsMechants = new LinkedList<String>();
 		xmlsMechants.add("AutomateenXML.xml");
@@ -43,7 +43,7 @@ public class TestSaveLoad {
 		int j, p;
 		jeu.initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
 		jeu.refPersos = new LinkedList<Integer>();
-		Grille.initialisergrille(jeu.joueurs);
+		jeu.plateau.initialisergrille(jeu.joueurs);
 		SaveLoad s = new SaveLoad(jeu, "TAMER.txt");
 		s.save();
 		SaveLoad suu = new SaveLoad("TAMER.txt");
