@@ -6,7 +6,7 @@ import java.util.List;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import Otomate.Conditions2;
+import Otomate.Conditions;
 
 
 public class XMLConditions extends DefaultHandler{
@@ -17,8 +17,8 @@ public class XMLConditions extends DefaultHandler{
 	int id;
 	int d;
 	int type;
-	Conditions2 c;
-	List<Conditions2> list= new LinkedList<Conditions2>();
+	Conditions c;
+	List<Conditions> list= new LinkedList<Conditions>();
 	
 	public void startElement(String uri, 
 			   String localName, String qName, Attributes attributes)
@@ -56,7 +56,7 @@ public class XMLConditions extends DefaultHandler{
 				  } else if (btype) {
 					//  System.out.println("probleme?");
 					 	type=Integer.parseInt(lecture);
-					 	c=new Conditions2(id,d,type);
+					 	c=new Conditions(id,d,type);
 					 	list.add(c);
 					 	btype=false;
 			   

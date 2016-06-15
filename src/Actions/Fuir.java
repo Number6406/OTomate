@@ -43,12 +43,13 @@ public class Fuir extends $Action {
 				aux2 = -aux2;
 			aux += aux2;
 		}
-		if (aux < i)
+		System.out.println("aux="+aux);
+		if (aux < i && aux != 0)
 			i = aux;
 		return i;
 	}
 
-//Retourne le personnage (cote gentil) le plus proche
+	//Retourne le personnage (cote gentil) le plus proche
 	public Gentil prox($Personnage p, List<$Personnage> l) {
 		int s = l.size();
 		int i, mini = -1, mini2;
@@ -71,41 +72,49 @@ public class Fuir extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
+		Coordonnees cnord, csud, cest, couest;
+		//cnord =  new Coordonnees (p.getPosition());
+		//csud =  new Coordonnees (p.getPosition());
+		//cest =  new Coordonnees (p.getPosition());
+		//couest = new Coordonnees (p.getPosition());
+		//cnord.setY(cnord.getY() - 1);
+		//csud.setY(csud.getX() + 1);
+		//cest.setX(cest.getX() + 1);
+		//couest.setX(couest.getX() - 1);
+		cnord=p.getPosition().CalculCase(1);
+		csud=p.getPosition().CalculCase(3);
+		cest=p.getPosition().CalculCase(2);
+		couest=p.getPosition().CalculCase(4);
+		
 		if (p instanceof Gentil) {
-			Coordonnees cnord, csud, cest, couest;
 			int rnd;
-			cnord = csud = cest = couest = p.getPosition();
-			cnord.setY(cnord.getY() - 1);
-			csud.setY(csud.getX() + 1);
-			cest.setX(cest.getX() + 1);
-			couest.setX(couest.getX() - 1);
 			if (l.get(1) == 5) { // ennemi au nord
 				if (l.get(2) == 7) { // ennemi a l'est
 					if (l.get(3) == 6) { // ennemi au sud
 						if (l.get(4) == 8) {
 						} // ennemi a l'ouest -> ne bouge pas il est coince
-						if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage a l'ouest
+						if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage a l'ouest
 							p.setPosition(couest); // seule case disponible -->
-													// a l'ouest
+							// a l'ouest
 							effect = true;
 						}
 					}
 					else if (l.get(4) == 8) {
-						if (Grille.Pos(csud).getValeur() != 4 && Grille.Pos(csud).getValeur() != 6) {	//passage au sud
+						if (g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage au sud
 							p.setPosition(csud); // seule case disponible --> au
-													// sud
+							// sud
 							effect = true;
 						}
 					}
 					else {
 						rnd = Grille.random(1, 3); // ennemi au nord et a l'est
-													// = choix de la fuite
-													// random
-						if (rnd == 1 && Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
+						// = choix de la fuite
+						// random
+						if (rnd == 1 && g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
 							p.setPosition(couest);
 							effect = true;
 						}
-						else if (Grille.Pos(csud).getValeur() != 4 && Grille.Pos(csud).getValeur() != 6) {	//passage sud
+						else if (g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage sud
 							p.setPosition(csud);
 							effect = true;
 						}
@@ -113,19 +122,19 @@ public class Fuir extends $Action {
 				}
 				else if (l.get(3) == 6) {
 					if (l.get(4) == 8) {
-						if (Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
+						if (g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getX()<g.tailleX()-1) {	//passage est
 							p.setPosition(cest);
 							effect = true;
 						}
 					}
 					else {
 						rnd = Grille.random(1, 3); // ennemi au nord et au sud =
-													// choix de la fuite random
-						if (rnd == 1 && Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
+						// choix de la fuite random
+						if (rnd == 1 && g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getX()<g.tailleX()-1) {	//passage est
 							p.setPosition(cest);
 							effect = true;
 						}
-						else if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
+						else if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
 							p.setPosition(couest);
 							effect = true;
 						}
@@ -133,15 +142,15 @@ public class Fuir extends $Action {
 				}
 				else {
 					rnd = Grille.random(1, 4); // ennemi present au nord
-					if (rnd == 1 && Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
+					if (rnd == 1 && g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getX()<g.tailleX()-1) {	//passage est
 						p.setPosition(cest);
 						effect = true;
 					}
-					else if (rnd == 2 && Grille.Pos(csud).getValeur() != 4 && Grille.Pos(csud).getValeur() != 6) {	//passage sud
+					else if (rnd == 2 && g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage sud
 						p.setPosition(csud);
 						effect = true;
 					}
-					else if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
+					else if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
 						p.setPosition(couest);
 						effect = true;
 					}
@@ -150,20 +159,20 @@ public class Fuir extends $Action {
 			else if (l.get(2) == 7) {
 				if (l.get(3) == 6) {
 					if (l.get(4) == 8) { // fuite vers le nord seule case non
-											// occupee
-						if (Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
+						// occupee
+						if (g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
 							p.setPosition(cnord);
 							effect = true;
 						}
 					}
 					else {
 						rnd = Grille.random(1, 3); // chois aleatoire entre nord
-													// et ouest
-						if (rnd == 1 && Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
+						// et ouest
+						if (rnd == 1 && g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
 							p.setPosition(cnord);
 							effect = true;
 						}
-						else if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
+						else if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
 							p.setPosition(couest);
 							effect = true;
 						}
@@ -171,15 +180,15 @@ public class Fuir extends $Action {
 				}
 				else if (l.get(4) == 8) {
 					rnd = Grille.random(1, 4);
-					if (rnd == 1 && Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
+					if (rnd == 1 && g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
 						p.setPosition(cnord);
 						effect = true;
 					}
-					else if (rnd == 2 && Grille.Pos(csud).getValeur() != 4 && Grille.Pos(csud).getValeur() != 6) {	//passage sud
+					else if (rnd == 2 && g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage sud
 						p.setPosition(csud);
 						effect = true;
 					}
-					else if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
+					else if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
 						p.setPosition(couest);
 						effect = true;
 					}
@@ -188,26 +197,26 @@ public class Fuir extends $Action {
 			else if (l.get(3) == 6) {
 				if (l.get(4) == 8) {
 					rnd = Grille.random(1, 3);
-					if (rnd == 1 && Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
+					if (rnd == 1 && g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
 						p.setPosition(cnord);
 						effect = true;
 					}
-					else if (Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
+					else if (g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getX()<g.tailleX()-1) {	//passage est
 						p.setPosition(cest);
 						effect = true;
 					}
 				}
 				else {
 					rnd = Grille.random(1, 4);
-					if (rnd == 1 && Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
+					if (rnd == 1 && g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
 						p.setPosition(cnord);
 						effect = true;
 					}
-					else if (rnd == 2 && Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
+					else if (rnd == 2 && g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage est
 						p.setPosition(cest);
 						effect = true;
 					}
-					else if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
+					else if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6 && p.getPosition().getX()>0) {	//passage ouest
 						p.setPosition(couest);
 						effect = true;
 					}
@@ -215,37 +224,21 @@ public class Fuir extends $Action {
 			}
 			else if (l.get(4) == 8) {
 				rnd = Grille.random(1, 4);
-				if (rnd == 1 && Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
+				if (rnd == 1 && g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6 && p.getPosition().getY()>0) {	//passage nord
 					p.setPosition(cnord);
 					effect = true;
 				}
-				else if (rnd == 2 && Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
+				else if (rnd == 2 && g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6 && p.getPosition().getX()<g.tailleX()-1) {	//passage est
 					p.setPosition(cest);
 					effect = true;
 				}
-				else if (Grille.Pos(csud).getValeur() != 4 && Grille.Pos(csud).getValeur() != 6) {	//passage sud
+				else if (g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6 && p.getPosition().getY()<g.tailleY()-1) {	//passage sud
 					p.setPosition(csud);
 					effect = true;
 				}
 			}
-			else { // aucun ennemi a proximite on se deplace aleatoirement
-				rnd = Grille.random(1, 5);
-				if (rnd == 1 && Grille.Pos(cnord).getValeur() != 4 && Grille.Pos(cnord).getValeur() != 6) {	//passage nord
-					p.setPosition(cnord);
-					effect = true;
-				}
-				else if (rnd == 2 && Grille.Pos(cest).getValeur() != 4 && Grille.Pos(cest).getValeur() != 6) {	//passage est
-					p.setPosition(cest);
-					effect = true;
-				}
-				else if (rnd == 3 && Grille.Pos(csud).getValeur() != 4 && Grille.Pos(csud).getValeur() != 6) {	//passage sud
-					p.setPosition(csud);
-					effect = true;
-				}
-				else if (Grille.Pos(couest).getValeur() != 4 && Grille.Pos(couest).getValeur() != 6) {	//passage ouest
-					p.setPosition(couest);
-					effect = true;
-				}
+			else { // aucun ennemi a proximite ne fait rien
+				
 			}
 		}
 		else if (p instanceof Mechant) {
@@ -262,17 +255,25 @@ public class Fuir extends $Action {
 				y2 = -y;
 			else
 				y2 = y;
-			if ((x2 < y2 && x2 != 0) || y == 0) {
-				if (x < 0)
-					p.getPosition().setX(p.getPosition().getX() + 1);
-				else
-					p.getPosition().setX(p.getPosition().getX() - 1);
+			if (((x2 < y2 && x2 != 0) || y == 0)) {
+				if (x < 0){
+					if (g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6)
+						p.getPosition().setX(p.getPosition().getX() + 1);
+				}
+					else{
+						if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6)
+							p.getPosition().setX(p.getPosition().getX() - 1);
+					}
 			}
-			else {
-				if (y < 0)
-					p.getPosition().setY(p.getPosition().getY() + 1);
-				else
-					p.getPosition().setY(p.getPosition().getY() - 1);
+			else if(((g.Pos(cest).getValeur() != 4))){
+				if (y < 0){
+					if (g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6)
+						p.getPosition().setY(p.getPosition().getY() + 1);
+				}
+					else{
+						if (g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6)
+							p.getPosition().setY(p.getPosition().getY() - 1);
+					}
 			}
 			effect = true;
 		}

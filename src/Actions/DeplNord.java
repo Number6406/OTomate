@@ -20,16 +20,16 @@ public class DeplNord extends $Action {
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		if (l.get(1) == 1) { // 1 = chemin au nord et 2eme element de
 								// la liste qui regarde la case au nord
-			p.getPosition().setX(p.getPosition().getY() - 1);
+			p.getPosition().setY(p.getPosition().getY() - 1);
 			effect = true;
 		}
 		else {
 			effect = false;
 		}
 		if (p instanceof Mechant) {
-			if (Grille.Pos(p.getPosition()).piegee == true){
+			if (g.Pos(p.getPosition()).piegee == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);
-				Grille.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
+				g.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
 			}
 		}
 	}

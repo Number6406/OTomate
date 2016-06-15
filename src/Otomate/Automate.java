@@ -21,9 +21,21 @@ public class Automate {
         nbconditions = 20;
     }
     
+    public Automate() {
+    	
+    }
+    
+    public void newTrans() {
+    	transitions = new int[nbetats][nbconditions];
+    }
+    
     // Getteurs
     public int transition(int symbole, int etatCourant) {  // renvoie le nouvel etat
         return transitions[etatCourant][symbole];
+    }
+    
+    public void setTransition(int symbole, int etat, int k) {
+    	transitions[etat][symbole]=k;
     }
     
     public Case getActions(int symbole, int etatCourant){

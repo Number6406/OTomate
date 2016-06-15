@@ -167,7 +167,7 @@ public class PanelCreationJoueur extends JPanel {
 		List<String> l=new LinkedList<>();
 		int j;
 		for(j=0;j<nbP;j++){
-			l.add(listePersos.l.get(j).chemin.toString());
+			l.add(listePersos.l.get(j).chemin.getText());
 		}
 		return l;
 	}

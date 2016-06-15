@@ -5,6 +5,7 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Objet;
 
 public class Ramasser extends $Action {
 
@@ -24,14 +25,14 @@ public class Ramasser extends $Action {
 			int aux;
 			if (l.get(0) == 9) { // comestible
 				aux = p.getInventaire();
-				p.setInventaire(Grille.Pos(p.getPosition()).getValeur());
-				Grille.Pos(p.getPosition()).setValeur(aux);
+				p.setInventaire(g.Pos(p.getPosition()).getValeur());
+				g.Pos(p.getPosition()).setValeur(aux);
 			}
 			if (p instanceof Gentil) {
 				if (l.get(0) == 10) { // arme
-					aux = ((Gentil) p).getArme();
-					((Gentil) p).setArme(Grille.Pos(p.getPosition()).getValeur());
-					Grille.Pos(p.getPosition()).setValeur(aux);
+					Objet arme = ((Gentil) p).getArme();
+					((Gentil) p).setArme(g.getUnivers().getObjets().get(g.Pos(p.getPosition()).getValeur()));
+					g.Pos(p.getPosition()).setValeur(arme.getId());
 				}
 				else if (l.get(0) == 16) { // seringue
 					if (((Gentil) p).getDrogue() == 0) {	//dans le cas ou le personnage est sain
@@ -76,7 +77,7 @@ public class Ramasser extends $Action {
 							((Gentil) p).setDrogue(8);
 						}
 						drogue = true;
-						Grille.Pos(p.getPosition()).setValeur(0);
+						g.Pos(p.getPosition()).setValeur(0);
 					}
 				}
 			}

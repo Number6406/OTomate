@@ -11,7 +11,7 @@
 	</action>
 	<action>
 		<id>2</id>
-		<succes>descends vers le sud</succes>
+		<succes>descend vers le sud</succes>
 		<echec>tente d'aller au sud mais rencontre de l'adversité</echec>
 	</action>
 	<action>
@@ -21,7 +21,7 @@
 	</action>
 	<action>
 		<id>4</id>
-		<succes>pars à l'ouest</succes>
+		<succes>part à l'ouest</succes>
 		<echec>ne peut pas aller à l'ouest</echec>
 	</action>
 	<action>
@@ -51,8 +51,8 @@
 	</action>
 	<action>
 		<id>10</id>
-		<succes>pose un piége</succes>
-		<echec>essaye de pieger quelque chose qui ne peut pas l'être</echec>
+		<succes>pose un piège</succes>
+		<echec>essaye de piéger quelque chose qui ne peut pas l'être</echec>
 	</action>
 	<action>
 		<id>11</id>

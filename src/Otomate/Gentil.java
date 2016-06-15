@@ -10,7 +10,8 @@ import javax.imageio.ImageIO;
 public class Gentil extends $Personnage {
 
     /*
-	 * arme = 25.pompe 15.couteau 5 .branche correspond au degats supp
+	 * arme = numero de l'objet
+	 * (25.pompe 15.couteau 5 .branche correspond au degats supp)
      */
 
  /*
@@ -21,43 +22,43 @@ public class Gentil extends $Personnage {
  /*
 	 * remede = 1.antidote 2.bandage
      */
-    private int arme, remede, drogue;
+    private Objet arme;
+    private int remede, drogue;
     private int paralysie, piege; // nb de tour a jouer, att avant prochain
     // piege
     private int efdrogue; // calcule le nombre de tours restant et
     // effet a effectuer
     private boolean infecte, saignement;
 
-    protected static BufferedImage basicSprite = null;
-    protected static ImageColor ic;
-
     public Gentil(String file, Color couleur) {
         super(file, couleur);
-        arme = remede = drogue = 0;
+        arme = null;
+        remede = drogue = 0;
         infecte = saignement = false;
         vie = viemax;
         paralysie = 1;
         piege = 10;
         efdrogue = 0;
-        try {
-            basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
-            ic = new ImageColor(basicSprite);
-            int basicColor = ic.toRGB(10, 64, 7);
-            sprite = ic.changeColor(basicColor, couleur.getRGB());
-        } catch (IOException ex) {
-            System.out.println(ex);
+        nom = "Gentil";
+    }
+
+    public int getDmg() {
+        if (arme == null) {
+            return dmg;
+        } else {
+            return arme.getUse();
         }
     }
 
     public Gentil() {
+		super();
+	}
 
-    }
-
-    public int getArme() {
+    public Objet getArme() {
         return arme;
     }
 
-    public void setArme(int Arme) {
+    public void setArme(Objet Arme) {
         this.arme = Arme;
     }
 
@@ -78,7 +79,7 @@ public class Gentil extends $Personnage {
     }
 
     public int getEfdrogue() {
-        return arme;
+        return efdrogue;
     }
 
     public void setEfdrogue(int Efdrogue) {
@@ -119,6 +120,14 @@ public class Gentil extends $Personnage {
 
     public void setDrogue(int Drogue) {
         this.drogue = Drogue;
+    }
+
+    public int getPiege() {
+        return piege;
+    }
+
+    public void setPiege(int nbtour) {
+        piege = nbtour;
     }
 
     @Override

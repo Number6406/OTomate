@@ -53,7 +53,7 @@ public class XMLAction extends DefaultHandler {
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		if (qName.equalsIgnoreCase("action")) {
-			System.out.println("End Element : " + succes + " / " + echec + " / " + id);
+			//System.out.println("End Element : " + succes + " / " + echec + " / " + id);
 		}
 	}
 

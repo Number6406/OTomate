@@ -20,8 +20,12 @@ public class Univers {
 	List<$Action> actionsGentil;
 	List<$Action> actionsMechant;
 	List<Objet> objets;
-	List<Conditions2> conditions;
+	List<Conditions> conditions;
 	String nomUnivers;
+	String nomGentils;
+	String nomMechants;
+	String imageGentil, imageMechant;
+	int numero;
 	
 	// Getteurs
 	
@@ -37,12 +41,32 @@ public class Univers {
 		return  objets;
 	}
 	
-	public List<Conditions2> getConditions(){
+	public List<Conditions> getConditions(){
 		return  conditions;
 	}
 	
 	public String getNom(){
 		return nomUnivers;
+	}
+
+	public String getNomGentils() {
+		return nomGentils;
+	}
+
+	public String getNomMechants() {
+		return nomMechants;
+	}
+	
+	public String spriteGentil(){
+		return imageGentil;
+	}
+	
+	public String spriteMechant(){
+		return imageMechant;
+	}
+	
+	public int numero(){
+		return numero;
 	}
 	
 	
@@ -57,24 +81,39 @@ public class Univers {
 			Pm = new ParserAction("ActionsZombie.xml");
 			Po = new ParserObjet("ObjetsZombie.xml");
 			nomUnivers = "Humains vs. Zombies";
+			nomGentils = "humains";
+			nomMechants = "zombies";
 			break;
 		case 2 :
 			Pg = new ParserAction("ActionsRobot.xml");
 			Pm = new ParserAction("ActionsVirus.xml");
 			Po = new ParserObjet("ObjetsRobot.xml");
 			nomUnivers = "Robots vs. Virus";
+			nomGentils = "robots";
+			nomMechants = "virus";
 			break;
 		default :
 			Pg = new ParserAction("ActionsHumain.xml");
 			Pm = new ParserAction("ActionsZombie.xml");
 			Po = new ParserObjet("ObjetsZombie.xml");
 			nomUnivers = "Humains vs. Zombies";
+			nomGentils = "humains";
+			nomMechants = "zombies";
 		}
+                System.out.println("1");
 		actionsGentil = Pg.list;
+                System.out.println("2");
 		actionsMechant = Pm.list;
+                System.out.println("3");
 		objets = Po.list;
+                System.out.println("4");
+		imageGentil = Po.imageGentil;
+                System.out.println("5");
+		imageMechant = Po.imageMechant;
+		
 		Pc = new ParserConditions("Conditions.xml");
 		conditions = Pc.list;
+		this.numero = numeroUnivers;
 	}
 	
 	

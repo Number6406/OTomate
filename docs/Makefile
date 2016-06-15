@@ -12,4 +12,4 @@ creerXML.exe : automateToX.cmx automate1.cmx
 	ocamlopt -o creerXML.exe automateToX.cmx automate1.cmx
 
 clean : 
-	rm *.o *.cm? *.xml *~
+	rm *.o *.cm? *~

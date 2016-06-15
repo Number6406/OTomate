@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import Actions.$Action;
+import ImageEditor.ImageColor;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,21 +25,46 @@ public abstract class $Personnage {
 	protected int dmg;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
-	protected String spriteURL = "../Graphics/Sprites/1.png";
+	protected String spriteURL = null;
+        protected static BufferedImage basicSprite = null;
+        protected static ImageColor ic;
 
 	// Constructeur
 	protected $Personnage(String file, Color couleur) {
+                
+                if(this instanceof Gentil) {
+                    spriteURL = Jeu.univers.spriteGentil();
+                } else {
+                    spriteURL = Jeu.univers.spriteMechant();
+                }
+            
 		a = new Automate(file);
 		etat = a.etat_initial();
-		position = new Coordonnees(0, 0);
+		position = new Coordonnees(3, 5);
 		viemax = 100;
 		inventaire = 0;
 		nom = "Bob";
 		dmg = 10;
 		this.couleur = couleur;
+                try {
+                    System.out.println(spriteURL);
+                    basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
+                    ic = new ImageColor(basicSprite);
+                    int basicColor = ic.toRGB(10, 64, 7);
+                    sprite = ic.changeColor(basicColor, couleur.getRGB());
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
 	}
 
-	protected $Personnage($Personnage cpy) {
+	protected $Personnage($Personnage cpy, Color couleur) {
+
+        if(this instanceof Gentil) {
+            spriteURL = Jeu.univers.spriteGentil();
+        } else {
+            spriteURL = Jeu.univers.spriteMechant();
+        }
+        
 		a = cpy.getAutomate();
 		etat = a.etat_initial();
 		position = new Coordonnees(0, 0);
@@ -46,15 +72,23 @@ public abstract class $Personnage {
 		inventaire = 0;
 		nom = "Bob";
 		dmg = 10;
-		couleur = cpy.getCouleur();
-		sprite = cpy.getSprite();
-	}
-	
-	public $Personnage() {
-		
+		this.couleur = couleur;
+		try {
+            System.out.println(spriteURL);
+            basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
+            ic = new ImageColor(basicSprite);
+            int basicColor = ic.toRGB(10, 64, 7);
+            sprite = ic.changeColor(basicColor, couleur.getRGB());
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
 	}
 
 	// Getteurs
+
+	public $Personnage() {
+		a = new Automate();
+	}
 
 	public Automate getAutomate() {
 		return a;
@@ -115,7 +149,7 @@ public abstract class $Personnage {
         
         public void setSprite() {
             try {
-                ImageIO.read(new File(this.getClass().getResource("../Graphics/Sprites/1.png").getFile()));
+                ImageIO.read(new File(this.getClass().getResource("../Graphics/Sprites/1.gif").getFile()));
             } catch (IOException ex) {
                 Logger.getLogger($Personnage.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -136,6 +170,10 @@ public abstract class $Personnage {
 	public void setEtat(int symbole) {
 		if (a.transitions[symbole][etat] != 0)
 			etat = a.transitions[symbole][etat];
+	}
+	
+	public void forceSetEtat(int pEtat) {
+		etat = pEtat;
 	}
 
 	public void setVie(int Vie) {
@@ -161,6 +199,10 @@ public abstract class $Personnage {
 	public void setSpriteURL(String url) {
 		this.spriteURL = url;
 	}
+	
+	public void setDmg(int d) {
+		dmg = d;
+	}
 
 	// Override
 	public String toString() {
@@ -185,7 +227,7 @@ public abstract class $Personnage {
 	 *            la liste des joueurs
 	 * @return La description textuelle de l'action effectu�e
 	 */
-	public String jouer(List<Conditions2> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
+	public String jouer(List<Conditions> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
 		List<Boolean> lb = G.recupcond(this, listCond, listCont, listJoueur);
 		System.out.println("cond total : "+lb.toString());
 		List<Integer> lc = G.conditions(this, lb);
@@ -198,4 +240,27 @@ public abstract class $Personnage {
 		return actionAFaire.toString();
 	}
 	
+	public String jouer(Grille G, List<Joueur> listJoueur, Univers U){
+		List<Boolean> lb = G.recupcond(this, U.getConditions(), U.getObjets(), listJoueur);
+		List<Integer> lc = G.conditions(this, lb);
+		List<Integer> la = G.actionsPossibles(this, lc);
+		System.out.println("Actions possible "+la.toString());
+		$Action actionAFaire;		
+		int numaction;
+		if(la.size()!=0){
+			numaction = la.get(Grille.random(0, la.size()));
+		} else {
+			numaction = 0; // Ne rien faire
+		}
+		
+		if(this instanceof Gentil){
+			actionAFaire = U.getActionsGentil().get(numaction);
+			System.out.println("On recupere l'action gentille : "+numaction);
+		} else {
+			actionAFaire = U.getActionsMechant().get(numaction);
+			System.out.println("On recupere l'action mechante : "+numaction);
+		}
+		G.Maj(this, actionAFaire, listJoueur, lc);
+		return actionAFaire.toString();
+	}
 }

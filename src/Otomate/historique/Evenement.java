@@ -20,7 +20,7 @@ public class Evenement{
 	public String toString(){
 		if(personnage!=null){
 		return "<html>" + personnage.getNomHtml() + " " + description + "</html>";
-		} else return description;
+		} else return "<html>" + description + "</html>";
 	}
 	
 	

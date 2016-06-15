@@ -11,10 +11,10 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
-import Otomate.Conditions2;
+import Otomate.Conditions;
 
 public class ParserConditions{
-	public List<Conditions2> list = new LinkedList<>();
+	public List<Conditions> list = new LinkedList<>();
 	
 	public ParserConditions(String file){
 		

@@ -1,0 +1,42 @@
+<automate>
+	<nb_etats>1</nb_etats>
+	<etat_init>1</etat_init>
+	
+	<case>
+	    <etat>1</etat>
+	    <condition>1</condition>
+	    <action>13</action>
+	    <transition>1</transition>
+	</case>
+	<case>
+	    <etat>1</etat>
+	    <condition>2</condition>
+	    <action>13</action>
+	    <transition>1</transition>
+	</case>
+	<case>
+	    <etat>1</etat>
+	    <condition>3</condition>
+	    <action>13</action>
+	    <transition>1</transition>
+	</case>
+	<case>
+		<etat>1</etat>
+		<condition>4</condition>
+		<action>13</action>
+		<transition>1</transition>
+	</case>
+	
+	<case>
+		<etat>1</etat>
+		<condition>9</condition>
+		<action>9</action>
+		<transition>1</transition>
+	</case>
+	<case>
+	    <etat>1</etat>
+	    <condition>10</condition>
+	    <action>9</action>
+	    <transition>2</transition>
+	</case>
+</automate>

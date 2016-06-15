@@ -10,11 +10,12 @@ import Parser.ParserObjet;
 public class Grille {
 
 	//Attributs
-    private static Case[][] g;
-    private static List<Coordonnees> coinsAutomates;
-    private static List<Integer> nbetats;
-    public static int tailleX;
-    public static int tailleY;
+    private Case[][] g;
+    private List<Coordonnees> coinsAutomates;
+    private  List<Integer> nbetats;
+    private  int tailleX;
+    private  int tailleY;
+    private Univers u;
     
     
     // Getteurs
@@ -35,12 +36,16 @@ public class Grille {
     	return g[x][y];
     }
     
+    public Univers getUnivers(){
+    	return u;
+    }
+    
     //Retourne la case de coordonnees c
-    public static Case Pos(Coordonnees c){
+    public Case Pos(Coordonnees c){
         return g[c.getX()][c.getY()];
     }
     
-	public static List<Integer> getNbetats() {
+	public  List<Integer> getNbetats() {
 		return nbetats;
 	}
     
@@ -50,8 +55,8 @@ public class Grille {
     	g[x][y].setValeur(val);
     }
 
-	public static void setNbetats(List<Integer> nbetats) {
-		Grille.nbetats = nbetats;
+	public void setNbetats(List<Integer> nbetats) {
+		this.nbetats = nbetats;
 	}
 
 	public void setTailleX(int integer) {
@@ -100,7 +105,7 @@ public class Grille {
     	}
     }
     
-    public Grille(List<Joueur> l){
+    public Grille(List<Joueur> l,Univers u){
     	int i,j;
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
@@ -125,8 +130,17 @@ public class Grille {
             dimv = 50;
             
       //cration die la map dimh/dimv avec minimum 150/150
-        
-        new Grille(dimh, dimv);
+        System.out.println("dim : "+dimh + " "+dimv);
+        g = new Case[dimh][dimv];
+    	tailleX=dimh;
+    	tailleY=dimv;
+    	this.u = u;
+    	for(i=0;i<tailleX;i++){
+    		for(j=0;j<tailleY;j++){
+    			g[i][j] = new Case();
+    		}
+    	}
+    	this.initialisergrille(l);
     }
     
     //MÃ©thodes
@@ -149,7 +163,7 @@ public class Grille {
      * @param l, une liste d'entier
      * @return le maximum de la liste
      */
-    public static int max(List<Integer> l){
+    public int max(List<Integer> l){
         int fin = l.size();
         int i, m=0;
         for(i=0; i<fin; i++){
@@ -160,7 +174,7 @@ public class Grille {
     }
 	
     //Place les automates au bon endroit sur la map
-    public static void Placements(List<Joueur> J) {
+    public void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
         List<$Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutomate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
@@ -194,10 +208,9 @@ public class Grille {
             s = J.get(x).getSizePersonnages();
             System.out.println("tamer");
             while(y<s && i<l)
-            {
-            	
+            {            	
                     jdeb = coinsAutomates.get(i).getX();
-                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat(); j++){      //parcours de lignes
+                    for(j=jdeb; j<J.get(x).getPersonnagesI(y).nbEtat()+jdeb; j++){      //parcours de lignes
                         kdeb = coinsAutomates.get(i).getY();
                         for(k=kdeb;k<nbCond+kdeb;k++){          //parcours des colonnes
                             g[j][k] = J.get(x).getPersonnagesI(y).a.getActions(k-kdeb, j-jdeb);
@@ -211,7 +224,7 @@ public class Grille {
         }
     }
     
-    public static List<Coordonnees> goAutomates(List<$Personnage> list, int dimh, int dimv){
+    public  List<Coordonnees> goAutomates(List<$Personnage> list, int dimh, int dimv){
         List<Coordonnees> res = new LinkedList<Coordonnees>();
         Random rnd = new Random();
         int i, j, k;
@@ -221,57 +234,45 @@ public class Grille {
         }
         int nb = list.size();
         
+        System.out.println("bonjour go dimh dimv :" + dimh + " " + dimv);
         for(k=0; k<list.size(); k++){
-        	System.out.println("debut "+res);
-        	//System.out.println(":'(:'(:'(:'(:'(:'(:''(:'(:'(");
-            i = rnd.nextInt(nb);       //donne le numro de la case "h" abscisse correspondant
-            //System.out.println("i="+i);
-            System.out.println("fin "+res);
+            i = rnd.nextInt(nb);       //donne le numero de la case "h" abscisse correspondant
             newc[k].setX(i*dimh/nb);
-            System.out.println("presquefin "+res);
-            //System.out.println("ça donne quoi i*dimh/nb "+i*dimh/nb);
             j = rnd.nextInt(nb);
-            //System.out.println("j="+j);
             newc[k].setY(j*dimv/nb);
-            //System.out.println("ça donne quoi j*dimh/nb "+j*dimh/nb);
             j=k;
+            //System.out.println("in boucle k = " + k + "/ xy : " + newc[k].toString());
+            //System.out.println("res : " + res.toString());
             for(i=0; i<k; i++){
                 if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
-                	//System.out.println(res.toString());
-                	//System.out.println("compare "+res.get(i).getX()+"et "+res.get(i).getY());
                     i=k;
                     k--;           // la c'est pour refaire le meme tour puisque la case est deja occupee
                 }
             }
             if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
                 res.add(newc[k]);
-                System.out.println("TAMER");
             }
-
-        	System.out.println("fin2 "+res);
-
         }
         return res;
     }
     
-    public static void initialisergrille(List<Joueur> l) {
+    public void initialisergrille(List<Joueur> l) {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(0, 16);        //car 10 actions possibles numrotes de 1  10 
+                k = random(0, 16);        //car 16 actions possibles numerotees de 0 a 15 
                 g[i][j].element = k;
             }
         }
-
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
         	for(j=0;j<l.get(i).getSizePersonnages();j++){
         		list.add(l.get(i).getPersonnagesI(j));    	
         	}
         }
-        
+        System.out.println("va goautom");
         coinsAutomates = goAutomates(list, tailleX, tailleY);
-        System.out.println(coinsAutomates);
+        System.out.println("va placer");
         Placements(l);
     }
     
@@ -280,9 +281,8 @@ public class Grille {
  * @param filename
  * @return
  */
-    public List<Conditions2> condparser(String filename){
+    public List<Conditions> condparser(String filename){
     	ParserConditions P = new ParserConditions(filename);
-    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -293,7 +293,6 @@ public class Grille {
  */
     public List<Objet> objparser(String filename){
     	ParserObjet P = new ParserObjet(filename);
-    	//System.out.println("Encore avant" + P.list.size());
     	return P.list;
     }
     
@@ -305,17 +304,14 @@ public class Grille {
  * @param lj
  * @return
  */
-    public List<Boolean> recupcond($Personnage p, List<Conditions2> lc, List<Objet> lo, List<Joueur> lj){
+    public List<Boolean> recupcond($Personnage p, List<Conditions> lc, List<Objet> lo, List<Joueur> lj){
     	List<Boolean> res = new LinkedList<Boolean>();
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
-    		//System.out.println("Tu te trouves en x="+p.getPosition().getX()+" y="+p.getPosition().getY());
+    		System.out.println("position "+p.getPosition().toString());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
-    		//System.out.println("res a pour valeur " + res.get(i));
     	}
-    	//System.out.println("Au depart taille " + lc.size());
-    	//System.out.println("on retourne une liste de taille "+res.size());
     	return res;
     }
  // TODO CHANGER LES TRUCS PARKE 5 ICI WESH
@@ -327,7 +323,7 @@ public class Grille {
  */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	System.out.println("taille debut : "+l.size() );
+    	System.out.println("l.toString():"+l.toString());
     								//**********CONDITION SUR CASE***************
     	if(l.get(9) == true)		//
     		listcond.add(9);		//
@@ -340,36 +336,31 @@ public class Grille {
     	else if(l.get(17) == true)	//
     		listcond.add(17);
     	else listcond.add(0);
-    								//
-    	//System.out.println("taille 0 : "+listcond.size());
     	if(l.get(1) == true)		//**********CONDITION AU NORD****************
     		listcond.add(1);		//
     	else if(l.get(5) == true)	//
     		listcond.add(5);		//
     	else if(l.get(11) == true)	//
     		listcond.add(11);		//
-    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(3) == true)		//*********CONDITION EST*********************
     		listcond.add(3);		//
     	else if(l.get(7) == true)	//
     		listcond.add(7);		//
     	else if(l.get(13) == true)	//
     		listcond.add(13);		//
-    	//System.out.println("taille +1 : "+listcond.size() +" "+listcond.get(0));
     	if(l.get(2) == true)		//************CONDITION SUD*******************
     		listcond.add(2);		//
     	else if(l.get(6) == true)	//
     		listcond.add(6);		//
     	else if(l.get(12) == true)	//
     		listcond.add(12);		//
-    	//System.out.println("taille +1 : "+listcond.size() );
     	if(l.get(4) == true)		//*************CONDITION OUEST***************
     		listcond.add(4);		//
     	else if(l.get(8) == true)	//
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
-    	//System.out.println("taille fin : "+listcond.size() );
+    	System.out.println("listcond.to..."+listcond.toString());
     	return listcond;
     }
     
@@ -383,11 +374,8 @@ public class Grille {
     	List<Integer> la = new LinkedList<>();
     	int i, s = l.size();
     	for(i=0; i<s; i++){
-    		//System.out.println("symbole "+l.get(i));
-    		//System.out.println("etat courant "+p.getEtat());
-    		//System.out.println(p.a.toString());
     		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
-    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur()-1);
+    			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur());
     			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
     		}
     	}
@@ -406,9 +394,7 @@ public class Grille {
             return a;
         }
         else{
-        	//System.out.println("Je peux faire : "+l.size()+" choses differentes.");
             int i = random(0, l.size());
-            //System.out.println("Je vais faire l'action : "+l.get(i));
             if(l.get(i) == 0)
             	a = new RaF();
             else if(l.get(i) == 1)
@@ -441,7 +427,6 @@ public class Grille {
             	a = new Detruire();
             else if(l.get(i) == 15)
             	a = new Fouiller();
-            System.out.println("J'ai fait l'action : "+l.get(i));
             return a;
         }
     }
@@ -459,6 +444,7 @@ public class Grille {
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
         }
+    	System.out.println("La boucle for de grille a fini");
     	A.todo(l,P,list, this);
     }
 }
