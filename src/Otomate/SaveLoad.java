@@ -118,6 +118,12 @@ public final class SaveLoad {
 				fin.write(new Character(':'));
 				fin.write(pe.getAutomate().nbetats());
 				fin.write(new Character('\n'));
+				for(int k=0; k<pe.getAutomate().nbetats(); k++) {
+					for(int l=0; l<pe.getAutomate().nbconditions(); l++) {
+						fin.write(pe.getAutomate().transition(l, k));
+						fin.write(new Character(':'));
+					}
+				}
 			}
 			//currentChar++;
 			fin.write('\n');
@@ -192,6 +198,12 @@ public final class SaveLoad {
 				c.add(new Coordonnees(Integer.parseInt(lire(fout, ':')), Integer.parseInt(lire(fout, ' '))));
 				pe.getAutomate().setNbCond(Integer.parseInt(lire(fout, ':')));
 				pe.getAutomate().setNbEtats(Integer.parseInt(lire(fout, '\n')));
+				pe.getAutomate().newTrans();
+				for(int k=0; k<pe.getAutomate().nbetats(); k++) {
+					for(int m=0; m<pe.getAutomate().nbconditions(); m++) {
+						pe.getAutomate().setTransition(m,k,Integer.parseInt(lire(fout, ':')));
+					}
+				}
 				l.add(pe);
 			}
 			fout.skip(1);
