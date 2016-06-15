@@ -66,7 +66,8 @@ public class Jeu {
         int nZombie = 1;				// Variable possiblement tirée au sort
         int nbPersoParZombie = 2;
         List<String> xmlsGentils = new LinkedList<String>();
-        xmlsGentils.add("automateDeplacement.xml");
+        //xmlsGentils.add("automateDeplacement.xml");
+        xmlsGentils.add("humain.xml");
         List<String> xmlsMechants = new LinkedList<String>();
         xmlsMechants.add("Zomibie.xml");
         List<List<String>> xmls = new LinkedList<>();
@@ -78,7 +79,7 @@ public class Jeu {
 
         // <- Fin variables
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(0,1));
+        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12,12));
         System.out.println("taille joueurs " + joueurs.size());
         plateau = new Grille(joueurs,univers);
         System.out.println("taille joueurs 2 " + joueurs.size());
@@ -168,21 +169,21 @@ public class Jeu {
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs,univers);
             historique.ceTour().addEvenement(new Evenement(P, th));
-            Thread.sleep(period);
+            //Thread.sleep(period);
         }
     }
 
     public static void saigne($Personnage P) {
         if (P instanceof Gentil) {
             if (((Gentil) P).getSaignement()) {
-                P.setVie(P.getVie() - 5);
+                P.setVie(P.getVie() - 2);
             }
         }
     }
     public static void infecte($Personnage P) {
         if (P instanceof Gentil) {
             if (((Gentil) P).getInfecte()) {
-                P.setVie(P.getVie() - 5);
+                P.setVie(P.getVie() - 1);
             }
         }
     }
@@ -298,7 +299,7 @@ public class Jeu {
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
             System.out.println("temps choisit "+period);
-            Thread.sleep(period);
+            //Thread.sleep(period);
             System.out.println("tour mechant");
         }
         // TODO
@@ -319,6 +320,7 @@ public class Jeu {
             j = refPersos.get(i) / 100;
             p = refPersos.get(i) % 100;
             try {
+            	Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
@@ -363,7 +365,10 @@ public class Jeu {
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
             tour();
+            
             Affichage.again();
+            Thread.sleep(period*2);
+            
         }
         System.out.println("partie finie lol");
         // TODO Annoncer gagnant

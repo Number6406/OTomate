@@ -40,7 +40,7 @@ public abstract class $Personnage {
             
 		a = new Automate(file);
 		etat = a.etat_initial();
-		position = new Coordonnees(0, 0);
+		position = new Coordonnees(3, 5);
 		viemax = 100;
 		inventaire = 0;
 		nom = "Bob";
