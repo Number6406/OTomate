@@ -283,8 +283,7 @@ public class FenetreJeu extends JFrame {
     
     public void ajouterTourHistorique(Tour t){
     	for(int j1 = 0; j1 < t.nbEvenement();j1++){
-    		Evenement e = t.getEvenement(j1);
-            ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{t.getNumero(), e.toString()});
+            ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{t.getNumero(), t.getEvenement(j1).toString()});
     	}
         // Ne descend que jusque l'avant dernier
         JScrollBar verticalScrollBar = scroll_history.getVerticalScrollBar();
