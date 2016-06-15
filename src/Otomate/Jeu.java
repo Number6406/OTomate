@@ -72,11 +72,6 @@ public class Jeu {
         // Variables définies grâce au menu d'affichage ->
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
        // int nZombie = 1;				// Variable possiblement tirée au sort
         joueurZombie = nZombie;
        // int nbPersoParZombie = 2;
@@ -90,7 +85,6 @@ public class Jeu {
         //List<Color> couleurs = new LinkedList<>();
         couleurs.add(Color.red);
         couleurs.add(Color.black);
->>>>>>> Stashed changes
 
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12,12));
