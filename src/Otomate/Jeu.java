@@ -10,12 +10,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.print.attribute.standard.NumberOfDocuments;
+
 public class Jeu {
 
     // Attributs
     public static Grille plateau;
     public static List<Joueur> joueurs;
     public static List<Integer> refPersos;
+    private static int joueurZombie;
     public static Historique historique;
     public static Univers univers;
     public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 250;
@@ -64,6 +67,7 @@ public class Jeu {
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
         int nZombie = 1;				// Variable possiblement tirée au sort
+        joueurZombie = nZombie;
         int nbPersoParZombie = 2;
         List<String> xmlsGentils = new LinkedList<String>();
         xmlsGentils.add("automateDeplacement.xml");
@@ -228,7 +232,7 @@ public class Jeu {
         return false;
     }
 
-    public static void veriftransfo($Personnage P, Mechant E, List<Joueur> l) {
+   /* public static void veriftransfo($Personnage P, Mechant E, List<Joueur> l) {
         if (P instanceof Gentil) {
             if (P.getVie() == 0 && ((Gentil) P).getInfecte() == true) {
                 int i, j;
@@ -262,7 +266,7 @@ public class Jeu {
                 }
             }
         }
-    }
+    }*/
 
     // UN TOUR DE JEU
     /**
@@ -301,8 +305,6 @@ public class Jeu {
             Thread.sleep(period);
             System.out.println("tour mechant");
         }
-        // TODO
-        //veriftransfo(P, E, joueurs);
     }
 
     /**
@@ -325,11 +327,41 @@ public class Jeu {
                 e.printStackTrace();
             }
         }
+        String findetour = croqueMorts(joueurs);
+        historique.ceTour().addEvenement(new Evenement(null, findetour));
         Affichage.ajouterTour(historique.ceTour());
         // TODO enlever les morts.
     }
 
-    public static void changeSpeed() {
+    private static String croqueMorts(List<Joueur> lesJoueurs) {
+    	String s = "<i>Fin de Tour</i> : ";
+    	for(Joueur player : lesJoueurs){
+    		int j = 0;
+    		for($Personnage perso : player.getPersonnages()){
+    			if(perso.getVie()<=0){
+    				if(perso instanceof Gentil){
+    					if(((Gentil)perso).getInfecte() ){
+    						Mechant nouveauMechant = new Mechant(perso,lesJoueurs.get(joueurZombie).getCouleur());
+    						lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
+    						s += perso.getNomHtml() + " est transformé. ";
+        					player.getPersonnages().remove(j);
+    					} else {
+        					player.getPersonnages().remove(j);
+    						s += perso.getNomHtml() + " est mort. ";
+    					}
+    				} else {
+    					player.getPersonnages().remove(j);
+						s += perso.getNomHtml() + " est mort. ";
+    				}
+    			}
+    			j++;
+    		}
+    	}
+    	
+		return s;
+	}
+
+	public static void changeSpeed() {
         if (period <= vitesse3) { // Si vitesse maximale, on revient à une vitesse minimale
             period = vitesse1;
         } else if (period <= vitesse2) { // Vitesse intermédiaire vers vitesse max
@@ -365,6 +397,9 @@ public class Jeu {
             tour();
             Affichage.again();
         }
+        historique.addTour();
+        historique.ceTour().addEvenement(new Evenement(null, "Fin de Jeu !"));
+        Affichage.ajouterTour(historique.ceTour());
         System.out.println("partie finie lol");
         // TODO Annoncer gagnant
     }

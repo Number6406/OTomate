@@ -39,6 +39,7 @@ public class Gentil extends $Personnage {
         paralysie = 1;
         piege = 10;
         efdrogue = 0;
+        nom = "Gentil";
     }
 
     public int getDmg() {
