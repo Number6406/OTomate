@@ -27,8 +27,8 @@ public class AffichagePlateau extends JPanel {
      */
     private static final long serialVersionUID = 1L;
 
-    private int TAILLECASE = 24;
-    private int MINCASE = 24;
+    private int TAILLECASE = 32;
+    private int MINCASE = 32;
 
     private Grille gr;
     private List<$Personnage> perso;

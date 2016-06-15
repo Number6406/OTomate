@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import Actions.$Action;
+import ImageEditor.ImageColor;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,10 +25,19 @@ public abstract class $Personnage {
 	protected int dmg;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
-	protected String spriteURL = "../Graphics/Sprites/1.gif";
+	protected String spriteURL = null;
+        protected static BufferedImage basicSprite = null;
+        protected static ImageColor ic;
 
 	// Constructeur
 	protected $Personnage(String file, Color couleur) {
+                
+                if(this instanceof Gentil) {
+                    spriteURL = Jeu.univers.spriteGentil();
+                } else {
+                    spriteURL = Jeu.univers.spriteMechant();
+                }
+            
 		a = new Automate(file);
 		etat = a.etat_initial();
 		position = new Coordonnees(0, 0);
@@ -36,6 +46,15 @@ public abstract class $Personnage {
 		nom = "Bob";
 		dmg = 10;
 		this.couleur = couleur;
+                try {
+                    System.out.println(spriteURL);
+                    basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
+                    ic = new ImageColor(basicSprite);
+                    int basicColor = ic.toRGB(10, 64, 7);
+                    sprite = ic.changeColor(basicColor, couleur.getRGB());
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
 	}
 
 	protected $Personnage($Personnage cpy) {
@@ -51,6 +70,10 @@ public abstract class $Personnage {
 	}
 
 	// Getteurs
+
+	public $Personnage() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Automate getAutomate() {
 		return a;

@@ -40,12 +40,12 @@ public final class SaveLoad {
 		int currentChar = 0;
 
 		int i, j;
-		fin.write((jeu.plateau.tailleX)); // tailleX
+		fin.write((jeu.plateau.tailleX())); // tailleX
 		fin.write(new Character('\n'));
-		fin.write((jeu.plateau.tailleY)); // tailleY
+		fin.write((jeu.plateau.tailleY())); // tailleY
 		fin.write((new Character('\n')));
-		for (j = 0; j < jeu.plateau.tailleY; j++) {
-			for (i = 0; i < jeu.plateau.tailleX; i++) {
+		for (j = 0; j < jeu.plateau.tailleY(); j++) {
+			for (i = 0; i < jeu.plateau.tailleX(); i++) {
 				fin.write(((Integer) jeu.plateau.get(i, j).element));
 				fin.write(new Character(':'));
 				fin.write((Integer) (((jeu.plateau.get(i, j).piegee)) ? 1 : 0));
