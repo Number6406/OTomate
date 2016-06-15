@@ -22,17 +22,13 @@ public class Gentil extends $Personnage {
  /*
 	 * remede = 1.antidote 2.bandage
      */
-	
-	private Objet arme;
+    private Objet arme;
     private int remede, drogue;
     private int paralysie, piege; // nb de tour a jouer, att avant prochain
-    							// piege
+    // piege
     private int efdrogue; // calcule le nombre de tours restant et
-    					// effet a effectuer
+    // effet a effectuer
     private boolean infecte, saignement;
-
-    protected static BufferedImage basicSprite = null;
-    protected static ImageColor ic;
 
     public Gentil(String file, Color couleur) {
         super(file, couleur);
@@ -43,23 +39,16 @@ public class Gentil extends $Personnage {
         paralysie = 1;
         piege = 10;
         efdrogue = 0;
-        try {
-            basicSprite = ImageIO.read(new File(this.getClass().getResource(spriteURL).getFile()));
-            ic = new ImageColor(basicSprite);
-            int basicColor = ic.toRGB(10, 64, 7);
-            sprite = ic.changeColor(basicColor, couleur.getRGB());
-        } catch (IOException ex) {
-            System.out.println(ex);
+    }
+
+    public int getDmg() {
+        if (arme == null) {
+            return dmg;
+        } else {
+            return arme.getUse();
         }
     }
 
-   
-    
-    public int getDmg() {
-    	if(arme==null){return dmg;}
-    	else return arme.getUse();
-	}
-    
     public Objet getArme() {
         return arme;
     }
@@ -127,13 +116,13 @@ public class Gentil extends $Personnage {
     public void setDrogue(int Drogue) {
         this.drogue = Drogue;
     }
-    
-    public int getPiege(){
-    	return piege;
+
+    public int getPiege() {
+        return piege;
     }
-    
-    public void setPiege(int nbtour){
-    	piege = nbtour;
+
+    public void setPiege(int nbtour) {
+        piege = nbtour;
     }
 
     @Override

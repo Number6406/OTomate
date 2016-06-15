@@ -110,6 +110,14 @@ public class FenetreJeu extends JFrame {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+            
+            @Override
+            public Class getColumnClass(int column) {
+                if (column > 1) {
+                    return ImageIcon.class;
+                }
+                return Object.class;
+            }
         });
         tab_perso.getTableHeader().setReorderingAllowed(false);
         majTabPersos(); // Mise à jour de l'affichage de l'état des personnages
@@ -308,7 +316,10 @@ public class FenetreJeu extends JFrame {
                 
                 String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if(p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
-                    String iconeArme = Jeu.univers.getObjets().get(((Gentil) p).getArme()).getPath();
+                    String iconeArme = "";
+                    if(((Gentil) p).getArme() != null) {
+                        iconeArme = ((Gentil) p).getArme().getPath();
+                    }
                     arme = new ImageIcon(getClass().getResource(iconeArme));
                     String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
                     remede = new ImageIcon(getClass().getResource(iconeRemede));
