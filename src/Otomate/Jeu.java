@@ -168,10 +168,8 @@ public class Jeu {
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs,univers);
             historique.ceTour().addEvenement(new Evenement(P, th));
-            System.out.println(historique.toString());
             Thread.sleep(period);
         }
-        //historique.ceTour().addEvenement(new Evenement(P, th));
     }
 
     public static void saigne($Personnage P) {
@@ -268,7 +266,7 @@ public class Jeu {
      */
     public static void tourDePerso($Personnage P) throws InterruptedException {
         String tempHistorique;
-        Mechant E = new Mechant();
+        Mechant E;
         if (P instanceof Gentil) {
             Gentil gentilperso = ((Gentil) P);
             if (soinInstantane(gentilperso) == false) {
@@ -294,7 +292,8 @@ public class Jeu {
             Thread.sleep(period);
             System.out.println("tour mechant");
         }
-        veriftransfo(P, E, joueurs);
+        // TODO
+        //veriftransfo(P, E, joueurs);
     }
 
     /**
@@ -351,11 +350,9 @@ public class Jeu {
     // TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
         debutPartie(1);
-        System.out.println("Fin init");
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
-            System.out.println("TOUR");
             tour();
             Affichage.again();
         }

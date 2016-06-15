@@ -15,6 +15,8 @@ import Otomate.Objet;
 
 public class ParserObjet{
 	public List<Objet> list = new LinkedList<>();
+	public String imageGentil;
+	public String imageMechant;
 	
 	public ParserObjet(String file){
 		
@@ -28,6 +30,8 @@ public class ParserObjet{
         parser.parse(f, a);
         
         list=a.list;
+        imageGentil = a.imageGentil;
+        imageMechant = a.imageMechant;
         System.out.println(list.size()+ " rip");
 	      } catch (DOMException e) {
 	          e.printStackTrace();

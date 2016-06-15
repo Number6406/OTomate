@@ -22,6 +22,7 @@ public class Univers {
 	List<Objet> objets;
 	List<Conditions> conditions;
 	String nomUnivers;
+	String imageGentil, imageMechant;
 	
 	// Getteurs
 	
@@ -43,6 +44,14 @@ public class Univers {
 	
 	public String getNom(){
 		return nomUnivers;
+	}
+	
+	public String spriteGentil(){
+		return imageGentil;
+	}
+	
+	public String spriteMechant(){
+		return imageMechant;
 	}
 	
 	
@@ -73,6 +82,9 @@ public class Univers {
 		actionsGentil = Pg.list;
 		actionsMechant = Pm.list;
 		objets = Po.list;
+		imageGentil = Po.imageGentil;
+		imageMechant = Po.imageMechant;
+		
 		Pc = new ParserConditions("Conditions.xml");
 		conditions = Pc.list;
 	}
