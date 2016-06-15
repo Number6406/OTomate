@@ -13,9 +13,7 @@ public enum Conditions {
     EnnemiE ("Ennemi au Est", 7),
     EnnemiO ("Ennemi au Ouest", 8),
     Comestible ("Comestible sur ma Case", 9),
-    //Pompe ("pompe sur ma Case", 10),
     Arme ("un arme sur la case", 10),	//pompe ou couteau ou branche
-	
     ObstacleN ("Obstacle au nord", 11),
 	ObstacleS ("Obstacle au sud", 12),
 	ObstacleE ("Obstacle à l'est", 13),
@@ -72,34 +70,4 @@ public enum Conditions {
     public String toString(){
         return name;
     }
-    
-    /*public static Conditions fromint(int x){
-        switch(x) {
-        case 1:
-            return CheminN;
-        case 2:
-            return CheminS;
-        case 3:
-            return CheminE;
-        case 4:
-            return CheminO;
-        case 5:
-            return EnnemiN;
-        case 6:
-            return EnnemiS;
-        case 7:
-            return EnnemiE;
-        case 8:
-            return EnnemiO;
-        case 9:
-            return Comestible;
-        case 10:
-            return Arc;
-        case 11:
-            return Sabre;
-        }
-        return null;
-    }*/
-    
-    
 }

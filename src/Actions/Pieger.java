@@ -3,6 +3,7 @@ package Actions;
 import java.util.List;
 
 import Otomate.$Personnage;
+import Otomate.Gentil;
 import Otomate.Grille;
 
 public class Pieger extends $Action {
@@ -17,8 +18,9 @@ public class Pieger extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if ((Grille.Pos(p.getPosition()).piegee == false) && (l.get(0) == 0 || l.get(0) == 15)) {	//est piegeable toute case vide ou fouillable
+		if ((Grille.Pos(p.getPosition()).piegee == false) && (l.get(0) == 0 || l.get(0) == 15) && ((Gentil) p).getPiege() == 0) {	//est piegeable toute case vide ou fouillable
 			Grille.Pos(p.getPosition()).piegee = true;
+			((Gentil) p).setPiege(10);
 			effect = true;
 		}
 		else {

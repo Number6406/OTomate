@@ -38,17 +38,10 @@ public class Conditions2 {
     	if(next.getX()<0 && direction == 4){return type==0||type==2;}
     	if(next.getY()>g.tailleY() && direction == 3){return type==0||type==2;}
     	if(next.getY()<0 && direction == 1){return type==0 ||type==2;}
-    	//System.out.println("next.getX()="+next.getX());
-    	//System.out.println("next.getY()="+next.getY());
     	
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
-    	//System.out.println("direction : "+direction);
-    	//System.out.println("contenu : "+ Cid);
-    	//System.out.println(max);
     	for(i=0;i<max;i++){
-    		//System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
     		if(l.get(i).getId()==Cid){
-    			//System.out.println("tamer");
     			switch(type){
     			
     			case 0:
@@ -102,7 +95,6 @@ public class Conditions2 {
     			}
     		}
     	}
-    	//System.out.println("coucou");
     	return false;
     }
     

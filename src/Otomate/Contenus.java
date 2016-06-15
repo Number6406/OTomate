@@ -16,7 +16,6 @@ public enum Contenus {
     Hopital ("un hopital", 10),
     Grange ("une grange", 11),
     Cactus ("un cactus", 12),
-    //Bandage ("un bandage", 13),
     Seringue ("un peu de drogue?", 13),
 	Branches ("une branche", 14),
 	Pompe ("un fusil a pompe", 15);
@@ -37,43 +36,4 @@ public enum Contenus {
     public String toString(){
         return name;
     }
-    
-    /*public static Contenus fromint(int x){
-        switch(x) {
-        case 0:
-            return Herbe;
-        case 1:
-            return Terre;
-        case 2:
-            return Gravier;
-        case 3:
-            return Sable;
-        case 4:
-            return Eau;
-        case 5:
-            return Immeuble;
-        case 6:
-            return EauContaminee;
-        case 7:
-            return Conserve;
-        case 8:
-            return Bouteille;
-        case 9:
-            return Couteau;
-        case 10:
-            return Pompe;
-        case 11:
-        	return Hopital;
-        case 12:
-        	return Grange;
-        case 13:
-        	return Cactus;
-        case 14:
-        	return Bandage;
-        case 15:
-        	return Armure;
-        }
-        return null;
-    }*/
-    
 }

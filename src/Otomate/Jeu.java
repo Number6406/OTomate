@@ -150,14 +150,10 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            //System.out.println("nZombie = "+nZombie);
             System.out.println(i);
             if (i == nZombie) {
-                //System.out.println("test");
-                //System.out.println(i);
                 joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
             } else {
-                //System.out.println("nope"); 
                 joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
             }
         }
@@ -173,9 +169,6 @@ public class Jeu {
             Thread.sleep(period);
         }
         historique.ceTour().addEvenement(new Evenement(P, th));
-        //((Gentil) P).setParalysie(((Gentil) P).getParalysie()-1);
-        //((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue()-1);
-        //System.out.println("gentilkijou");
     }
 
     public static void saigne($Personnage P) {
@@ -274,11 +267,9 @@ public class Jeu {
         Mechant E = new Mechant();
         if (P instanceof Gentil) {
             Gentil gentilperso = ((Gentil) P);
-            System.out.println(gentilperso.getParalysie());
             if (soinInstantane(gentilperso) == false) {
                 gereParalysie(gentilperso);
                 if (gentilperso.getParalysie() < 1) {
-                    //		System.out.println("passe tour drogue ou drogue dissipe");
                     gentilperso.setParalysie(gentilperso.getParalysie() + 1);
                 }
             }
@@ -294,7 +285,6 @@ public class Jeu {
             tempHistorique = P.jouer(plateau,joueurs,univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            //System.out.println("mechantkijou");
             Thread.sleep(period);
         }
         veriftransfo(P, E, joueurs);
