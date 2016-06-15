@@ -79,7 +79,8 @@ public class Affichage {
 	   
    }
    		public static void again(){
-   		jeu.scroll_plateau.setSize(jeu.scroll_plateau.getSize());
+   		//jeu.pan_plateau.validate();
+   		jeu.pan_plateau.repaint();
    		}
    
 	  public static void charger() throws IOException{
