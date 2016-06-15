@@ -198,4 +198,25 @@ public abstract class $Personnage {
 		return actionAFaire.toString();
 	}
 	
+	public String jouer(Grille G, List<Joueur> listJoueur, Univers U){
+		List<Boolean> lb = G.recupcond(this, U.getConditions(), U.getObjets(), listJoueur);
+		System.out.println("cond total : "+lb.toString());
+		List<Integer> lc = G.conditions(this, lb);
+		System.out.println("cond possible"+lc.toString());
+		List<Integer> la = G.actionsPossibles(this, lc);
+		System.out.println("Actions possible "+la.toString());
+		$Action actionAFaire; //= G.takeOne(la);
+		//System.out.println("choix :" + actionAFaire);
+		
+		int numaction = la.get(Grille.random(0, la.size()));
+		System.out.println("numaction : "+numaction);
+		
+		if(this instanceof Gentil){
+			actionAFaire = U.getActionsGentil().get(numaction);
+		} else {
+			actionAFaire = U.getActionsMechant().get(numaction);
+		}
+		G.Maj(this, actionAFaire, listJoueur, lc);
+		return actionAFaire.toString();
+	}
 }
