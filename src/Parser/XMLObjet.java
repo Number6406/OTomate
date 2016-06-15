@@ -17,6 +17,9 @@ public class XMLObjet extends DefaultHandler{
 	boolean bpas=false;
 	boolean bpath=false;
 	
+	boolean bimG = false;
+	boolean bimM = false;
+	
 	
 	int id;
 	int use;
@@ -26,9 +29,10 @@ public class XMLObjet extends DefaultHandler{
 	String path;
 	Objet c;
 	List<Objet> list= new LinkedList<Objet>();
+	public String imageGentil;
+	public String imageMechant;
 	
-	public void startElement(String uri, 
-			   String localName, String qName, Attributes attributes)
+	public void startElement(String uri, String localName, String qName, Attributes attributes)
 			      throws SAXException {
 				  if (qName.equalsIgnoreCase("id")){
 					  bid=true;
@@ -43,8 +47,12 @@ public class XMLObjet extends DefaultHandler{
 			    	  bpas=true;
 			      } else if (qName.equalsIgnoreCase("path")){
 			    	  bpath=true;
+			      } else if (qName.equalsIgnoreCase("imageG")){
+			    	  bimG=true;
+			      } else if (qName.equalsIgnoreCase("imageM")){
+			    	  bimM=true;
 			      }
-			   }
+	}
 
 			   @Override
 			   public void endElement(String uri, 
@@ -65,8 +73,8 @@ public class XMLObjet extends DefaultHandler{
 				   		use=Integer.parseInt(lecture);
 				   		buse=false;
 				  } else if (bname){
-					name=lecture;
-					bname=false;
+						name=lecture;
+						bname=false;
 				  } else if (btype) {
 					 	type=Integer.parseInt(lecture);
 					 	btype=false;
@@ -79,6 +87,12 @@ public class XMLObjet extends DefaultHandler{
 					   c=new Objet(id,type,use,name,passable,path);
 					   list.add(c);
 					   bpath=false;
+				  } else if (bimG){
+					   imageGentil=lecture;
+					   bimG=false;
+				  } else if (bimM){
+					   imageMechant=lecture;
+					   bimM=false;
 				  }
 			   }
 			   

@@ -49,10 +49,6 @@ public abstract class $Personnage {
 		couleur = cpy.getCouleur();
 		sprite = cpy.getSprite();
 	}
-	
-	public $Personnage() {
-		a = new Automate();
-	}
 
 	// Getteurs
 
@@ -208,21 +204,16 @@ public abstract class $Personnage {
 	
 	public String jouer(Grille G, List<Joueur> listJoueur, Univers U){
 		List<Boolean> lb = G.recupcond(this, U.getConditions(), U.getObjets(), listJoueur);
-		System.out.println("cond total : "+lb.toString());
 		List<Integer> lc = G.conditions(this, lb);
-		System.out.println("cond possible"+lc.toString());
 		List<Integer> la = G.actionsPossibles(this, lc);
 		System.out.println("Actions possible "+la.toString());
-		$Action actionAFaire; //= G.takeOne(la);
-		//System.out.println("choix :" + actionAFaire);
-		
+		$Action actionAFaire;		
 		int numaction;
 		if(la.size()!=0){
 			numaction = la.get(Grille.random(0, la.size()));
 		} else {
 			numaction = 0; // Ne rien faire
 		}
-		System.out.println("numaction : "+numaction);
 		
 		if(this instanceof Gentil){
 			actionAFaire = U.getActionsGentil().get(numaction);
