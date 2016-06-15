@@ -33,13 +33,14 @@ public final class SaveLoad {
 		name = nam;
 	}
 
-	@SuppressWarnings({ "static-access", "resource" })
+	@SuppressWarnings({ "static-access" })
 	public void save() throws IOException {
 		File f = new File(name);
 		FileOutputStream fin = new FileOutputStream(f);
 		int currentChar = 0;
-
 		int i, j;
+		
+		fin.write(jeu.univers.numero());
 		fin.write((jeu.plateau.tailleX())); // tailleX
 		fin.write(new Character('\n'));
 		fin.write((jeu.plateau.tailleY())); // tailleY
@@ -83,7 +84,7 @@ public final class SaveLoad {
 				fin.write(((Integer) pe.getPosition().getY()));
 				fin.write(new Character(' '));
 				if (pe instanceof Gentil) {
-					fin.write(((Integer) (((Gentil) pe).getArme())));
+					fin.write(((((Gentil) pe).getArme().getId())));
 					fin.write(new Character(' '));
 					fin.write(((Integer) (((Gentil) pe).getDrogue())));
 					fin.write(new Character(' '));
@@ -147,9 +148,10 @@ public final class SaveLoad {
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
+		jeu.univers = new Univers(Integer.parseInt(lire(fout, '\n')));
 		jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')), Integer.parseInt(lire(fout, '\n')));
-		for (int j = 0; j < jeu.plateau.tailleX; j++) {
-			for (int i = 0; i < jeu.plateau.tailleY; i++) {
+		for (int j = 0; j < jeu.plateau.tailleX(); j++) {
+			for (int i = 0; i < jeu.plateau.tailleY(); i++) {
 				jeu.plateau.set(Integer.parseInt(lire(fout, ':')), i, j);
 				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
 			}
@@ -185,7 +187,7 @@ public final class SaveLoad {
 				if (nouv.estMechant()) {
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 				} else {
-					((Gentil) pe).setArme(Integer.parseInt(lire(fout, ' ')));
+					((Gentil) pe).setArme(jeu.univers.getObjets().get(Integer.parseInt(lire(fout, ' '))));
 					((Gentil) pe).setDrogue(Integer.parseInt(lire(fout, ' ')));
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 					((Gentil) pe).setRemede(Integer.parseInt(lire(fout, ' ')));

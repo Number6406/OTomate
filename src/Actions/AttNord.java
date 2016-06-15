@@ -27,7 +27,7 @@ public class AttNord extends $Action {
 			int s = lp.size();
 			int i = 0;
 			while (i < s) {
-				if (lp.get(i).getPosition() == card) {
+				if ((lp.get(i).getPosition().getX() == card.getX())&&(lp.get(i).getPosition().getY() == card.getY())){
 					e = lp.get(i);
 					i = s;
 				}
@@ -35,8 +35,8 @@ public class AttNord extends $Action {
 			}
 			if (p instanceof Gentil) {
 				if (e != null && e instanceof Mechant)
-					((Mechant) e).setVie(((Mechant) e).getVie() - (p.getDmg() + ((Gentil) p).getDmg()));
-			}
+					((Mechant) e).setVie(((Mechant) e).getVie() - ((Gentil) p).getDmg());
+				}
 			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());
 				if (Grille.random(0, 101) > 24)	//75% de chances de souffrir de saignement apres une attaque de zombies
