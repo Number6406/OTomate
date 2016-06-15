@@ -84,10 +84,15 @@ public class Univers {
 			Po = new ParserObjet("ObjetsZombie.xml");
 			nomUnivers = "Humains vs. Zombies";
 		}
+                System.out.println("1");
 		actionsGentil = Pg.list;
+                System.out.println("2");
 		actionsMechant = Pm.list;
+                System.out.println("3");
 		objets = Po.list;
+                System.out.println("4");
 		imageGentil = Po.imageGentil;
+                System.out.println("5");
 		imageMechant = Po.imageMechant;
 		
 		Pc = new ParserConditions("Conditions.xml");

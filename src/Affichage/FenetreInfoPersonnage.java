@@ -47,25 +47,15 @@ public class FenetreInfoPersonnage extends JDialog  {
         JPanel items = new JPanel(new GridLayout(3,1));
         this.add(items, BorderLayout.CENTER);
         if(p instanceof Gentil) {
+            items.add(new JLabel("Consommable : " + p.getInventaire()));
             items.add(new JLabel("Arme : " + ((Gentil) p).getArme()));
             items.add(new JLabel("Remede : " + ((Gentil) p).getRemede()));    
-            items.add(new JLabel("Consommable : " + p.getInventaire()));
         } else {
             items.add(new JLabel("Inventaire : " + p.getInventaire()));
         }
         
         this.pack();
         
-    }
-    
-    public static void main(String[] args) {
-        JFrame f = new FenetreMenu();
-        Gentil p = new Gentil();
-        p.setCouleur(Color.red);
-        p.setNom("BOB");
-        p.setSprite();
-        p.setVie(200);
-        FenetreInfoPersonnage fi = new FenetreInfoPersonnage(f, p);
     }
     
 }

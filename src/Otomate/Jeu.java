@@ -22,6 +22,14 @@ public class Jeu {
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
+    
+    // Nécessaire au lancement du jeu
+    private static boolean commencerJeu = false;
+    private static int numeroUnivers;
+    private static int nZombie;
+    private static int nbPersoParZombie;
+    private static List<List<String>> xmls;
+    private static List<Color> couleurs;
 
     // Methodes
     /**
@@ -55,7 +63,7 @@ public class Jeu {
     /**
      * Initialise toutes les variables pour lancer la partie.
      */
-    public static void debutPartie(int numeroUnivers) {
+    public static void debutPartie(int numeroUnivers, int nZombie, int nbPersoParZombie, List<List<String>> xmls, List<Color> couleurs) {
         univers = new Univers(numeroUnivers);
         historique = new Historique();
         // TODO pour reduire la taille du main
@@ -63,20 +71,7 @@ public class Jeu {
         // Variables définies grâce au menu d'affichage ->
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
-        int nZombie = 1;				// Variable possiblement tirée au sort
-        int nbPersoParZombie = 2;
-        List<String> xmlsGentils = new LinkedList<String>();
-        xmlsGentils.add("humain.xml");
-        List<String> xmlsMechants = new LinkedList<String>();
-        xmlsMechants.add("Zomibie.xml");
-        List<List<String>> xmls = new LinkedList<>();
-        xmls.add(xmlsGentils);
-        xmls.add(xmlsMechants);
-        List<Color> couleurs = new LinkedList<>();
-        couleurs.add(Color.red);
-        couleurs.add(Color.black);
-
-        // <- Fin variables
+        
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(0,1));
         System.out.println("taille joueurs " + joueurs.size());
@@ -210,7 +205,7 @@ public class Jeu {
     }
 
     public static boolean soinInstantane($Personnage P) {
-    	//System.out.println("pk tu viens l� wesh");
+    	//System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             return true;
@@ -340,6 +335,26 @@ public class Jeu {
         step = true;
     }
     
+    public static void setNbZombie(int nb) {
+        nZombie = nb;
+    }
+    
+    public static void setNbPersoParZ(int nb) {
+        nbPersoParZombie = nb;
+    }
+    
+    public static void setXMLS(List<List<String>> val) {
+        xmls = val;
+    }
+    
+    public static void setCouleurP(List<Color> c) {
+        couleurs = c;
+    }
+    
+    public static void go() {
+        commencerJeu = true;
+    }
+    
     /**
      * Fonction principale de Jeu
      *
@@ -349,7 +364,12 @@ public class Jeu {
      */
     // TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
-        debutPartie(1);
+        
+        FenetreMenu menuJeu = new FenetreMenu();
+        
+        while(!commencerJeu){ Thread.sleep(100); }
+        
+        debutPartie(1,nZombie,nbPersoParZombie,xmls,couleurs);
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
