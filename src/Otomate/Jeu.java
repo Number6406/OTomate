@@ -66,7 +66,7 @@ public class Jeu {
         int nZombie = 1;				// Variable possiblement tirÃ©e au sort
         int nbPersoParZombie = 2;
         List<String> xmlsGentils = new LinkedList<String>();
-        xmlsGentils.add("humain.xml");
+        xmlsGentils.add("automateDeplacement.xml");
         List<String> xmlsMechants = new LinkedList<String>();
         xmlsMechants.add("Zomibie.xml");
         List<List<String>> xmls = new LinkedList<>();
@@ -217,7 +217,7 @@ public class Jeu {
     }
 
     public static boolean soinInstantane($Personnage P) {
-    	//System.out.println("pk tu viens là wesh");
+    	//System.out.println("pk tu viens lï¿½ wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             return true;
