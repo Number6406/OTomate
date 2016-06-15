@@ -13,8 +13,9 @@ public class Grille {
     private Case[][] g;
     private List<Coordonnees> coinsAutomates;
     private  List<Integer> nbetats;
-    public  int tailleX;
-    public  int tailleY;
+    private  int tailleX;
+    private  int tailleY;
+    private Univers u;
     
     
     // Getteurs
@@ -33,6 +34,10 @@ public class Grille {
     
     public Case get(int x,int y){
     	return g[x][y];
+    }
+    
+    public Univers getUnivers(){
+    	return u;
     }
     
     //Retourne la case de coordonnees c
@@ -100,7 +105,7 @@ public class Grille {
     	}
     }
     
-    public Grille(List<Joueur> l){
+    public Grille(List<Joueur> l,Univers u){
     	int i,j;
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
@@ -129,6 +134,7 @@ public class Grille {
         g = new Case[dimh][dimv];
     	tailleX=dimh;
     	tailleY=dimv;
+    	this.u = u;
     	for(i=0;i<tailleX;i++){
     		for(j=0;j<tailleY;j++){
     			g[i][j] = new Case();
