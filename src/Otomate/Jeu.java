@@ -10,8 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.print.attribute.standard.NumberOfDocuments;
-
 public class Jeu {
 
     // Attributs
@@ -74,6 +72,22 @@ public class Jeu {
         // Variables définies grâce au menu d'affichage ->
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
+<<<<<<< Updated upstream
+=======
+       // int nZombie = 1;				// Variable possiblement tirée au sort
+        joueurZombie = nZombie;
+       // int nbPersoParZombie = 2;
+        List<String> xmlsGentils = new LinkedList<String>();
+        //xmlsGentils.add("automateDeplacement.xml");
+        List<String> xmlsMechants = new LinkedList<String>();
+       // xmlsMechants.add("Zomibie.xml");
+        //List<List<String>> xmls = new LinkedList<>();
+        xmls.add(xmlsGentils);
+        xmls.add(xmlsMechants);
+        //List<Color> couleurs = new LinkedList<>();
+        couleurs.add(Color.red);
+        couleurs.add(Color.black);
+>>>>>>> Stashed changes
 
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12,12));

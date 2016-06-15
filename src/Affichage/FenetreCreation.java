@@ -73,15 +73,11 @@ public class FenetreCreation extends FenetreBase {
 
         List<List<String>> lls = new LinkedList<>();
         int compt = 0;
-        for (i = 0; i < l.size() - 1; i++) {
-            if (i != id) {
+        for (i = 0; i < l.size(); i++) {
                 lls.add(i - compt, l.get(i).Recup_Strings());
-            } else {
-                compt++;
-            }
         }
         
-        String az = l.get(id).mechant.chemin.toString();
+     //   String az = l.get(id).mechant.chemin.getText();
 
         List<Color> lc = new LinkedList<>();
         for (i = 0; i < l.size(); i++) {

@@ -28,7 +28,7 @@ public class ParserAutomate {
 
             XMLAutomate a = new XMLAutomate();
             System.out.println("JE TEMMERDE PD : " +file);
-            File f = new File(this.getClass().getResource(file).getFile());
+            File f = new File(file);
             //System.out.println("filename : " + file);
             parser.parse(f, a);
 
