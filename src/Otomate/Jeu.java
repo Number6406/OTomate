@@ -83,7 +83,8 @@ public class Jeu {
         System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
-        plateau.initialisergrille(joueurs);
+       // plateau.initialisergrille(joueurs);
+        System.out.println("FIN INIT");
         try {
             Affichage.charger();
         } catch (IOException e) {
@@ -343,9 +344,11 @@ public class Jeu {
     // TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
         debutPartie(1);
+        System.out.println("Fin init");
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
+            System.out.println("TOUR");
             tour();
             Affichage.again();
         }

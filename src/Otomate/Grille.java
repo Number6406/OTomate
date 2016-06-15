@@ -125,8 +125,16 @@ public class Grille {
             dimv = 50;
             
       //cration die la map dimh/dimv avec minimum 150/150
-        
-        new Grille(dimh, dimv);
+        System.out.println("dim : "+dimh + " "+dimv);
+        g = new Case[dimh][dimv];
+    	tailleX=dimh;
+    	tailleY=dimv;
+    	for(i=0;i<tailleX;i++){
+    		for(j=0;j<tailleY;j++){
+    			g[i][j] = new Case();
+    		}
+    	}
+    	this.initialisergrille(l);
     }
     
     //Méthodes
@@ -220,12 +228,15 @@ public class Grille {
         }
         int nb = list.size();
         
+        System.out.println("bonjour go dimh dimv :" + dimh + " " + dimv);
         for(k=0; k<list.size(); k++){
-            i = rnd.nextInt(nb);       //donne le numro de la case "h" abscisse correspondant
+            i = rnd.nextInt(nb);       //donne le numero de la case "h" abscisse correspondant
             newc[k].setX(i*dimh/nb);
             j = rnd.nextInt(nb);
             newc[k].setY(j*dimv/nb);
             j=k;
+            //System.out.println("in boucle k = " + k + "/ xy : " + newc[k].toString());
+            //System.out.println("res : " + res.toString());
             for(i=0; i<k; i++){
                 if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
                     i=k;
@@ -247,15 +258,15 @@ public class Grille {
                 g[i][j].element = k;
             }
         }
-
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
         	for(j=0;j<l.get(i).getSizePersonnages();j++){
         		list.add(l.get(i).getPersonnagesI(j));    	
         	}
         }
-        
+        System.out.println("va goautom");
         coinsAutomates = goAutomates(list, tailleX, tailleY);
+        System.out.println("va placer");
         Placements(l);
     }
     

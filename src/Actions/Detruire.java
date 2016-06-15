@@ -20,8 +20,8 @@ public class Detruire extends $Action {
 		if (l.get(0) == 17) {	//objet destructible sur ma case?
 			int aux;
 			aux = p.getInventaire();
-			p.setInventaire(8);	//on récupère l'objet 8 en detruisant l'objet 12
-			Grille.Pos(p.getPosition()).setValeur(aux);
+			p.setInventaire(8);	//on rï¿½cupï¿½re l'objet 8 en detruisant l'objet 12
+			g.Pos(p.getPosition()).setValeur(aux);
 			effect = true;
 		}
 		else {
