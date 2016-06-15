@@ -12,17 +12,17 @@
 	<action>
 		<id>2</id>
 		<succes>traine des pieds vers le sud</succes>
-		<echec>tente d'avancer mais échoue lamentablement</echec>
+		<echec>tente d'avancer vers le sud mais échoue lamentablement</echec>
 	</action>
 	<action>
 		<id>3</id>
-		<succes>galère à avancer</succes>
-		<echec>tente d'avancer mais échoue lamentablement</echec>
+		<succes>galère à avancer à l'est</succes>
+		<echec>tente d'avancer à l'est mais échoue lamentablement</echec>
 	</action>
 	<action>
 		<id>4</id>
 		<succes>boite vers l'ouest</succes>
-		<echec>tente d'avancer en boitant mais échoue lamentablement</echec>
+		<echec>tente de boiter vers l'ouest mais échoue lamentablement</echec>
 	</action>
 	<action>
 		<id>5</id>
