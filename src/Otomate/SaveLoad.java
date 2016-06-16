@@ -41,6 +41,7 @@ public final class SaveLoad {
 		int i, j;
 		
 		fin.write(jeu.univers.numero());
+		fin.write(new Character('\n'));
 		fin.write((jeu.plateau.tailleX())); // tailleX
 		fin.write(new Character('\n'));
 		fin.write((jeu.plateau.tailleY())); // tailleY
@@ -84,8 +85,12 @@ public final class SaveLoad {
 				fin.write(((Integer) pe.getPosition().getY()));
 				fin.write(new Character(' '));
 				if (pe instanceof Gentil) {
-					fin.write(((((Gentil) pe).getArme().getId())));
+					fin.write(((Gentil) pe).estArme()?(1):(0));
 					fin.write(new Character(' '));
+					if(((Gentil) pe).estArme()) {
+						fin.write(((((Gentil) pe).getArme().getId())));
+						fin.write(new Character(' '));
+					}
 					fin.write(((Integer) (((Gentil) pe).getDrogue())));
 					fin.write(new Character(' '));
 					fin.write(((Integer) (((Gentil) pe).getInventaire())));
@@ -187,7 +192,9 @@ public final class SaveLoad {
 				if (nouv.estMechant()) {
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 				} else {
-					((Gentil) pe).setArme(jeu.univers.getObjets().get(Integer.parseInt(lire(fout, ' '))));
+					if(Integer.parseInt(lire(fout, ' '))==1) {
+						((Gentil) pe).setArme(jeu.univers.getObjets().get(Integer.parseInt(lire(fout, ' '))));
+					}
 					((Gentil) pe).setDrogue(Integer.parseInt(lire(fout, ' ')));
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 					((Gentil) pe).setRemede(Integer.parseInt(lire(fout, ' ')));

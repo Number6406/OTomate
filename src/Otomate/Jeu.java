@@ -435,7 +435,7 @@ public class Jeu {
         
         while(!commencerJeu){ Thread.sleep(100); }
         
-        debutPartie(1,nZombie,nbPersoParZombie,xmls,couleurs);
+        debutPartie(2,nZombie,nbPersoParZombie,xmls,couleurs);
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
             while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
