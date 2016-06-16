@@ -316,6 +316,7 @@ public class Jeu {
             player = lesJoueurs.get(i);
             if(player!=null){
             for (k=0; k<player.getSizePersonnages(); k++) {
+            	perso = player.getPersonnagesI(k);
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
