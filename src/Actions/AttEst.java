@@ -48,6 +48,6 @@ public class AttEst extends $Action {
 		}
 		else { // Echec de l'action
 			effect = false;
-		}
+		}	 
 	}
 }
