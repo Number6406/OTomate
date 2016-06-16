@@ -43,7 +43,7 @@
 	</objet>
 	<objet>
 		<id>5</id>
-		<type>4</type>
+		<type>7</type>
 		<use>0</use>
 		<name>IMMEUBLE</name>
 		<passage>1</passage>
@@ -83,7 +83,7 @@
 	</objet>
 	<objet>
 		<id>10</id>
-		<type>4</type>
+		<type>7</type>
 		<use>0</use>
 		<name>HOPITAL</name>
 		<passage>1</passage>
@@ -91,7 +91,7 @@
 	</objet>
 	<objet>
 		<id>11</id>
-		<type>4</type>
+		<type>7</type>
 		<use>0</use>
 		<name>GRANGE</name>
 		<passage>1</passage>
@@ -99,7 +99,7 @@
 	</objet>
 	<objet>
 		<id>12</id>
-		<type>2</type>
+		<type>6</type>
 		<use>0</use>
 		<name>CACTUS</name>
 		<passage>1</passage>
