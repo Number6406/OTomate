@@ -76,12 +76,12 @@ public class Univers {
 
 	public String getNomRemede() {
 		// TODO Auto-generated method stub
-		return null;
+		return nomRemede;
 	}
 
 	public String getNomAntidote() {
 		// TODO Auto-generated method stub
-		return null;
+		return nomAntidote;
 	}
 	
 	
