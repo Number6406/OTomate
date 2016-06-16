@@ -167,12 +167,12 @@ public abstract class $Personnage {
             this.nom = nom;
         }
         
-	public void setEtat(int symbole) {
+	public void SetEtat(int symbole) {
 		if (a.transition(symbole, etat) != 0)
 			etat = a.transition(symbole,etat);
 	}
 	
-	public void forceSetEtat(int pEtat) {
+	public void setEtat(int pEtat) {
 		etat = pEtat;
 	}
 

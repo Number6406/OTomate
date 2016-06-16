@@ -85,7 +85,6 @@ public class Conditions {
     				return false;
     			
     			case 3:
-    				System.out.println("on rentre dans le case 3");
     				for(i=0;i<lj.size();i++){
     					List<$Personnage> lp=lj.get(i).getPersonnages();
     					for(j=0;j<lp.size();j++){

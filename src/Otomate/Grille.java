@@ -176,13 +176,15 @@ public class Grille {
     //Place les automates au bon endroit sur la map
     public void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
+        System.err.println("nombre de joueurs : " + l);
         List<$Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutomate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
-        for(i=0; i<l; i++){
-        	for(j=0;j<J.get(i).getSizePersonnages();j++){
+        for(i=0; i<J.size(); i++){
+        	int max = J.get(i).getSizePersonnages();
+        	for(j=0;j<max;j++){
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
-	        }
+	    }
 	        
         for(i=0;i<l;i++){
         	int ix=coinsAutomates.get(i).getX();
@@ -391,6 +393,17 @@ public class Grille {
     		}
     	}
     	return la;
+	}
+	
+	public List<Integer> conditionsPossibles($Personnage p, List<Integer> conditions){
+		List<Integer> lcp = new LinkedList<>(); // Liste des conditions possibles
+		int i, size = conditions.size();
+		for(i=0; i<size; i++){
+    		if(p.getAutomate().transition(conditions.get(i), p.getEtat()-1) != 0){
+    			lcp.add(conditions.get(i));
+    		}
+    	}
+		return lcp;
 	}
     
     /**
