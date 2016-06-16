@@ -46,7 +46,7 @@ public class AffichagePlateau extends JPanel {
             for (int i = 0; i < lo.size(); i++) {
                 BufferedImage img;
                 // System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
-                System.out.println(lo.get(i).getPath());
+                System.out.println(lo.get(i).getPath() + " ("+i+")");
                 img = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPath()).getFile())); //Version Linux
                 tiles.add(img);
             }
