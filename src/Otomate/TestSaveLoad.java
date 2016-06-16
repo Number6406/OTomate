@@ -13,6 +13,7 @@ public class TestSaveLoad {
 	
 	public static void main(String[] args) throws IOException {
 		Jeu jeu = new Jeu();
+		jeu.univers = new Univers(1);
 		jeu.plateau = new Grille();
 		jeu.historique = new Historique();
 		// Variables définies grâce au menu d'affichage ->
@@ -22,9 +23,9 @@ public class TestSaveLoad {
 		int nbPersoParZombie = 2;
 		List<String> xmlsGentils = new LinkedList<String>();
 		String fichiers = new File("Conditions.xml").toString();
-		xmlsGentils.add("AutomateenXML.xml");
+		xmlsGentils.add("src/Parser/AutomateenXML.xml");
 		List<String> xmlsMechants = new LinkedList<String>();
-		xmlsMechants.add("AutomateenXML.xml");
+		xmlsMechants.add("src/Parser/AutomateenXML.xml");
 		List<List<String>> xmls = new LinkedList<>();
 		xmls.add(xmlsGentils);
 		xmls.add(xmlsMechants);
