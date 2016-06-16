@@ -423,6 +423,8 @@ public class Jeu {
     	joueurZombie = sl.getJeu().joueurZombie;
     	univers = sl.getJeu().univers;
     	historique = new Historique();
+    	charge = true;
+    	go();
     }
 
     public static void setUserNames(List<String> listNames) {
@@ -446,7 +448,6 @@ public class Jeu {
         }
 
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
-        else {charger("blblbl.txt");}
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         //sauvegarder();
@@ -466,7 +467,7 @@ public class Jeu {
 
         }
         finDeJeu();
-        System.out.println("partie finie lol");
+        Affichage.fin();
         // TODO Annoncer gagnant
     }
 }

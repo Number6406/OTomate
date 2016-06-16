@@ -26,4 +26,7 @@ public class Mechant extends $Personnage {
 	public String toString() {
 		return "// Méchant //\n" + super.toString();
 	}
+	public String getEtatString(){
+		return "";
+	}
 }

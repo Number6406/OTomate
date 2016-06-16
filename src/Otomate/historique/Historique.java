@@ -64,17 +64,4 @@ public class Historique {
         return s;
     }
 
-    public static void main(String[] args) {
-        Gentil g = new Gentil("AutomateenXML.xml", Color.blue);
-        Historique h = new Historique();
-        Evenement e = new Evenement(g, "mange du chocolat");
-        h.addTour();
-        h.ceTour().addEvenement(new Evenement(g, "fais la vaisselle"));
-        h.ceTour().addEvenement(e);
-        h.addTour();
-        h.ceTour().addEvenement(new Evenement(g, "a mal aux pieds"));
-        System.out.println(h.toString());
-
-    }
-
 }

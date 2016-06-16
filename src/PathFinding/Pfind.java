@@ -16,9 +16,9 @@ public class Pfind {
 	
 	AStarPathFinder pf = new AStarPathFinder(map, max, false);
 	p=pf.findPath(new Mover(), from.getX(), from.getY(), To.getX(), To.getY());
+	if(p.getLength()>1){
 	int x=p.getStep(1).getX();
 	int y=p.getStep(1).getY();
-	
 	if(x>from.getX()){
 	next=2;	
 	}
@@ -35,7 +35,10 @@ public class Pfind {
 	next=0;
 	}
 	}
-	
+	else{
+		next=0;
+	}
+	}
 	public int getDirection(){
 		return next;
 	}

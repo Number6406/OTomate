@@ -95,5 +95,9 @@ public class Automate {
     	}
     	return s;
 	}
+
+	public void setAction(int i, int j, Case c) {
+		actions[i][j] = c;
+	}
     
 }

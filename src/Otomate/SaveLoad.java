@@ -191,8 +191,10 @@ public final class SaveLoad {
 			int ne = tacos.get(i).getAutomate().nbetats();
 			for(int j=ix; j<ne+ix; j++) {
 				for(int k=iy; k<nc+iy; k++) {
-					System.out.println(j+' '+k);
-					jeu.plateau.setCase(j, k, tacos.get(i).getAutomate().getActions(k-iy, j-ix));
+					System.out.println(j+" "+k);
+					System.out.println(ix+" "+iy);
+					tacos.get(i).getAutomate().setAction(k-iy, j-ix, jeu.plateau.get(j, k));
+					//jeu.plateau.setCase(j, k, tacos.get(i).getAutomate().getActions(k-iy, j-ix));
 				}
 			}
 		}
@@ -308,7 +310,7 @@ public final class SaveLoad {
 			System.out.println("|||||");
 		}
 		fout.close();
-		//actuGrille();
+		actuGrille();
 		System.out.println("LOAD.FINISHED\n");
 	}
 
