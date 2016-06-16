@@ -108,7 +108,7 @@ public class Ramasser extends $Action {
 						else {	//malus vie
 							((Gentil) p).setVie(((Gentil) p).getVie() - 10);
 							((Gentil) p).setDrogue(8);
-							effet = "perds 10 PV max";
+							effet = "perds 10 PV";
 						}
 						drogue = true;
 			        	System.out.println("LE PERSONNAGE EST DROGUE AVEC LA DROGUE NUMERO : "+((Gentil) p).getDrogue());
