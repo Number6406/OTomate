@@ -176,6 +176,29 @@ public final class SaveLoad {
 		fin.close();
 		System.out.println("SAVE.FINISHED\n");
 	}
+	
+	public void actuGrille() {
+		List<$Personnage> tacos = new LinkedList<$Personnage>();
+		for(int i=0; i<jeu.joueurs.size(); i++) {
+			for(int j=0; j<jeu.joueurs.get(i).getPersonnages().size(); j++) {
+				tacos.add(jeu.joueurs.get(i).getPersonnagesI(j));
+			}
+		}
+		for(int i=0; i<tacos.size(); i++) {
+			int ix = jeu.plateau.getCoinsAutomates().get(i).getX();
+			int iy = jeu.plateau.getCoinsAutomates().get(i).getY();
+			int nc = tacos.get(i).getAutomate().nbconditions();
+			int ne = tacos.get(i).getAutomate().nbetats();
+			for(int j=ix; j<ne+ix; j++) {
+				for(int k=iy; k<nc+iy; k++) {
+					System.out.println(j+" "+k);
+					System.out.println(ix+" "+iy);
+					tacos.get(i).getAutomate().setAction(k-iy, j-ix, jeu.plateau.get(j, k));
+					//jeu.plateau.setCase(j, k, tacos.get(i).getAutomate().getActions(k-iy, j-ix));
+				}
+			}
+		}
+	}
 
 	public String lire(FileInputStream fout, char fin) throws IOException {
 		String buf = "";
@@ -254,6 +277,7 @@ public final class SaveLoad {
 				System.out.println("°°°°°");
 				if (nouv.estMechant()) {
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
+					pe.setEtat(Integer.parseInt(lire(fout, ':')));
 				} else {
 					if(Integer.parseInt(lire(fout, ' '))==1) {
 						((Gentil) pe).setArme(jeu.univers.getObjets().get(Integer.parseInt(lire(fout, ' '))));
@@ -286,6 +310,7 @@ public final class SaveLoad {
 			System.out.println("|||||");
 		}
 		fout.close();
+		actuGrille();
 		System.out.println("LOAD.FINISHED\n");
 	}
 

@@ -34,6 +34,8 @@ import Otomate.historique.Tour;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -170,7 +172,7 @@ public class FenetreJeu extends JFrame {
         tab_history.getTableHeader().setReorderingAllowed(false);
         
         TableColumn col = tab_history.getColumnModel().getColumn(1);
-        col.setPreferredWidth(200);
+        col.setPreferredWidth(400);
         
         scroll_history = new JScrollPane(tab_history);
         tab_legende = new JTable(new DefaultTableModel(new Object[]{"Id", "Img", "Nom", "Obstacle"}, 0) {
@@ -251,6 +253,42 @@ public class FenetreJeu extends JFrame {
                 }
             }
         });
+        
+        pan_interraction.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				System.out.println("NTM TRES TRES FORT");
+				if(e.getKeyChar()=='u'){
+					JOptionPane.showConfirmDialog(pan_interraction
+							,"Attention"
+							,"Attention cette fonctionnalitée necessite un processeur puissant"
+							,JOptionPane.OK_CANCEL_OPTION
+							);
+				}
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println("NTM TRES TRES FORT");
+				if(e.getKeyChar()=='u'){
+					JOptionPane.showConfirmDialog(pan_interraction
+							,"Attention"
+							,"Attention cette fonctionnalitée necessite un processeur puissant"
+							,JOptionPane.OK_CANCEL_OPTION
+							);
+				}
+				
+			}
+		});
+        
         
         pan_interraction.add(b_fast);
         b_fast.addActionListener((ActionEvent e) -> { // Listener pour la vitesse du jeu
@@ -335,6 +373,27 @@ public class FenetreJeu extends JFrame {
         quitter.addActionListener((ActionEvent e) -> {
             quitterPartie();
         });
+        
+        JButton Turbo = new JButton("Turbo");
+        toolbar.add(Turbo);
+        Turbo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					int ret=JOptionPane.showConfirmDialog(null
+							,"Attention cette fonctionnalitée necessite un processeur puissant"
+							,"Attention"
+							,JOptionPane.OK_CANCEL_OPTION
+							);
+					if(ret==JOptionPane.CANCEL_OPTION){
+						
+					}
+					else{
+						Jeu.period=10;
+					}
+				
+			}
+		});
     }
     
     public void ajouterTourHistorique(Tour t){
@@ -381,19 +440,20 @@ public class FenetreJeu extends JFrame {
                         String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    if(p instanceof Mechant)
+                }
+                if(p instanceof Mechant){
                     if(((Mechant) p).getInventaire() != 0) {
                     	System.err.println("Le joueur a� un item dans l'inventaire !");
-                        String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                        String cons = Jeu.univers.getObjets().get(((Mechant) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    
-                    
                 }
                 
                 // Mise à jour de l'affichage
+                if (p instanceof Gentil){
                 ((DefaultTableModel) tab_perso.getModel()).addRow(
                     new Object[]{
+           
                         "<html>" + p.getNomHtml() +" ("+p.getEtatString()+")"+ "</html>",
                         p.getVie() + "/" + p.getViemax(),
                         consommable, // Affichage de l'icone
@@ -401,8 +461,23 @@ public class FenetreJeu extends JFrame {
                         remede
                     }
                 );
+               
+                }
+                else {
+                	((DefaultTableModel) tab_perso.getModel()).addRow(
+                            new Object[]{
+                                "<html>" + p.getNomHtml() + "</html>",
+                                p.getVie() + "/" + p.getViemax(),
+                                consommable, // Affichage de l'icone
+                                arme,
+                                remede
+                            }
+                            );
+                	}
             }
         }
+            
+        
     }
     
     public void quitterPartie() {
@@ -428,28 +503,40 @@ public class FenetreJeu extends JFrame {
         saveW.setVisible(true);
         JTextField chemin = new JTextField();
         JButton bchemin = new JButton("Fichier");
-        bchemin.addActionListener((ActionEvent e) -> {
-            JFileChooser f = new JFileChooser("./");
-            int returnValue = f.showOpenDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = f.getSelectedFile();
-                chemin.setText(selectedFile.getAbsolutePath());
-            }
-        });
+        bchemin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+	            JFileChooser f = new JFileChooser("./");
+	            int returnValue = f.showOpenDialog(null);
+	            if (returnValue == JFileChooser.APPROVE_OPTION) {
+	                File selectedFile = f.getSelectedFile();
+	                chemin.setText(selectedFile.getAbsolutePath());
+	            }
+				
+			}
+		});
         JButton bvalider = new JButton("Sauvegarder");
         bvalider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String path = chemin.getText();
+                if(path.equals("")){
+                	JOptionPane.showMessageDialog(pan_interraction,
+                            "Tous les champs ne sont pas remplis",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE,
+                            null);
+                }
+                else{
                 try {
-					Jeu.sauvegarder(path);
+					Jeu.charger(path);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
             }
-        });
-        
+            }});
         JButton bquitter = new JButton("Annuler");
         bquitter.addActionListener(new ActionListener() {
             @Override
@@ -471,7 +558,7 @@ public class FenetreJeu extends JFrame {
         panelb.add(bquitter, BorderLayout.EAST);
         
         saveW.pack();
-    }
+  }
     
     public static void main(String[] args) throws IOException {
         FenetreJeu f = new FenetreJeu();

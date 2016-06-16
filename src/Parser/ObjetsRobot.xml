@@ -21,20 +21,12 @@
 		<id>2</id>
 		<type>4</type>
 		<use>0</use>
-		<name>les Réseaux Sociaux</name>
-		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/seringue.png</path>
-	</objet>
-	<objet>
-		<id>3</id>
-		<type>4</type>
-		<use>0</use>
 		<name>un Intranet</name>
-		<passage>0</passage>
+		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
 	<objet>
-		<id>4</id>
+		<id>3</id>
 		<type>5</type>
 		<use>0</use>
 		<name>le Dark Web</name>
@@ -42,7 +34,7 @@
 		<path>../Graphics/Tiles/Zombie/trouble_water.png</path>
 	</objet>
 	<objet>
-		<id>5</id>
+		<id>4</id>
 		<type>7</type>
 		<use>0</use>
 		<name>Google</name>
@@ -50,7 +42,7 @@
 		<path>../Graphics/Tiles/Zombie/building1.png</path>
 	</objet>
 	<objet>
-		<id>6</id>
+		<id>5</id>
 		<type>5</type>
 		<use>0</use>
 		<name>le Deep Web</name>
@@ -58,7 +50,7 @@
 		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
 	<objet>
-		<id>7</id>
+		<id>6</id>
 		<type>2</type>
 		<use>0</use>
 		<name>une Pile</name>
@@ -66,7 +58,7 @@
 		<path>../Graphics/Tiles/Zombie/can.png</path>
 	</objet>
 	<objet>
-		<id>8</id>
+		<id>7</id>
 		<type>2</type>
 		<use>0</use>
 		<name>de la RAM</name>
@@ -74,7 +66,7 @@
 		<path>../Graphics/Tiles/Zombie/bottle.png</path>
 	</objet>
 	<objet>
-		<id>9</id>
+		<id>8</id>
 		<type>1</type>
 		<use>15</use>
 		<name>Avast (Anti Virus)</name>
@@ -82,15 +74,15 @@
 		<path>../Graphics/Tiles/Zombie/knife.png</path>
 	</objet>
 	<objet>
-		<id>10</id>
+		<id>9</id>
 		<type>7</type>
 		<use>0</use>
-		<name>Yahoo</name>
+		<name>Duck Duck Go</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
 	</objet>
 	<objet>
-		<id>11</id>
+		<id>10</id>
 		<type>7</type>
 		<use>0</use>
 		<name>Bing</name>
@@ -98,7 +90,7 @@
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
 	</objet>
 	<objet>
-		<id>12</id>
+		<id>11</id>
 		<type>6</type>
 		<use>0</use>
 		<name>un Pop Up</name>
@@ -106,7 +98,7 @@
 		<path>../Graphics/Tiles/Zombie/cactus.png</path>
 	</objet>
 	<objet>
-		<id>13</id>
+		<id>12</id>
 		<type>3</type>
 		<use>0</use>
 		<name>un Script Inconnu</name>
@@ -114,7 +106,7 @@
 		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
 	<objet>
-		<id>14</id>
+		<id>13</id>
 		<type>1</type>
 		<use>5</use>
 		<name>AVG (Anti Virus Gratuit)</name>
@@ -122,7 +114,7 @@
 		<path>../Graphics/Tiles/Zombie/branch.png</path>
 	</objet>
 	<objet>
-		<id>15</id>
+		<id>14</id>
 		<type>1</type>
 		<use>25</use>
 		<name>Este (Bon anti virus)</name>

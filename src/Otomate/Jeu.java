@@ -36,7 +36,7 @@ public class Jeu {
     private static List<List<String>> xmls;
     private static List<Color> couleurs;
     private static int nUnivers;
-
+    
     // Methodes
     /**
      * Verifie la fin de partie dans un jeu. Le jeu est fini quand il n'y a plus
@@ -147,11 +147,11 @@ public class Jeu {
      */
     public static void initJoueurs(List<String> names, int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
         joueurs = new LinkedList<Joueur>();
-        int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
+        int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
             System.out.println("i=" + i);
             if (i == nZombie) {
-                joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nZ, couleurs.get(i)));
+            	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
             } else {
                 joueurs.add(new Joueur(names.get(i), xmls.get(i), false, 42, couleurs.get(i)));
             }
@@ -227,9 +227,11 @@ public class Jeu {
         //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
+            historique.ceTour().addEvenement(new Evenement(P, univers.getNomRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
+            historique.ceTour().addEvenement(new Evenement(P, univers.getNomAntidote()));
             return true;
         }
         return false;
@@ -417,8 +419,12 @@ public class Jeu {
     	sl.load();
     	plateau = sl.getJeu().plateau;
     	joueurs = sl.getJeu().joueurs;
+    	refPersos = new LinkedList<Integer>();
     	joueurZombie = sl.getJeu().joueurZombie;
     	univers = sl.getJeu().univers;
+    	historique = new Historique();
+    	charge = true;
+    	go();
     }
 
     public static void setUserNames(List<String> listNames) {
@@ -442,7 +448,6 @@ public class Jeu {
         }
 
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
-        else {charger("blblbl.txt");}
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         //sauvegarder();
@@ -462,7 +467,7 @@ public class Jeu {
 
         }
         finDeJeu();
-        System.out.println("partie finie lol");
+        Affichage.fin();
         // TODO Annoncer gagnant
     }
 }

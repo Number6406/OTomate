@@ -61,21 +61,16 @@
 	</action>
 	<action>
 		<id>12</id>
-		<succes>se soigne</succes>
-		<echec>essaye de se soigner mais il ne sait pas ce que cela veut dire</echec>
-	</action>
-	<action>
-		<id>13</id>
 		<succes>se rapproche des ennemis</succes>
 		<echec>essaye de se rapprocher des ennemis mais il n'y arrive pas</echec>
 	</action>
 	<action>
-		<id>14</id>
+		<id>13</id>
 		<succes>détruit avec rage</succes>
 		<echec>essaye de détruire quelque chose de plus solide que lui</echec>
 	</action>
 	<action>
-		<id>15</id>
+		<id>14</id>
 		<succes>fouille un batiment à la recherche de trésors</succes>
 		<echec>veux fouiller mais échoue</echec>
 	</action>

@@ -283,7 +283,7 @@ public class Grille {
             }
             if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
                 res.add(newc[k]);
-                if(Pos(newc[k]).getValeur() != 4 && Pos(newc[k]).getValeur() != 6)
+                if(Pos(newc[k]).getValeur() != 3 && Pos(newc[k]).getValeur() != 5)
                 	l.get(i).setPosition(newc[k]);
                 else
                 	k--;
