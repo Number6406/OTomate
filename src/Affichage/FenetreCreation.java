@@ -139,6 +139,7 @@ public class FenetreCreation extends FenetreBase {
         bAnnuler.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                configPartie.setVisible(true);
                 dispose();
             }
         });
@@ -155,6 +156,7 @@ public class FenetreCreation extends FenetreBase {
                     Jeu.setUnivers(univers);
                     leave();
                     configPartie.dispose();
+                    dispose();
                 }
             }
         });
