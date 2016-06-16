@@ -107,11 +107,11 @@ public class XMLAction extends DefaultHandler {
 				list.set(id, new DeplOuest(succes, echec));
 				break;
 
-			case 14:
+			case 13:
 				list.set(id, new Detruire(succes, echec));
 				break;
 
-			case 13:
+			case 12:
 				list.set(id, new Fuir(succes, echec));
 				break;
 
@@ -127,14 +127,10 @@ public class XMLAction extends DefaultHandler {
 				list.set(id, new Ramasser(succes, echec));
 				break;
 
-			case 12:
-				list.set(id, new Soigner(succes, echec));
-				break;
-
-			case 15:
+			case 14:
 				list.set(id, new Fouiller(succes, echec));
 				break;
-			case 16 :
+			case 15 :
 				break;
 			}
 			bechec=false;
