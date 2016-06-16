@@ -428,28 +428,40 @@ public class FenetreJeu extends JFrame {
         saveW.setVisible(true);
         JTextField chemin = new JTextField();
         JButton bchemin = new JButton("Fichier");
-        bchemin.addActionListener((ActionEvent e) -> {
-            JFileChooser f = new JFileChooser("./");
-            int returnValue = f.showOpenDialog(null);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = f.getSelectedFile();
-                chemin.setText(selectedFile.getAbsolutePath());
-            }
-        });
+        bchemin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+	            JFileChooser f = new JFileChooser("./");
+	            int returnValue = f.showOpenDialog(null);
+	            if (returnValue == JFileChooser.APPROVE_OPTION) {
+	                File selectedFile = f.getSelectedFile();
+	                chemin.setText(selectedFile.getAbsolutePath());
+	            }
+				
+			}
+		});
         JButton bvalider = new JButton("Sauvegarder");
         bvalider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String path = chemin.getText();
+                if(path.equals("")){
+                	JOptionPane.showMessageDialog(pan_interraction,
+                            "Tous les champs ne sont pas remplis",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE,
+                            null);
+                }
+                else{
                 try {
-					Jeu.sauvegarder(path);
+					Jeu.charger(path);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
             }
-        });
-        
+            }});
         JButton bquitter = new JButton("Annuler");
         bquitter.addActionListener(new ActionListener() {
             @Override
@@ -471,7 +483,7 @@ public class FenetreJeu extends JFrame {
         panelb.add(bquitter, BorderLayout.EAST);
         
         saveW.pack();
-    }
+  }
     
     public static void main(String[] args) throws IOException {
         FenetreJeu f = new FenetreJeu();
