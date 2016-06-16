@@ -1,5 +1,6 @@
 package PathFinding;
 
+import Otomate.Coordonnees;
 import Otomate.Jeu;
 
 /**
@@ -56,7 +57,7 @@ public class TileBasedMap {
 	 * @return True if the location is blocked
 	 */
 	public boolean blocked(Mover mover, int x, int y){
-		return ((!Jeu.plateau.get(x, y).Passable(Jeu.univers.getObjets())) && Jeu.plateau.get(x, y).occupee() );
+		return ((!Jeu.plateau.get(x, y).Passable(Jeu.univers.getObjets())) && (new Coordonnees(x, y).occupee()));
 	}
 	
 	/**
