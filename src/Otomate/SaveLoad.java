@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -100,9 +101,9 @@ public final class SaveLoad {
 
 			fin.write(new Character(':'));
 			
-			/*System.out.println(jeu.joueurs.get(i).getName());
-			fin.write(jeu.joueurs.get(i).getName().getBytes());
-			fin.write(new Character('\0'));*/
+			System.out.println(jeu.joueurs.get(i).getName());
+			fin.write(jeu.joueurs.get(i).getName().getBytes(StandardCharsets.UTF_8));
+			fin.write(new Character(';'));
 
 			fin.write(jeu.joueurs.get(i).getSizePersonnages());
 			fin.write(new Character('\\'));
@@ -189,11 +190,11 @@ public final class SaveLoad {
 			int iy = jeu.plateau.getCoinsAutomates().get(i).getY();
 			int nc = tacos.get(i).getAutomate().nbconditions();
 			int ne = tacos.get(i).getAutomate().nbetats();
-			for(int j=ix; j<ne+ix; j++) {
-				for(int k=iy; k<nc+iy; k++) {
+			for(int j=0; j<ne; j++) {
+				for(int k=0; k<nc; k++) {
 					System.out.println(j+" "+k);
 					System.out.println(ix+" "+iy);
-					tacos.get(i).getAutomate().setAction(k-iy, j-ix, jeu.plateau.get(j, k));
+					tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(j+iy, k+ix));
 					//jeu.plateau.setCase(j, k, tacos.get(i).getAutomate().getActions(k-iy, j-ix));
 				}
 			}
@@ -209,6 +210,21 @@ public final class SaveLoad {
 			fout.read(b);
 		}
 		return buf;
+	}
+	
+	public byte[] lire_nom(FileInputStream fout, char fin) throws IOException {
+		List<byte[]> a = new LinkedList<byte[]>();
+		byte[] b = new byte[1];
+		fout.read(b);
+		while(b[0] != fin) {
+			a.add(b);
+			fout.read(b);
+		}
+		byte[] c = new byte[a.size()];
+		for(int i=0; i<a.size(); i++) {
+			c[i] = a.get(i)[0];
+		}
+		return c;
 	}
 
 	public void load() throws IOException {
@@ -259,7 +275,9 @@ public final class SaveLoad {
 			System.out.println(b);
 			nouv.setCouleur(new Color(r,g,b));
 			fout.skip(1);
-			//nouv.setName(lire(fout, '\0'));
+			
+			nouv.setName(new String(lire_nom(fout, ';'),StandardCharsets.UTF_8));
+			System.out.println("dazfygrthiyiogrfuyguyyoiguvfycsegbthfiv " + nouv.getName());
 			nbPers = Integer.parseInt(lire(fout, '\\'));
 			System.out.println(nbPers);
 			nouv.setMechant(Integer.parseInt(lire(fout, ';')) == 1);
@@ -271,6 +289,7 @@ public final class SaveLoad {
 				} else {
 					pe = new Gentil();
 				}
+				pe.setNom(nouv.getName());
 				pe.setPosition(new Coordonnees(Integer.parseInt(lire(fout, ' ')), Integer.parseInt(lire(fout, ' '))));
 				System.out.println(pe.getPosition().getX());
 				System.out.println(pe.getPosition().getY());
@@ -298,6 +317,7 @@ public final class SaveLoad {
 				pe.getAutomate().setNbEtats(Integer.parseInt(lire(fout, '\n')));
 				System.out.println(pe.getAutomate().nbetats());
 				pe.getAutomate().newTrans();
+				pe.getAutomate().newAction();
 				for(int k=0; k<pe.getAutomate().nbetats(); k++) {
 					for(int m=0; m<pe.getAutomate().nbconditions(); m++) {
 						pe.getAutomate().setTransition(m,k,Integer.parseInt(lire(fout, ':')));

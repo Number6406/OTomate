@@ -309,9 +309,14 @@ public class Jeu {
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
         String s = "<i>Fin de Tour</i> : ";
-        for (Joueur player : lesJoueurs) {
+        int i,k;
+        Joueur player = null;
+        $Personnage perso = null;
+        for (i=0; i<lesJoueurs.size(); i++) {
             int j = 0;
-            for ($Personnage perso : player.getPersonnages()) {
+            player = lesJoueurs.get(i);
+            if(player!=null){
+            for (k=0; k<player.getSizePersonnages(); k++) {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
@@ -320,15 +325,17 @@ public class Jeu {
                             s += perso.getNomHtml() + " est transformé. ";
                             player.getPersonnages().remove(j);
                         } else {
+                        	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(j);
-                            s += perso.getNomHtml() + " est mort. ";
                         }
                     } else {
-                        player.getPersonnages().remove(j);
                         s += perso.getNomHtml() + " est mort. ";
+                        player.getPersonnages().remove(j);
                     }
                 }
                 j++;
+            }
+            }
             }
         }
 
@@ -428,6 +435,7 @@ public class Jeu {
     	historique = new Historique();
     	charge = true;
     	go();
+    	
     }
 
     public static void setUserNames(List<String> listNames) {
@@ -451,6 +459,7 @@ public class Jeu {
         }
 
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
+        else {Affichage.charger();}
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         //sauvegarder();
