@@ -89,12 +89,10 @@ public class Jeu {
         //List<Color> couleurs = new LinkedList<>();
         couleurs.add(Color.red);
         couleurs.add(Color.black);
-
+        System.err.println("id="+nZombie);
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
-        System.out.println("taille joueurs " + joueurs.size());
         plateau = new Grille(joueurs, univers);
-        System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
         // plateau.initialisergrille(joueurs);

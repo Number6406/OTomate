@@ -59,14 +59,14 @@ public class FenetreCreation extends FenetreBase {
         }
         if (nb == 1) {
             System.out.println("le zombie sera le joueur " + (li.get(0) + 1));
-            id = (li.get(0) + 1);
+            id = (li.get(0));
         } else if (nb > 1) {
             id = Grille.random(0, li.size());
             System.out.println("le zombie sera le joueur " + (li.get(id) + 1));
-            id = li.get(id) + 1;
+            id = li.get(id);
         } else if (nb == 0) {
             id = Grille.random(0, l.size());
-            System.out.println("le zombie sera le joueur " + (id + 1));
+            System.out.println("le zombie sera le joueur " + (id+1));
 
         }
 
@@ -97,6 +97,7 @@ public class FenetreCreation extends FenetreBase {
         
         
         //Retourner dans le jeu
+        System.out.println("id="+id);
         Jeu.setNbZombie(id);
         Jeu.setCouleurP(lc);
         Jeu.setXMLS(lls);
