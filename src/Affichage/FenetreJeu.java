@@ -18,6 +18,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import Otomate.$Personnage;
 import Otomate.Gentil;
@@ -164,7 +165,12 @@ public class FenetreJeu extends JFrame {
                 return false;
             }
         });
+        
         tab_history.getTableHeader().setReorderingAllowed(false);
+        
+        TableColumn col = tab_history.getColumnModel().getColumn(1);
+        col.setPreferredWidth(200);
+        
         scroll_history = new JScrollPane(tab_history);
         tab_legende = new JTable(new DefaultTableModel(new Object[]{"Id", "Img", "Nom", "Obstacle"}, 0) {
             /**
