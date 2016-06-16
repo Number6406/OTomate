@@ -345,6 +345,7 @@ public class FenetreJeu extends JFrame {
         for(int i = nbRow - 1; i >= 0; i--) {
             ((DefaultTableModel) tab_perso.getModel()).removeRow(i);
         }
+        
         for(Joueur j : Jeu.joueurs) {
             for($Personnage p : j.getPersonnages()) {
                 // Récupération des icones d'images pour les afficher.
@@ -427,8 +428,12 @@ public class FenetreJeu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String path = chemin.getText();
-                //VERIF DE POSSIBILITE ? 
-                //FONCTION DE SAUVEGARDE
+                try {
+					Jeu.sauvegarder(path);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         

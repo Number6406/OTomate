@@ -171,5 +171,9 @@ public class PanelCreationJoueur extends JPanel {
 		}
 		return l;
 	}
+        
+        public String recupName() {
+            return userName.getText();
+        }
 
 }

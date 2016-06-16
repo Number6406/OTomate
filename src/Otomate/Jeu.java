@@ -30,6 +30,7 @@ public class Jeu {
     // Nécessaire au lancement du jeu
     private static boolean commencerJeu = false;
     private static int numeroUnivers;
+    private static List<String> names;
     private static int nZombie;
     private static int nbPersoParZombie;
     private static List<List<String>> xmls;
@@ -89,9 +90,10 @@ public class Jeu {
         //List<Color> couleurs = new LinkedList<>();
         couleurs.add(Color.red);
         couleurs.add(Color.black);
-        System.err.println("id="+nZombie);
-        initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
-        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
+
+        initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
+        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
+        System.out.println("taille joueurs " + joueurs.size());
         plateau = new Grille(joueurs, univers);
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
@@ -154,19 +156,20 @@ public class Jeu {
     /**
      * Initialise les joueurs de la partie
      *
+     * @param names, la liste des noms des joueurs
      * @param nbPersoParZombie, le nombre de personnage pour un zombie
      * @param nZombie, le numéro du joueur qui joue zombie
      * @param xmls, la liste des liste de xmls pour les personnages
      */
-    public static void initJoueurs(int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
+    public static void initJoueurs(List<String> names, int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
         joueurs = new LinkedList<Joueur>();
         int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
             System.out.println("i=" + i);
             if (i == nZombie) {
-                joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
+                joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nZ, couleurs.get(i)));
             } else {
-                joueurs.add(new Joueur(xmls.get(i), false, 42, couleurs.get(i)));
+                joueurs.add(new Joueur(names.get(i), xmls.get(i), false, 42, couleurs.get(i)));
             }
         }
     }
@@ -415,14 +418,13 @@ public class Jeu {
     	SaveJeu sj = new SaveJeu();
     	sj.plateau = plateau;
     	sj.joueurs = joueurs;
-    	sj.refPersos = refPersos;
     	sj.joueurZombie = joueurZombie;
     	sj.univers = univers;
     	return sj;
     }
     
-    public static void sauvegarder() throws IOException {
-    	SaveLoad sl = new SaveLoad(createSaveJeu(),"blblbl.txt");
+    public static void sauvegarder(String chemin) throws IOException {
+    	SaveLoad sl = new SaveLoad(createSaveJeu(),chemin);
     	sl.save();
     }
     
@@ -431,9 +433,12 @@ public class Jeu {
     	sl.load();
     	plateau = sl.getJeu().plateau;
     	joueurs = sl.getJeu().joueurs;
-    	refPersos = sl.getJeu().refPersos;
     	joueurZombie = sl.getJeu().joueurZombie;
     	univers = sl.getJeu().univers;
+    }
+
+    public static void setUserNames(List<String> listNames) {
+        userNames = listNames;
     }
     
     /**
