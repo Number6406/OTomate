@@ -16,7 +16,7 @@ Actions :
     7 Attaque Est
     8 Attaque Ouest
     9 Ramasser
-    10 Piéger
+    10 Pieger
     11 Manger/Restaurer
     12 Soigner
     13 Fuir
