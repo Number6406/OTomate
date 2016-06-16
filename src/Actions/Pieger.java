@@ -18,8 +18,8 @@ public class Pieger extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if ((g.Pos(p.getPosition()).piegee == false) && (l.get(0) == 0 || l.get(0) == 15) && ((Gentil) p).getPiege() == 0) {	//est piegeable toute case vide ou fouillable
-			g.Pos(p.getPosition()).piegee = true;
+		if ((g.Pos(p.getPosition()).getPiegee() == false) && (l.get(0) == 0 || l.get(0) == 15) && ((Gentil) p).getPiege() == 0) {	//est piegeable toute case vide ou fouillable
+			g.Pos(p.getPosition()).setPiegee(true);
 			((Gentil) p).setPiege(10);
 			effect = true;
 		}

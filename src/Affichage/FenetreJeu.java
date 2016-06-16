@@ -355,13 +355,25 @@ public class FenetreJeu extends JFrame {
                 
                 String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if(p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
-                    String iconeArme = "";
+                	System.err.println("C'est un gentil");
+                	String iconeArme = "";
                     if(((Gentil) p).getArme() != null) {
+                    	System.err.println("Le joueur à une arme !");
                         iconeArme = ((Gentil) p).getArme().getPath();
                     }
                     arme = new ImageIcon(getClass().getResource(iconeArme));
+                    
+                    if(((Gentil) p).getRemede() != 0){
                     String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
                     remede = new ImageIcon(getClass().getResource(iconeRemede));
+                    }
+                    
+                    if(((Gentil) p).getInventaire() != 0) {
+                    	System.err.println("Le joueur à une arme !");
+                        iconeArme = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                    }
+                    arme = new ImageIcon(getClass().getResource(iconeArme));
+                    
                 }
                 
                 // Mise à jour de l'affichage
@@ -414,8 +426,12 @@ public class FenetreJeu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String path = chemin.getText();
-                //VERIF DE POSSIBILITE ? 
-                //FONCTION DE SAUVEGARDE
+                try {
+					Jeu.sauvegarder(path);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         

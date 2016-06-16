@@ -70,6 +70,10 @@ public class Grille {
 	public void setP(boolean b, int i, int j) {
 		g[i][j].setPiegee(b);
 	}
+	
+	public void setUnivers(Univers univ) {
+		u = univ;
+	}
 
     // Constructeur
     /**
@@ -87,6 +91,8 @@ public class Grille {
     			g[i][j] = new Case();
     		}
     	}
+    	coinsAutomates = new LinkedList<Coordonnees>();
+    	nbetats = new LinkedList<Integer>();
     }
     
     /**
@@ -94,15 +100,7 @@ public class Grille {
      * Crée une grille carrée de taille 50*50
      */
     public Grille(){
-    	g = new Case[50][50];
-    	tailleX=50;
-    	tailleY=50;
-    	int i,j;
-    	for(i=0;i<tailleX;i++){
-    		for(j=0;j<tailleY;j++){
-    			g[i][j] = new Case();
-    		}
-    	}
+    	new Grille(50,50);
     }
     
     public Grille(List<Joueur> l,Univers u){
@@ -141,6 +139,7 @@ public class Grille {
     		}
     	}
     	this.initialisergrille(l);
+    	this.placerPersonnages(list);
     }
     
     //Méthodes
@@ -257,6 +256,40 @@ public class Grille {
         }
         return res;
     }
+	
+	public void placerPersonnages(List<$Personnage> l){
+		List<Coordonnees> res = new LinkedList<Coordonnees>();
+        Random rnd = new Random();
+        int i, j, k;
+        Coordonnees[] newc = new Coordonnees[l.size()];
+        for(i=0;i<l.size();i++){
+        	newc[i] = new Coordonnees();
+        }
+        int nb = l.size();
+        
+        for(k=0; k<l.size(); k++){
+            i = rnd.nextInt(nb);       //donne le numero de la case "h" abscisse correspondant
+            j = rnd.nextInt(tailleX/nb);
+            newc[k].setX(i*tailleX/nb+j);
+            i = rnd.nextInt(nb);
+            j = rnd.nextInt(tailleY/nb);
+            newc[k].setY(i*tailleY/nb+j);
+            j=k;
+            for(i=0; i<k; i++){
+                if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
+                    i=k;
+                    k--;           // la c'est pour refaire le meme tour puisque la case est deja occupee
+                }
+            }
+            if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
+                res.add(newc[k]);
+                if(Pos(newc[k]).getValeur() != 4 && Pos(newc[k]).getValeur() != 6)
+                	l.get(i).setPosition(newc[k]);
+                else
+                	k--;
+            }
+        }
+	}
     
     public void initialisergrille(List<Joueur> l) {
     	int i,j,k;
@@ -311,7 +344,7 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
-    		System.out.println("position "+p.getPosition().toString());
+    		//System.out.println("position "+p.getPosition().toString());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
     	}
     	return res;
@@ -325,7 +358,7 @@ public class Grille {
  */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	System.out.println("l.toString():"+l.toString());
+    	//System.out.println("l.toString():"+l.toString());
     								//**********CONDITION SUR CASE***************
     	if(l.get(9) == true)		//
     		listcond.add(9);		//
@@ -468,7 +501,6 @@ public class Grille {
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
         }
-    	System.out.println("La boucle for de grille a fini");
     	A.todo(l,P,list, this);
     }
 }

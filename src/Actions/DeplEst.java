@@ -27,9 +27,9 @@ public class DeplEst extends $Action {
 			effect = false;
 		}
 		if (p instanceof Mechant) {
-			if (g.Pos(p.getPosition()).piegee == true){
+			if (g.Pos(p.getPosition()).getPiegee() == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);
-				g.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
+				g.Pos(p.getPosition()).setPiegee(false);		//le piege a une utilisation unique
 			}
 		}
 	}
