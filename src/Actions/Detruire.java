@@ -24,7 +24,7 @@ public class Detruire extends $Action {
 			if(aux != 0)
 				g.Pos(p.getPosition()).setValeur(aux);
 			else
-				g.Pos(p.getPosition()).setValeur(3);
+				g.Pos(p.getPosition()).setValeur(2);
 			effect = true;
 		}
 		else {

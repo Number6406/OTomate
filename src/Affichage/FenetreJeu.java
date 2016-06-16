@@ -394,7 +394,7 @@ public class FenetreJeu extends JFrame {
                 // Mise à jour de l'affichage
                 ((DefaultTableModel) tab_perso.getModel()).addRow(
                     new Object[]{
-                        "<html>" + p.getNomHtml() + "</html>",
+                        "<html>" + p.getNomHtml() +" ("+p.getEtatString()+")"+ "</html>",
                         p.getVie() + "/" + p.getViemax(),
                         consommable, // Affichage de l'icone
                         arme,
