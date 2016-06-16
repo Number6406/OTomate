@@ -79,10 +79,13 @@ public class Jeu {
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
         
         plateau = new Grille(joueurs, univers);
+        joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(2,6));
+        joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(2,4));
+        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(4,5));
+        joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
         
         refPersos = new LinkedList<Integer>();
         
-        System.out.println("FIN INIT");
         try {
             Affichage.charger();
         } catch (IOException e) {
@@ -149,7 +152,6 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            System.out.println("i=" + i);
             if (i == nZombie) {
             	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
             } else {
@@ -161,7 +163,6 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
-        System.out.println("Le personnage va jouer "+((Gentil) P).getParalysie());
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
@@ -267,16 +268,12 @@ public class Jeu {
                     }
                 }
             }
-            System.out.println("tour gentil");
         } else {
             tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            System.out.println("temps choisit " + period);
             //Thread.sleep(period);
-            System.out.println("tour mechant");
         }
-        System.out.println("piege ? "+plateau.Pos(P.getPosition()).piegee);
     }
 
     /**
@@ -308,26 +305,34 @@ public class Jeu {
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
         String s = "<i>Fin de Tour</i> : ";
-        for (Joueur player : lesJoueurs) {
-            int j = 0;
-            for ($Personnage perso : player.getPersonnages()) {
+        int i,k;
+        Joueur player = null;
+        $Personnage perso = null;
+        for (i=0; i<lesJoueurs.size(); i++) {
+            player = lesJoueurs.get(i);
+            if(player!=null){
+            for (k=0; k<player.getSizePersonnages(); k++) {
+            	perso = player.getPersonnagesI(k);
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
-                            Mechant nouveauMechant = new Mechant(perso, lesJoueurs.get(joueurZombie).getCouleur());
+                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
+                      //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transformé. ";
-                            player.getPersonnages().remove(j);
+                            player.getPersonnages().remove(k);
                         } else {
-                            player.getPersonnages().remove(j);
-                            s += perso.getNomHtml() + " est mort. ";
+                       // 	System.err.println("il est mort 2");
+                        	s += perso.getNomHtml() + " est mort. ";
+                            player.getPersonnages().remove(k);
                         }
                     } else {
-                        player.getPersonnages().remove(j);
+                    //	System.err.println("il est mort 3");
                         s += perso.getNomHtml() + " est mort. ";
+                        player.getPersonnages().remove(k);
                     }
                 }
-                j++;
+            }
             }
         }
 

@@ -23,6 +23,18 @@ public class Coordonnees{
     	
     }
     
+	public boolean occupee(){
+		int i,j;
+		for(i=0;i<Jeu.joueurs.size(); i++){
+			for(j=0; j<Jeu.joueurs.get(i).getSizePersonnages(); j++){
+				if(Jeu.joueurs.get(i).getPersonnagesI(j).getPosition() == this)
+					return true;
+			}
+		}
+		return false;
+	}
+	
+    
     /*
      * 0 : SP
      * 1 : NORTH
