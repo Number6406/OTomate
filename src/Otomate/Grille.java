@@ -376,11 +376,22 @@ public class Grille {
     	for(i=0; i<s; i++){
     		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
     			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur());
-    			p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
+    			//p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
     		}
     	}
     	return la;
     }
+
+	public List<Integer> transitionsPossibles($Personnage p, List<Integer> l) {
+		List<Integer> la = new LinkedList<>();
+    	int i, s = l.size();
+    	for(i=0; i<s; i++){
+    		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
+    			la.add(p.getAutomate().transition(l.get(i), p.getEtat()-1));
+    		}
+    	}
+    	return la;
+	}
     
     /**
      * 
