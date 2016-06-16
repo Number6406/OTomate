@@ -80,9 +80,9 @@ public final class SaveLoad {
 			fin.write(jeu.plateau.getNbetats().get(j));
 			fin.write(new Character(' '));
 		}
-		fin.write(jeu.joueurs.size()-2);
+		fin.write(jeu.joueurs.size());
 		fin.write(new Character('\n'));
-		System.out.println(jeu.joueurs.size()-2);
+		System.out.println(jeu.joueurs.size());
 		System.out.println("-----");
 		$Personnage pe;
 		for (i = 0; i < jeu.joueurs.size(); i++) {
