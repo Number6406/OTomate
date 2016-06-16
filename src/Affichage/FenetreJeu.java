@@ -443,9 +443,19 @@ public class FenetreJeu extends JFrame {
                 }
                 if(p instanceof Mechant){
                     if(((Mechant) p).getInventaire() != 0) {
+<<<<<<< Updated upstream
 
                     	System.err.println("Le joueur a� un item dans l'inventaire !");
                         String cons = Jeu.univers.getObjets().get(((Mechant) p).getInventaire()).getPath();
+=======
+<<<<<<< HEAD
+                    	System.err.println("Le Mechant a un item dans l'inventaire !");
+                        String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+=======
+                    	System.err.println("Le joueur a� un item dans l'inventaire !");
+                        String cons = Jeu.univers.getObjets().get(((Mechant) p).getInventaire()).getPath();
+>>>>>>> master
+>>>>>>> Stashed changes
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
                 }
