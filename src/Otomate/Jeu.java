@@ -70,34 +70,18 @@ public class Jeu {
      * Initialise toutes les variables pour lancer la partie.
      */
     public static void debutPartie(int numeroUnivers, int nZombie, int nbPersoParZombie, List<List<String>> xmls, List<Color> couleurs) {
-        univers = new Univers(numeroUnivers);
+        
+    	univers = new Univers(numeroUnivers);
         historique = new Historique();
-        // TODO pour reduire la taille du main
-
-        // Variables définies grâce au menu d'affichage ->
-        //int nbJoueurs = 2;
-        //int nbPersoParJoueur = 2;
-        // int nZombie = 1;				// Variable possiblement tirée au sort
+        
         joueurZombie = nZombie;
-        // int nbPersoParZombie = 2;
-        List<String> xmlsGentils = new LinkedList<String>();
-        //xmlsGentils.add("automateDeplacement.xml");
-        List<String> xmlsMechants = new LinkedList<String>();
-        // xmlsMechants.add("Zomibie.xml");
-        //List<List<String>> xmls = new LinkedList<>();
-       // xmls.add(xmlsGentils);
-       // xmls.add(xmlsMechants);
-        //List<Color> couleurs = new LinkedList<>();
-        couleurs.add(Color.red);
-        couleurs.add(Color.black);
-
+        
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
-        System.out.println("taille joueurs " + joueurs.size());
+        
         plateau = new Grille(joueurs, univers);
+        
         refPersos = new LinkedList<Integer>();
-        //String tempHistorique;
-        // plateau.initialisergrille(joueurs);
+        
         System.out.println("FIN INIT");
         try {
             Affichage.charger();

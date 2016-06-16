@@ -25,6 +25,7 @@ public class Univers {
 	String nomGentils;
 	String nomMechants;
 	String imageGentil, imageMechant;
+	String antidote,remede;
 	int numero;
 	
 	// Getteurs
@@ -69,6 +70,10 @@ public class Univers {
 		return numero;
 	}
 	
+	public String getRemede(int num){
+		return (num==1) ? antidote : remede;
+	}
+	
 	
 	// Constructeur
 	public Univers(int numeroUnivers){
@@ -83,6 +88,8 @@ public class Univers {
 			nomUnivers = "Humains vs. Zombies";
 			nomGentils = "humains";
 			nomMechants = "zombies";
+			antidote = "../Graphics/Tiles/Zombie/pills.png";
+			remede = "../Graphics/Tiles/Zombie/bandage.png";
 			break;
 		case 2 :
 			Pg = new ParserAction("ActionsRobot.xml");
@@ -91,6 +98,8 @@ public class Univers {
 			nomUnivers = "Robots vs. Virus";
 			nomGentils = "robots";
 			nomMechants = "virus";
+			antidote = "../Graphics/Tiles/Robot/analyse.png";
+			remede = "../Graphics/Tiles/Zombie/ccleaner.png";
 			break;
 		default :
 			Pg = new ParserAction("ActionsHumain.xml");
@@ -99,6 +108,8 @@ public class Univers {
 			nomUnivers = "Humains vs. Zombies";
 			nomGentils = "humains";
 			nomMechants = "zombies";
+			antidote = "../Graphics/Tiles/Zombie/pills.png";
+			remede = "../Graphics/Tiles/Zombie/bandage.png";
 		}
                 System.out.println("1");
 		actionsGentil = Pg.list;

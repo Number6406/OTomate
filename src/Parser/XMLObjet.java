@@ -26,6 +26,7 @@ public class XMLObjet extends DefaultHandler {
     String name;
     boolean passable;
     String path;
+    String piege;
     Objet c;
     List<Objet> list = new LinkedList<Objet>();
     public String imageGentil;
@@ -81,7 +82,7 @@ public class XMLObjet extends DefaultHandler {
             bpas = false;
         } else if (bpath) {
             path = lecture;
-            c = new Objet(id, type, use, name, passable, path);
+            c = new Objet(id, type, use, name, passable, path,path);
             list.add(c);
             bpath = false;
         } else if (bimG) {

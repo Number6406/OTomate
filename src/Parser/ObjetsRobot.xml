@@ -61,7 +61,7 @@
 		<id>7</id>
 		<type>2</type>
 		<use>0</use>
-		<name>(un Objet qui rends des PV)</name>
+		<name>une Pile</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/can.png</path>
 	</objet>

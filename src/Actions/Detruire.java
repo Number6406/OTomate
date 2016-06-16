@@ -13,7 +13,7 @@ public class Detruire extends $Action {
 	}
 
 	public Detruire() {
-		valeur = 14;
+		valeur = 13;
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
@@ -24,7 +24,7 @@ public class Detruire extends $Action {
 			if(aux != 0)
 				g.Pos(p.getPosition()).setValeur(aux);
 			else
-				g.Pos(p.getPosition()).setValeur(3);
+				g.Pos(p.getPosition()).setValeur(2);
 			effect = true;
 		}
 		else {
