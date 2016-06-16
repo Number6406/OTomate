@@ -82,7 +82,6 @@ public class Jeu {
         
         refPersos = new LinkedList<Integer>();
         
-        System.out.println("FIN INIT");
         try {
             Affichage.charger();
         } catch (IOException e) {
@@ -149,7 +148,6 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            System.out.println("i=" + i);
             if (i == nZombie) {
             	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
             } else {
@@ -161,7 +159,6 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
-        System.out.println("Le personnage va jouer "+((Gentil) P).getParalysie());
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
@@ -254,7 +251,6 @@ public class Jeu {
             saigne(gentilperso);
             infecte(gentilperso);
             if (soinInstantane(gentilperso) == false) {
-            	System.out.println("olol je saigne pas et je suis clean");
                 gereParalysie(gentilperso);
                 if (gentilperso.getParalysie() < 1) {
                     gentilperso.setParalysie(gentilperso.getParalysie() + 1);
@@ -268,16 +264,12 @@ public class Jeu {
                     }
                 }
             }
-            System.out.println("tour gentil");
         } else {
             tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            System.out.println("temps choisit " + period);
             //Thread.sleep(period);
-            System.out.println("tour mechant");
         }
-        System.out.println("piege ? "+plateau.Pos(P.getPosition()).piegee);
     }
 
     /**
