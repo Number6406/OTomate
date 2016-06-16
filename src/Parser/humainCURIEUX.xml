@@ -42,7 +42,7 @@
 	<case>
 	    <etat>1</etat>
 	    <condition>15</condition>
-	    <action>15</action>
+	    <action>14</action>
 	    <transition>1</transition>
 	</case>
 	<case>
@@ -114,7 +114,7 @@
 	<case>
 	    <etat>2</etat>
 	    <condition>15</condition>
-	    <action>15</action>
+	    <action>14</action>
 	    <transition>2</transition>
 	</case>
 	<case>

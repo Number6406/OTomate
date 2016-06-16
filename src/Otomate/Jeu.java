@@ -36,7 +36,7 @@ public class Jeu {
     private static List<List<String>> xmls;
     private static List<Color> couleurs;
     private static int nUnivers;
-
+    
     // Methodes
     /**
      * Verifie la fin de partie dans un jeu. Le jeu est fini quand il n'y a plus
@@ -419,8 +419,10 @@ public class Jeu {
     	sl.load();
     	plateau = sl.getJeu().plateau;
     	joueurs = sl.getJeu().joueurs;
+    	refPersos = new LinkedList<Integer>();
     	joueurZombie = sl.getJeu().joueurZombie;
     	univers = sl.getJeu().univers;
+    	historique = new Historique();
     }
 
     public static void setUserNames(List<String> listNames) {
