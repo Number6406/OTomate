@@ -447,7 +447,7 @@ public class FenetreJeu extends JFrame {
                 JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.WARNING_MESSAGE,
                 null,
-                new String[]{"Oui, Quitter.", "Annuler"},
+                new String[]{"Oui, Quitter", "Annuler"},
                 "default");
         if(retour == JOptionPane.OK_OPTION) {
             System.exit(0);

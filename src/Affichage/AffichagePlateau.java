@@ -11,8 +11,10 @@ import Otomate.$Personnage;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Objet;
+import java.awt.FontMetrics;
 
 import java.awt.Image;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +37,25 @@ public class AffichagePlateau extends JPanel {
     private List<BufferedImage> tiles;
 
     void Affiche_perso(Graphics graph, $Personnage p) {
+        String nom = p.getNom();
+        Color textColor = Color.WHITE;
+        Color bgColor = p.getCouleur();
+        
+        FontMetrics fm = graph.getFontMetrics();
+        Rectangle2D rect = fm.getStringBounds(nom, graph);
+        
+        int x = (int) (p.positionX()*TAILLECASE-(fm.stringWidth(nom)/2)+TAILLECASE/2);
+        int y = (int) (p.positionY()*TAILLECASE+TAILLECASE*1.5);
+
+
+        graph.setColor(bgColor);
+        graph.fillRect(x,
+                   y - fm.getAscent(),
+                   (int) rect.getWidth(),
+                   (int) rect.getHeight());
+
+        graph.setColor(textColor);
+        graph.drawString(nom, x, y);
         graph.drawImage(p.getSprite(), p.positionX() * TAILLECASE, p.positionY() * TAILLECASE, TAILLECASE, TAILLECASE, this);
         //graph.setColor(Color_int(11));
         //graph.fillOval(TAILLECASE*p.positionX(), TAILLECASE*p.positionY(), TAILLECASE, TAILLECASE);
@@ -145,8 +166,9 @@ public class AffichagePlateau extends JPanel {
         
 
         for (i = 0; i < Jeu.joueurs.size(); i++) {
-        	for(j=0;j<Jeu.joueurs.get(i).getSizePersonnages();j++)
-            Affiche_perso(g, Jeu.joueurs.get(i).getPersonnagesI(j));
+            for(j=0;j<Jeu.joueurs.get(i).getSizePersonnages();j++) {
+                Affiche_perso(g, Jeu.joueurs.get(i).getPersonnagesI(j));
+            }
         }
 
     }
