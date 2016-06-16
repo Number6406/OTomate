@@ -254,6 +254,7 @@ public class Jeu {
             saigne(gentilperso);
             infecte(gentilperso);
             if (soinInstantane(gentilperso) == false) {
+            	System.out.println("olol je saigne pas et je suis clean");
                 gereParalysie(gentilperso);
                 if (gentilperso.getParalysie() < 1) {
                     gentilperso.setParalysie(gentilperso.getParalysie() + 1);
