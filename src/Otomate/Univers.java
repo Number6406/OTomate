@@ -25,7 +25,7 @@ public class Univers {
 	String nomGentils;
 	String nomMechants;
 	String imageGentil, imageMechant;
-	String antidote,remede;
+	String antidote,remede, nomAntidote, nomRemede;
 	int numero;
 	
 	// Getteurs
@@ -73,6 +73,16 @@ public class Univers {
 	public String getRemede(int num){
 		return (num==1) ? antidote : remede;
 	}
+
+	public String getNomRemede() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getNomAntidote() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	// Constructeur
@@ -88,6 +98,8 @@ public class Univers {
 			nomUnivers = "Humains vs. Zombies";
 			nomGentils = "humains";
 			nomMechants = "zombies";
+			nomAntidote = "a utilisé un antidote pour soigner son infection";
+			nomRemede = "a utilisé un bandage pour arreter son saignement";
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
 			break;
@@ -98,6 +110,8 @@ public class Univers {
 			nomUnivers = "Robots vs. Virus";
 			nomGentils = "robots";
 			nomMechants = "virus";
+			nomAntidote = "a fait analyse pour éliminer les virus";
+			nomRemede = "a lancé CCleaner pour enlever les malwares";
 			antidote = "../Graphics/Tiles/Robot/analyse.png";
 			remede = "../Graphics/Tiles/Zombie/ccleaner.png";
 			break;
@@ -108,6 +122,8 @@ public class Univers {
 			nomUnivers = "Humains vs. Zombies";
 			nomGentils = "humains";
 			nomMechants = "zombies";
+			nomAntidote = "a utilisé un antidote pour soigner son infection";
+			nomRemede = "a utilisé un bandage pour arreter son saignement";
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
 		}

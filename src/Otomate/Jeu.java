@@ -147,11 +147,11 @@ public class Jeu {
      */
     public static void initJoueurs(List<String> names, int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
         joueurs = new LinkedList<Joueur>();
-        int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
+        int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
             System.out.println("i=" + i);
             if (i == nZombie) {
-                joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nZ, couleurs.get(i)));
+            	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
             } else {
                 joueurs.add(new Joueur(names.get(i), xmls.get(i), false, 42, couleurs.get(i)));
             }
@@ -227,9 +227,11 @@ public class Jeu {
         //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
+            historique.ceTour().addEvenement(new Evenement(P, univers.getNomRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
+            historique.ceTour().addEvenement(new Evenement(P, univers.getNomAntidote()));
             return true;
         }
         return false;

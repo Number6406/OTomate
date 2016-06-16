@@ -4,25 +4,25 @@
 	<case>
 	    <etat>1</etat>
 	    <condition>1</condition>
-	    <action>13</action>
+	    <action>12</action>
 	    <transition>1</transition>
 	</case>
 	<case>
 	    <etat>1</etat>
 	    <condition>2</condition>
-	    <action>13</action>
+	    <action>12</action>
 	    <transition>1</transition>
 	</case>
 	<case>
 	    <etat>1</etat>
 	    <condition>3</condition>
-	    <action>13</action>
+	    <action>12</action>
 	    <transition>1</transition>
 	</case>
 	<case>
 	    <etat>1</etat>
 	    <condition>4</condition>
-	    <action>13</action>
+	    <action>12</action>
 	    <transition>1</transition>
 	</case>
 	<case>

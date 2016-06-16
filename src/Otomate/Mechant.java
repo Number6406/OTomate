@@ -9,10 +9,9 @@ import javax.imageio.ImageIO;
 
 public class Mechant extends $Personnage {
 
-	public Mechant(String file, Color couleur) {
-            super(file, couleur);
+	public Mechant(String file, Color couleur,String name) {
+            super(file, couleur,name);
             vie = viemax;
-            nom = "Mechant";
 	}
 
 	public Mechant() {
@@ -21,8 +20,7 @@ public class Mechant extends $Personnage {
 
 	public Mechant($Personnage perso, Color couleur) {
 		super(perso,couleur);
-		vie = viemax;
-        nom = "Mechant";
+		vie = viemax/2;
 	}
 
 	public String toString() {

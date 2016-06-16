@@ -35,9 +35,9 @@ public class Fouiller extends $Action {
 						pompe = true;
 					}
 					else if (rnd < 70) // trouve une boite de conserve 30% de chances
-						p.setInventaire(7);
+						p.setInventaire(6);
 					else // trouve une bouteille 30% chances
-						p.setInventaire(8);
+						p.setInventaire(7);
 				}
 				else if (g.Pos(p.getPosition()).getValeur() == 10) {	//on se trouve dans un hopital
 					rnd = Grille.random(0, 101);
@@ -56,7 +56,7 @@ public class Fouiller extends $Action {
 					} else if (rnd < 40) // Trouve des bandages 15% chances
 						((Gentil) p).setRemede(2);
 					else // Ramasse une bouteille 60% chances
-						p.setInventaire(8);
+						p.setInventaire(7);
 				}
 				effect = true;
 			}
