@@ -310,6 +310,7 @@ public class Jeu {
         String s = "<i>Fin de Tour</i> : ";
         for (Joueur player : lesJoueurs) {
             int j = 0;
+            if(player!=null && player.getPersonnages().size()!=0){
             for ($Personnage perso : player.getPersonnages()) {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
@@ -319,15 +320,16 @@ public class Jeu {
                             s += perso.getNomHtml() + " est transformé. ";
                             player.getPersonnages().remove(j);
                         } else {
+                        	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(j);
-                            s += perso.getNomHtml() + " est mort. ";
                         }
                     } else {
-                        player.getPersonnages().remove(j);
                         s += perso.getNomHtml() + " est mort. ";
+                        player.getPersonnages().remove(j);
                     }
                 }
                 j++;
+            }
             }
         }
 
