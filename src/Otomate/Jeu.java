@@ -179,6 +179,9 @@ public class Jeu {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs, univers);
+            if(((Gentil) P).getPiege() != 0){
+            	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
+            }
             historique.ceTour().addEvenement(new Evenement(P, th));
             //Thread.sleep(period);
         }
