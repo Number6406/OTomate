@@ -313,6 +313,8 @@ public class Jeu {
         $Personnage perso = null;
         for (i=0; i<lesJoueurs.size(); i++) {
             int j = 0;
+            if(player!=null && player.getPersonnages().size()!=0){
+            for ($Personnage perso : player.getPersonnages()) {
             player = lesJoueurs.get(i);
             for (k=0; k<player.getSizePersonnages(); k++) {
                 if (perso.getVie() <= 0) {
@@ -323,15 +325,16 @@ public class Jeu {
                             s += perso.getNomHtml() + " est transformé. ";
                             player.getPersonnages().remove(j);
                         } else {
+                        	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(j);
-                            s += perso.getNomHtml() + " est mort. ";
                         }
                     } else {
-                        player.getPersonnages().remove(j);
                         s += perso.getNomHtml() + " est mort. ";
+                        player.getPersonnages().remove(j);
                     }
                 }
                 j++;
+            }
             }
         }
 
