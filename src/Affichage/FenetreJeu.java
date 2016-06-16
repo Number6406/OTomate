@@ -392,8 +392,10 @@ public class FenetreJeu extends JFrame {
                 }
                 
                 // Mise à jour de l'affichage
+                if (p instanceof Gentil){
                 ((DefaultTableModel) tab_perso.getModel()).addRow(
                     new Object[]{
+           
                         "<html>" + p.getNomHtml() +" ("+p.getEtatString()+")"+ "</html>",
                         p.getVie() + "/" + p.getViemax(),
                         consommable, // Affichage de l'icone
@@ -401,8 +403,23 @@ public class FenetreJeu extends JFrame {
                         remede
                     }
                 );
+               
+                }
+                else {
+                	((DefaultTableModel) tab_perso.getModel()).addRow(
+                            new Object[]{
+                                "<html>" + p.getNomHtml() + "</html>",
+                                p.getVie() + "/" + p.getViemax(),
+                                consommable, // Affichage de l'icone
+                                arme,
+                                remede
+                            }
+                            );
+                	}
             }
         }
+            
+        
     }
     
     public void quitterPartie() {
