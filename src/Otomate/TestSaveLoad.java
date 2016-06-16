@@ -12,10 +12,9 @@ import Parser.ParserConditions;
 public class TestSaveLoad {
 	
 	public static void main(String[] args) throws IOException {
-		Jeu jeu = new Jeu();
+		SaveJeu jeu = new Jeu();
 		jeu.univers = new Univers(1);
 		jeu.plateau = new Grille();
-		jeu.historique = new Historique();
 		// Variables définies grâce au menu d'affichage ->
 		int nbJoueurs = 2;
 		int nbPersoParJoueur = 2;
@@ -42,7 +41,7 @@ public class TestSaveLoad {
 		//listCont = jeu.plateau.objparser("objet.xml");
 		// <- Fin variables
 		int j, p;
-		jeu.initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
+		//jeu.initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
 		jeu.refPersos = new LinkedList<Integer>();
 		jeu.plateau.initialisergrille(jeu.joueurs);
 		jeu.univers = new Univers(1);

@@ -8,10 +8,13 @@ package Affichage;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import Otomate.Jeu;
 
 /**
  *
@@ -59,6 +62,13 @@ public class FenetreMenu extends FenetreBase {
             FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(univers);
             dispose();
         });
+        
+        b_charger.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Jeu.chargement();
+			}
+		});
         
         b_quitter.addActionListener((ActionEvent e) -> {
             // Ouvre une fenetre de nouvelle partie au clic
