@@ -82,3 +82,8 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+
+# nos fichiers texte
+Start.txt
+TAMER.txt

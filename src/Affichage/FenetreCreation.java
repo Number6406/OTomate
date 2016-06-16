@@ -76,8 +76,10 @@ public class FenetreCreation extends FenetreBase {
                 lls.add(i - compt, l.get(i).Recup_Strings());
         }
         
-     //   String az = l.get(id).mechant.chemin.getText();
-
+        String az = l.get(id).mechant.chemin.getText();
+        List<String> lz = new LinkedList<String>();        
+        lz.add(az);
+        lls.set(id, lz);
         List<Color> lc = new LinkedList<>();
         for (i = 0; i < l.size(); i++) {
             lc.add(i, l.get(i).maCouleur);
@@ -139,6 +141,7 @@ public class FenetreCreation extends FenetreBase {
         bAnnuler.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                configPartie.setVisible(true);
                 dispose();
             }
         });
@@ -155,6 +158,7 @@ public class FenetreCreation extends FenetreBase {
                     Jeu.setUnivers(univers);
                     leave();
                     configPartie.dispose();
+                    dispose();
                 }
             }
         });
