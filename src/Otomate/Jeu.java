@@ -36,7 +36,7 @@ public class Jeu {
     private static List<List<String>> xmls;
     private static List<Color> couleurs;
     private static int nUnivers;
-
+    
     // Methodes
     /**
      * Verifie la fin de partie dans un jeu. Le jeu est fini quand il n'y a plus
@@ -227,9 +227,11 @@ public class Jeu {
         //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
+            historique.ceTour().addEvenement(new Evenement(P, univers.getNomRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
+            historique.ceTour().addEvenement(new Evenement(P, univers.getNomAntidote()));
             return true;
         }
         return false;
@@ -417,8 +419,10 @@ public class Jeu {
     	sl.load();
     	plateau = sl.getJeu().plateau;
     	joueurs = sl.getJeu().joueurs;
+    	refPersos = new LinkedList<Integer>();
     	joueurZombie = sl.getJeu().joueurZombie;
     	univers = sl.getJeu().univers;
+    	historique = new Historique();
     }
 
     public static void setUserNames(List<String> listNames) {

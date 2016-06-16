@@ -61,21 +61,16 @@
 	</action>
 	<action>
 		<id>12</id>
-		<succes>a mal et se soigne automatiquement</succes>
-		<echec>essaye de se soigner mais il n'a rien pour le faire</echec>
-	</action>
-	<action>
-		<id>13</id>
 		<succes>fuit comme un lâche</succes>
 		<echec>essaye de fuir, mais il n'y a pas d'issues</echec>
 	</action>
 	<action>
-		<id>14</id>
+		<id>13</id>
 		<succes>détruit l'obstacle</succes>
 		<echec>frappe l'objet. Cela n'est pas très efficace</echec>
 	</action>
 	<action>
-		<id>15</id>
+		<id>14</id>
 		<succes>fouille un batiment à la recherche de trésors</succes>
 		<echec>veux fouiller mais échoue</echec>
 	</action>
