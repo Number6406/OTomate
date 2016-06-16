@@ -70,6 +70,10 @@ public class Grille {
 	public void setP(boolean b, int i, int j) {
 		g[i][j].setPiegee(b);
 	}
+	
+	public void setUnivers(Univers univ) {
+		u = univ;
+	}
 
     // Constructeur
     /**
@@ -87,6 +91,8 @@ public class Grille {
     			g[i][j] = new Case();
     		}
     	}
+    	coinsAutomates = new LinkedList<Coordonnees>();
+    	nbetats = new LinkedList<Integer>();
     }
     
     /**
@@ -94,15 +100,7 @@ public class Grille {
      * Crée une grille carrée de taille 50*50
      */
     public Grille(){
-    	g = new Case[50][50];
-    	tailleX=50;
-    	tailleY=50;
-    	int i,j;
-    	for(i=0;i<tailleX;i++){
-    		for(j=0;j<tailleY;j++){
-    			g[i][j] = new Case();
-    		}
-    	}
+    	new Grille(50,50);
     }
     
     public Grille(List<Joueur> l,Univers u){

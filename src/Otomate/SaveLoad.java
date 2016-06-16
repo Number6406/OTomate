@@ -37,7 +37,6 @@ public final class SaveLoad {
 		return jeu;
 	}
 
-	@SuppressWarnings({ "static-access" })
 	public void save() throws IOException {
 		File f = new File(name);
 		FileOutputStream fin = new FileOutputStream(f);
@@ -59,8 +58,22 @@ public final class SaveLoad {
 			}
 			fin.write(new Character('\n'));
 		}
+		fin.write(jeu.plateau.getCoinsAutomates().size());
+		fin.write(new Character(' '));
+		for(j = 0; j < jeu.plateau.getCoinsAutomates().size(); j++) {
+			fin.write(jeu.plateau.getCoinsAutomates().get(j).getX());
+			fin.write(new Character(':'));
+			fin.write(jeu.plateau.getCoinsAutomates().get(j).getY());
+			fin.write(new Character(' '));
+		}
+		fin.write(jeu.plateau.getNbetats().size());
+		fin.write(new Character(' '));
+		for(j=0; j<jeu.plateau.getNbetats().size(); j++) {
+			fin.write(jeu.plateau.getNbetats().get(j));
+			fin.write(new Character(' '));
+		}
 		fin.write(jeu.joueurs.size());
-		fin.write('\n');
+		fin.write(new Character('\n'));
 		$Personnage pe;
 		for (i = 0; i < jeu.joueurs.size(); i++) {
 			fin.write(((Integer) jeu.joueurs.get(i).getCouleur().getRed()));
@@ -153,23 +166,30 @@ public final class SaveLoad {
 		return buf;
 	}
 
-	@SuppressWarnings("static-access")
 	public void load() throws IOException {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
 		jeu.univers = new Univers(Integer.parseInt(lire(fout, '\n')));
 		jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')), Integer.parseInt(lire(fout, '\n')));
+		jeu.plateau.setUnivers(jeu.univers);
 		for (int j = 0; j < jeu.plateau.tailleX(); j++) {
 			for (int i = 0; i < jeu.plateau.tailleY(); i++) {
 				jeu.plateau.set(Integer.parseInt(lire(fout, ':')), i, j);
 				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
 			}
+			fout.skip(1);
 		}
-		fout.skip(1);
+		int l = Integer.parseInt(lire(fout,' '));
+		for (int j=0; j < l; j++) {
+			jeu.plateau.getCoinsAutomates().add(new Coordonnees(Integer.parseInt(lire(fout, ':')),Integer.parseInt(lire(fout, ' '))));
+		}
+		l = Integer.parseInt(lire(fout, ' '));
+		for (int j=0; j<l; j++) {
+			jeu.plateau.getNbetats().add(Integer.parseInt(lire(fout, ' ')));
+		}
 		Joueur nouv;
 		$Personnage pe;
 		int nbJou = Integer.parseInt(lire(fout, '\n')), nbPers;
-		List<$Personnage> l;
 		List<Coordonnees> c = new LinkedList<Coordonnees>();
 		int r,g,b;
 		for (int i = 0; i < nbJou; i++) {
@@ -201,7 +221,7 @@ public final class SaveLoad {
 					((Gentil) pe).setDrogue(Integer.parseInt(lire(fout, ' ')));
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 					((Gentil) pe).setRemede(Integer.parseInt(lire(fout, ' ')));
-					pe.forceSetEtat(Integer.parseInt(lire(fout, ':')));
+					pe.setEtat(Integer.parseInt(lire(fout, ':')));
 				}
 				pe.setViemax(Integer.parseInt(lire(fout, ':')));
 				pe.setVie(Integer.parseInt(lire(fout, ':')));
