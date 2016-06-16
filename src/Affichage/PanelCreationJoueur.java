@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -102,6 +103,7 @@ public class PanelCreationJoueur extends JPanel {
                     });
                     jd.add(jc);
                     jd.setSize(new Dimension(500,400));
+                    jd.setLocationRelativeTo(null);
                     jd.setVisible(true);
 
                 }
