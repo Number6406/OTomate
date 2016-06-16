@@ -20,10 +20,13 @@ public class Mechant extends $Personnage {
 
 	public Mechant($Personnage perso, Color couleur) {
 		super(perso,couleur);
-		vie = viemax/2;
+		vie = viemax;
 	}
 
 	public String toString() {
 		return "// Méchant //\n" + super.toString();
+	}
+	public String getEtatString(){
+		return "";
 	}
 }

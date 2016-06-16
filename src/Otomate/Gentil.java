@@ -145,10 +145,10 @@ public class Gentil extends $Personnage {
         String effets = super.getEffets();
 
         if (infecte) {
-            effets += "Infecte ";
+            effets += "Inf ";
         }
         if (saignement) {
-            effets += "Saignement ";
+            effets += "Saig ";
         }
 
         return effets;
