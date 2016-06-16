@@ -21,7 +21,10 @@ public class Detruire extends $Action {
 			int aux;
 			aux = p.getInventaire();
 			p.setInventaire(8);	//on r�cup�re l'objet 8 en detruisant l'objet 12
-			g.Pos(p.getPosition()).setValeur(aux);
+			if(aux != 0)
+				g.Pos(p.getPosition()).setValeur(aux);
+			else
+				g.Pos(p.getPosition()).setValeur(3);
 			effect = true;
 		}
 		else {

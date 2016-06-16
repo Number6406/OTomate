@@ -286,7 +286,7 @@ public class Jeu {
             //Thread.sleep(period);
             System.out.println("tour mechant");
         }
-        sysout()
+        System.out.println("piege ? "+plateau.Pos(P.getPosition()).piegee);
     }
 
     /**
