@@ -23,7 +23,7 @@ public class Jeu {
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
-    
+
     // Nécessaire au lancement du jeu
     private static boolean commencerJeu = false;
     private static int numeroUnivers;
@@ -31,6 +31,7 @@ public class Jeu {
     private static int nbPersoParZombie;
     private static List<List<String>> xmls;
     private static List<Color> couleurs;
+    private static int nUnivers;
 
     // Methodes
     /**
@@ -72,13 +73,13 @@ public class Jeu {
         // Variables définies grâce au menu d'affichage ->
         //int nbJoueurs = 2;
         //int nbPersoParJoueur = 2;
-       // int nZombie = 1;				// Variable possiblement tirée au sort
+        // int nZombie = 1;				// Variable possiblement tirée au sort
         joueurZombie = nZombie;
-       // int nbPersoParZombie = 2;
+        // int nbPersoParZombie = 2;
         List<String> xmlsGentils = new LinkedList<String>();
         //xmlsGentils.add("automateDeplacement.xml");
         List<String> xmlsMechants = new LinkedList<String>();
-       // xmlsMechants.add("Zomibie.xml");
+        // xmlsMechants.add("Zomibie.xml");
         //List<List<String>> xmls = new LinkedList<>();
         xmls.add(xmlsGentils);
         xmls.add(xmlsMechants);
@@ -87,13 +88,13 @@ public class Jeu {
         couleurs.add(Color.black);
 
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12,12));
+        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
         System.out.println("taille joueurs " + joueurs.size());
-        plateau = new Grille(joueurs,univers);
+        plateau = new Grille(joueurs, univers);
         System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
-       // plateau.initialisergrille(joueurs);
+        // plateau.initialisergrille(joueurs);
         System.out.println("FIN INIT");
         try {
             Affichage.charger();
@@ -160,7 +161,7 @@ public class Jeu {
         joueurs = new LinkedList<Joueur>();
         int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
-            System.out.println("i="+i);
+            System.out.println("i=" + i);
             if (i == nZombie) {
                 joueurs.add(new Joueur(xmls.get(i), true, nZ, couleurs.get(i)));
             } else {
@@ -175,7 +176,7 @@ public class Jeu {
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
-            th = P.jouer(plateau, joueurs,univers);
+            th = P.jouer(plateau, joueurs, univers);
             historique.ceTour().addEvenement(new Evenement(P, th));
             //Thread.sleep(period);
         }
@@ -188,6 +189,7 @@ public class Jeu {
             }
         }
     }
+
     public static void infecte($Personnage P) {
         if (P instanceof Gentil) {
             if (((Gentil) P).getInfecte()) {
@@ -226,7 +228,7 @@ public class Jeu {
     }
 
     public static boolean soinInstantane($Personnage P) {
-    	//System.out.println("pk tu viens l� wesh");
+        //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             return true;
@@ -237,7 +239,7 @@ public class Jeu {
         return false;
     }
 
-   /* public static void veriftransfo($Personnage P, Mechant E, List<Joueur> l) {
+    /* public static void veriftransfo($Personnage P, Mechant E, List<Joueur> l) {
         if (P instanceof Gentil) {
             if (P.getVie() == 0 && ((Gentil) P).getInfecte() == true) {
                 int i, j;
@@ -272,7 +274,6 @@ public class Jeu {
             }
         }
     }*/
-
     // UN TOUR DE JEU
     /**
      * Fait jouer Un personnage.
@@ -303,10 +304,10 @@ public class Jeu {
             }
             System.out.println("tour gentil");
         } else {
-            tempHistorique = P.jouer(plateau,joueurs,univers);
+            tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            System.out.println("temps choisit "+period);
+            System.out.println("temps choisit " + period);
             //Thread.sleep(period);
             System.out.println("tour mechant");
         }
@@ -326,7 +327,7 @@ public class Jeu {
             j = refPersos.get(i) / 100;
             p = refPersos.get(i) % 100;
             try {
-            	Thread.sleep(period);
+                Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
@@ -340,34 +341,34 @@ public class Jeu {
     }
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
-    	String s = "<i>Fin de Tour</i> : ";
-    	for(Joueur player : lesJoueurs){
-    		int j = 0;
-    		for($Personnage perso : player.getPersonnages()){
-    			if(perso.getVie()<=0){
-    				if(perso instanceof Gentil){
-    					if(((Gentil)perso).getInfecte() ){
-    						Mechant nouveauMechant = new Mechant(perso,lesJoueurs.get(joueurZombie).getCouleur());
-    						lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-    						s += perso.getNomHtml() + " est transformé. ";
-        					player.getPersonnages().remove(j);
-    					} else {
-        					player.getPersonnages().remove(j);
-    						s += perso.getNomHtml() + " est mort. ";
-    					}
-    				} else {
-    					player.getPersonnages().remove(j);
-						s += perso.getNomHtml() + " est mort. ";
-    				}
-    			}
-    			j++;
-    		}
-    	}
-    	
-		return s;
-	}
+        String s = "<i>Fin de Tour</i> : ";
+        for (Joueur player : lesJoueurs) {
+            int j = 0;
+            for ($Personnage perso : player.getPersonnages()) {
+                if (perso.getVie() <= 0) {
+                    if (perso instanceof Gentil) {
+                        if (((Gentil) perso).getInfecte()) {
+                            Mechant nouveauMechant = new Mechant(perso, lesJoueurs.get(joueurZombie).getCouleur());
+                            lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
+                            s += perso.getNomHtml() + " est transformé. ";
+                            player.getPersonnages().remove(j);
+                        } else {
+                            player.getPersonnages().remove(j);
+                            s += perso.getNomHtml() + " est mort. ";
+                        }
+                    } else {
+                        player.getPersonnages().remove(j);
+                        s += perso.getNomHtml() + " est mort. ";
+                    }
+                }
+                j++;
+            }
+        }
 
-	public static void changeSpeed() {
+        return s;
+    }
+
+    public static void changeSpeed() {
         if (period <= vitesse3) { // Si vitesse maximale, on revient à une vitesse minimale
             period = vitesse1;
         } else if (period <= vitesse2) { // Vitesse intermédiaire vers vitesse max
@@ -375,52 +376,62 @@ public class Jeu {
         } else { // Vitesse minimale vers intermédiaire
             period = vitesse2;
         }
-       
+
     }
-    
+
     public static void play_pause() {
-        if(pause) pause = false;
-        else pause = true;
+        if (pause) {
+            pause = false;
+        } else {
+            pause = true;
+        }
     }
-    
+
     public static void step() {
         step = true;
     }
-    
-    public static void finDeJeu(){
-    	String gagnant = "erreur";
-        for(int i=0; i<joueurs.size(); i++) {
-        	if(joueurs.get(i).getPersonnages().size()!=0) {
-        		if(joueurs.get(i).mechant) {gagnant = "Partie finie : les " + univers.getNomMechants()+" ont gagné !";}
-        		else { gagnant = "Partie finie : les " + univers.getNomGentils() + " ont gagné !";}
-        	}
+
+    public static void finDeJeu() {
+        String gagnant = "erreur";
+        for (int i = 0; i < joueurs.size(); i++) {
+            if (joueurs.get(i).getPersonnages().size() != 0) {
+                if (joueurs.get(i).mechant) {
+                    gagnant = "Partie finie : les " + univers.getNomMechants() + " ont gagné !";
+                } else {
+                    gagnant = "Partie finie : les " + univers.getNomGentils() + " ont gagné !";
+                }
+            }
         }
-    	historique.addTour();
-        historique.ceTour().addEvenement(new Evenement(null, "<html><b>"+gagnant+"</b></html>"));
+        historique.addTour();
+        historique.ceTour().addEvenement(new Evenement(null, "<html><b>" + gagnant + "</b></html>"));
         Affichage.ajouterTour(historique.ceTour());
         Affichage.again();
     }
-    
+
     public static void setNbZombie(int nb) {
         nZombie = nb;
     }
-    
+
     public static void setNbPersoParZ(int nb) {
         nbPersoParZombie = nb;
     }
-    
+
     public static void setXMLS(List<List<String>> val) {
         xmls = val;
     }
-    
+
     public static void setCouleurP(List<Color> c) {
         couleurs = c;
     }
-    
+
+    public static void setUnivers(int u) {
+        nUnivers = u;
+    }
+
     public static void go() {
         commencerJeu = true;
     }
-    
+
     /**
      * Fonction principale de Jeu
      *
@@ -430,20 +441,28 @@ public class Jeu {
      */
     // TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
-        
+
         FenetreMenu menuJeu = new FenetreMenu();
-        
-        while(!commencerJeu){ Thread.sleep(100); }
-        
-        debutPartie(1,nZombie,nbPersoParZombie,xmls,couleurs);
+
+        while (!commencerJeu) {
+            Thread.sleep(100);
+        }
+
+        debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         while (!finPartie()) {
-            while(pause) { if(step) {break;} Thread.sleep(100); } step = false;
+            while (pause) {
+                if (step) {
+                    break;
+                }
+                Thread.sleep(100);
+            }
+            step = false;
             tour();
-            
+
             Affichage.again();
-            Thread.sleep(period*2);
-            
+            Thread.sleep(period * 2);
+
         }
         finDeJeu();
         System.out.println("partie finie lol");

@@ -37,7 +37,6 @@ public class FenetreCreation extends FenetreBase {
 
     FenetreNouvellePartie configPartie = null;
     List<Joueur> lJoueurs = new ArrayList<Joueur>();
-    private int nbPJ;
 
 // Elements SWING
     JTabbedPane ongletsJoueurs = new JTabbedPane();
@@ -97,7 +96,6 @@ public class FenetreCreation extends FenetreBase {
         
         //Retourner dans le jeu
         Jeu.setNbZombie(id);
-        Jeu.setNbPersoParZ(nbPJ);
         Jeu.setCouleurP(lc);
         Jeu.setXMLS(lls);
         Jeu.go();
@@ -114,10 +112,8 @@ public class FenetreCreation extends FenetreBase {
         return b;
     }
 
-    public FenetreCreation(int ratio, int nbP, int nbJ) {
+    public FenetreCreation(int ratio, int nbP, int nbJ, int univers) {
         super(500, 400, "Création des joueurs pour la partie");
-
-        nbPJ = nbP;
 
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -155,7 +151,10 @@ public class FenetreCreation extends FenetreBase {
             public void actionPerformed(ActionEvent e) {
                 boolean b = cool(ratio, nbP, nbJ);
                 if (b) {
+                    Jeu.setNbPersoParZ(nbP);
+                    Jeu.setUnivers(univers);
                     leave();
+                    configPartie.dispose();
                 }
             }
         });
