@@ -34,7 +34,7 @@ public class Ramasser extends $Action {
 					((Gentil) p).setArme(g.getUnivers().getObjets().get(g.Pos(p.getPosition()).getValeur()));
 					g.Pos(p.getPosition()).setValeur(arme.getId());
 				}
-				else if (l.get(0) == 16) { // seringue
+				else if (l.get(0) == 13) { // seringue
 					if (((Gentil) p).getDrogue() == 0) {	//dans le cas ou le personnage est sain
 						aux = Grille.random(0, 101);
 						if (aux < 10) {	//bonus hp max
