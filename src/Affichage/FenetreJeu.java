@@ -431,6 +431,9 @@ public class FenetreJeu extends JFrame {
 
     }
 
+    /**
+     * Fonction permettant d'afficher un message d'information au joueur avant qu'il ne quitte sa partie
+     */
     public void quitterPartie() {
 
         int retour = JOptionPane.showOptionDialog(this,
@@ -442,14 +445,17 @@ public class FenetreJeu extends JFrame {
                 new String[]{"Oui, Quitter", "Annuler"},
                 "default");
         if (retour == JOptionPane.OK_OPTION) {
-            System.exit(0);
+            System.exit(0); // Cette action ferme la fenetre de jeu complètement
         }
     }
 
+    /**
+     * Fonction de sauvegarde
+     * Ouvre une fenetre permettant de sélectionner un emplacement de fichier où réaliser la sauvegarde
+     */
     public void sauvegarder() {
         if (saveW == null) {
             saveW = new JDialog(this, "Sauvegarder la partie");
-            saveW.setAlwaysOnTop( true );
             saveW.setLocationRelativeTo(this);
             saveW.setLayout(new BorderLayout());
             saveW.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

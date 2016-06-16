@@ -86,7 +86,6 @@ public class FenetreMenu extends FenetreBase {
             public void actionPerformed(ActionEvent e) {
                 if (saveW == null) {
                     saveW = new JDialog();
-                    saveW.setAlwaysOnTop( true );
                     saveW.setLocationRelativeTo(null);
                     saveW.setLayout(new BorderLayout());
                     saveW.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -120,6 +119,8 @@ public class FenetreMenu extends FenetreBase {
                             } else {
                                 try {
                                     Jeu.charger(path);
+                                    saveW.dispose();
+                                    saveW = null;
                                 } catch (IOException e1) {
                                     // TODO Auto-generated catch block
                                     e1.printStackTrace();
