@@ -32,6 +32,10 @@ public class Case {
     	piegee = pie;
     }
 	
+	public boolean getPiegee(){
+		return piegee;
+	}
+	
 	public boolean Passable(List<Objet> l){
 		int i;
     	for(i=0;i<l.size();i++){

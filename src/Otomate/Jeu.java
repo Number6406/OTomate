@@ -89,12 +89,10 @@ public class Jeu {
         //List<Color> couleurs = new LinkedList<>();
         couleurs.add(Color.red);
         couleurs.add(Color.black);
-
+        System.err.println("id="+nZombie);
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
-        System.out.println("taille joueurs " + joueurs.size());
+        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
         plateau = new Grille(joueurs, univers);
-        System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
         // plateau.initialisergrille(joueurs);
@@ -176,10 +174,14 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
+        System.out.println("Le personnage va jouer "+((Gentil) P).getParalysie());
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs, univers);
+            if(((Gentil) P).getPiege() != 0){
+            	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
+            }
             historique.ceTour().addEvenement(new Evenement(P, th));
             //Thread.sleep(period);
         }
@@ -228,7 +230,11 @@ public class Jeu {
             }
             ((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue() - 1);
         }
-    }
+        else {
+        	((Gentil) P).setDrogue(0);
+        }
+        }
+    
 
     public static boolean soinInstantane($Personnage P) {
         //System.out.println("pk tu viens l� wesh");
@@ -279,6 +285,7 @@ public class Jeu {
             //Thread.sleep(period);
             System.out.println("tour mechant");
         }
+        System.out.println("piege ? "+plateau.Pos(P.getPosition()).piegee);
     }
 
     /**

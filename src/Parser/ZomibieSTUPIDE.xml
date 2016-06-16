@@ -1,0 +1,11 @@
+<automate>
+	<nb_etats>1</nb_etats>
+	<etat_init>1</etat_init>
+	
+	<case>
+	    <etat>1</etat>
+	    <condition>4</condition>
+	    <action>4</action>
+	    <transition>1</transition>
+	</case>
+</automate>
