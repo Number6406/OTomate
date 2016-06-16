@@ -425,6 +425,7 @@ public class Jeu {
     	historique = new Historique();
     	charge = true;
     	go();
+    	
     }
 
     public static void setUserNames(List<String> listNames) {
@@ -448,6 +449,7 @@ public class Jeu {
         }
 
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
+        else {Affichage.charger();}
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         //sauvegarder();

@@ -29,6 +29,10 @@ public class Automate {
     	transitions = new int[nbetats][nbconditions];
     }
     
+    public void newAction() {
+    	actions = new Case[nbetats][nbconditions];
+    }
+    
     // Getteurs
     public int transition(int symbole, int etatCourant) {  // renvoie le nouvel etat
         return transitions[etatCourant][symbole];

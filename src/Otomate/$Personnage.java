@@ -216,13 +216,13 @@ public abstract class $Personnage {
 		return s;
 	}
 
-	// Méthodes
+	// Mï¿½thodes
 	/**
 	 * 
 	 * @param G, la grille de Jeu
 	 * @param listJoueur,la liste des joueurs
 	 * @param U, l'univers
-	 * @return le nom de l'action effectuée
+	 * @return le nom de l'action effectuï¿½e
 	 */
 	public String jouer(Grille G, List<Joueur> listJoueur, Univers U){
 		List<Boolean> lb = G.recupcond(this, U.getConditions(), U.getObjets(), listJoueur);

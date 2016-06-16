@@ -530,7 +530,7 @@ public class FenetreJeu extends JFrame {
                 }
                 else{
                 try {
-					Jeu.charger(path);
+					Jeu.sauvegarder(path);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
