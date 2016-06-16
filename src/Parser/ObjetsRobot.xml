@@ -117,7 +117,7 @@
 		<id>14</id>
 		<type>1</type>
 		<use>25</use>
-		<name>ESET (Bon anti virus)</name>
+		<name>ESTE (Bon anti virus)</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Robot/eset.png</path>
 	</objet>
