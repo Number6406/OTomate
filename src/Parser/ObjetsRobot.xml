@@ -1,11 +1,11 @@
 <fic>
-	<imageG>../Graphics/Sprites/robot.png</imageG>
-	<imageM>../Graphics/Sprites/virus.png</imageM>
+	<imageG>../Graphics/Sprites/humain.png</imageG>
+	<imageM>../Graphics/Sprites/zombie.png</imageM>
 	<objet>
 		<id>0</id>
 		<type>4</type>
 		<use>0</use>
-		<name>Le Web</name>
+		<name>le Web</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Robot/1.jpg</path>
 	</objet>
@@ -13,15 +13,15 @@
 		<id>1</id>
 		<type>4</type>
 		<use>0</use>
-		<name>Le Web</name>
+		<name>un Port USB (piégeable)</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Robot/1.jpg</path>
 	</objet>
 	<objet>
 		<id>2</id>
-		<type>2</type>
+		<type>4</type>
 		<use>0</use>
-		<name>Facebook</name>
+		<name>les Réseaux Sociaux</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
@@ -29,7 +29,7 @@
 		<id>3</id>
 		<type>4</type>
 		<use>0</use>
-		<name>Twitter</name>
+		<name>un Intranet</name>
 		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
@@ -37,7 +37,7 @@
 		<id>4</id>
 		<type>5</type>
 		<use>0</use>
-		<name>Le Dark Web</name>
+		<name>le Dark Web</name>
 		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/trouble_water.png</path>
 	</objet>
@@ -51,9 +51,9 @@
 	</objet>
 	<objet>
 		<id>6</id>
-		<type>4</type>
+		<type>5</type>
 		<use>0</use>
-		<name>Le Deep Web</name>
+		<name>le Deep Web</name>
 		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
@@ -61,7 +61,7 @@
 		<id>7</id>
 		<type>2</type>
 		<use>0</use>
-		<name>CONSERVE</name>
+		<name>(un Objet qui rends des PV)</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/can.png</path>
 	</objet>
@@ -69,7 +69,7 @@
 		<id>8</id>
 		<type>2</type>
 		<use>0</use>
-		<name>BOUTEILLE</name>
+		<name>de la RAM</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/bottle.png</path>
 	</objet>
@@ -77,7 +77,7 @@
 		<id>9</id>
 		<type>1</type>
 		<use>15</use>
-		<name>Pare Feu</name>
+		<name>Avast (Anti Virus)</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/knife.png</path>
 	</objet>
@@ -101,7 +101,7 @@
 		<id>12</id>
 		<type>6</type>
 		<use>0</use>
-		<name>Pop Up</name>
+		<name>un Pop Up</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/cactus.png</path>
 	</objet>
@@ -109,7 +109,7 @@
 		<id>13</id>
 		<type>3</type>
 		<use>0</use>
-		<name>Script Inconnu</name>
+		<name>un Script Inconnu</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
@@ -117,7 +117,7 @@
 		<id>14</id>
 		<type>1</type>
 		<use>5</use>
-		<name>Norton</name>
+		<name>AVG (Anti Virus Gratuit)</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/branch.png</path>
 	</objet>
@@ -125,7 +125,7 @@
 		<id>15</id>
 		<type>1</type>
 		<use>25</use>
-		<name>Avast</name>
+		<name>Este (Bon anti virus)</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/gun.png</path>
 	</objet>

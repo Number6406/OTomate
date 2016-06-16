@@ -93,7 +93,6 @@ public class Jeu {
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
         //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
         plateau = new Grille(joueurs, univers);
-        System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
         // plateau.initialisergrille(joueurs);
@@ -286,6 +285,7 @@ public class Jeu {
             //Thread.sleep(period);
             System.out.println("tour mechant");
         }
+        System.out.println("piege ? "+plateau.Pos(P.getPosition()).piegee);
     }
 
     /**
