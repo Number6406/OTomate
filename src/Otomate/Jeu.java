@@ -314,16 +314,16 @@ public class Jeu {
                         if (((Gentil) perso).getInfecte()) {
                             Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-                            System.err.println("il est mort 1");
+                      //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transformé. ";
                             player.getPersonnages().remove(k);
                         } else {
-                        	System.err.println("il est mort 2");
+                       // 	System.err.println("il est mort 2");
                         	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
                     } else {
-                    	System.err.println("il est mort 3");
+                    //	System.err.println("il est mort 3");
                         s += perso.getNomHtml() + " est mort. ";
                         player.getPersonnages().remove(k);
                     }
