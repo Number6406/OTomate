@@ -77,7 +77,7 @@ public class Conditions {
     				else return false;
     			
     			case 1:
-    				if(l.get(i).getType()==1) return true;
+    				if(l.get(i).getType()==2) return true;
     				else return false;
     			
     			case 2:

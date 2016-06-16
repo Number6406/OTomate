@@ -26,7 +26,30 @@
 		<action>4</action>
 		<transition>1</transition>
 	</case>
-	
+	<case>
+		<etat>1</etat>
+		<condition>5</condition>
+		<action>13</action>
+		<transition>1</transition>
+	</case>
+	<case>
+		<etat>1</etat>
+		<condition>6</condition>
+		<action>13</action>
+		<transition>1</transition>
+	</case>
+	<case>
+		<etat>1</etat>
+		<condition>7</condition>
+		<action>13</action>
+		<transition>1</transition>
+	</case>
+	<case>
+		<etat>1</etat>
+		<condition>8</condition>
+		<action>13</action>
+		<transition>1</transition>
+	</case>
 	<case>
 		<etat>1</etat>
 		<condition>9</condition>
@@ -37,7 +60,7 @@
 	    <etat>1</etat>
 	    <condition>10</condition>
 	    <action>9</action>
-	    <transition>1</transition>
+	    <transition>2</transition>
 	</case>
 	<case>
 	    <etat>1</etat>
@@ -49,6 +72,12 @@
 	    <etat>1</etat>
 	    <condition>16</condition>
 	    <action>9</action>
+	    <transition>1</transition>
+	</case>
+	<case>
+	    <etat>1</etat>
+	    <condition>17</condition>
+	    <action>14</action>
 	    <transition>1</transition>
 	</case>
 	<case>
@@ -110,6 +139,12 @@
 	    <condition>10</condition>
 	    <action>9</action>
 	    <transition>1</transition>
+	</case>
+	<case>
+	    <etat>2</etat>
+	    <condition>17</condition>
+	    <action>14</action>
+	    <transition>2</transition>
 	</case>
 	<case>
 	    <etat>2</etat>
