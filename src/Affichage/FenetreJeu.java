@@ -413,8 +413,12 @@ public class FenetreJeu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String path = chemin.getText();
-                //VERIF DE POSSIBILITE ? 
-                //FONCTION DE SAUVEGARDE
+                try {
+					Jeu.sauvegarder(path);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         

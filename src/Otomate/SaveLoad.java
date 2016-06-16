@@ -45,6 +45,8 @@ public final class SaveLoad {
 		
 		fin.write(jeu.univers.numero());
 		fin.write(new Character('\n'));
+		fin.write(jeu.joueurZombie);
+		fin.write(new Character('\n'));
 		fin.write((jeu.plateau.tailleX())); // tailleX
 		fin.write(new Character('\n'));
 		fin.write((jeu.plateau.tailleY())); // tailleY
@@ -73,6 +75,7 @@ public final class SaveLoad {
 			fin.write(new Character(' '));
 		}
 		fin.write(jeu.joueurs.size());
+		System.out.println("TAMERLAPUTE " + jeu.joueurs.size());
 		fin.write(new Character('\n'));
 		$Personnage pe;
 		for (i = 0; i < jeu.joueurs.size(); i++) {
@@ -170,6 +173,7 @@ public final class SaveLoad {
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
 		jeu.univers = new Univers(Integer.parseInt(lire(fout, '\n')));
+		jeu.joueurZombie = Integer.parseInt(lire(fout, '\n'));
 		jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')), Integer.parseInt(lire(fout, '\n')));
 		jeu.plateau.setUnivers(jeu.univers);
 		for (int j = 0; j < jeu.plateau.tailleX(); j++) {
@@ -190,6 +194,7 @@ public final class SaveLoad {
 		Joueur nouv;
 		$Personnage pe;
 		int nbJou = Integer.parseInt(lire(fout, '\n')), nbPers;
+		System.out.println("JOUEURS : " + nbJou);
 		List<Coordonnees> c = new LinkedList<Coordonnees>();
 		int r,g,b;
 		for (int i = 0; i < nbJou; i++) {
@@ -204,6 +209,7 @@ public final class SaveLoad {
 			fout.skip(1);
 			//nouv.setName(lire(fout, '\0'));
 			nbPers = Integer.parseInt(lire(fout, '\\'));
+			System.out.println("PERSOS : " + nbPers);
 			nouv.setMechant(Integer.parseInt(lire(fout, ';')) == 1);
 			for (int j = 0; j < nbPers; j++) {
 				if (nouv.estMechant()) {

@@ -408,14 +408,13 @@ public class Jeu {
     	SaveJeu sj = new SaveJeu();
     	sj.plateau = plateau;
     	sj.joueurs = joueurs;
-    	sj.refPersos = refPersos;
     	sj.joueurZombie = joueurZombie;
     	sj.univers = univers;
     	return sj;
     }
     
-    public static void sauvegarder() throws IOException {
-    	SaveLoad sl = new SaveLoad(createSaveJeu(),"blblbl.txt");
+    public static void sauvegarder(String chemin) throws IOException {
+    	SaveLoad sl = new SaveLoad(createSaveJeu(),chemin);
     	sl.save();
     }
     
@@ -424,7 +423,6 @@ public class Jeu {
     	sl.load();
     	plateau = sl.getJeu().plateau;
     	joueurs = sl.getJeu().joueurs;
-    	refPersos = sl.getJeu().refPersos;
     	joueurZombie = sl.getJeu().joueurZombie;
     	univers = sl.getJeu().univers;
     }
