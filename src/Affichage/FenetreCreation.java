@@ -21,6 +21,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -91,6 +92,13 @@ public class FenetreCreation extends FenetreBase {
                     leave();
                     configPartie.dispose();
                     dispose();
+                }
+                else{
+                        JOptionPane.showMessageDialog(pan_b,
+                                "Tous les champs ne sont pas remplis",
+                                "Erreur",
+                                JOptionPane.ERROR_MESSAGE,
+                                null);
                 }
             }
         });
