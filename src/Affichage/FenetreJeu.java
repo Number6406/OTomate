@@ -25,16 +25,17 @@ import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
+import Otomate.Mechant;
 import Otomate.Objet;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
+
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.io.File;
 
 import javax.imageio.ImageIO;
@@ -370,17 +371,23 @@ public class FenetreJeu extends JFrame {
                     
                     
                     if(((Gentil) p).getRemede() != 0){
-                    System.err.println("Le joueur a  un remede !"); 
+                    System.err.println("Le joueur aï¿½ un remede !"); 
                     String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
                     remede = new ImageIcon(getClass().getResource(iconeRemede));
                     }
                     
                     if(((Gentil) p).getInventaire() != 0) {
-                    	System.err.println("Le joueur a  un item dans l'inventaire !");
+                    	System.err.println("Le joueur aï¿½ un item dans l'inventaire !");
                         String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    
+                    /*
+                    if(((Mechant) p).getInventaire() != 0) {
+                    	System.err.println("Le joueur aï¿½ un item dans l'inventaire !");
+                        String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                        consommable = new ImageIcon(getClass().getResource(cons));
+                    }
+                    */
                     
                 }
                 

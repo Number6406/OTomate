@@ -85,8 +85,8 @@ public class Jeu {
         List<String> xmlsMechants = new LinkedList<String>();
         // xmlsMechants.add("Zomibie.xml");
         //List<List<String>> xmls = new LinkedList<>();
-        xmls.add(xmlsGentils);
-        xmls.add(xmlsMechants);
+       // xmls.add(xmlsGentils);
+       // xmls.add(xmlsMechants);
         //List<Color> couleurs = new LinkedList<>();
         couleurs.add(Color.red);
         couleurs.add(Color.black);

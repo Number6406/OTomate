@@ -136,7 +136,7 @@ public class FenetreCreation extends FenetreBase {
         for (i = 0; i < l.size(); i++) {
             lc.add(i, l.get(i).maCouleur);
         }
-
+        
         /* Pr�t a return :
          *  lls = list de list des chemins vers automate - celui du zombis 
          *  (ex : si 3 joueur dont le joueur 2 est infect�, 
@@ -147,6 +147,8 @@ public class FenetreCreation extends FenetreBase {
          *  lc = Liste des Couleurs des Joueurs (List<Color>)
          */
         //Retourner dans le jeu
+        
+        System.err.println("size : "+lls.size());
         Jeu.setUserNames(listNames);
         Jeu.setNbZombie(id);
         Jeu.setCouleurP(lc);
