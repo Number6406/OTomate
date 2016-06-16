@@ -4,30 +4,6 @@
 	<case>
 	    <etat>1</etat>
 	    <condition>1</condition>
-	    <action>1</action>
-	    <transition>1</transition>
-	</case>
-	<case>
-	    <etat>1</etat>
-	    <condition>2</condition>
-	    <action>2</action>
-	    <transition>1</transition>
-	</case>
-	<case>
-	    <etat>1</etat>
-	    <condition>3</condition>
-	    <action>3</action>
-	    <transition>1</transition>
-	</case>
-	<case>
-	    <etat>1</etat>
-	    <condition>4</condition>
-	    <action>4</action>
-	    <transition>1</transition>
-	</case>
-	<case>
-	    <etat>1</etat>
-	    <condition>1</condition>
 	    <action>13</action>
 	    <transition>1</transition>
 	</case>
