@@ -39,7 +39,9 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 /**
@@ -301,7 +303,7 @@ public class FenetreJeu extends JFrame {
     }
     
     public void chargerMenu() {
-        JMenu sauver = new JMenu("Sauvegarder");
+        JButton sauver = new JButton("Sauvegarder");
         toolbar.add(sauver);
         sauver.addActionListener(new ActionListener() {
             @Override
@@ -310,7 +312,7 @@ public class FenetreJeu extends JFrame {
             }
         });
         
-        JMenu aide = new JMenu("Aide");
+        JButton aide = new JButton("Aide");
         toolbar.add(aide);
         aide.addActionListener(new ActionListener() {
             @Override
@@ -319,7 +321,7 @@ public class FenetreJeu extends JFrame {
             }
         });
         
-        JMenu quitter = new JMenu("Quitter");
+        JButton quitter = new JButton("Quitter");
         toolbar.add(quitter);
         quitter.addActionListener((ActionEvent e) -> {
             quitterPartie();
@@ -374,7 +376,18 @@ public class FenetreJeu extends JFrame {
     }
     
     public void quitterPartie() {
-        //LANCER UN PUTAIN DE TRUC ICI
+        
+        int retour = JOptionPane.showOptionDialog(this,
+                "Vous êtes sur le point de quitter le jeu. Êtes-vous certain de vouloir quitter ?",
+                "Quitter la partie",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                new String[]{"Oui, Quitter.", "Annuler"},
+                "default");
+        if(retour == JOptionPane.OK_OPTION) {
+            dispose();
+        }
     }
     
     public static void main(String[] args) throws IOException {
