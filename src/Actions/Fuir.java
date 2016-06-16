@@ -18,7 +18,7 @@ public class Fuir extends $Action {
 	}
 
 	public Fuir() {
-		valeur = 13;
+		valeur = 12;
 	}
 
 	// Retourne le parcours le plus court (l'entier calculant la 'distance'

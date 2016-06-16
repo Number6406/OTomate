@@ -295,7 +295,7 @@ public class Grille {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(0, 16);        //car 16 actions possibles numerotees de 0 a 15 
+                k = random(0, 15);        //car 15 actions possibles numerotees de 0 a 14 
                 g[i][j].element = k;
             }
         }
@@ -477,12 +477,10 @@ public class Grille {
             else if(l.get(i) == 11)
             	a = new Manger();
             else if(l.get(i) == 12)
-            	a = new Soigner();
-            else if(l.get(i) == 13)
             	a = new Fuir();
-            else if(l.get(i) == 14)
+            else if(l.get(i) == 13)
             	a = new Detruire();
-            else if(l.get(i) == 15)
+            else if(l.get(i) == 14)
             	a = new Fouiller();
             return a;
         }
