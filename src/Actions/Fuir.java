@@ -1,5 +1,6 @@
 package Actions;
 
+
 import java.util.List;
 
 import Otomate.$Personnage;
@@ -7,6 +8,7 @@ import Otomate.Coordonnees;
 import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Mechant;
+import PathFinding.*;
 
 public class Fuir extends $Action {
 
@@ -242,40 +244,8 @@ public class Fuir extends $Action {
 			}
 		}
 		else if (p instanceof Mechant) {
-			Gentil e;
-			int x, y, x2, y2;
-			e = prox(p, lp);
-			x = p.getPosition().getX() - e.getPosition().getX();
-			y = p.getPosition().getY() - e.getPosition().getY();
-			if (x < 0)
-				x2 = -x;
-			else
-				x2 = x;
-			if (y < 0)
-				y2 = -y;
-			else
-				y2 = y;
-			if (((x2 < y2 && x2 != 0) || y == 0)) {
-				if (x < 0){
-					if (g.Pos(cest).getValeur() != 4 && g.Pos(cest).getValeur() != 6)
-						p.getPosition().setX(p.getPosition().getX() + 1);
-				}
-					else{
-						if (g.Pos(couest).getValeur() != 4 && g.Pos(couest).getValeur() != 6)
-							p.getPosition().setX(p.getPosition().getX() - 1);
-					}
-			}
-			else if(((g.Pos(cest).getValeur() != 4))){
-				if (y < 0){
-					if (g.Pos(csud).getValeur() != 4 && g.Pos(csud).getValeur() != 6)
-						p.getPosition().setY(p.getPosition().getY() + 1);
-				}
-					else{
-						if (g.Pos(cnord).getValeur() != 4 && g.Pos(cnord).getValeur() != 6)
-							p.getPosition().setY(p.getPosition().getY() - 1);
-					}
-			}
-			effect = true;
+			Pfind path = new Pfind(p.getPosition(), prox(p,lp).getPosition() );
+			p.setPosition(p.getPosition().CalculCase(path.getDirection()));
 		}
 		else {
 			effect = false;
