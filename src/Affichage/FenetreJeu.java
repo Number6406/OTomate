@@ -40,9 +40,11 @@ import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -308,12 +310,7 @@ public class FenetreJeu extends JFrame {
         sauver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-					Jeu.sauvegarder();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+                sauvegarder();
             }
         });
         
@@ -397,7 +394,51 @@ public class FenetreJeu extends JFrame {
     
     public void sauvegarder() {
         JDialog saveW = new JDialog(this, "Sauvegarder la partie");
+        saveW.setLocationRelativeTo(this);
+        saveW.setLayout(new BorderLayout());
+        saveW.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        saveW.setVisible(true);
+        JTextField chemin = new JTextField();
+        JButton bchemin = new JButton("Fichier");
+        bchemin.addActionListener((ActionEvent e) -> {
+            JFileChooser f = new JFileChooser("./");
+            int returnValue = f.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = f.getSelectedFile();
+                chemin.setText(selectedFile.getAbsolutePath());
+            }
+        });
+        JButton bvalider = new JButton("Sauvegarder");
+        bvalider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String path = chemin.getText();
+                //VERIF DE POSSIBILITE ? 
+                //FONCTION DE SAUVEGARDE
+            }
+        });
         
+        JButton bquitter = new JButton("Annuler");
+        bquitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveW.dispose();
+            }
+        }); 
+        
+        saveW.add(new JLabel("Choisissez où sauvegarder votre partie."), BorderLayout.NORTH);
+        
+        JPanel pchoix = new JPanel(new BorderLayout());
+        saveW.add(pchoix, BorderLayout.CENTER);
+        pchoix.add(chemin, BorderLayout.CENTER);
+        pchoix.add(bchemin, BorderLayout.EAST);
+        
+        JPanel panelb = new JPanel(new BorderLayout());
+        saveW.add(panelb, BorderLayout.SOUTH);
+        panelb.add(bvalider, BorderLayout.WEST);
+        panelb.add(bquitter, BorderLayout.EAST);
+        
+        saveW.pack();
     }
     
     public static void main(String[] args) throws IOException {

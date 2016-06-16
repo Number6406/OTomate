@@ -241,42 +241,7 @@ public class Jeu {
         }
         return false;
     }
-
-    /* public static void veriftransfo($Personnage P, Mechant E, List<Joueur> l) {
-        if (P instanceof Gentil) {
-            if (P.getVie() == 0 && ((Gentil) P).getInfecte() == true) {
-                int i, j;
-                for (i = 0; i < l.size(); i++) {
-                    for (j = 0; j < l.get(i).getSizePersonnages(); j++) {
-                        if (l.get(i).getPersonnagesI(j) == P) {
-                            l.get(i).getPersonnages().remove(j);
-                        } else if (l.get(i).getPersonnagesI(j) == E) {
-                            l.get(i).getPersonnages().add(P);
-                        }
-                    }
-                }
-                P = new Mechant(E);
-            } else if (P.getVie() == 0) {
-                int i, j;
-                for (i = 0; i < l.size(); i++) {
-                    for (j = 0; j < l.get(i).getSizePersonnages(); j++) {
-                        if (l.get(i).getPersonnagesI(j) == P) {
-                            l.get(i).getPersonnages().remove(j);
-                        }
-                    }
-                }
-            }
-        } else if (P.getVie() == 0) {
-            int i, j;
-            for (i = 0; i < l.size(); i++) {
-                for (j = 0; j < l.get(i).getSizePersonnages(); j++) {
-                    if (l.get(i).getPersonnagesI(j) == P) {
-                        l.get(i).getPersonnages().remove(j);
-                    }
-                }
-            }
-        }
-    }*/
+    
     // UN TOUR DE JEU
     /**
      * Fait jouer Un personnage.
