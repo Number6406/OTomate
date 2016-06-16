@@ -32,8 +32,8 @@ public class Gentil extends $Personnage {
     // effet a effectuer
     private boolean infecte, saignement;
 
-    public Gentil(String file, Color couleur) {
-        super(file, couleur);
+    public Gentil(String file, Color couleur,String name) {
+        super(file, couleur,name);
         arme = null;
         remede = drogue = 0;
         infecte = saignement = false;
@@ -41,7 +41,6 @@ public class Gentil extends $Personnage {
         paralysie = 1;
         piege = 10;
         efdrogue = 0;
-        nom = "Gentil";
     }
     
     public boolean estArme() {

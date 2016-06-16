@@ -147,11 +147,11 @@ public class Jeu {
      */
     public static void initJoueurs(List<String> names, int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
         joueurs = new LinkedList<Joueur>();
-        int nZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
+        int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
         for (int i = 0; i < xmls.size(); i++) {
             System.out.println("i=" + i);
             if (i == nZombie) {
-                joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nZ, couleurs.get(i)));
+            	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
             } else {
                 joueurs.add(new Joueur(names.get(i), xmls.get(i), false, 42, couleurs.get(i)));
             }
