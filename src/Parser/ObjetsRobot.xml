@@ -5,7 +5,7 @@
 		<id>0</id>
 		<type>4</type>
 		<use>0</use>
-		<name>PLAQUE</name>
+		<name>Le Web</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Robot/1.jpg</path>
 	</objet>
@@ -13,25 +13,25 @@
 		<id>1</id>
 		<type>4</type>
 		<use>0</use>
-		<name>TERRE</name>
+		<name>Le Web</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/dirt.png</path>
+		<path>../Graphics/Tiles/Robot/1.jpg</path>
 	</objet>
 	<objet>
 		<id>2</id>
-		<type>4</type>
+		<type>2</type>
 		<use>0</use>
-		<name>GRAVIER</name>
+		<name>VPN</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/gravel.png</path>
+		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
 	<objet>
 		<id>3</id>
-		<type>4</type>
+		<type>5</type>
 		<use>0</use>
-		<name>SABLE</name>
-		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/sand.png</path>
+		<name>Le Dark Web</name>
+		<passage>0</passage>
+		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
 	<objet>
 		<id>4</id>
@@ -43,9 +43,9 @@
 	</objet>
 	<objet>
 		<id>5</id>
-		<type>4</type>
+		<type>7</type>
 		<use>0</use>
-		<name>IMMEUBLE</name>
+		<name>Google</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building1.png</path>
 	</objet>
@@ -77,39 +77,39 @@
 		<id>9</id>
 		<type>1</type>
 		<use>15</use>
-		<name>COUTEAU</name>
+		<name>Pare Feu</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/knife.png</path>
 	</objet>
 	<objet>
 		<id>10</id>
-		<type>4</type>
+		<type>7</type>
 		<use>0</use>
-		<name>HOPITAL</name>
+		<name>Yahoo</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
 	</objet>
 	<objet>
 		<id>11</id>
-		<type>4</type>
+		<type>7</type>
 		<use>0</use>
-		<name>GRANGE</name>
+		<name>Bing</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
 	</objet>
 	<objet>
 		<id>12</id>
-		<type>2</type>
+		<type>6</type>
 		<use>0</use>
-		<name>CACTUS</name>
+		<name>Pop Up</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/cactus.png</path>
 	</objet>
 	<objet>
 		<id>13</id>
-		<type>2</type>
+		<type>3</type>
 		<use>0</use>
-		<name>SERINGUE</name>
+		<name>Script Inconnu</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
@@ -117,7 +117,7 @@
 		<id>14</id>
 		<type>1</type>
 		<use>5</use>
-		<name>BRANCHE</name>
+		<name>Norton</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/branch.png</path>
 	</objet>
@@ -125,7 +125,7 @@
 		<id>15</id>
 		<type>1</type>
 		<use>25</use>
-		<name>FUSIL A POMPE</name>
+		<name>Avast</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/gun.png</path>
 	</objet>

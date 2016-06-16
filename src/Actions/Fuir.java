@@ -7,6 +7,7 @@ import Otomate.$Personnage;
 import Otomate.Coordonnees;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Jeu;
 import Otomate.Mechant;
 import PathFinding.*;
 
@@ -244,8 +245,16 @@ public class Fuir extends $Action {
 			}
 		}
 		else if (p instanceof Mechant) {
-			Pfind path = new Pfind(p.getPosition(), prox(p,lp).getPosition() );
-			p.setPosition(p.getPosition().CalculCase(path.getDirection()));
+			Coordonnees ppp=prox(p,lp).getPosition();
+			Pfind path = new Pfind(p.getPosition(),ppp);
+			Coordonnees c=p.getPosition().CalculCase(path.getDirection());
+			if(!(ppp.getX()==c.getX() && ppp.getY()==c.getY())){
+				//if(g.get(c.getX(), c.getY()).Passable(Jeu.univers.getObjets())) 
+					p.setPosition(c);		
+			}
+			else{
+				//Ne fais rien
+			}
 		}
 		else {
 			effect = false;
