@@ -31,12 +31,17 @@ import Otomate.historique.Tour;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 /**
@@ -55,13 +60,30 @@ public class FenetreJeu extends JFrame {
     public static final int Y = 800;
 
     // Contenu de la frame
-    JMenuBar toolbar;
+    JMenuBar toolbar = new JMenuBar();
     JPanel pan_info;
     JScrollPane scroll_plateau;
     AffichagePlateau pan_plateau;
     JLabel label_perso;
     JScrollPane scroll_perso;
-    JTable tab_perso;
+    JTable tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Consom.", "Arme", "Remede"}, 0) {
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
+
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+            @Override
+            public Class getColumnClass(int column) {
+                if (column > 1) {
+                    return ImageIcon.class;
+                }
+                return Object.class;
+            }
+        });
     JPanel pan_interraction;
     JButton b_playpause;
     JButton b_fast;
@@ -76,7 +98,13 @@ public class FenetreJeu extends JFrame {
         super();
         this.setSize(X, Y);
         this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                quitterPartie();
+            }
+        });
         this.setResizable(true);
         this.setLayout(new BorderLayout());
     }
@@ -98,27 +126,10 @@ public class FenetreJeu extends JFrame {
         }
 
         // Chargement des différents éléments des fenetres
-        toolbar = new JMenuBar();
+        chargerMenu();
+        
         pan_info = new JPanel();
         label_perso = new JLabel();
-        tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Consom.", "Arme", "Remede"}, 0) {
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-            
-            @Override
-            public Class getColumnClass(int column) {
-                if (column > 1) {
-                    return ImageIcon.class;
-                }
-                return Object.class;
-            }
-        });
         tab_perso.getTableHeader().setReorderingAllowed(false);
         majTabPersos(); // Mise à jour de l'affichage de l'état des personnages
         
@@ -291,6 +302,32 @@ public class FenetreJeu extends JFrame {
 
     }
     
+    public void chargerMenu() {
+        JButton sauver = new JButton("Sauvegarder");
+        toolbar.add(sauver);
+        sauver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Action de sauvegarde ici
+            }
+        });
+        
+        JButton aide = new JButton("Aide");
+        toolbar.add(aide);
+        aide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Ouvrir une fenetre d'aide
+            }
+        });
+        
+        JButton quitter = new JButton("Quitter");
+        toolbar.add(quitter);
+        quitter.addActionListener((ActionEvent e) -> {
+            quitterPartie();
+        });
+    }
+    
     public void ajouterTourHistorique(Tour t){
     	for(int j1 = 0; j1 < t.nbEvenement();j1++){
             ((DefaultTableModel) tab_history.getModel()).addRow(new Object[]{t.getNumero(), t.getEvenement(j1).toString()});
@@ -335,6 +372,21 @@ public class FenetreJeu extends JFrame {
                     }
                 );
             }
+        }
+    }
+    
+    public void quitterPartie() {
+        
+        int retour = JOptionPane.showOptionDialog(this,
+                "Vous êtes sur le point de quitter le jeu. Êtes-vous certain de vouloir quitter ?",
+                "Quitter la partie",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                new String[]{"Oui, Quitter.", "Annuler"},
+                "default");
+        if(retour == JOptionPane.OK_OPTION) {
+            dispose();
         }
     }
     
