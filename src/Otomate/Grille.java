@@ -295,7 +295,7 @@ public class Grille {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(0, 1);        //car 16 actions possibles numerotees de 0 a 15 
+                k = random(0, 16);        //car 16 actions possibles numerotees de 0 a 15 
                 g[i][j].element = k;
             }
         }
