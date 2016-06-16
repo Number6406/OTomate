@@ -313,7 +313,6 @@ public class Jeu {
         Joueur player = null;
         $Personnage perso = null;
         for (i=0; i<lesJoueurs.size(); i++) {
-            int j = 0;
             player = lesJoueurs.get(i);
             if(player!=null){
             for (k=0; k<player.getSizePersonnages(); k++) {
@@ -321,20 +320,19 @@ public class Jeu {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
-                            Mechant nouveauMechant = new Mechant(perso, lesJoueurs.get(joueurZombie).getCouleur());
+                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
                             s += perso.getNomHtml() + " est transformé. ";
-                            player.getPersonnages().remove(j);
+                            player.getPersonnages().remove(k);
                         } else {
                         	s += perso.getNomHtml() + " est mort. ";
-                            player.getPersonnages().remove(j);
+                            player.getPersonnages().remove(k);
                         }
                     } else {
                         s += perso.getNomHtml() + " est mort. ";
-                        player.getPersonnages().remove(j);
+                        player.getPersonnages().remove(k);
                     }
                 }
-                j++;
             }
             }
         }

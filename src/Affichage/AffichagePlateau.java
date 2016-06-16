@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import Otomate.$Personnage;
 import Otomate.Grille;
+import Otomate.Jeu;
 import Otomate.Objet;
 
 import java.awt.Image;
@@ -31,7 +32,6 @@ public class AffichagePlateau extends JPanel {
     private int MINCASE = 32;
 
     private Grille gr;
-    private List<$Personnage> perso;
     private List<BufferedImage> tiles;
 
     void Affiche_perso(Graphics graph, $Personnage p) {
@@ -97,9 +97,8 @@ public class AffichagePlateau extends JPanel {
         }
     }
 
-    public AffichagePlateau(Grille g, List<$Personnage> perso, List<Objet> lo) {
+    public AffichagePlateau(Grille g, List<Objet> lo) {
         gr = g;
-        this.perso = perso;
         loadTiles(lo);
     }
 
@@ -107,7 +106,6 @@ public class AffichagePlateau extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // this.setBackground(Color.lightGray);
-        int Nb = perso.size();
         int maxx = this.getWidth();
         int maxy = this.getHeight();
         int i, j;
@@ -143,9 +141,12 @@ public class AffichagePlateau extends JPanel {
                 Affiche_case(g, gr.get(i, j).element, i, j);
             }
         }
+        
+        
 
-        for (i = 0; i < Nb; i++) {
-            Affiche_perso(g, perso.get(i));
+        for (i = 0; i < Jeu.joueurs.size(); i++) {
+        	for(j=0;j<Jeu.joueurs.get(i).getSizePersonnages();j++)
+            Affiche_perso(g, Jeu.joueurs.get(i).getPersonnagesI(j));
         }
 
     }

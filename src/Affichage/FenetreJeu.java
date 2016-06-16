@@ -119,17 +119,10 @@ public class FenetreJeu extends JFrame {
 
         Grille g = Jeu.plateau;
         List<Objet> lo = Jeu.univers.getObjets();
-        List<$Personnage> persoL = new LinkedList<>();
         Historique h = Jeu.historique;
         List<Joueur> l = Jeu.joueurs;
         int i, j, max = l.size(), max2;
 
-        for (i = 0; i < max; i++) {
-            max2 = l.get(i).getSizePersonnages();
-            for (j = 0; j < max2; j++) {
-                persoL.add(l.get(i).getPersonnagesI(j));
-            }
-        }
 
         // Chargement des différents éléments des fenetres
         chargerMenu();
@@ -195,7 +188,7 @@ public class FenetreJeu extends JFrame {
         });
         tab_legende.getTableHeader().setReorderingAllowed(false);
         scroll_legende = new JScrollPane(tab_legende);
-        pan_plateau = new AffichagePlateau(g, persoL, lo);
+        pan_plateau = new AffichagePlateau(g, lo);
         pan_plateau.setBackground(Color.LIGHT_GRAY);
         scroll_plateau = new JScrollPane(pan_plateau);
 
@@ -254,40 +247,6 @@ public class FenetreJeu extends JFrame {
             }
         });
         
-        pan_interraction.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				System.out.println("NTM TRES TRES FORT");
-				if(e.getKeyChar()=='u'){
-					JOptionPane.showConfirmDialog(pan_interraction
-							,"Attention"
-							,"Attention cette fonctionnalitée necessite un processeur puissant"
-							,JOptionPane.OK_CANCEL_OPTION
-							);
-				}
-				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				System.out.println("NTM TRES TRES FORT");
-				if(e.getKeyChar()=='u'){
-					JOptionPane.showConfirmDialog(pan_interraction
-							,"Attention"
-							,"Attention cette fonctionnalitée necessite un processeur puissant"
-							,JOptionPane.OK_CANCEL_OPTION
-							);
-				}
-				
-			}
-		});
         
         
         pan_interraction.add(b_fast);
