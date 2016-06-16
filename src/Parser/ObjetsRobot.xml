@@ -1,6 +1,6 @@
 <fic>
-	<imageG>../Graphics/Sprites/1.png</imageG>
-	<imageM>../Graphics/Sprites/mechant.png</imageM>
+	<imageG>../Graphics/Sprites/robot.png</imageG>
+	<imageM>../Graphics/Sprites/virus.png</imageM>
 	<objet>
 		<id>0</id>
 		<type>4</type>
@@ -21,23 +21,23 @@
 		<id>2</id>
 		<type>2</type>
 		<use>0</use>
-		<name>VPN</name>
+		<name>Facebook</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
 	<objet>
 		<id>3</id>
-		<type>5</type>
+		<type>4</type>
 		<use>0</use>
-		<name>Le Dark Web</name>
+		<name>Twitter</name>
 		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
 	<objet>
 		<id>4</id>
-		<type>4</type>
+		<type>5</type>
 		<use>0</use>
-		<name>EAU</name>
+		<name>Le Dark Web</name>
 		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/trouble_water.png</path>
 	</objet>
@@ -53,7 +53,7 @@
 		<id>6</id>
 		<type>4</type>
 		<use>0</use>
-		<name>RONCES</name>
+		<name>Le Deep Web</name>
 		<passage>0</passage>
 		<path>../Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
