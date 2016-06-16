@@ -48,7 +48,7 @@ public class Conditions {
     //Constructeur
     
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
-    	System.out.println("Le type est a : "+ type);
+    	//System.out.println("Le type est a : "+ type);
     	if(pos.getX()==g.tailleX()-1 && direction==2) return type==0||type==2;
     	if(pos.getY()==g.tailleY()-1 && direction==3) return type==0||type==2;
     	

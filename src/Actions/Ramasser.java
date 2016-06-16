@@ -22,6 +22,7 @@ public class Ramasser extends $Action {
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		if (l.get(0) != 0) { // 0 = case vide
+			System.err.println("id : "+l.get(0));
 			int aux;
 			if (l.get(0) == 9) { // comestible
 				aux = p.getInventaire();
@@ -34,15 +35,19 @@ public class Ramasser extends $Action {
 					((Gentil) p).setArme(g.getUnivers().getObjets().get(g.Pos(p.getPosition()).getValeur()));
 					g.Pos(p.getPosition()).setValeur(arme.getId());
 				}
-				else if (l.get(0) == 13) { // seringue
+				else if (l.get(0) == 16) { // seringue
+					
 					if (((Gentil) p).getDrogue() == 0) {	//dans le cas ou le personnage est sain
 						aux = Grille.random(0, 101);
+						System.err.println("LE PERSONNAGE RAMASSE UNE DROGUE");
 						if (aux < 10) {	//bonus hp max
 							p.setViemax(p.getViemax() + 10);
+							p.setVie(p.getVie() + 10);
 							((Gentil) p).setDrogue(1);
 						}
 						else if (aux < 20) {	//malus hp max
 							p.setViemax(p.getViemax() - 10);
+							p.setVie(p.getVie() - 10);
 							if(p.getVie()<p.getViemax())
 								p.setVie(p.getViemax());	//barre de hp = hp max si hp > hp max
 							((Gentil) p).setDrogue(2);
@@ -77,6 +82,7 @@ public class Ramasser extends $Action {
 							((Gentil) p).setDrogue(8);
 						}
 						drogue = true;
+			        	System.out.println("LE PERSONNAGE EST DROGUE AVEC LA DROGUE NUMERO : "+((Gentil) p).getDrogue());
 						g.Pos(p.getPosition()).setValeur(0);
 					}
 				}

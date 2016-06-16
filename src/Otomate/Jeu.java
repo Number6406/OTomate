@@ -178,6 +178,7 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
+        System.out.println("Le personnage va jouer "+((Gentil) P).getParalysie());
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
@@ -230,7 +231,11 @@ public class Jeu {
             }
             ((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue() - 1);
         }
-    }
+        else {
+        	((Gentil) P).setDrogue(0);
+        }
+        }
+    
 
     public static boolean soinInstantane($Personnage P) {
         //System.out.println("pk tu viens l� wesh");
