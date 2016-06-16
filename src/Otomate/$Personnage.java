@@ -168,8 +168,8 @@ public abstract class $Personnage {
         }
         
 	public void setEtat(int symbole) {
-		if (a.transitions[symbole][etat] != 0)
-			etat = a.transitions[symbole][etat];
+		if (a.transition(symbole, etat) != 0)
+			etat = a.transition(symbole,etat);
 	}
 	
 	public void forceSetEtat(int pEtat) {

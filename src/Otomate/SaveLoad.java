@@ -20,16 +20,16 @@ import java.util.List;
  */
 public final class SaveLoad {
 
-	private Jeu jeu;
+	private SaveJeu jeu;
 	private String name;
 
-	SaveLoad(final Jeu jeu, String name) {
+	SaveLoad(final SaveJeu jeu, String name) {
 		this.jeu = jeu;
 		this.name = name;
 	}
 	
 	SaveLoad(String nam) {
-		jeu = new Jeu();
+		jeu = new SaveJeu();
 		name = nam;
 	}
 

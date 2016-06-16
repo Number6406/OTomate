@@ -431,7 +431,17 @@ public class Jeu {
     public static void go() {
         commencerJeu = true;
     }
-
+    
+    public static SaveJeu createSaveJeu() {
+    	SaveJeu sj = new SaveJeu();
+    	sj.plateau = plateau;
+    	sj.joueurs = joueurs;
+    	sj.refPersos = refPersos;
+    	sj.joueurZombie = joueurZombie;
+    	sj.univers = univers;
+    	return sj;
+    }
+    
     /**
      * Fonction principale de Jeu
      *
@@ -450,6 +460,10 @@ public class Jeu {
 
         debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
+        
+        SaveLoad save = new SaveLoad(createSaveJeu(), "Start.txt");
+        save.save();
+        
         while (!finPartie()) {
             while (pause) {
                 if (step) {
