@@ -306,7 +306,12 @@ public class FenetreJeu extends JFrame {
         sauver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Action de sauvegarde ici
+                try {
+					Jeu.sauvegarder();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         
