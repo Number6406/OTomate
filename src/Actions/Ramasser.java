@@ -5,6 +5,7 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Jeu;
 import Otomate.Mechant;
 import Otomate.Objet;
 
