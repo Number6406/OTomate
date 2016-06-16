@@ -8,6 +8,7 @@
 		<name>de l'Herbe</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/grass.png</path>
+		<piege>../Graphics/Tiles/Zombie/hole.png</piege>
 	</objet>
 	<objet>
 		<id>1</id>
@@ -48,6 +49,7 @@
 		<name>un Immeuble</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building1.png</path>
+		<piege>../Graphics/Tiles/Zombie/building1.png</piege>
 	</objet>
 	<objet>
 		<id>6</id>
@@ -88,6 +90,7 @@
 		<name>un Hopital</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
+		<piege>../Graphics/Tiles/Zombie/building1.png</piege>
 	</objet>
 	<objet>
 		<id>11</id>
@@ -96,6 +99,7 @@
 		<name>une Grange</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
+		<piege>../Graphics/Tiles/Zombie/building1.png</piege>
 	</objet>
 	<objet>
 		<id>12</id>
