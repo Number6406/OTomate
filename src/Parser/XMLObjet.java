@@ -16,6 +16,7 @@ public class XMLObjet extends DefaultHandler {
     boolean bname = false;
     boolean bpas = false;
     boolean bpath = false;
+    boolean bpiege = false;
 
     boolean bimG = false;
     boolean bimM = false;
@@ -45,6 +46,8 @@ public class XMLObjet extends DefaultHandler {
             bname = true;
         } else if (qName.equalsIgnoreCase("passage")) {
             bpas = true;
+        } else if (qName.equalsIgnoreCase("piege")) {
+            bpiege = true;
         } else if (qName.equalsIgnoreCase("path")) {
             bpath = true;
         } else if (qName.equalsIgnoreCase("imageG")) {
@@ -82,9 +85,12 @@ public class XMLObjet extends DefaultHandler {
             bpas = false;
         } else if (bpath) {
             path = lecture;
-            c = new Objet(id, type, use, name, passable, path,path);
+            c = new Objet(id, type, use, name, passable, path, piege);
             list.add(c);
             bpath = false;
+        } else if (bpiege) {
+            piege = lecture;
+            bpiege = false;
         } else if (bimG) {
             imageGentil = lecture;
             bimG = false;

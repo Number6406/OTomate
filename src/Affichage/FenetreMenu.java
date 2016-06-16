@@ -9,10 +9,18 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Otomate.Jeu;
 
@@ -31,10 +39,10 @@ public class FenetreMenu extends FenetreBase {
     
     JPanel panel_b = new JPanel();
     Dimension d = new Dimension(200,50);
-    BoutonBasique b_jouer = new BoutonBasique(d,"Jouer");
-    BoutonBasique b_credits = new BoutonBasique(d,"Crédits");
-    BoutonBasique b_charger = new BoutonBasique(d, "Charger");
-    BoutonBasique b_quitter = new BoutonBasique(d,"Quitter");
+    JButton b_jouer = new JButton("Jouer");
+    JButton b_credits = new JButton("Crédits");
+    JButton b_charger = new JButton("Charger");
+    JButton b_quitter = new JButton("Quitter");
     
     // Liste des univers
     List<String> univers = new ArrayList<String>();
@@ -63,20 +71,80 @@ public class FenetreMenu extends FenetreBase {
             dispose();
         });
         
+        
         b_charger.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Jeu.chargement();
-			}
-		});
-        
-        b_quitter.addActionListener((ActionEvent e) -> {
-            // Ouvre une fenetre de nouvelle partie au clic
-            dispose();
-        });
-        
+				JDialog saveW = new JDialog();
+				saveW.setLocationRelativeTo(null);
+		        saveW.setLayout(new BorderLayout());
+		        saveW.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		        saveW.setVisible(true);
+		        JTextField chemin = new JTextField();
+		        JButton bchemin = new JButton("Fichier");
+		        bchemin.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+			            JFileChooser f = new JFileChooser("./");
+			            int returnValue = f.showOpenDialog(null);
+			            if (returnValue == JFileChooser.APPROVE_OPTION) {
+			                File selectedFile = f.getSelectedFile();
+			                chemin.setText(selectedFile.getAbsolutePath());
+			            }
+						
+					}
+				});
+		        JButton bvalider = new JButton("Charger");
+		        bvalider.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                String path = chemin.getText();
+		                if(path.equals("")){
+		                	JOptionPane.showMessageDialog(panel_b,
+	                                "Tous les champs ne sont pas remplis",
+	                                "Erreur",
+	                                JOptionPane.ERROR_MESSAGE,
+	                                null);
+		                }
+		                else{
+		                try {
+							Jeu.charger(path);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		            }
+		            }
+		        });
+		        
+		        JButton bquitter = new JButton("Annuler");
+		        bquitter.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                saveW.dispose();
+		            }
+		        }); 
+		        
+		        saveW.add(new JLabel("Choisissez o� charger votre partie."), BorderLayout.NORTH);
+		        
+		        JPanel pchoix = new JPanel(new BorderLayout());
+		        saveW.add(pchoix, BorderLayout.CENTER);
+		        pchoix.add(chemin, BorderLayout.CENTER);
+		        pchoix.add(bchemin, BorderLayout.EAST);
+		        
+		        JPanel panelb = new JPanel(new BorderLayout());
+		        saveW.add(panelb, BorderLayout.SOUTH);
+		        panelb.add(bvalider, BorderLayout.WEST);
+		        panelb.add(bquitter, BorderLayout.EAST);
+		        
+		        saveW.pack();
+		    }
+        }
+	);
     }
- 
+    
     public static void main(String[] args) {
         FenetreMenu f = new FenetreMenu();
     }
