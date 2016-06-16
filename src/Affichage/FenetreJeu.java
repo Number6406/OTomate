@@ -372,7 +372,7 @@ public class FenetreJeu extends JFrame {
                     
                     if(((Gentil) p).getRemede() != 0){
                     System.err.println("Le joueur a� un remede !"); 
-                    String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
+                    String iconeRemede = Jeu.univers.getRemede(((Gentil) p).getRemede());
                     remede = new ImageIcon(getClass().getResource(iconeRemede));
                     }
                     
@@ -381,13 +381,13 @@ public class FenetreJeu extends JFrame {
                         String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    /*
+                    if(p instanceof Mechant)
                     if(((Mechant) p).getInventaire() != 0) {
                     	System.err.println("Le joueur a� un item dans l'inventaire !");
                         String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    */
+                    
                     
                 }
                 

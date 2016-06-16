@@ -13,7 +13,7 @@ public class Detruire extends $Action {
 	}
 
 	public Detruire() {
-		valeur = 14;
+		valeur = 13;
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {

@@ -16,7 +16,7 @@ public class Fouiller extends $Action {
 	private boolean anti = false, pompe = false;
 
 	public Fouiller() {
-		valeur = 15;
+		valeur = 14;
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
