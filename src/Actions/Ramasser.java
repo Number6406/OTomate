@@ -26,8 +26,10 @@ public class Ramasser extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		effet = "";
+		effet = " rien ?";
 		ramasse = g.Pos(p.getPosition()).getValeur();
+		effect = false;
+		drogue = false;
 		if (l.get(0) != 0) { // 0 = case vide
 			System.err.println("id : "+l.get(0));
 			int aux;
@@ -112,7 +114,7 @@ public class Ramasser extends $Action {
 						g.Pos(p.getPosition()).setValeur(0);
 					}
 				}
-			}
+			} // Fin gentil
 			else if(p instanceof Mechant){
 				if(l.get(0) == 10 || l.get(0) == 16){
 					aux = p.getInventaire();
