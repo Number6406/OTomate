@@ -23,6 +23,9 @@ public class Jeu {
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
+    
+    // Chargement
+    private static boolean charge = false;
 
     // Nécessaire au lancement du jeu
     private static boolean commencerJeu = false;
@@ -432,6 +435,10 @@ public class Jeu {
         commencerJeu = true;
     }
     
+    public static void chargement() {
+    	charge = true;
+    }
+    
     public static SaveJeu createSaveJeu() {
     	SaveJeu sj = new SaveJeu();
     	sj.plateau = plateau;
@@ -440,6 +447,10 @@ public class Jeu {
     	sj.joueurZombie = joueurZombie;
     	sj.univers = univers;
     	return sj;
+    }
+    
+    public static void charger(String fichier) {
+    	SaveLoad sl = new SaveLoad(fichier);
     }
     
     /**
@@ -458,7 +469,8 @@ public class Jeu {
             Thread.sleep(100);
         }
 
-        debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);
+        if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
+        else {charger("Start.txt");}
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         SaveLoad save = new SaveLoad(createSaveJeu(), "Start.txt");
