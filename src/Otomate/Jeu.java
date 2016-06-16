@@ -308,9 +308,13 @@ public class Jeu {
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
         String s = "<i>Fin de Tour</i> : ";
-        for (Joueur player : lesJoueurs) {
+        int i,k;
+        Joueur player = null;
+        $Personnage perso = null;
+        for (i=0; i<lesJoueurs.size(); i++) {
             int j = 0;
-            for ($Personnage perso : player.getPersonnages()) {
+            player = lesJoueurs.get(i);
+            for (k=0; k<player.getSizePersonnages(); k++) {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
