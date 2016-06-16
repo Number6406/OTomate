@@ -462,7 +462,7 @@ public class Jeu {
 
         }
         finDeJeu();
-        System.out.println("partie finie lol");
+        Affichage.fin();
         // TODO Annoncer gagnant
     }
 }

@@ -34,6 +34,8 @@ import Otomate.historique.Tour;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -252,6 +254,42 @@ public class FenetreJeu extends JFrame {
             }
         });
         
+        pan_interraction.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				System.out.println("NTM TRES TRES FORT");
+				if(e.getKeyChar()=='u'){
+					JOptionPane.showConfirmDialog(pan_interraction
+							,"Attention"
+							,"Attention cette fonctionnalitée necessite un processeur puissant"
+							,JOptionPane.OK_CANCEL_OPTION
+							);
+				}
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println("NTM TRES TRES FORT");
+				if(e.getKeyChar()=='u'){
+					JOptionPane.showConfirmDialog(pan_interraction
+							,"Attention"
+							,"Attention cette fonctionnalitée necessite un processeur puissant"
+							,JOptionPane.OK_CANCEL_OPTION
+							);
+				}
+				
+			}
+		});
+        
+        
         pan_interraction.add(b_fast);
         b_fast.addActionListener((ActionEvent e) -> { // Listener pour la vitesse du jeu
             Jeu.changeSpeed();
@@ -335,6 +373,27 @@ public class FenetreJeu extends JFrame {
         quitter.addActionListener((ActionEvent e) -> {
             quitterPartie();
         });
+        
+        JButton Turbo = new JButton("Turbo");
+        toolbar.add(Turbo);
+        Turbo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					int ret=JOptionPane.showConfirmDialog(null
+							,"Attention cette fonctionnalitée necessite un processeur puissant"
+							,"Attention"
+							,JOptionPane.OK_CANCEL_OPTION
+							);
+					if(ret==JOptionPane.CANCEL_OPTION){
+						
+					}
+					else{
+						Jeu.period=10;
+					}
+				
+			}
+		});
     }
     
     public void ajouterTourHistorique(Tour t){
@@ -383,7 +442,7 @@ public class FenetreJeu extends JFrame {
                     }
                     if(p instanceof Mechant)
                     if(((Mechant) p).getInventaire() != 0) {
-                    	System.err.println("Le joueur a� un item dans l'inventaire !");
+                    	System.err.println("Le Mechant a un item dans l'inventaire !");
                         String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }

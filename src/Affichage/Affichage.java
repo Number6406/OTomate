@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 public class Affichage {
 
     public static int random(int min, int max) {
@@ -94,5 +97,16 @@ public class Affichage {
     public static void ajouterTour(Tour t) {
         jeu.ajouterTourHistorique(t);
     }
+
+	public static void fin() {
+		JOptionPane.showMessageDialog(null,
+                "La partie est finie !",
+                "Victoire",
+                JOptionPane.INFORMATION_MESSAGE,
+                null);
+		jeu.dispose();
+		// TODO Auto-generated method stub
+		
+	}
 
 }
