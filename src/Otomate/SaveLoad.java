@@ -23,14 +23,18 @@ public final class SaveLoad {
 	private SaveJeu jeu;
 	private String name;
 
-	SaveLoad(final SaveJeu jeu, String name) {
+	public SaveLoad(final SaveJeu jeu, String name) {
 		this.jeu = jeu;
 		this.name = name;
 	}
 	
-	SaveLoad(String nam) {
+	public SaveLoad(String nam) {
 		jeu = new SaveJeu();
 		name = nam;
+	}
+	
+	public SaveJeu getJeu() {
+		return jeu;
 	}
 
 	@SuppressWarnings({ "static-access" })
@@ -181,7 +185,6 @@ public final class SaveLoad {
 			//nouv.setName(lire(fout, '\0'));
 			nbPers = Integer.parseInt(lire(fout, '\\'));
 			nouv.setMechant(Integer.parseInt(lire(fout, ';')) == 1);
-			l = new LinkedList<$Personnage>();
 			for (int j = 0; j < nbPers; j++) {
 				if (nouv.estMechant()) {
 					pe = new Mechant();
@@ -213,7 +216,7 @@ public final class SaveLoad {
 						pe.getAutomate().setTransition(m,k,Integer.parseInt(lire(fout, ':')));
 					}
 				}
-				l.add(pe);
+				nouv.getPersonnages().add(pe);
 			}
 			fout.skip(1);
 			jeu.joueurs.add(nouv);

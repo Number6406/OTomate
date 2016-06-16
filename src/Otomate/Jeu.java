@@ -449,8 +449,19 @@ public class Jeu {
     	return sj;
     }
     
-    public static void charger(String fichier) {
+    public static void sauvegarder() throws IOException {
+    	SaveLoad sl = new SaveLoad(createSaveJeu(),"blblbl.txt");
+    	sl.save();
+    }
+    
+    public static void charger(String fichier) throws IOException {
     	SaveLoad sl = new SaveLoad(fichier);
+    	sl.load();
+    	plateau = sl.getJeu().plateau;
+    	joueurs = sl.getJeu().joueurs;
+    	refPersos = sl.getJeu().refPersos;
+    	joueurZombie = sl.getJeu().joueurZombie;
+    	univers = sl.getJeu().univers;
     }
     
     /**
@@ -470,11 +481,10 @@ public class Jeu {
         }
 
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
-        else {charger("Start.txt");}
+        else {charger("blblbl.txt");}
         //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
-        SaveLoad save = new SaveLoad(createSaveJeu(), "Start.txt");
-        save.save();
+        //sauvegarder();
         
         while (!finPartie()) {
             while (pause) {

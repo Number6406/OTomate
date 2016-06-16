@@ -16,8 +16,8 @@ public class Pfind {
 	
 	AStarPathFinder pf = new AStarPathFinder(map, max, false);
 	p=pf.findPath(new Mover(), from.getX(), from.getY(), To.getX(), To.getY());
-	int x=p.getStep(p.getLength()-1).getX();
-	int y=p.getStep(p.getLength()-1).getY();
+	int x=p.getStep(1).getX();
+	int y=p.getStep(1).getY();
 	
 	if(x>from.getX()){
 	next=2;	

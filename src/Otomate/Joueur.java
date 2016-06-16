@@ -42,7 +42,7 @@ public class Joueur {
     }
 
     public Joueur() {
-    	
+    	personnages = new LinkedList<$Personnage>();
 	}
 
 	public String getName() {

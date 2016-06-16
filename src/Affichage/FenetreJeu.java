@@ -308,7 +308,12 @@ public class FenetreJeu extends JFrame {
         sauver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Action de sauvegarde ici
+                try {
+					Jeu.sauvegarder();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
         
@@ -386,8 +391,13 @@ public class FenetreJeu extends JFrame {
                 new String[]{"Oui, Quitter.", "Annuler"},
                 "default");
         if(retour == JOptionPane.OK_OPTION) {
-            dispose();
+            System.exit(0);
         }
+    }
+    
+    public void sauvegarder() {
+        JDialog saveW = new JDialog(this, "Sauvegarder la partie");
+        
     }
     
     public static void main(String[] args) throws IOException {
