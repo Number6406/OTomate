@@ -5,6 +5,8 @@
  */
 package Affichage;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
@@ -28,6 +30,8 @@ public abstract class FenetreBase extends JFrame {
         } else {
             this.setSize(l, h);
         }
+        
+        this.setLocationRelativeTo(null);
 
         this.setVisible(true); // On affiche la fenêtre
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // La fermeture via l'action proncipale est possible
