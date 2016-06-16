@@ -38,6 +38,10 @@ public abstract class $Action {
 		valeur = -1;
 	}
 	
+	public int getValeur(){
+		return valeur;
+	}
+	
 	/**
 	 * 
 	 * @param l, la liste des conditions environnantes
