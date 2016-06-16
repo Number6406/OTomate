@@ -214,41 +214,27 @@ public abstract class $Personnage {
 		return s;
 	}
 
-	// Mï¿½thodes
+	// Méthodes
 	/**
 	 * 
-	 * @param listCond
-	 *            la liste des conditions
-	 * @param G
-	 *            la grille
-	 * @param listCont
-	 *            la liste des contenus de cases
-	 * @param listJoueur
-	 *            la liste des joueurs
-	 * @return La description textuelle de l'action effectuï¿½e
+	 * @param G, la grille de Jeu
+	 * @param listJoueur,la liste des joueurs
+	 * @param U, l'univers
+	 * @return le nom de l'action effectuée
 	 */
-	public String jouer(List<Conditions> listCond, Grille G, List<Objet> listCont, List<Joueur> listJoueur) {
-		List<Boolean> lb = G.recupcond(this, listCond, listCont, listJoueur);
-		System.out.println("cond total : "+lb.toString());
-		List<Integer> lc = G.conditions(this, lb);
-		System.out.println("cond possible"+lc.toString());
-		List<Integer> la = G.actionsPossibles(this, lc);
-		System.out.println("Actions possible "+la.toString());
-		$Action actionAFaire = G.takeOne(la);
-		System.out.println("choix :" + actionAFaire);
-		G.Maj(this, actionAFaire, listJoueur, lc);
-		return actionAFaire.toString();
-	}
-	
 	public String jouer(Grille G, List<Joueur> listJoueur, Univers U){
 		List<Boolean> lb = G.recupcond(this, U.getConditions(), U.getObjets(), listJoueur);
 		List<Integer> lc = G.conditions(this, lb);
+		List<Integer> lt = G.transitionsPossibles(this,lc);
 		List<Integer> la = G.actionsPossibles(this, lc);
 		System.out.println("Actions possible "+la.toString());
 		$Action actionAFaire;		
 		int numaction;
 		if(la.size()!=0){
-			numaction = la.get(Grille.random(0, la.size()));
+			int x = Grille.random(0, la.size());
+			numaction = la.get(x);
+			this.setEtat(lt.get(x));
+			System.err.println("PERSONNAGE " + this.getNom() + " DANS ETAT " + this.getEtat());
 		} else {
 			numaction = 0; // Ne rien faire
 		}

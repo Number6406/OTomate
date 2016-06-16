@@ -41,6 +41,10 @@ public class Gentil extends $Personnage {
         efdrogue = 0;
         nom = "Gentil";
     }
+    
+    public boolean estArme() {
+    	return arme!=null;
+    }
 
     public int getDmg() {
         if (arme == null) {

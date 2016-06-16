@@ -11,10 +11,13 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +70,14 @@ public class FenetreNouvellePartie extends FenetreBase {
 
     public FenetreNouvellePartie(List<String> univers) {
         super(500, 300, "Création d'une nouvelle partie");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                new FenetreMenu();
+                dispose();
+            }
+        });
         this.setLayout(new BorderLayout());
 
         GridBagConstraints c = new GridBagConstraints();
@@ -111,8 +121,11 @@ public class FenetreNouvellePartie extends FenetreBase {
 
         c.gridx = 0;
         c.gridy = 0;
+        
+        int cle_radio = 1;
         for (String u : univers) {
             JRadioButton bcu = new JRadioButton(u);
+            bcu.setMnemonic(cle_radio++);
             bcu.setSelected(true);
             radio_univers.add(bcu);
             pan_radio.add(bcu, c);
@@ -126,13 +139,14 @@ public class FenetreNouvellePartie extends FenetreBase {
         b_annuler.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new FenetreMenu();
                 dispose();
             }
         });
 
         b_suivant.addActionListener((ActionEvent e) -> {
             this.setVisible(false);
-            FenetreCreation fCreation = new FenetreCreation(getRatio(), getNbP(), getNbJ());
+            FenetreCreation fCreation = new FenetreCreation(getRatio(), getNbP(), getNbJ(), getUniv());
             fCreation.setPrevious(this);
         });
 
@@ -155,6 +169,16 @@ public class FenetreNouvellePartie extends FenetreBase {
 
     public int getNbJ() {
         return ((Integer) spin_joueurs.getValue());
+    }
+    
+    public int getUniv() {
+        ButtonModel selectedModel = radio_univers.getSelection();
+        if (selectedModel != null) {
+            // and dislay it
+            System.out.println("On choisit le modèle : "+ selectedModel.getMnemonic());
+            return selectedModel.getMnemonic();
+        }
+        return 1; // par défaut, on prend zombie
     }
 
 }
