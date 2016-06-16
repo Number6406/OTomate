@@ -355,23 +355,25 @@ public class FenetreJeu extends JFrame {
                 String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if(p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
                 	System.err.println("C'est un gentil");
-                	String iconeArme = "";
                     if(((Gentil) p).getArme() != null) {
                     	System.err.println("Le joueur Ã  une arme !");
-                        iconeArme = ((Gentil) p).getArme().getPath();
+                        String iconeArme = ((Gentil) p).getArme().getPath();
+                        arme = new ImageIcon(getClass().getResource(iconeArme));
                     }
-                    arme = new ImageIcon(getClass().getResource(iconeArme));
+                    
                     
                     if(((Gentil) p).getRemede() != 0){
+                    System.err.println("Le joueur a  un remede !"); 
                     String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
                     remede = new ImageIcon(getClass().getResource(iconeRemede));
                     }
                     
                     if(((Gentil) p).getInventaire() != 0) {
-                    	System.err.println("Le joueur Ã  une arme !");
-                        iconeArme = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                    	System.err.println("Le joueur a  un item dans l'inventaire !");
+                        String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                        consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    arme = new ImageIcon(getClass().getResource(iconeArme));
+                    
                     
                 }
                 

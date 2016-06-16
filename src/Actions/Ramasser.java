@@ -33,7 +33,12 @@ public class Ramasser extends $Action {
 				if (l.get(0) == 10) { // arme
 					Objet arme = ((Gentil) p).getArme();
 					((Gentil) p).setArme(g.getUnivers().getObjets().get(g.Pos(p.getPosition()).getValeur()));
-					g.Pos(p.getPosition()).setValeur(arme.getId());
+					if (arme!=null){ 
+			            g.Pos(p.getPosition()).setValeur(arme.getId()); 
+			          } 
+			          else{ 
+			            g.Pos(p.getPosition()).setValeur(0); 
+			          } 
 				}
 				else if (l.get(0) == 16) { // seringue
 					

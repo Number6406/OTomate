@@ -3,7 +3,7 @@
 	<etat_init>1</etat_init>
 	
 	<case>
-	    <etat>0</etat>
+	    <etat>1</etat>
 	    <condition>1</condition>
 	    <action>1</action>
 	    <transition>1</transition>
