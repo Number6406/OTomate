@@ -94,8 +94,6 @@ public class Jeu {
         //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
         System.out.println("taille joueurs " + joueurs.size());
         plateau = new Grille(joueurs, univers);
-        joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(5,5));
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(8,5));
         System.out.println("taille joueurs 2 " + joueurs.size());
         refPersos = new LinkedList<Integer>();
         //String tempHistorique;
@@ -183,6 +181,9 @@ public class Jeu {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs, univers);
+            if(((Gentil) P).getPiege() != 0){
+            	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
+            }
             historique.ceTour().addEvenement(new Evenement(P, th));
             //Thread.sleep(period);
         }
@@ -286,7 +287,6 @@ public class Jeu {
             //Thread.sleep(period);
             System.out.println("tour mechant");
         }
-        System.out.println("piege ? "+plateau.Pos(P.getPosition()).piegee);
     }
 
     /**
