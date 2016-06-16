@@ -336,7 +336,6 @@ public class Jeu {
                 j++;
             }
             }
-            }
         }
 
         return s;
