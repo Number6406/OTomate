@@ -7,7 +7,6 @@ import Otomate.$Personnage;
 import Otomate.Coordonnees;
 import Otomate.Gentil;
 import Otomate.Grille;
-import Otomate.Jeu;
 import Otomate.Mechant;
 import PathFinding.*;
 

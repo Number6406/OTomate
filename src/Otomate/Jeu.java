@@ -91,7 +91,7 @@ public class Jeu {
         couleurs.add(Color.black);
 
         initJoueurs(nbPersoParZombie, nZombie, xmls, couleurs);
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
+        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(12, 12));
         System.out.println("taille joueurs " + joueurs.size());
         plateau = new Grille(joueurs, univers);
         System.out.println("taille joueurs 2 " + joueurs.size());
@@ -246,42 +246,7 @@ public class Jeu {
         }
         return false;
     }
-
-    /* public static void veriftransfo($Personnage P, Mechant E, List<Joueur> l) {
-        if (P instanceof Gentil) {
-            if (P.getVie() == 0 && ((Gentil) P).getInfecte() == true) {
-                int i, j;
-                for (i = 0; i < l.size(); i++) {
-                    for (j = 0; j < l.get(i).getSizePersonnages(); j++) {
-                        if (l.get(i).getPersonnagesI(j) == P) {
-                            l.get(i).getPersonnages().remove(j);
-                        } else if (l.get(i).getPersonnagesI(j) == E) {
-                            l.get(i).getPersonnages().add(P);
-                        }
-                    }
-                }
-                P = new Mechant(E);
-            } else if (P.getVie() == 0) {
-                int i, j;
-                for (i = 0; i < l.size(); i++) {
-                    for (j = 0; j < l.get(i).getSizePersonnages(); j++) {
-                        if (l.get(i).getPersonnagesI(j) == P) {
-                            l.get(i).getPersonnages().remove(j);
-                        }
-                    }
-                }
-            }
-        } else if (P.getVie() == 0) {
-            int i, j;
-            for (i = 0; i < l.size(); i++) {
-                for (j = 0; j < l.get(i).getSizePersonnages(); j++) {
-                    if (l.get(i).getPersonnagesI(j) == P) {
-                        l.get(i).getPersonnages().remove(j);
-                    }
-                }
-            }
-        }
-    }*/
+    
     // UN TOUR DE JEU
     /**
      * Fait jouer Un personnage.
