@@ -25,7 +25,7 @@ public class Fouiller extends $Action {
 		if (p instanceof Gentil) {
 			int rnd;
 			if (l.get(0) == 15) {
-				if (g.Pos(p.getPosition()).getValeur() == 5) { // on se
+				if (g.Pos(p.getPosition()).getValeur() == 4) { // on se
 																	// trouve
 																	// dans un
 																	// immeuble
@@ -47,7 +47,7 @@ public class Fouiller extends $Action {
 						trouve = 7;
 					}
 				}
-				else if (g.Pos(p.getPosition()).getValeur() == 10) {	//on se trouve dans un hopital
+				else if (g.Pos(p.getPosition()).getValeur() == 9) {	//on se trouve dans un hopital
 					rnd = Grille.random(0, 101);
 					if (rnd < 50) { // Recupere un antidote 50% chances
 						((Gentil) p).setRemede(1);
@@ -58,7 +58,7 @@ public class Fouiller extends $Action {
 						rem = true;
 					}
 				}
-				else if (g.Pos(p.getPosition()).getValeur() == 11) {	//on se trouve dans un grange
+				else if (g.Pos(p.getPosition()).getValeur() == 10) {	//on se trouve dans un grange
 					rnd = Grille.random(0, 101);
 					if (rnd < 25) { // S'equipe d'un fusil a pompe 25% chances
 						((Gentil) p).setArme(g.getUnivers().getObjets().get(14));
@@ -88,7 +88,7 @@ public class Fouiller extends $Action {
 			}
 			else if (anti == true) {
 				return ("a trouvé " + Jeu.univers.getNomAntidote());
-			} else if (effect == true) {
+			} else if (rem == true) {
 				return ("a trouvé " + Jeu.univers.getNomRemede());
 			} else {
 				return ("a trouvé " + Jeu.univers.getObjets().get(trouve).getName());

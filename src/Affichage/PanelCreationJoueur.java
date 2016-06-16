@@ -41,6 +41,43 @@ public class PanelCreationJoueur extends JPanel {
             this.setLayout(new GridBagLayout());
             this.i = i;
             this.nbP = nbP;
+            switch(i){
+            case 1:
+            	maCouleur=Color.black;
+            break;
+            
+            case 2:
+            	maCouleur=Color.blue;
+            break;
+            
+            case 3:
+            	maCouleur=Color.red;
+            break;
+            
+            case 4:
+            	maCouleur=Color.green;
+            break;
+            
+            case 5:
+            	maCouleur=Color.yellow;
+            break;
+            
+            case 6:
+            	maCouleur=Color.pink;
+            break;
+            
+            case 7:
+            	maCouleur=Color.white;
+            break;
+            
+            case 8:
+            	maCouleur=Color.DARK_GRAY;
+            break;
+            
+            default:
+            	maCouleur=Color.orange;
+            break;
+            }
             // panelJ.add(this);
 
             c = new GridBagConstraints();
@@ -79,6 +116,7 @@ public class PanelCreationJoueur extends JPanel {
             c.gridwidth = 1;
             choixCouleur=new JButton();
             this.add(choixCouleur, c);
+            choixCouleur.setBackground(maCouleur);
             choixCouleur.addActionListener(new ActionListener() {
 
                 @Override

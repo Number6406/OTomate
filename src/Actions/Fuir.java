@@ -250,7 +250,8 @@ public class Fuir extends $Action {
 			Coordonnees c=p.getPosition().CalculCase(path.getDirection());
 			if(!(ppp.getX()==c.getX() && ppp.getY()==c.getY())){
 				//if(g.get(c.getX(), c.getY()).Passable(Jeu.univers.getObjets())) 
-					p.setPosition(c);		
+					p.setPosition(c);
+					effect = true;
 			}
 			else{
 				//Ne fais rien
