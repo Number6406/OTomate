@@ -55,7 +55,7 @@
 		<use>0</use>
 		<name>Navigation privée</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/prive.png</path>
+		<path>../Graphics/Tiles/Robot/private.png</path>
 	</objet>
 	<objet>
 		<id>7</id>
