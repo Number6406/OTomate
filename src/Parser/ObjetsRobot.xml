@@ -77,7 +77,7 @@
 		<id>9</id>
 		<type>7</type>
 		<use>0</use>
-		<name>Yahoo</name>
+		<name>Duck Duck Go</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/building2.png</path>
 	</objet>
