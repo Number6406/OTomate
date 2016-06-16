@@ -46,75 +46,6 @@ public class FenetreCreation extends FenetreBase {
     JButton bValider = new JButton("Commencer");
     JButton bAnnuler = new JButton("Annuler");
 
-    public void leave() {
-        int i;
-        int nb = 0;
-        int id = 1;
-        List<Integer> li = new LinkedList<>();
-        for (i = 0; i < l.size(); i++) {
-            if (l.get(i).zombis) {
-                nb++;
-                li.add(i);
-            }
-        }
-        if (nb == 1) {
-            System.out.println("le zombie sera le joueur " + (li.get(0) + 1));
-            id = (li.get(0));
-        } else if (nb > 1) {
-            id = Grille.random(0, li.size());
-            System.out.println("le zombie sera le joueur " + (li.get(id) + 1));
-            id = li.get(id);
-        } else if (nb == 0) {
-            id = Grille.random(0, l.size());
-            System.out.println("le zombie sera le joueur " + (id+1));
-
-        }
-
-        List<List<String>> lls = new LinkedList<>();
-        int compt = 0;
-        for (i = 0; i < l.size(); i++) {
-                lls.add(i - compt, l.get(i).Recup_Strings());
-        }
-        
-        String az = l.get(id).mechant.chemin.getText();
-        List<String> lz = new LinkedList<String>();        
-        lz.add(az);
-        lls.set(id, lz);
-        List<Color> lc = new LinkedList<>();
-        for (i = 0; i < l.size(); i++) {
-            lc.add(i, l.get(i).maCouleur);
-        }
-
-        /* Pr�t a return :
-         *  lls = list de list des chemins vers automate - celui du zombis 
-         *  (ex : si 3 joueur dont le joueur 2 est infect�, 
-         *  lls contient les listes de 1 et 3)
-         *  
-         *  az = chemin vers l'automate du zombis (String)
-         *  id = num�ro du joueur zombis (de 1 � n) 
-         *  lc = Liste des Couleurs des Joueurs (List<Color>)
-         */
-        
-        
-        //Retourner dans le jeu
-        System.out.println("id="+id);
-        Jeu.setNbZombie(id);
-        Jeu.setCouleurP(lc);
-        Jeu.setXMLS(lls);
-        Jeu.go();
-        
-        dispose();
-    }
-
-    public boolean cool(int ratio, int nbP, int nbJ) {
-        int i;
-        boolean b = true;
-        for (i = 0; i < nbJ; i++) {
-            b = b && (l.get(i)).cool();
-        }
-        return b;
-    }
-
     public FenetreCreation(int ratio, int nbP, int nbJ, int univers) {
         super(500, 400, "Création des joueurs pour la partie");
 
@@ -146,7 +77,7 @@ public class FenetreCreation extends FenetreBase {
                 dispose();
             }
         });
-        
+
         pan_b.add(bValider, BorderLayout.EAST);
 
         bValider.addActionListener(new ActionListener() {
@@ -163,6 +94,77 @@ public class FenetreCreation extends FenetreBase {
                 }
             }
         });
+    }
+
+    public void leave() {
+        int i;
+        int nb = 0;
+        int id = 1;
+        List<Integer> li = new LinkedList<>();
+        for (i = 0; i < l.size(); i++) {
+            if (l.get(i).zombis) {
+                nb++;
+                li.add(i);
+            }
+        }
+        if (nb == 1) {
+            System.out.println("le zombie sera le joueur " + (li.get(0) + 1));
+            id = (li.get(0));
+        } else if (nb > 1) {
+            id = Grille.random(0, li.size());
+            System.out.println("le zombie sera le joueur " + (li.get(id) + 1));
+            id = li.get(id);
+        } else if (nb == 0) {
+            id = Grille.random(0, l.size());
+            System.out.println("le zombie sera le joueur " + (id+1));
+
+        }
+
+        List<List<String>> lls = new LinkedList<>();
+        List<String> listNames = new LinkedList<>();
+        int compt = 0;
+        for (i = 0; i < l.size(); i++) {
+            lls.add(i - compt, l.get(i).Recup_Strings());
+            listNames.add(i-compt, l.get(i).recupName());
+        }
+
+        String az = l.get(id).mechant.chemin.getText();
+        List<String> lz = new LinkedList<String>();
+        lz.add(az);
+        lls.set(id, lz);
+        List<Color> lc = new LinkedList<>();
+        for (i = 0; i < l.size(); i++) {
+            lc.add(i, l.get(i).maCouleur);
+        }
+        
+        /* Pr�t a return :
+         *  lls = list de list des chemins vers automate - celui du zombis 
+         *  (ex : si 3 joueur dont le joueur 2 est infect�, 
+         *  lls contient les listes de 1 et 3)
+         *  
+         *  az = chemin vers l'automate du zombis (String)
+         *  id = num�ro du joueur zombis (de 1 � n) 
+         *  lc = Liste des Couleurs des Joueurs (List<Color>)
+         */
+        //Retourner dans le jeu
+        
+        System.err.println("size : "+lls.size());
+        Jeu.setUserNames(listNames);
+        Jeu.setNbZombie(id);
+        Jeu.setCouleurP(lc);
+        Jeu.setXMLS(lls);
+        Jeu.go();
+
+        dispose();
+    }
+
+    public boolean cool(int ratio, int nbP, int nbJ) {
+        int i;
+        boolean b = true;
+        for (i = 0; i < nbJ; i++) {
+            b = b && (l.get(i)).cool();
+        }
+        return b;
     }
 
     public void setPrevious(FenetreNouvellePartie f) {

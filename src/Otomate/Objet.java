@@ -23,21 +23,23 @@ public class Objet {
 	private String name;
 	private boolean passable;
 	private String path;
+	private String piege;
 	
 	// Constructeur
-	public Objet(int id, int type, int use, String name, boolean passable, String path) {
+	public Objet(int id, int type, int use, String name, boolean passable, String path, String piege) {
 		this.id = id;
 		this.type = type;
 		this.use = use;
 		this.name = name;
 		this.passable = passable;
 		this.path = path;
+		this.piege = piege;
 	}
 	
 	// Getteurs
-        public int getId() {
-            return id;
-        }
+    public int getId() {
+        return id;
+    }
         
 	public int getType() {
 		return type;
@@ -57,6 +59,10 @@ public class Objet {
 	
 	public String getPath(){
 		return path;
+	}
+	
+	public String getPathPiege(){
+		return piege;
 	}
 	
 	

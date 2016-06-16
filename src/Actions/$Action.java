@@ -18,10 +18,9 @@ Actions :
     9 Ramasser
     10 Pieger
     11 Manger/Restaurer
-    12 Soigner
-    13 Fuir
-    14 Détruire
-    15 Fouiller
+    12 Fuir
+    13 Détruire
+    14 Fouiller
 */
 public abstract class $Action {
 	protected int valeur;

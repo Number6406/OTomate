@@ -18,22 +18,24 @@ import javax.swing.JScrollBar;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Joueur;
+import Otomate.Mechant;
 import Otomate.Objet;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
+
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.io.File;
 
 import javax.imageio.ImageIO;
@@ -164,7 +166,12 @@ public class FenetreJeu extends JFrame {
                 return false;
             }
         });
+        
         tab_history.getTableHeader().setReorderingAllowed(false);
+        
+        TableColumn col = tab_history.getColumnModel().getColumn(1);
+        col.setPreferredWidth(200);
+        
         scroll_history = new JScrollPane(tab_history);
         tab_legende = new JTable(new DefaultTableModel(new Object[]{"Id", "Img", "Nom", "Obstacle"}, 0) {
             /**
@@ -345,6 +352,7 @@ public class FenetreJeu extends JFrame {
         for(int i = nbRow - 1; i >= 0; i--) {
             ((DefaultTableModel) tab_perso.getModel()).removeRow(i);
         }
+        
         for(Joueur j : Jeu.joueurs) {
             for($Personnage p : j.getPersonnages()) {
                 // Récupération des icones d'images pour les afficher.
@@ -355,23 +363,31 @@ public class FenetreJeu extends JFrame {
                 String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if(p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
                 	System.err.println("C'est un gentil");
-                	String iconeArme = "";
                     if(((Gentil) p).getArme() != null) {
                     	System.err.println("Le joueur à une arme !");
-                        iconeArme = ((Gentil) p).getArme().getPath();
+                        String iconeArme = ((Gentil) p).getArme().getPath();
+                        arme = new ImageIcon(getClass().getResource(iconeArme));
                     }
-                    arme = new ImageIcon(getClass().getResource(iconeArme));
+                    
                     
                     if(((Gentil) p).getRemede() != 0){
-                    String iconeRemede = Jeu.univers.getObjets().get(((Gentil) p).getRemede()).getPath();
+                    System.err.println("Le joueur a� un remede !"); 
+                    String iconeRemede = Jeu.univers.getRemede(((Gentil) p).getRemede());
                     remede = new ImageIcon(getClass().getResource(iconeRemede));
                     }
                     
                     if(((Gentil) p).getInventaire() != 0) {
-                    	System.err.println("Le joueur à une arme !");
-                        iconeArme = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                    	System.err.println("Le joueur a� un item dans l'inventaire !");
+                        String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                        consommable = new ImageIcon(getClass().getResource(cons));
                     }
-                    arme = new ImageIcon(getClass().getResource(iconeArme));
+                    if(p instanceof Mechant)
+                    if(((Mechant) p).getInventaire() != 0) {
+                    	System.err.println("Le joueur a� un item dans l'inventaire !");
+                        String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
+                        consommable = new ImageIcon(getClass().getResource(cons));
+                    }
+                    
                     
                 }
                 

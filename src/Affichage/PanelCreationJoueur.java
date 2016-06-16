@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -84,6 +85,7 @@ public class PanelCreationJoueur extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     JDialog jd = new JDialog();
                     JColorChooser jc = new JColorChooser();
+                    
                     JButton jblalcolique = new JButton();
                     jblalcolique.setSize(new Dimension(50,50));
                     jd.add(jblalcolique);
@@ -101,6 +103,7 @@ public class PanelCreationJoueur extends JPanel {
                     });
                     jd.add(jc);
                     jd.setSize(new Dimension(500,400));
+                    jd.setLocationRelativeTo(null);
                     jd.setVisible(true);
 
                 }
@@ -113,8 +116,6 @@ public class PanelCreationJoueur extends JPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                             zombis = jc.isSelected();
-                            System.out.println("le joueur " +i+" c'est un zombis ? " + zombis + " wesh ");
-
                     }
             });
             this.add(jc, c);
@@ -150,13 +151,11 @@ public class PanelCreationJoueur extends JPanel {
 		boolean bm,bp;
 		if (mechant==null){
 			bm=false;
-			//System.out.println("coucou1");
 		}
 		else bm=mechant.cool();
 		
 		if(listePersos==null){
 			bp=false;
-		//	System.out.println("coucou3");
 		}
 		else bp=listePersos.cool();
 		
@@ -171,5 +170,9 @@ public class PanelCreationJoueur extends JPanel {
 		}
 		return l;
 	}
+        
+        public String recupName() {
+            return userName.getText();
+        }
 
 }
