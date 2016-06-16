@@ -54,6 +54,10 @@ public class Grille {
     public void set(int val, int x, int y){
     	g[x][y].setValeur(val);
     }
+    
+    public void setCase(int x, int y, Case c) {
+    	g[x][y] = c;
+    }
 
 	public void setNbetats(List<Integer> nbetats) {
 		this.nbetats = nbetats;
