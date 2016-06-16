@@ -438,7 +438,7 @@ public class Jeu {
     }
 
     public static void setUserNames(List<String> listNames) {
-        userNames = listNames;
+        names = listNames;
     }
     
     /**
