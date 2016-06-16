@@ -25,12 +25,12 @@ public class Joueur {
         setCouleur(couleur);
         if (mechant) {
             for (int i = 0; i < nbMechants; i++) {
-            	personnages.add(new Mechant(xmls.get(0), couleur));
+            	personnages.add(new Mechant(xmls.get(0), couleur,name + "_" + (i+1)));
             	//personnages.add(new Mechant(personnages.get(0),couleur));
             }
         } else {
             for (int i = 0; i < xmls.size(); i++) {
-                personnages.add(new Gentil(xmls.get(i), couleur));
+                personnages.add(new Gentil(xmls.get(i), couleur,name + "_" + (i+1)));
             }
         }
     }
