@@ -8,6 +8,26 @@ public class Conditions {
     private int id;
     private int direction;
     private int type;
+  //Liste conditions par case 
+    /*CaseVide ("Case vide", 0),  
+      CheminN ("Chemin au Nord", 1),  
+      CheminS ("Chemin au Sud", 2),  
+      CheminE ("Chemin au Est", 3),  
+      CheminO ("Chemin au Ouest", 4),  
+      EnnemiN ("Ennemi au Nord", 5),  
+      EnnemiS ("Ennemi au Sud", 6),  
+      EnnemiE ("Ennemi au Est", 7),  
+      EnnemiO ("Ennemi au Ouest", 8),  
+      Comestible ("Comestible sur ma Case", 9),  
+      Arme ("un arme sur la case", 10),  //pompe ou couteau ou branche  
+      ObstacleN ("Obstacle au nord", 11),  
+	  ObstacleS ("Obstacle au sud", 12),  
+	  ObstacleE ("Obstacle a l'est", 13),
+	  ObstacleO ("Obstacle a l'ouest", 14),
+	  Fouillable ("est fouillable", 15),  
+	  Seringue ("la drogue c'est bon", 16),  
+	  Destructible ("Objet destructible sur ma case", 17);
+    */  
     /*
      *      { 0 : SP
     		{ 1 : N

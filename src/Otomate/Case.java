@@ -1,5 +1,7 @@
 package Otomate;
 
+import java.util.List;
+
 public class Case {
 
 	// Attributs
@@ -28,5 +30,13 @@ public class Case {
 
 	public void setPiegee(boolean pie) {
     	piegee = pie;
+    }
+	
+	public boolean Passable(List<Objet> l){
+		int i;
+    	for(i=0;i<l.size();i++){
+    		if(l.get(i).getId()==this.element) return l.get(i).estPassable();
+    	}
+    return false;
     }
 }
