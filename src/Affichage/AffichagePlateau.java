@@ -41,7 +41,7 @@ public class AffichagePlateau extends JPanel {
     }
 
     void loadTiles(List<Objet> lo) {
-         tiles = new ArrayList<>();
+        tiles = new ArrayList<>();
         try {
             for (int i = 0; i < lo.size(); i++) {
                 BufferedImage img;
