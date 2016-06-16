@@ -345,6 +345,7 @@ public class FenetreJeu extends JFrame {
         for(int i = nbRow - 1; i >= 0; i--) {
             ((DefaultTableModel) tab_perso.getModel()).removeRow(i);
         }
+        
         for(Joueur j : Jeu.joueurs) {
             for($Personnage p : j.getPersonnages()) {
                 // Récupération des icones d'images pour les afficher.

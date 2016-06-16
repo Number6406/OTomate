@@ -18,7 +18,8 @@ public class Joueur {
     private List<$Personnage> personnages;
 
     //M�thodes
-    public Joueur(List<String> xmls, boolean estMechant, int nbMechants, Color couleur) {
+    public Joueur(String name, List<String> xmls, boolean estMechant, int nbMechants, Color couleur) {
+        this.name = name;
         personnages = new LinkedList<>();
         mechant = estMechant;
         setCouleur(couleur);
