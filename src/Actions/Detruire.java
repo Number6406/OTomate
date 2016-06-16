@@ -20,7 +20,7 @@ public class Detruire extends $Action {
 		if (l.get(0) == 17) {	//objet destructible sur ma case?
 			int aux;
 			aux = p.getInventaire();
-			p.setInventaire(8);	//on r�cup�re l'objet 8 en detruisant l'objet 12
+			p.setInventaire(7);	//on r�cup�re l'objet 8 en detruisant l'objet 12
 			if(aux != 0)
 				g.Pos(p.getPosition()).setValeur(aux);
 			else
