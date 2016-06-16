@@ -1,10 +1,12 @@
 package Otomate;
 
 import ImageEditor.ImageColor;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class Gentil extends $Personnage {
@@ -134,6 +136,11 @@ public class Gentil extends $Personnage {
         piege = nbtour;
     }
 
+	public String getEtatString(){
+		if(getEffets().equalsIgnoreCase("")) return "Sain";
+		else return getEffets();
+	}
+    
     @Override
     public String getEffets() {
         String effets = super.getEffets();

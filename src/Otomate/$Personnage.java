@@ -5,11 +5,13 @@ import java.util.List;
 
 import Actions.$Action;
 import ImageEditor.ImageColor;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 
 public abstract class $Personnage {
@@ -248,5 +250,9 @@ public abstract class $Personnage {
 		}
 		G.Maj(this, actionAFaire, listJoueur, lc);
 		return actionAFaire.toString();
+	}
+
+	public String getEtatString(){
+		return "Sain";
 	}
 }
