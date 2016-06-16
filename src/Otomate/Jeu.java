@@ -313,9 +313,8 @@ public class Jeu {
         $Personnage perso = null;
         for (i=0; i<lesJoueurs.size(); i++) {
             int j = 0;
-            if(player!=null && player.getPersonnages().size()!=0){
-            for ($Personnage perso : player.getPersonnages()) {
             player = lesJoueurs.get(i);
+            if(player!=null){
             for (k=0; k<player.getSizePersonnages(); k++) {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
@@ -334,6 +333,7 @@ public class Jeu {
                     }
                 }
                 j++;
+            }
             }
             }
         }
