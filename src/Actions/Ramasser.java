@@ -5,6 +5,7 @@ import java.util.List;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Mechant;
 import Otomate.Objet;
 
 public class Ramasser extends $Action {
@@ -85,6 +86,13 @@ public class Ramasser extends $Action {
 			        	System.out.println("LE PERSONNAGE EST DROGUE AVEC LA DROGUE NUMERO : "+((Gentil) p).getDrogue());
 						g.Pos(p.getPosition()).setValeur(0);
 					}
+				}
+			}
+			else if(p instanceof Mechant){
+				if(l.get(0) == 10 || l.get(0) == 16){
+					aux = p.getInventaire();
+					p.setInventaire(g.Pos(p.getPosition()).getValeur());
+					g.Pos(p.getPosition()).setValeur(aux);					
 				}
 			}
 			effect = true;
