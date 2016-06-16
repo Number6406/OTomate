@@ -170,7 +170,7 @@ public class FenetreJeu extends JFrame {
         tab_history.getTableHeader().setReorderingAllowed(false);
         
         TableColumn col = tab_history.getColumnModel().getColumn(1);
-        col.setPreferredWidth(200);
+        col.setPreferredWidth(400);
         
         scroll_history = new JScrollPane(tab_history);
         tab_legende = new JTable(new DefaultTableModel(new Object[]{"Id", "Img", "Nom", "Obstacle"}, 0) {
