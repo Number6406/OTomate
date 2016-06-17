@@ -120,6 +120,8 @@ public class Fuir extends $Action {
 							p.setPosition(couest); // seule case disponible -->
 							// a l'ouest
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 					else if (l.get(4) == 8) {
@@ -127,6 +129,8 @@ public class Fuir extends $Action {
 							p.setPosition(csud); // seule case disponible --> au
 							// sud
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 					else {
@@ -136,10 +140,14 @@ public class Fuir extends $Action {
 						if (p.getPosition().getX()>0 && rnd == 1 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage ouest
 							p.setPosition(couest);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 						else if (p.getPosition().getY()<g.tailleY()-1 && g.Pos(csud).getValeur() != 3 && g.Pos(csud).getValeur() != 5) {	//passage sud
 							p.setPosition(csud);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 				}
@@ -148,6 +156,8 @@ public class Fuir extends $Action {
 						if (p.getPosition().getX()<g.tailleX()-1 && g.Pos(cest).getValeur() != 3 && g.Pos(cest).getValeur() != 5) {	//passage est
 							p.setPosition(cest);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 					else {
@@ -156,10 +166,14 @@ public class Fuir extends $Action {
 						if (p.getPosition().getX()<g.tailleX()-1 && rnd == 1 && g.Pos(cest).getValeur() != 3 && g.Pos(cest).getValeur() != 5) {	//passage est
 							p.setPosition(cest);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 						else if (p.getPosition().getX()>0 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage ouest
 							p.setPosition(couest);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 				}
@@ -168,14 +182,20 @@ public class Fuir extends $Action {
 					if (p.getPosition().getX()<g.tailleX()-1 && rnd == 1 && g.Pos(cest).getValeur() != 3 && g.Pos(cest).getValeur() != 5) {	//passage est
 						p.setPosition(cest);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if (p.getPosition().getY()<g.tailleY()-1 && rnd == 2 && g.Pos(csud).getValeur() != 3 && g.Pos(csud).getValeur() != 5) {	//passage sud
 						p.setPosition(csud);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if ( p.getPosition().getX()>0 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage ouest
 						p.setPosition(couest);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 				}
 			}
@@ -186,6 +206,8 @@ public class Fuir extends $Action {
 						if (g.Pos(cnord).getValeur() != 3 && g.Pos(cnord).getValeur() != 5 && p.getPosition().getY()>0) {	//passage nord
 							p.setPosition(cnord);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 					else {
@@ -194,10 +216,14 @@ public class Fuir extends $Action {
 						if (p.getPosition().getY()>0 && rnd == 1 && g.Pos(cnord).getValeur() != 3 && g.Pos(cnord).getValeur() != 5) {	//passage nord
 							p.setPosition(cnord);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 						else if (p.getPosition().getX()>0 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage ouest
 							p.setPosition(couest);
 							effect = true;
+				        	if(p.getInactivite()<20)
+				        		p.setInactivite(20);
 						}
 					}
 				}
@@ -206,14 +232,20 @@ public class Fuir extends $Action {
 					if (p.getPosition().getY()>0 && rnd == 1 && g.Pos(cnord).getValeur() != 3 && g.Pos(cnord).getValeur() != 5) {	//passage nord
 						p.setPosition(cnord);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if (p.getPosition().getY()<g.tailleY()-1 && rnd == 2 && g.Pos(csud).getValeur() != 3 && g.Pos(csud).getValeur() != 5) {	//passage sud
 						p.setPosition(csud);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if (p.getPosition().getX()>0 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage ouest
 						p.setPosition(couest);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 				}
 			}
@@ -223,10 +255,14 @@ public class Fuir extends $Action {
 					if (p.getPosition().getY()>0 && rnd == 1 && g.Pos(cnord).getValeur() != 3 && g.Pos(cnord).getValeur() != 5) {	//passage nord
 						p.setPosition(cnord);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if (p.getPosition().getX()<g.tailleX()-1 && g.Pos(cest).getValeur() != 3 && g.Pos(cest).getValeur() != 5) {	//passage est
 						p.setPosition(cest);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 				}
 				else {
@@ -234,14 +270,20 @@ public class Fuir extends $Action {
 					if (p.getPosition().getY()>0 && rnd == 1 && g.Pos(cnord).getValeur() != 3 && g.Pos(cnord).getValeur() != 5) {	//passage nord
 						p.setPosition(cnord);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if (p.getPosition().getY()<g.tailleY()-1 && rnd == 2 && g.Pos(cest).getValeur() != 3 && g.Pos(cest).getValeur() != 5) {	//passage est
 						p.setPosition(cest);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 					else if (p.getPosition().getX()>0 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage ouest
 						p.setPosition(couest);
 						effect = true;
+			        	if(p.getInactivite()<20)
+			        		p.setInactivite(20);
 					}
 				}
 			}
@@ -250,18 +292,25 @@ public class Fuir extends $Action {
 				if (p.getPosition().getY()>0 && rnd == 1 && g.Pos(cnord).getValeur() != 3 && g.Pos(cnord).getValeur() != 5) {	//passage nord
 					p.setPosition(cnord);
 					effect = true;
+		        	if(p.getInactivite()<20)
+		        		p.setInactivite(20);
 				}
 				else if (p.getPosition().getX()<g.tailleX()-1 && rnd == 2 && g.Pos(cest).getValeur() != 3 && g.Pos(cest).getValeur() != 5) {	//passage est
 					p.setPosition(cest);
 					effect = true;
+		        	if(p.getInactivite()<20)
+		        		p.setInactivite(20);
 				}
 				else if (p.getPosition().getY()<g.tailleY()-1 && g.Pos(csud).getValeur() != 3  && g.Pos(csud).getValeur() != 5) {	//passage sud
 					p.setPosition(csud);
 					effect = true;
+		        	if(p.getInactivite()<20)
+		        		p.setInactivite(20);
 				}
 			}
 			else { // aucun ennemi a proximite ne fait rien
-				
+				effect = false;
+				p.setInactivite(p.getInactivite()-1);
 			}
 		}
 		else if (p instanceof Mechant) {
@@ -272,13 +321,18 @@ public class Fuir extends $Action {
 				//if(g.get(c.getX(), c.getY()).Passable(Jeu.univers.getObjets())) 
 					p.setPosition(c);
 					effect = true;
+		        	if(p.getInactivite()<20)
+		        		p.setInactivite(20);
 			}
 			else{
 				//Ne fais rien
+				effect = false;
+				p.setInactivite(p.getInactivite()-1);
 			}
 		}
 		else {
 			effect = false;
+			p.setInactivite(p.getInactivite()-1);
 		}
 	}
 
