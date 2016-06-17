@@ -136,7 +136,7 @@ public class Gentil extends $Personnage {
     }
 
 	public String getEtatString(){
-		if(getEffets().equalsIgnoreCase("")) return "Sain";
+		if(getEffets().equalsIgnoreCase("")) return "sain";
 		else return getEffets();
 	}
     
@@ -145,10 +145,10 @@ public class Gentil extends $Personnage {
         String effets = super.getEffets();
 
         if (infecte) {
-            effets += "Inf ";
+            effets += "infecté" + ((saignement) ? "/" : "");
         }
         if (saignement) {
-            effets += "Saig ";
+            effets += "blessé";
         }
 
         return effets;
