@@ -19,7 +19,7 @@ Actions :
     10 Pieger
     11 Manger/Restaurer
     12 Fuir
-    13 Détruire
+    13 Detruire
     14 Fouiller
 */
 public abstract class $Action {

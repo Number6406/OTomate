@@ -59,7 +59,7 @@ public abstract class $Personnage {
                 }
 	}
 
-	protected $Personnage($Personnage cpy, Color couleur) {
+	protected $Personnage($Personnage cpy, Color couleur, String name) {
 
         if(this instanceof Gentil) {
             spriteURL = Jeu.univers.spriteGentil();
@@ -72,7 +72,7 @@ public abstract class $Personnage {
 		position = new Coordonnees(0, 0);
 		viemax = 100;
 		inventaire = 0;
-		nom = cpy.getNom();
+		nom = name;
 		dmg = 10;
 		this.couleur = couleur;
 		try {
