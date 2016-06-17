@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import Otomate.$Personnage;
+import Otomate.Case;
 import Otomate.Grille;
 import Otomate.Jeu;
 import Otomate.Objet;
@@ -30,6 +31,7 @@ public class AffichagePlateau extends JPanel {
 
     private Grille gr;
     private List<BufferedImage> tiles;
+    private List<BufferedImage> piegeTiles;
 
     void Affiche_perso(Graphics graph, $Personnage p) {
         String nom = p.getNom();
@@ -55,12 +57,19 @@ public class AffichagePlateau extends JPanel {
     }
 
     void loadTiles(List<Objet> lo) {
-         tiles = new ArrayList<>();
+        tiles = new ArrayList<BufferedImage>();
+        piegeTiles = new ArrayList<BufferedImage>();
         try {
             for (int i = 0; i < lo.size(); i++) {
                 BufferedImage img;
                 img = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPath()).getFile())); //Version Linux
                 tiles.add(img);
+                
+                if(lo.get(i).getPathPiege() != null) {
+                    BufferedImage piegeImg;
+                    piegeImg = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPathPiege()).getFile()));
+                    piegeTiles.add(i, piegeImg);
+                }
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -97,12 +106,17 @@ public class AffichagePlateau extends JPanel {
         }
     }
 
-    void Affiche_case(Graphics graph, int image, int x, int y) {
-        if (image < tiles.size()) {
-            graph.drawImage(tiles.get(image), x * TAILLECASE, y * TAILLECASE, TAILLECASE, TAILLECASE, null);
+    void Affiche_case(Graphics graph, Case c, int x, int y) {
+        int image = c.element;
+        if( c.piegee && image < piegeTiles.size() && piegeTiles.get(image) != null) {
+            graph.drawImage(piegeTiles.get(image), x * TAILLECASE, y * TAILLECASE, TAILLECASE, TAILLECASE, null);
         } else {
-            graph.setColor(Color_int(image));
-            graph.fillRect(TAILLECASE * x, TAILLECASE * y, TAILLECASE, TAILLECASE);
+            if (image < tiles.size()) {
+                graph.drawImage(tiles.get(image), x * TAILLECASE, y * TAILLECASE, TAILLECASE, TAILLECASE, null);
+            } else {
+                graph.setColor(Color_int(image));
+                graph.fillRect(TAILLECASE * x, TAILLECASE * y, TAILLECASE, TAILLECASE);
+            }
         }
     }
 
@@ -142,7 +156,7 @@ public class AffichagePlateau extends JPanel {
         TAILLECASE--;	
         for (j = 0; j < maxy; j++) {
             for (i = 0; i < maxx; i++) {
-                Affiche_case(g, gr.get(i, j).element, i, j);
+                Affiche_case(g, gr.get(i, j), i, j);
             }
         }
         

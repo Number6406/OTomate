@@ -32,7 +32,7 @@ public class Gentil extends $Personnage {
         infecte = saignement = false;
         vie = viemax;
         paralysie = 1;
-        piege = 10;
+        piege = 0;
         efdrogue = 0;
     }
     
