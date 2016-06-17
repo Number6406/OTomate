@@ -6,7 +6,7 @@ public class Gentil extends $Personnage {
 
     /*
 	 * arme = numero de l'objet
-	 * (25.pompe 15.couteau 5 .branche correspond au degats supp)
+	 * (30.pompe 20.couteau 15.branche correspond au degats des armes)
      */
 
  /*

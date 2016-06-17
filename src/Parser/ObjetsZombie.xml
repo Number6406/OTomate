@@ -70,7 +70,7 @@
 	<objet>
 		<id>8</id>
 		<type>1</type>
-		<use>15</use>
+		<use>20</use>
 		<name>un Couteau</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/knife.png</path>
@@ -112,7 +112,7 @@
 	<objet>
 		<id>13</id>
 		<type>1</type>
-		<use>5</use>
+		<use>15</use>
 		<name>une Branche</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/branch.png</path>
@@ -120,7 +120,7 @@
 	<objet>
 		<id>14</id>
 		<type>1</type>
-		<use>25</use>
+		<use>30</use>
 		<name>un Fusil à pompe</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Zombie/gun.png</path>
