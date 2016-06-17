@@ -51,13 +51,8 @@
 	</action>
 	<action>
 		<id>10</id>
-<<<<<<< HEAD
 		<succes>pose un piege</succes>
-		<echec>essaye de pieger quelque chose qui ne peut pas l'etre</echec>
-=======
-		<succes>pose un piège</succes>
-		<echec>est trop nul wesh, il peut pas piéger</echec>
->>>>>>> master
+		<echec>est trop nul wesh, il peut pas pieger</echec>
 	</action>
 	<action>
 		<id>11</id>

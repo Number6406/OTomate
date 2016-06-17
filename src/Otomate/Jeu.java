@@ -227,12 +227,12 @@ public class Jeu {
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
-            historique.ceTour().addEvenement(new Evenement(P, univers.getNomRemede()));
+            historique.ceTour().addEvenement(new Evenement(P, univers.getActionRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
             ((Gentil) P).setRemede(0);
-            historique.ceTour().addEvenement(new Evenement(P, univers.getNomAntidote()));
+            historique.ceTour().addEvenement(new Evenement(P, univers.getActionAntidote()));
             return true;
         }
         return false;
@@ -314,7 +314,7 @@ public class Jeu {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
-                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(),perso.getPosition());
+                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
                       //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transforme. ";
