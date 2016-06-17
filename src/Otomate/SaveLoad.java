@@ -212,19 +212,15 @@ public final class SaveLoad {
 		return buf;
 	}
 	
-	public byte[] lire_nom(FileInputStream fout, char fin) throws IOException {
-		List<byte[]> a = new LinkedList<byte[]>();
+	public String lire_nom(FileInputStream fout, char fin) throws IOException {
+		String buf = "";
 		byte[] b = new byte[1];
 		fout.read(b);
-		while(b[0] != fin) {
-			a.add(b);
+		while(b[0]!=fin) {
+			buf += new String(b, StandardCharsets.UTF_8);
 			fout.read(b);
 		}
-		byte[] c = new byte[a.size()];
-		for(int i=0; i<a.size(); i++) {
-			c[i] = a.get(i)[0];
-		}
-		return c;
+		return buf;
 	}
 
 	public void load() throws IOException {
@@ -276,7 +272,7 @@ public final class SaveLoad {
 			nouv.setCouleur(new Color(r,g,b));
 			fout.skip(1);
 			
-			nouv.setName(new String(lire_nom(fout, ';'),StandardCharsets.UTF_8));
+			nouv.setName(lire_nom(fout, ';'));
 			System.out.println("dazfygrthiyiogrfuyguyyoiguvfycsegbthfiv " + nouv.getName());
 			nbPers = Integer.parseInt(lire(fout, '\\'));
 			System.out.println(nbPers);
