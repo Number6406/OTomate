@@ -3,8 +3,6 @@ package Otomate;
 import Affichage.*;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 import java.awt.Color;
 import java.nio.file.Paths;
