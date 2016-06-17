@@ -314,7 +314,7 @@ public class Jeu {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
-                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName(), perso.getPosition());
+                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
                       //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transforme. ";
