@@ -502,6 +502,7 @@ public class Grille {
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
         }
+    	if(A!=null)
     	A.todo(l,P,list, this);
     }
 }
