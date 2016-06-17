@@ -87,7 +87,7 @@ public class Fouiller extends $Action {
 	public String toString() {
 		if (effect == true ) {
 			if(pompe == true) {
-			return (" a trouve " + Jeu.univers.getObjets().get(14).getName() + " lors de sa fouille");
+			return (" a trouvé " + Jeu.univers.getObjets().get(14).getName());
 			}
 			else if (anti == true) {
 				return ("a trouve " + Jeu.univers.getNomAntidote());

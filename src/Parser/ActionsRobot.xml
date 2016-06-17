@@ -51,13 +51,13 @@
 	</action>
 	<action>
 		<id>10</id>
-		<succes>pose un piege</succes>
-		<echec>essaye de pieger quelque chose qui ne peut pas l'etre</echec>
+		<succes>implemente un pare feu</succes>
+		<echec>essaye de cree un pare feu mais echoue</echec>
 	</action>
 	<action>
 		<id>11</id>
-		<succes>se recharge. Il est revigore</succes>
-		<echec>est vidé de son énérgie et a un inventaire vide</echec>
+		<succes>utilise un consommable et booste ses capacites</succes>
+		<echec>echoue dans sa tentative de se booster</echec>
 	</action>
 	<action>
 		<id>12</id>
@@ -66,12 +66,12 @@
 	</action>
 	<action>
 		<id>13</id>
-		<succes>detruit l'obstacle</succes>
-		<echec>frappe l'objet. Cela n'est pas tres efficace</echec>
+		<succes>détruit le pop up</succes>
+		<echec>ne peut pas détruire ce site</echec>
 	</action>
 	<action>
 		<id>14</id>
-		<succes>fouille un tas de composants</succes>
-		<echec>veux fouiller mais echoue</echec>
+		<succes>fouille dans un navigateur</succes>
+		<echec>veux fouiller mais échoue</echec>
 	</action>
 </parse>
