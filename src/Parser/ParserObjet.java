@@ -26,11 +26,13 @@ public class ParserObjet{
         
         XMLObjet a=new XMLObjet();
         File f=new File(this.getClass().getResource(file).getFile());
+        //System.out.println("filename : " + file);
         parser.parse(f, a);
         
         list=a.list;
         imageGentil = a.imageGentil;
         imageMechant = a.imageMechant;
+        System.out.println(list.size()+ " rip");
 	      } catch (DOMException e) {
 	          e.printStackTrace();
 	       } catch (ParserConfigurationException e) {
@@ -40,6 +42,7 @@ public class ParserObjet{
 	       } catch (SAXException e) {
 	          e.printStackTrace();
 	       } catch (IOException e) {
+	          // TODO Auto-generated catch block
 	  e.printStackTrace();
         
         

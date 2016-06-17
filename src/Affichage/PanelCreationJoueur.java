@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -19,7 +20,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class PanelCreationJoueur extends JPanel {
-
+	/**
+	 * 
+	 */
 	int i, nbP;
 	Color maCouleur=null;
 	GridBagConstraints c;
@@ -75,6 +78,7 @@ public class PanelCreationJoueur extends JPanel {
             	maCouleur=Color.orange;
             break;
             }
+            // panelJ.add(this);
 
             c = new GridBagConstraints();
             userName = new JTextField("Joueur " + i);
@@ -91,6 +95,7 @@ public class PanelCreationJoueur extends JPanel {
             c.weighty = 0;
             c.fill = GridBagConstraints.HORIZONTAL;
 
+            // ongletsJoueurs.add("Joueur" + i, this);
 
             c.gridwidth = 2;
             this.add(new JLabel("Nom du Joueur :"), c);
@@ -173,7 +178,11 @@ public class PanelCreationJoueur extends JPanel {
             c.fill = GridBagConstraints.BOTH;
             this.add(scrollP, c);
 
+            // this.add(pan_b, BorderLayout.SOUTH);
+            // pan_b.add(bAnnuler, BorderLayout.WEST);
+            // pan_b.add(bValider, BorderLayout.EAST);
 
+            // bValider.addActionListener(new ActionListener() {
 	}
 
 	public boolean cool() {

@@ -3,12 +3,24 @@ package Otomate;
 import Affichage.*;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.awt.Color;
-import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import java.io.*;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Jeu {
 
@@ -87,6 +99,7 @@ public class Jeu {
         try {
             Affichage.charger();
         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -168,6 +181,7 @@ public class Jeu {
             	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
             }
             historique.ceTour().addEvenement(new Evenement(P, th));
+            //Thread.sleep(period);
         }
     }
 
@@ -221,6 +235,7 @@ public class Jeu {
     
 
     public static boolean soinInstantane($Personnage P) {
+        //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
@@ -267,6 +282,7 @@ public class Jeu {
             tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
+            //Thread.sleep(period);
         }
     }
 
@@ -287,12 +303,14 @@ public class Jeu {
                 Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
         String findetour = croqueMorts(joueurs);
         historique.ceTour().addEvenement(new Evenement(null, findetour));
         Affichage.ajouterTour(historique.ceTour());
+        // TODO enlever les morts.
     }
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
@@ -310,13 +328,16 @@ public class Jeu {
                         if (((Gentil) perso).getInfecte()) {
                             Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
+                      //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transforme. ";
                             player.getPersonnages().remove(k);
                         } else {
+                       // 	System.err.println("il est mort 2");
                         	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
                     } else {
+                    //	System.err.println("il est mort 3");
                         s += perso.getNomHtml() + " est mort. ";
                         player.getPersonnages().remove(k);
                     }
@@ -434,13 +455,48 @@ public class Jeu {
      * @param pArgs
      * @throws InterruptedException
      * @throws IOException
+     * @throws LineUnavailableException 
+     * @throws UnsupportedAudioFileException 
+     * @throws JavaLayerException 
      */
-    public static void main(String[] pArgs) throws InterruptedException, IOException {
+    // TODO : Raccourcir la fonction !
+    
+    public static class Music extends Thread {
+    	public void run() {
+    		File f = new File("/home/gwen/workspace/Otomatamer/music/Mitch.mp3");
+            FileInputStream fis;
+			try {
+				fis = new FileInputStream(f);
+	            BufferedInputStream bis = new BufferedInputStream(fis);
+	            Player pl;
+				try {
+					pl = new Player(bis);
+					pl.play();
+				} catch (JavaLayerException e) {
+					e.printStackTrace();
+				}
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+    	}
+    }
+    
+    public static void main(String[] pArgs) throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException, JavaLayerException {
+
+        FenetreMenu menuJeu = new FenetreMenu();
+        
+        (new Music()).start();
+        
         while (!commencerJeu) {
             Thread.sleep(100);
         }
+
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Affichage.charger();}
+        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
+        
+        //sauvegarder();
+        
         while (!finPartie()) {
             while (pause) {
                 if (step) {
@@ -453,8 +509,10 @@ public class Jeu {
 
             Affichage.again();
             Thread.sleep(period * 2);
+
         }
         finDeJeu();
         Affichage.fin();
+        // TODO Annoncer gagnant
     }
 }

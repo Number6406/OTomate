@@ -10,6 +10,7 @@ public class DeplEst extends $Action {
 
 	public DeplEst(String succes, String echec) {
 		super(succes, echec);
+		// TODO Auto-generated constructor stub
 	}
 
 	public DeplEst() {
@@ -17,7 +18,8 @@ public class DeplEst extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(2) == 3) {
+		if (l.get(2) == 3) { // 3 = chemin a l'est et 3eme element de la liste ->
+								// regarde l'est
 			p.getPosition().setX(p.getPosition().getX() + 1);
 			effect = true;
 		}
@@ -27,7 +29,7 @@ public class DeplEst extends $Action {
 		if (p instanceof Mechant) {
 			if (g.Pos(p.getPosition()).getPiegee() == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);
-				g.Pos(p.getPosition()).setPiegee(false);		//le piege ne s'active qu'une fois
+				g.Pos(p.getPosition()).setPiegee(false);		//le piege a une utilisation unique
 			}
 		}
 	}
