@@ -75,12 +75,10 @@ public class Univers {
 	}
 
 	public String getNomRemede() {
-		// TODO Auto-generated method stub
 		return nomRemede;
 	}
 
 	public String getNomAntidote() {
-		// TODO Auto-generated method stub
 		return nomAntidote;
 	}
 	
@@ -110,7 +108,7 @@ public class Univers {
 			nomUnivers = "Robots vs. Virus";
 			nomGentils = "robots";
 			nomMechants = "virus";
-			nomAntidote = "a fait analyse pour éliminer les virus";
+			nomAntidote = "a fait une analyse pour éliminer les virus";
 			nomRemede = "a lancé CCleaner pour enlever les malwares";
 			antidote = "../Graphics/Tiles/Robot/analyse.png";
 			remede = "../Graphics/Tiles/Zombie/ccleaner.png";

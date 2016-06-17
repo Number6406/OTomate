@@ -18,9 +18,10 @@ public class Mechant extends $Personnage {
 		super();
 	}
 
-	public Mechant($Personnage perso, Color couleur) {
+	public Mechant($Personnage perso, Color couleur, Coordonnees c) {
 		super(perso,couleur);
 		vie = viemax;
+		setPosition(c);
 	}
 
 	public String toString() {

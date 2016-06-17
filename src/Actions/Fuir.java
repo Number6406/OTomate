@@ -7,6 +7,7 @@ import Otomate.$Personnage;
 import Otomate.Coordonnees;
 import Otomate.Gentil;
 import Otomate.Grille;
+import Otomate.Jeu;
 import Otomate.Mechant;
 import PathFinding.*;
 
@@ -52,7 +53,7 @@ public class Fuir extends $Action {
 	}
 
 	//Retourne le personnage (cote gentil) le plus proche
-	public Gentil prox($Personnage p, List<$Personnage> l) {
+	/*public Gentil prox($Personnage p, List<$Personnage> l) {
 		int s = l.size();
 		int i, mini = -1, mini2;
 		Gentil e = null;
@@ -71,6 +72,25 @@ public class Fuir extends $Action {
 			}
 		}
 		return e;
+	}*/
+	
+	int dist(Coordonnees c1, Coordonnees c2){
+		return Math.abs( (c1.getX()-c2.getX()) + c1.getY()-c2.getY());
+	}
+	
+	public Gentil prox($Personnage p, List<$Personnage> l){
+		int max = l.size();
+		int minDist=Jeu.plateau.tailleX()+Jeu.plateau.tailleY(),mini=0,i;
+		for(i=0;i<max;i++){
+			if(l.get(i) instanceof Gentil){
+				int current=dist(p.getPosition(),l.get(i).getPosition());
+				if(current<minDist){
+					minDist=current;
+					mini=i;
+				}
+			}
+		}
+		return (Gentil) l.get(mini);
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {

@@ -175,7 +175,6 @@ public class Grille {
     //Place les automates au bon endroit sur la map
     public void Placements(List<Joueur> J) {
         int l = coinsAutomates.size();
-        System.err.println("nombre de joueurs : " + l);
         List<$Personnage> list = new LinkedList<>();
         int i,j,k,nbCond = J.get(0).getPersonnagesI(0).getAutomate().nbconditions();   //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
         for(i=0; i<J.size(); i++){
@@ -207,7 +206,6 @@ public class Grille {
         {
             y=0;
             s = J.get(x).getSizePersonnages();
-            System.out.println("tamer");
             while(y<s && i<l)
             {            	
                     jdeb = coinsAutomates.get(i).getX();
@@ -235,7 +233,6 @@ public class Grille {
         }
         int nb = list.size();
         
-        System.out.println("bonjour go dimh dimv :" + dimh + " " + dimv);
         for(k=0; k<list.size(); k++){
             i = rnd.nextInt(nb);       //donne le numero de la case "h" abscisse correspondant
             newc[k].setX(i*dimh/nb);
@@ -295,7 +292,7 @@ public class Grille {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(0, 15);        //car 15 actions possibles numerotees de 0 a 14 
+                k = random(9, 10);        //car 15 actions possibles numerotees de 0 a 14 
                 g[i][j].element = k;
             }
         }
@@ -305,9 +302,7 @@ public class Grille {
         		list.add(l.get(i).getPersonnagesI(j));    	
         	}
         }
-        System.out.println("va goautom");
         coinsAutomates = goAutomates(list, tailleX, tailleY);
-        System.out.println("va placer");
         Placements(l);
     }
     
@@ -395,7 +390,6 @@ public class Grille {
     		listcond.add(8);		//
     	else if(l.get(14) == true)	//
     		listcond.add(14);		//
-    	System.out.println("listcond.to..."+listcond.toString());
     	return listcond;
     }
     
