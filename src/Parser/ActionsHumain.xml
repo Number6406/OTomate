@@ -12,12 +12,12 @@
 	<action>
 		<id>2</id>
 		<succes>descend vers le sud</succes>
-		<echec>tente d'aller au sud mais rencontre de l'adversité</echec>
+		<echec>tente d'aller au sud mais rencontre de l'adversite</echec>
 	</action>
 	<action>
 		<id>3</id>
 		<succes>se dirige vers l'est</succes>
-		<echec>est bloqué dans sa course vers l'est</echec>
+		<echec>est bloque dans sa course vers l'est</echec>
 	</action>
 	<action>
 		<id>4</id>
@@ -47,12 +47,12 @@
 	<action>
 		<id>9</id>
 		<succes>ramasse un objet</succes>
-		<echec>essaye de rammasser quelque chose qui ne peut pas l'être</echec>
+		<echec>essaye de rammasser quelque chose qui ne peut pas l'etre</echec>
 	</action>
 	<action>
 		<id>10</id>
-		<succes>pose un piège</succes>
-		<echec>essaye de piéger quelque chose qui ne peut pas l'être</echec>
+		<succes>pose un piege</succes>
+		<echec>essaye de pieger quelque chose qui ne peut pas l'etre</echec>
 	</action>
 	<action>
 		<id>11</id>
@@ -61,17 +61,17 @@
 	</action>
 	<action>
 		<id>12</id>
-		<succes>fuit comme un lâche</succes>
+		<succes>fuit comme un lache</succes>
 		<echec>essaye de fuir, mais il n'y a pas d'issues</echec>
 	</action>
 	<action>
 		<id>13</id>
-		<succes>détruit l'obstacle</succes>
-		<echec>frappe l'objet. Cela n'est pas très efficace</echec>
+		<succes>detruit l'obstacle</succes>
+		<echec>frappe l'objet. Cela n'est pas tres efficace</echec>
 	</action>
 	<action>
 		<id>14</id>
 		<succes>fouille un batiment à la recherche de trésors</succes>
-		<echec>veux fouiller mais échoue</echec>
+		<echec>veux fouiller mais echoue</echec>
 	</action>
 </parse>

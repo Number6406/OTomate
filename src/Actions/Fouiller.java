@@ -22,6 +22,9 @@ public class Fouiller extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
+		pompe = false;
+		anti = false;
+		rem = false;
 		if (p instanceof Gentil) {
 			int rnd;
 			if (l.get(0) == 15) {
@@ -84,14 +87,14 @@ public class Fouiller extends $Action {
 	public String toString() {
 		if (effect == true ) {
 			if(pompe == true) {
-			return (" a trouvé " + Jeu.univers.getObjets().get(14).getName() + " lors de sa recherche :o");
+			return (" a trouve " + Jeu.univers.getObjets().get(14).getName() + " lors de sa fouille");
 			}
 			else if (anti == true) {
-				return ("a trouvé " + Jeu.univers.getNomAntidote());
+				return ("a trouve " + Jeu.univers.getNomAntidote());
 			} else if (rem == true) {
-				return ("a trouvé " + Jeu.univers.getNomRemede());
+				return ("a trouve " + Jeu.univers.getNomRemede());
 			} else {
-				return ("a trouvé " + Jeu.univers.getObjets().get(trouve).getName());
+				return ("a trouve " + Jeu.univers.getObjets().get(trouve).getName());
 			}
 		}
 		else
