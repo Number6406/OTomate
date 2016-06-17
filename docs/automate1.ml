@@ -5,6 +5,8 @@ let automate =
 (1,Arme,Ramasser,3);
 (1,Comestible,Ramasser,2);
 (1,Surprise,Ramasser,2);
+(1,Fouillable,Fouiller,2);
+(1,Destructible,Detruire,2);
 
 (2,Comestible,Ramasser,2);
 (2,Chemin(E),Avancer(E),2);
