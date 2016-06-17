@@ -15,69 +15,16 @@ public class Fuir extends $Action {
 
 	public Fuir(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Fuir() {
 		valeur = 12;
 	}
 
-	// Retourne le parcours le plus court (l'entier calculant la 'distance'
-	// minimale
-	public int min($Personnage p, int i, Coordonnees c2) {
-		int aux = 0, aux2 = 0;
-		if (i < 0) {
-			aux = p.getPosition().getX() - c2.getX();
-			if (aux < 0)
-				i = -aux;
-			else
-				i = aux;
-			aux = p.getPosition().getY() - c2.getY();
-			if (aux < 0)
-				i += -aux;
-			else
-				i += aux;
-		} else {
-			aux = p.getPosition().getX() - c2.getX();
-			if (aux < 0)
-				aux = -aux;
-			aux2 = p.getPosition().getY() - c2.getY();
-			if (aux2 < 0)
-				aux2 = -aux2;
-			aux += aux2;
-		}
-		System.out.println("aux="+aux);
-		if (aux < i && aux != 0)
-			i = aux;
-		return i;
-	}
-
-	//Retourne le personnage (cote gentil) le plus proche
-	/*public Gentil prox($Personnage p, List<$Personnage> l) {
-		int s = l.size();
-		int i, mini = -1, mini2;
-		Gentil e = null;
-		for (i = 0; i < s; i++) {
-			if (l.get(i) instanceof Gentil) {
-				if (e == null) {
-					e = (Gentil) l.get(i);
-					mini = min(p, mini, l.get(i).getPosition());
-				} else {
-					mini2 = min(p, mini, l.get(i).getPosition());
-					if (mini2 < mini) {
-						mini = mini2;
-						e = (Gentil) l.get(i);
-					}
-				}
-			}
-		}
-		return e;
-	}*/
-	
 	int dist(Coordonnees c1, Coordonnees c2){
 		return Math.abs( (c1.getX()-c2.getX()) + c1.getY()-c2.getY());
 	}
-	
+
 	public Gentil prox($Personnage p, List<$Personnage> l){
 		int max = l.size();
 		int minDist=Jeu.plateau.tailleX()+Jeu.plateau.tailleY(),mini=0,i;
@@ -95,19 +42,11 @@ public class Fuir extends $Action {
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		Coordonnees cnord, csud, cest, couest;
-		//cnord =  new Coordonnees (p.getPosition());
-		//csud =  new Coordonnees (p.getPosition());
-		//cest =  new Coordonnees (p.getPosition());
-		//couest = new Coordonnees (p.getPosition());
-		//cnord.setY(cnord.getY() - 1);
-		//csud.setY(csud.getX() + 1);
-		//cest.setX(cest.getX() + 1);
-		//couest.setX(couest.getX() - 1);
 		cnord=p.getPosition().CalculCase(1);
 		csud=p.getPosition().CalculCase(3);
 		cest=p.getPosition().CalculCase(2);
 		couest=p.getPosition().CalculCase(4);
-		
+
 		if (p instanceof Gentil) {
 			int rnd;
 			if (l.get(1) == 5) { // ennemi au nord
@@ -115,7 +54,7 @@ public class Fuir extends $Action {
 					if (l.get(3) == 6) { // ennemi au sud
 						if (l.get(4) == 8) {
 						} // ennemi a l'ouest -> ne bouge pas il est coince
-						
+
 						if (p.getPosition().getX()>0 && g.Pos(couest).getValeur() != 3 && g.Pos(couest).getValeur() != 5) {	//passage a l'ouest
 							p.setPosition(couest); // seule case disponible -->
 							// a l'ouest
@@ -261,17 +200,16 @@ public class Fuir extends $Action {
 				}
 			}
 			else { // aucun ennemi a proximite ne fait rien
-				
+
 			}
 		}
 		else if (p instanceof Mechant) {
 			Coordonnees ppp=prox(p,lp).getPosition();
 			Pfind path = new Pfind(p.getPosition(),ppp);
 			Coordonnees c=p.getPosition().CalculCase(path.getDirection());
-			if( !c.occupee() ){
-				//if(g.get(c.getX(), c.getY()).Passable(Jeu.univers.getObjets())) 
-					p.setPosition(c);
-					effect = true;
+			if( !c.occupee() ){ 
+				p.setPosition(c);
+				effect = true;
 			}
 			else{
 				//Ne fais rien
@@ -281,11 +219,4 @@ public class Fuir extends $Action {
 			effect = false;
 		}
 	}
-
-	/*
-	 * public String toString(){ if(effect == true && inno == true)
-	 * return("s'enfuit."); else if(effect == true){ return(
-	 * "a flaire un ennemi a proximite."); } else return (
-	 * "n'a pas reussi a se deplacer."); }
-	 */
 }

@@ -49,7 +49,6 @@ public class XMLAutomate extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("Case")) {
-			    //     System.out.println("End Element :" + qName + " " + j +" "+ i+ " "+act[j-1][i].element + " "+ auto[j-1][i]);
 			      }
 			   }
 
@@ -85,7 +84,6 @@ public class XMLAutomate extends DefaultHandler{
 			    	 bTransition = false;
 			      } else if (bAction) {
 			    	 act[j-1][i].element=Integer.parseInt(lecture);
-			    	 System.out.println((act[j-1][i]).element);
 			         bAction = false;
 			      }
 				   	

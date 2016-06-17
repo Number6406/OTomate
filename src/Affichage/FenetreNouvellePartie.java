@@ -30,12 +30,11 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 
-/**
- *
- */
+
 public class FenetreNouvellePartie extends FenetreBase {
 
-    // Valeurs prises en compte
+	private static final long serialVersionUID = 1L;
+	// Valeurs prises en compte
     private int maxJ = 8;
     private int minJ = 2;
     private int maxR = 10;
@@ -174,7 +173,6 @@ public class FenetreNouvellePartie extends FenetreBase {
     public int getUniv() {
         ButtonModel selectedModel = radio_univers.getSelection();
         if (selectedModel != null) {
-            // and dislay it
             System.out.println("On choisit le modèle : "+ selectedModel.getMnemonic());
             return selectedModel.getMnemonic();
         }

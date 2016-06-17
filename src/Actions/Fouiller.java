@@ -11,7 +11,6 @@ public class Fouiller extends $Action {
 
 	public Fouiller(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	private boolean anti = false, pompe = false, rem = false;
@@ -28,10 +27,7 @@ public class Fouiller extends $Action {
 		if (p instanceof Gentil) {
 			int rnd;
 			if (l.get(0) == 15) {
-				if (g.Pos(p.getPosition()).getValeur() == 4) { // on se
-																	// trouve
-																	// dans un
-																	// immeuble
+				if (g.Pos(p.getPosition()).getValeur() == 4) { //Immeuble
 					rnd = Grille.random(0, 101);
 					if (rnd < 30) {// trouve des bandages 30% de chances
 						((Gentil) p).setRemede(2);
@@ -50,7 +46,7 @@ public class Fouiller extends $Action {
 						trouve = 7;
 					}
 				}
-				else if (g.Pos(p.getPosition()).getValeur() == 9) {	//on se trouve dans un hopital
+				else if (g.Pos(p.getPosition()).getValeur() == 9) {	//Hopital
 					rnd = Grille.random(0, 101);
 					if (rnd < 50) { // Recupere un antidote 50% chances
 						((Gentil) p).setRemede(1);
@@ -61,9 +57,9 @@ public class Fouiller extends $Action {
 						rem = true;
 					}
 				}
-				else if (g.Pos(p.getPosition()).getValeur() == 10) {	//on se trouve dans un grange
+				else if (g.Pos(p.getPosition()).getValeur() == 10) {	//Grange
 					rnd = Grille.random(0, 101);
-					if (rnd < 25) { // S'equipe d'un fusil a pompe 25% chances
+					if (rnd < 25) { // Trouve un fusil a pompe 25% chances
 						((Gentil) p).setArme(g.getUnivers().getObjets().get(14));
 						pompe = true;
 						trouve = 14;
@@ -87,7 +83,7 @@ public class Fouiller extends $Action {
 	public String toString() {
 		if (effect == true ) {
 			if(pompe == true) {
-			return (" a trouve " + Jeu.univers.getObjets().get(14).getName() + " lors de sa fouille");
+				return (" a trouve " + Jeu.univers.getObjets().get(14).getName() + " lors de sa fouille");
 			}
 			else if (anti == true) {
 				return ("a trouve " + Jeu.univers.getNomAntidote());

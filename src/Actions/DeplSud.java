@@ -10,7 +10,6 @@ public class DeplSud extends $Action {
 
 	public DeplSud(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public DeplSud() {
@@ -18,8 +17,7 @@ public class DeplSud extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(3) == 2) { // 2 = chemin au sud et 4eme element de la liste ->
-								// regarde le sud
+		if (l.get(3) == 2) {
 			p.getPosition().setY(p.getPosition().getY() + 1);
 			effect = true;
 		}
@@ -29,7 +27,7 @@ public class DeplSud extends $Action {
 		if (p instanceof Mechant) {
 			if (g.Pos(p.getPosition()).piegee == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);
-				g.Pos(p.getPosition()).piegee = false;		//le piege a une utilisation unique
+				g.Pos(p.getPosition()).piegee = false;
 			}
 		}
 	}

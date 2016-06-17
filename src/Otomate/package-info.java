@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author Stractus
- *
- */
-package Otomate;
