@@ -79,10 +79,10 @@ public class Jeu {
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
         
         plateau = new Grille(joueurs, univers);
-        joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(5,5));
-        joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(7,5));
-        joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(6,8));
-        joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
+        //joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(5,5));
+        //joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(7,5));
+        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(6,8));
+        //joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
         //joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(2,6));
         //joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(2,4));
         //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(4,5));

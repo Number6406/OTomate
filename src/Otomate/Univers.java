@@ -111,7 +111,7 @@ public class Univers {
 			nomAntidote = "a fait une analyse pour éliminer les virus";
 			nomRemede = "a lancé CCleaner pour enlever les malwares";
 			antidote = "../Graphics/Tiles/Robot/analyse.png";
-			remede = "../Graphics/Tiles/Zombie/ccleaner.png";
+			remede = "../Graphics/Tiles/Robot/ccleaner.png";
 			break;
 		default :
 			Pg = new ParserAction("ActionsHumain.xml");
