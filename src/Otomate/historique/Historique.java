@@ -3,10 +3,13 @@
  */
 package Otomate.historique;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Otomate.Gentil;
+//import jus.util.assertion.Require;
 
 /**
  * @author alicia Un historique permet tout d'abord d'afficher à l'ecran le

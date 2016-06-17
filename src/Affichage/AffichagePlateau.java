@@ -14,6 +14,7 @@ import Otomate.Jeu;
 import Otomate.Objet;
 import java.awt.FontMetrics;
 
+import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,9 +22,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class AffichagePlateau extends JPanel {
 
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
 
     private int TAILLECASE = 32;
@@ -54,6 +59,8 @@ public class AffichagePlateau extends JPanel {
         graph.setColor(textColor);
         graph.drawString(nom, x, y);
         graph.drawImage(p.getSprite(), p.positionX() * TAILLECASE, p.positionY() * TAILLECASE, TAILLECASE, TAILLECASE, this);
+        //graph.setColor(Color_int(11));
+        //graph.fillOval(TAILLECASE*p.positionX(), TAILLECASE*p.positionY(), TAILLECASE, TAILLECASE);
     }
 
     void loadTiles(List<Objet> lo) {
@@ -62,6 +69,8 @@ public class AffichagePlateau extends JPanel {
         try {
             for (int i = 0; i < lo.size(); i++) {
                 BufferedImage img;
+                // System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
+                System.out.println(lo.get(i).getPath() + " ("+i+")");
                 img = ImageIO.read(new File(this.getClass().getResource(lo.get(i).getPath()).getFile())); //Version Linux
                 tiles.add(img);
                 
@@ -128,11 +137,13 @@ public class AffichagePlateau extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // this.setBackground(Color.lightGray);
         int maxx = this.getWidth();
         int maxy = this.getHeight();
         int i, j;
         TAILLECASE = MINCASE;
-        
+        // System.out.println("Version 1 : Width : " + this.getWidth() + " Height : " + this.getHeight());
+
         this.setPreferredSize(new Dimension(gr.tailleX() * MINCASE, gr.tailleY() * MINCASE));
         maxx = maxx / TAILLECASE;
         maxy = maxy / TAILLECASE;
@@ -153,7 +164,10 @@ public class AffichagePlateau extends JPanel {
             }
         }
 
-        TAILLECASE--;	
+        TAILLECASE--;
+        //  System.out.println("Width : " + this.getWidth() + " Height : " + this.getHeight()+ " Size : " + tiles.size());
+
+        // System.out.println("coucou " + maxx + " " + maxy);	
         for (j = 0; j < maxy; j++) {
             for (i = 0; i < maxx; i++) {
                 Affiche_case(g, gr.get(i, j), i, j);

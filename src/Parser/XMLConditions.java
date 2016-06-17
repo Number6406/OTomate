@@ -38,7 +38,8 @@ public class XMLConditions extends DefaultHandler{
 			   public void endElement(String uri, 
 			   String localName, String qName) throws SAXException {
 			      if (qName.equalsIgnoreCase("cond")) {
-			         }
+			         //System.out.println("End Element :" + qName + " " + id +" "+ d+ " "+type);
+			      }
 			   }
 
 			   @Override
@@ -53,12 +54,15 @@ public class XMLConditions extends DefaultHandler{
 				   		d=Integer.parseInt(lecture);
 				   		bd=false;
 				  } else if (btype) {
+					//  System.out.println("probleme?");
 					 	type=Integer.parseInt(lecture);
 					 	c=new Conditions(id,d,type);
 					 	list.add(c);
 					 	btype=false;
 			   
 				  }
+				   	//System.out.println(lecture);
+				   	//System.out.println("Au-dessus : " + list.size());
 			   }
 			   
 			   public void startDocument() throws SAXException {

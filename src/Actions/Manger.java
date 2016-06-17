@@ -9,6 +9,7 @@ import Otomate.Grille;
 public class Manger extends $Action {
 	public Manger(String succes, String echec) {
 		super(succes, echec);
+		// TODO Auto-generated constructor stub
 	}
 
 	public Manger() {

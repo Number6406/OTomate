@@ -10,12 +10,13 @@ import Otomate.Mechant;
 import Otomate.Objet;
 
 public class Ramasser extends $Action {
-
+	
 	String effet;
 	int ramasse;
-
+	
 	public Ramasser(String succes, String echec) {
 		super(succes, echec);
+		// TODO Auto-generated constructor stub
 	}
 
 	private boolean drogue = false;
@@ -42,25 +43,27 @@ public class Ramasser extends $Action {
 					Objet arme = ((Gentil) p).getArme();
 					((Gentil) p).setArme(g.getUnivers().getObjets().get(g.Pos(p.getPosition()).getValeur()));
 					if (arme!=null){ 
-						g.Pos(p.getPosition()).setValeur(arme.getId()); 
-					} 
-					else{ 
-						g.Pos(p.getPosition()).setValeur(0); 
-					} 
+			            g.Pos(p.getPosition()).setValeur(arme.getId()); 
+			          } 
+			          else{ 
+			            g.Pos(p.getPosition()).setValeur(0); 
+			          } 
 				}
 				else if (l.get(0) == 16) { // seringue
-
+					
 					if (((Gentil) p).getDrogue() == 0) {	//dans le cas ou le personnage est sain
 						aux = Grille.random(0, 101);
+						System.err.println("LE PERSONNAGE RAMASSE UNE DROGUE");
 						if (aux < 10) {	//bonus hp max
 							p.setViemax(p.getViemax() + 10);
 							p.setVie(p.getVie() + 10);
 							((Gentil) p).setDrogue(1);
-
+							
 							effet = "gagne 10 PV max";
 						}
 						else if (aux < 20) {	//malus hp max
 							p.setViemax(p.getViemax() - 10);
+							System.err.println("viemax : " + p.getViemax());
 							p.setVie(p.getVie() - 10);
 							if(p.getVie()<p.getViemax())
 								p.setVie(p.getViemax());	//barre de hp = hp max si hp > hp max
@@ -81,7 +84,7 @@ public class Ramasser extends $Action {
 							p.setVie(p.getVie() - 5);
 							((Gentil) p).setEfdrogue(3);
 							((Gentil) p).setDrogue(4);
-
+							
 							effet = "perds 5 PV pendant 3 tours";
 						}
 						else if (aux < 60) {
@@ -108,6 +111,7 @@ public class Ramasser extends $Action {
 							effet = "perds 10 PV";
 						}
 						drogue = true;
+			        	System.out.println("LE PERSONNAGE EST DROGUE AVEC LA DROGUE NUMERO : "+((Gentil) p).getDrogue());
 						g.Pos(p.getPosition()).setValeur(0);
 					}
 				}

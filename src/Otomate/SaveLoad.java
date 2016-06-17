@@ -9,6 +9,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 
+/*Grille
+ * Couleur:id:
+ * (Personnage)
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 public final class SaveLoad {
 
 	private SaveJeu jeu;
@@ -29,6 +39,7 @@ public final class SaveLoad {
 	}
 
 	public void save() throws IOException {
+		System.out.println("TAMERLACHAUVE");
 		File f = new File(name);
 		FileOutputStream fin = new FileOutputStream(f);
 		int i, j;
@@ -78,30 +89,40 @@ public final class SaveLoad {
 		for (i = 0; i < jeu.joueurs.size(); i++) {
 			fin.write(((Integer) jeu.joueurs.get(i).getCouleur().getRed()));
 			fin.write(new Character(' '));
+			System.out.println(jeu.joueurs.get(i).getCouleur().getRed());
 
 			fin.write(((Integer) jeu.joueurs.get(i).getCouleur().getGreen()));
 			fin.write(new Character(' '));
+			System.out.println(jeu.joueurs.get(i).getCouleur().getGreen());
 
 			fin.write(((Integer) jeu.joueurs.get(i).getCouleur().getBlue()));
 			fin.write(new Character(' '));
+			System.out.println(jeu.joueurs.get(i).getCouleur().getBlue());
 
 			fin.write(new Character(':'));
 			
+			System.out.println(jeu.joueurs.get(i).getName());
 			fin.write(jeu.joueurs.get(i).getName().getBytes(StandardCharsets.UTF_8));
 			fin.write(new Character(';'));
 
 			fin.write(jeu.joueurs.get(i).getSizePersonnages());
 			fin.write(new Character('\\'));
+			System.out.println(jeu.joueurs.get(i).getSizePersonnages());
 
 			fin.write(jeu.joueurs.get(i).mechant ? (1) : (0));
 			fin.write(new Character(';'));
+			System.out.println(jeu.joueurs.get(i).mechant);
+			System.out.println("#####");
 			for (j = 0; j < jeu.joueurs.get(i).getSizePersonnages(); j++) {
 				pe = jeu.joueurs.get(i).getPersonnagesI(j);
 				fin.write(((Integer) pe.getPosition().getX()));
 				fin.write(new Character(' '));
+				System.out.println(pe.getPosition().getX());
 				
 				fin.write(((Integer) pe.getPosition().getY()));
 				fin.write(new Character(' '));
+				System.out.println(pe.getPosition().getY());
+				System.out.println("°°°°°");
 				if (pe instanceof Gentil) {
 					fin.write(((Gentil) pe).estArme()?(1):(0));
 					fin.write(new Character(' '));
@@ -131,13 +152,17 @@ public final class SaveLoad {
 					fin.write(pe.getVie());
 					fin.write(new Character(':'));
 				}
+				System.out.println("~~~~~");
 				fin.write(pe.getDmg());
 				fin.write(new Character(':'));
+				System.out.println(pe.getDmg());
 				//fin.write(new Character(';'));
 				fin.write(pe.getAutomate().nbconditions());
 				fin.write(new Character(':'));
+				System.out.println(pe.getAutomate().nbconditions());
 				fin.write(pe.getAutomate().nbetats());
 				fin.write(new Character('\n'));
+				System.out.println(pe.getAutomate().nbetats());
 				for(int k=0; k<pe.getAutomate().nbetats(); k++) {
 					for(int l=0; l<pe.getAutomate().nbconditions(); l++) {
 						fin.write(pe.getAutomate().transition(l, k));
@@ -147,8 +172,10 @@ public final class SaveLoad {
 			}
 			//currentChar++;
 			fin.write('\n');
+			System.out.println("|||||");
 		}
 		fin.close();
+		System.out.println("SAVE.FINISHED\n");
 	}
 	
 	public void actuGrille() {
@@ -165,7 +192,10 @@ public final class SaveLoad {
 			int ne = tacos.get(i).getAutomate().nbetats();
 			for(int j=0; j<ne; j++) {
 				for(int k=0; k<nc; k++) {
+					System.out.println(j+" "+k);
+					System.out.println(ix+" "+iy);
 					tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(j+iy, k+ix));
+					//jeu.plateau.setCase(j, k, tacos.get(i).getAutomate().getActions(k-iy, j-ix));
 				}
 			}
 		}
@@ -194,11 +224,16 @@ public final class SaveLoad {
 	}
 
 	public void load() throws IOException {
+		System.out.println("TAMERLACHAUVE");
 		File f = new File(name);
 		FileInputStream fout = new FileInputStream(f);
 		jeu.univers = new Univers(Integer.parseInt(lire(fout, '\n')));
+		System.out.println(jeu.univers.numero);
 		jeu.joueurZombie = Integer.parseInt(lire(fout, '\n'));
+		System.out.println(jeu.joueurZombie);
 		jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')), Integer.parseInt(lire(fout, '\n')));
+		System.out.println(jeu.plateau.tailleX());
+		System.out.println(jeu.plateau.tailleY());
 		jeu.plateau.setUnivers(jeu.univers);
 		for (int j = 0; j < jeu.plateau.tailleX(); j++) {
 			for (int i = 0; i < jeu.plateau.tailleY(); i++) {
@@ -208,16 +243,20 @@ public final class SaveLoad {
 			fout.skip(1);
 		}
 		int l = Integer.parseInt(lire(fout,' '));
+		System.out.println(l);
 		for (int j=0; j < l; j++) {
 			jeu.plateau.getCoinsAutomates().add(new Coordonnees(Integer.parseInt(lire(fout, ':')),Integer.parseInt(lire(fout, ' '))));
 		}
 		l = Integer.parseInt(lire(fout, ' '));
+		System.out.println(l);
 		for (int j=0; j<l; j++) {
 			jeu.plateau.getNbetats().add(Integer.parseInt(lire(fout, ' ')));
 		}
 		Joueur nouv;
 		$Personnage pe;
 		int nbJou = Integer.parseInt(lire(fout, '\n')), nbPers;
+		System.out.println(nbJou);
+		System.out.println("-----");
 		int r,g,b;
 		for (int i = 0; i < nbJou; i++) {
 			nouv = new Joueur();
@@ -227,12 +266,19 @@ public final class SaveLoad {
 			if(r<0) {r+=256;}
 			if(g<0) {g+=256;}
 			if(b<0) {b+=256;}
+			System.out.println(r);
+			System.out.println(g);
+			System.out.println(b);
 			nouv.setCouleur(new Color(r,g,b));
 			fout.skip(1);
 			
 			nouv.setName(lire_nom(fout, ';'));
+			System.out.println(nouv.getName());
 			nbPers = Integer.parseInt(lire(fout, '\\'));
+			System.out.println(nbPers);
 			nouv.setMechant(Integer.parseInt(lire(fout, ';')) == 1);
+			System.out.println(nouv.mechant);
+			System.out.println("#####");
 			for (int j = 0; j < nbPers; j++) {
 				if (nouv.estMechant()) {
 					pe = new Mechant();
@@ -242,6 +288,9 @@ public final class SaveLoad {
 				pe.setNom(nouv.getName()+"_"+j);
 				pe.setCouleur(nouv.getCouleur());
 				pe.setPosition(new Coordonnees(Integer.parseInt(lire(fout, ' ')), Integer.parseInt(lire(fout, ' '))));
+				System.out.println(pe.getPosition().getX());
+				System.out.println(pe.getPosition().getY());
+				System.out.println("°°°°°");
 				if (nouv.estMechant()) {
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
 					pe.setEtat(Integer.parseInt(lire(fout, ':')));
@@ -256,9 +305,14 @@ public final class SaveLoad {
 				}
 				pe.setViemax(Integer.parseInt(lire(fout, ':')));
 				pe.setVie(Integer.parseInt(lire(fout, ':')));
+				System.out.println("~~~~~");
 				pe.setDmg(Integer.parseInt(lire(fout, ':')));
+				System.out.println(pe.getDmg());
+				//fout.skip(1);
 				pe.getAutomate().setNbCond(Integer.parseInt(lire(fout, ':')));
+				System.out.println(pe.getAutomate().nbconditions());
 				pe.getAutomate().setNbEtats(Integer.parseInt(lire(fout, '\n')));
+				System.out.println(pe.getAutomate().nbetats());
 				pe.getAutomate().newTrans();
 				pe.getAutomate().newAction();
 				for(int k=0; k<pe.getAutomate().nbetats(); k++) {
@@ -270,9 +324,11 @@ public final class SaveLoad {
 			}
 			fout.skip(1);
 			jeu.joueurs.add(nouv);
+			System.out.println("|||||");
 		}
 		fout.close();
 		actuGrille();
+		System.out.println("LOAD.FINISHED\n");
 	}
 
 }

@@ -1,5 +1,6 @@
 package Otomate;
 
+import java.util.List;
 
 public class Coordonnees{
     
