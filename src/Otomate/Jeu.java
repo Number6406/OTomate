@@ -3,12 +3,24 @@ package Otomate;
 import Affichage.*;
 import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.awt.Color;
-import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import java.io.*;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Jeu {
 
@@ -449,12 +461,38 @@ public class Jeu {
      * @param pArgs
      * @throws InterruptedException
      * @throws IOException
+     * @throws LineUnavailableException 
+     * @throws UnsupportedAudioFileException 
+     * @throws JavaLayerException 
      */
     // TODO : Raccourcir la fonction !
-    public static void main(String[] pArgs) throws InterruptedException, IOException {
+    
+    public static class Music extends Thread {
+    	public void run() {
+    		File f = new File("/home/gwen/workspace/Otomatamer/music/Mitch.mp3");
+            FileInputStream fis;
+			try {
+				fis = new FileInputStream(f);
+	            BufferedInputStream bis = new BufferedInputStream(fis);
+	            Player pl;
+				try {
+					pl = new Player(bis);
+					pl.play();
+				} catch (JavaLayerException e) {
+					e.printStackTrace();
+				}
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+    	}
+    }
+    
+    public static void main(String[] pArgs) throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException, JavaLayerException {
 
         FenetreMenu menuJeu = new FenetreMenu();
-
+        
+        (new Music()).start();
+        
         while (!commencerJeu) {
             Thread.sleep(100);
         }
