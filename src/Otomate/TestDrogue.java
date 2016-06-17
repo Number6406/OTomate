@@ -44,6 +44,7 @@ public class TestDrogue {
         Jeu.plateau = new Grille(Jeu.joueurs, Jeu.univers);
     	initialisergrille(Jeu.joueurs,Jeu.plateau);
     	Jeu.plateau.placerPersonnages(Jeu.joueurs);
+    	Jeu.joueurs.get(1).getPersonnagesI(0).setVie(30);
         
         Jeu.refPersos = new LinkedList<Integer>();
         
