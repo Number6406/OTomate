@@ -25,6 +25,7 @@ public abstract class $Personnage {
 	protected int inventaire;
 	protected String nom;
 	protected int dmg;
+	protected int inactivite;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
 	protected String spriteURL = null;
@@ -45,6 +46,7 @@ public abstract class $Personnage {
 		position = new Coordonnees(3, 5);
 		viemax = 100;
 		inventaire = 0;
+		inactivite = 20;
 		nom = name;
 		dmg = 10;
 		this.couleur = couleur;
@@ -163,6 +165,10 @@ public abstract class $Personnage {
             }
             return "";
         }
+        
+        public int getInactivite(){
+        	return inactivite;
+        }
 
 	// Setteurs
         public void setNom(String nom) {
@@ -204,6 +210,10 @@ public abstract class $Personnage {
 	
 	public void setDmg(int d) {
 		dmg = d;
+	}
+	
+	public void setInactivite(int deathtime){
+		inactivite = deathtime;
 	}
 
 	// Override

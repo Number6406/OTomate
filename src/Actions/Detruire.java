@@ -26,9 +26,12 @@ public class Detruire extends $Action {
 			else
 				g.Pos(p.getPosition()).setValeur(2);
 			effect = true;
+        	if(p.getInactivite()<20)
+        		p.setInactivite(20);
 		}
-		else {
+		else { // Echec de l'action
 			effect = false;
-		}
+			p.setInactivite(p.getInactivite()-1);
+		}	 
 	}
 }
