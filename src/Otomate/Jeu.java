@@ -225,12 +225,12 @@ public class Jeu {
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
-            historique.ceTour().addEvenement(new Evenement(P, univers.getNomRemede()));
+            historique.ceTour().addEvenement(new Evenement(P, univers.getActionRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
             ((Gentil) P).setRemede(0);
-            historique.ceTour().addEvenement(new Evenement(P, univers.getNomAntidote()));
+            historique.ceTour().addEvenement(new Evenement(P, univers.getActionAntidote()));
             return true;
         }
         return false;
