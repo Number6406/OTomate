@@ -463,7 +463,7 @@ public class Jeu {
     
     public static class Music extends Thread {
     	public void run() {
-    		File f = new File("/home/gwen/workspace/Otomatamer/music/Mitch.mp3");
+    		File f = new File(this.getClass().getResource("Mitch.mp3").getFile());
             FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
