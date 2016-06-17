@@ -35,6 +35,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -315,6 +317,17 @@ public class FenetreJeu extends JFrame {
         sauver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!Jeu.pause) {
+                    Jeu.play_pause();
+                    ImageIcon play = null;
+                    try {
+                        play = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile())));
+                    } catch (IOException ex) {
+                        Logger.getLogger(FenetreJeu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    b_playpause.setIcon(play);
+                    b_step.setEnabled(true);
+                }
                 sauvegarder();
             }
         });
