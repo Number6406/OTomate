@@ -232,13 +232,13 @@ public final class SaveLoad {
 		jeu.joueurZombie = Integer.parseInt(lire(fout, '\n'));
 		System.out.println(jeu.joueurZombie);
 		jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')), Integer.parseInt(lire(fout, '\n')));
-		System.out.println(jeu.plateau.tailleX());
 		System.out.println(jeu.plateau.tailleY());
+		System.out.println(jeu.plateau.tailleX());
 		jeu.plateau.setUnivers(jeu.univers);
-		for (int j = 0; j < jeu.plateau.tailleX(); j++) {
-			for (int i = 0; i < jeu.plateau.tailleY(); i++) {
-				jeu.plateau.set(Integer.parseInt(lire(fout, ':')), i, j);
-				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
+		for (int j = 0; j < jeu.plateau.tailleY(); j++) {
+			for (int i = 0; i < jeu.plateau.tailleX(); i++) {
+				jeu.plateau.set(Integer.parseInt(lire(fout, ':')),i,j);
+				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i,j);
 			}
 			fout.skip(1);
 		}

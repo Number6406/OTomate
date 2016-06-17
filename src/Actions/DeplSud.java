@@ -3,6 +3,7 @@ package Actions;
 import java.util.List;
 
 import Otomate.$Personnage;
+import Otomate.Jeu;
 import Otomate.Mechant;
 import Otomate.Grille;
 
@@ -17,7 +18,7 @@ public class DeplSud extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(3) == 2) { // 2 = chemin au sud et 4eme element de la liste ->
+		if (l.get(3) == 2 && p.getPosition().getY() < Jeu.plateau.tailleY()-1) { // 2 = chemin au sud et 4eme element de la liste ->
 								// regarde le sud
 			p.getPosition().setY(p.getPosition().getY() + 1);
 			effect = true;

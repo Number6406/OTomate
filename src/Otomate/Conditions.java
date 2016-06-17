@@ -58,6 +58,7 @@ public class Conditions {
     	if(next.getX()<0 && direction == 4){return type==0||type==2;}
     	if(next.getY()>g.tailleY()-1 && direction == 3){return type==0||type==2;}
     	if(next.getY()<0 && direction == 1){return type==0 ||type==2;}
+    	
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
     	for(i=0;i<max;i++){
     		if(l.get(i).getId()==Cid){
