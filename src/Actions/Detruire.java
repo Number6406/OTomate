@@ -9,7 +9,6 @@ public class Detruire extends $Action {
 
 	public Detruire(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Detruire() {

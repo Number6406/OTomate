@@ -6,7 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -31,21 +30,16 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -383,28 +377,28 @@ public class FenetreJeu extends JFrame {
 
                 String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if (p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
-                    System.err.println("C'est un gentil");
+                    //System.err.println("C'est un gentil");
                     if (((Gentil) p).getArme() != null) {
-                        System.err.println("Le joueur à une arme !");
+                        //System.err.println("Le joueur à une arme !");
                         String iconeArme = ((Gentil) p).getArme().getPath();
                         arme = new ImageIcon(getClass().getResource(iconeArme));
                     }
 
                     if (((Gentil) p).getRemede() != 0) {
-                        System.err.println("Le joueur a� un remede !");
+                        //System.err.println("Le joueur a� un remede !");
                         String iconeRemede = Jeu.univers.getRemede(((Gentil) p).getRemede());
                         remede = new ImageIcon(getClass().getResource(iconeRemede));
                     }
 
                     if (((Gentil) p).getInventaire() != 0) {
-                        System.err.println("Le joueur a� un item dans l'inventaire !");
+                        //System.err.println("Le joueur a� un item dans l'inventaire !");
                         String cons = Jeu.univers.getObjets().get(((Gentil) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }
                 }
                 if (p instanceof Mechant) {
                     if (((Mechant) p).getInventaire() != 0) {
-                        System.err.println("Le joueur a� un item dans l'inventaire !");
+                        //System.err.println("Le joueur a� un item dans l'inventaire !");
                         String cons = Jeu.univers.getObjets().get(((Mechant) p).getInventaire()).getPath();
                         consommable = new ImageIcon(getClass().getResource(cons));
                     }

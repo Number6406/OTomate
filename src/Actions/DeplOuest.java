@@ -10,7 +10,6 @@ public class DeplOuest extends $Action {
 
 	public DeplOuest(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public DeplOuest() {

@@ -16,7 +16,6 @@ public class Ramasser extends $Action {
 	
 	public Ramasser(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	private boolean drogue = false;

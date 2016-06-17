@@ -16,8 +16,8 @@
 	</action>
 	<action>
 		<id>3</id>
-		<succes>galere à avancer à l'est</succes>
-		<echec>tente d'avancer à l'est mais echoue lamentablement</echec>
+		<succes>galere a avancer a l'est</succes>
+		<echec>tente d'avancer a l'est mais echoue lamentablement</echec>
 	</action>
 	<action>
 		<id>4</id>
@@ -66,12 +66,12 @@
 	</action>
 	<action>
 		<id>13</id>
-		<succes>détruit avec rage</succes>
+		<succes>detruit avec rage</succes>
 		<echec>essaye de detruire quelque chose de plus solide que lui</echec>
 	</action>
 	<action>
 		<id>14</id>
-		<succes>fouille un batiment à la recherche de tresors</succes>
-		<echec>veux fouiller mais echoue</echec>
+		<succes>fouille un batiment a la recherche de tresors</succes>
+		<echec>veut fouiller mais echoue</echec>
 	</action>
 </parse>

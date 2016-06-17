@@ -16,13 +16,13 @@
 	</action>
 	<action>
 		<id>3</id>
-		<succes>avance à l'est</succes>
+		<succes>avance a l'est</succes>
 		<echec>tente d'avancer vers l'est</echec>
 	</action>
 	<action>
 		<id>4</id>
-		<succes>va à l'ouest</succes>
-		<echec>ne peut pas aller à l'ouest</echec>
+		<succes>va a l'ouest</succes>
+		<echec>ne peut pas aller a l'ouest</echec>
 	</action>
 	<action>
 		<id>5</id>
@@ -47,7 +47,7 @@
 	<action>
 		<id>9</id>
 		<succes>absorbe un composant</succes>
-		<echec>: il n'y a rien à absorber</echec>
+		<echec>: il n'y a rien a absorber</echec>
 	</action>
 	<action>
 		<id>10</id>
@@ -57,7 +57,7 @@
 	<action>
 		<id>11</id>
 		<succes>repare des bouts de code</succes>
-		<echec>essaye de réparer son code et echoue. C'est un virus</echec>
+		<echec>essaye de reparer son code et echoue. C'est un virus</echec>
 	</action>
 	<action>
 		<id>12</id>
@@ -71,7 +71,7 @@
 	</action>
 	<action>
 		<id>14</id>
-		<succes>fouille un tas d'objets à la recherche de tresors</succes>
+		<succes>fouille un tas d'objets a la recherche de tresors</succes>
 		<echec>veux fouiller mais échoue</echec>
 	</action>
 </parse>

@@ -1,10 +1,7 @@
 package Otomate;
 
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
-
-import Otomate.historique.Historique;
 
 public class SaveJeu {
 	public Grille plateau;

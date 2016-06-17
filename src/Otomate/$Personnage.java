@@ -239,24 +239,20 @@ public abstract class $Personnage {
 		List<Integer> lc = G.conditions(this, lb);
 		List<Integer> lt = G.transitionsPossibles(this,lc);
 		List<Integer> la = G.actionsPossibles(this, lc);
-		System.out.println("Actions possible "+la.toString());
 		$Action actionAFaire;		
 		int numaction;
 		if(la.size()!=0){
 			int x = Grille.random(0, la.size());
 			numaction = la.get(x);
 			this.setEtat(lt.get(x));
-			System.err.println("PERSONNAGE " + this.getNom() + " DANS ETAT " + this.getEtat());
 		} else {
 			numaction = 0; // Ne rien faire
 		}
 		
 		if(this instanceof Gentil){
 			actionAFaire = U.getActionsGentil().get(numaction);
-			System.out.println("On recupere l'action gentille : "+numaction);
 		} else {
 			actionAFaire = U.getActionsMechant().get(numaction);
-			System.out.println("On recupere l'action mechante : "+numaction);
 		}
 		G.Maj(this, actionAFaire, listJoueur, lc);
 		return actionAFaire.toString();

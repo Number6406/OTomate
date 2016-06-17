@@ -12,7 +12,6 @@ public class AttOuest extends $Action {
 
 	public AttOuest(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public AttOuest() {

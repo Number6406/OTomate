@@ -54,23 +54,23 @@ public class AutomatePicker extends JPanel {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
-                System.out.println(e.toString());
+                //System.out.println(e.toString());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                System.out.println(e.toString());
+                //System.out.println(e.toString());
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                System.out.println(e.toString());
+                //System.out.println(e.toString());
                 if (!checkExtension()) {
                     new JDialog();
                 }
             }
         });
-        System.out.println(chemin.toString());
+        //System.out.println(chemin.toString());
         c.weightx = 0;
         c.fill = GridBagConstraints.NONE;
         c.gridx += 1;
@@ -93,11 +93,7 @@ public class AutomatePicker extends JPanel {
             chemin.setText("");
         });
     }
-
-    /*  public boolean cool(){
-    	(chemin.getText())
-    }
-     */
+    
     public boolean checkExtension() {
         String nomFichier = this.chemin.getText();
         try {

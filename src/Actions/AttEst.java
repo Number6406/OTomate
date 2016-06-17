@@ -12,7 +12,6 @@ public class AttEst extends $Action {
 
 	public AttEst(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public AttEst() {

@@ -10,7 +10,6 @@ public class Pieger extends $Action {
 
 	public Pieger(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Pieger() {

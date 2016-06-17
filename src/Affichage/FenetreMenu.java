@@ -29,9 +29,6 @@ import Otomate.Jeu;
  */
 public class FenetreMenu extends FenetreBase {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     // Elements du menu
