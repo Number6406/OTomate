@@ -52,7 +52,7 @@
 	<action>
 		<id>10</id>
 		<succes>pose un piège</succes>
-		<echec>essaye de piéger quelque chose qui ne peut pas l'être</echec>
+		<echec>est trop nul wesh, il peut pas piéger</echec>
 	</action>
 	<action>
 		<id>11</id>
