@@ -72,7 +72,9 @@ public class FenetreJeu extends JFrame {
     AffichagePlateau pan_plateau;
     JLabel label_perso;
     JScrollPane scroll_perso;
-    JTable tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Consom.", "Arme", "Remede"}, 0) {
+    JTable tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Conso", "Arme", "Remede"}, 0) {
+    	
+    	
         /**
          *
          */
@@ -131,6 +133,10 @@ public class FenetreJeu extends JFrame {
         pan_info = new JPanel();
         label_perso = new JLabel();
         tab_perso.getTableHeader().setReorderingAllowed(false);
+        
+        TableColumn col1 = tab_perso.getColumnModel().getColumn(0);
+        col1.setPreferredWidth(200);
+        
         majTabPersos(); // Mise à jour de l'affichage de l'état des personnages
 
         scroll_perso = new JScrollPane(tab_perso);
@@ -164,7 +170,8 @@ public class FenetreJeu extends JFrame {
         });
 
         tab_history.getTableHeader().setReorderingAllowed(false);
-
+        
+        // On fixe la taille de colonne des actions à 400 pixels
         TableColumn col = tab_history.getColumnModel().getColumn(1);
         col.setPreferredWidth(400);
 
@@ -407,7 +414,7 @@ public class FenetreJeu extends JFrame {
                 if (p instanceof Gentil) {
                     ((DefaultTableModel) tab_perso.getModel()).addRow(
                             new Object[]{
-                                "<html>" + p.getNomHtml() + " (" + p.getEtatString() + ")" + "</html>",
+                                "<html>[<i>" + p.getEtatString() + "</i>] " + p.getNomHtml() + "</html>",
                                 p.getVie() + "/" + p.getViemax(),
                                 consommable, // Affichage de l'icone
                                 arme,
@@ -418,7 +425,7 @@ public class FenetreJeu extends JFrame {
                 } else {
                     ((DefaultTableModel) tab_perso.getModel()).addRow(
                             new Object[]{
-                                "<html>" + p.getNomHtml() + "</html>",
+                                "<html>[<i>" + Jeu.univers.getNomMechants() + "</i>] " + p.getNomHtml() + "</html>",
                                 p.getVie() + "/" + p.getViemax(),
                                 consommable, // Affichage de l'icone
                                 arme,
