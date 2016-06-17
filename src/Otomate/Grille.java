@@ -295,7 +295,7 @@ public class Grille {
                 res.add(newc[k]);
                 	boolean b=true;
                 	int a;
-                	for(a=0;a<5;a++) b=b&&  Pos(newc[k].CalculCase(a)).Passable(Jeu.univers.getObjets());
+                	for(a=0;a<5;a++) b= (b&&  Pos(newc[k].CalculCase(a)).Passable(Jeu.univers.getObjets()));
                 if(b)
                 	l.get(i).setPosition(newc[k]);
                 else
