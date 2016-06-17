@@ -28,13 +28,13 @@
 	<case>
 		<etat>1</etat>
 		<condition>15</condition>
-		<action>15</action>
+		<action>14</action>
 		<transition>2</transition>
 	</case>
 	<case>
 		<etat>1</etat>
 		<condition>16</condition>
-		<action>14</action>
+		<action>13</action>
 		<transition>2</transition>
 	</case>
 	<case>

@@ -64,7 +64,7 @@ public class Ramasser extends $Action {
 							p.setViemax(p.getViemax() - 10);
 							System.err.println("viemax : " + p.getViemax());
 							p.setVie(p.getVie() - 10);
-							if(p.getVie()<p.getViemax())
+							if(p.getVie()>p.getViemax())
 								p.setVie(p.getViemax());	//barre de hp = hp max si hp > hp max
 							((Gentil) p).setDrogue(2);
 
