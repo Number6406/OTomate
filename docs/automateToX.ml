@@ -15,7 +15,6 @@ open Printf
 	  | Ramasser
 	  | Pieger
 	  | Utiliser
-	  | Soigner
 	  | Fuir
 	  | Detruire
 	  | Fouiller
@@ -102,10 +101,9 @@ open Printf
 	  | Ramasser -> 9
 	  | Pieger -> 10
 	  | Utiliser -> 11
-	  | Soigner -> 12
-	  | Fuir -> 13
-	  | Detruire -> 14
-	  | Fouiller -> 15
+	  | Fuir -> 12
+	  | Detruire -> 13
+	  | Fouiller -> 14
 	  | _ -> 0
 
 
