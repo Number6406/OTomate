@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -30,23 +31,34 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-
+/**
+ *
+ * @author bonhourg
+ */
 public class FenetreJeu extends JFrame {
 
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
     // Constantes
     public static final int XINFO = 300;
@@ -63,7 +75,9 @@ public class FenetreJeu extends JFrame {
     JTable tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Conso", "Arme", "Remede"}, 0) {
     	
     	
-        
+        /**
+         *
+         */
         private static final long serialVersionUID = 1L;
 
         public boolean isCellEditable(int row, int column) {
@@ -110,6 +124,8 @@ public class FenetreJeu extends JFrame {
         Grille g = Jeu.plateau;
         List<Objet> lo = Jeu.univers.getObjets();
         Historique h = Jeu.historique;
+        List<Joueur> l = Jeu.joueurs;
+        int i, j, max = l.size(), max2;
 
         // Chargement des différents éléments des fenetres
         chargerMenu();
@@ -365,6 +381,7 @@ public class FenetreJeu extends JFrame {
                 ImageIcon arme = null;
                 ImageIcon remede = null;
 
+                String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if (p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
                     System.err.println("C'est un gentil");
                     if (((Gentil) p).getArme() != null) {
@@ -480,6 +497,7 @@ public class FenetreJeu extends JFrame {
                         try {
                             Jeu.sauvegarder(path);
                         } catch (IOException e1) {
+                            // TODO Auto-generated catch block
                             e1.printStackTrace();
                         }
                     }

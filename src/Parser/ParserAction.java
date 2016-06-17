@@ -23,6 +23,7 @@ public class ParserAction{
         
         XMLAction a=new XMLAction();
         File f=new File(this.getClass().getResource(file).getFile());
+        //System.out.println("filename : " + file);
         parser.parse(f, a);
         
         list=a.list;
@@ -36,6 +37,7 @@ public class ParserAction{
 	       } catch (SAXException e) {
 	          e.printStackTrace();
 	       } catch (IOException e) {
+	          // TODO Auto-generated catch block
 	  e.printStackTrace();
         
         

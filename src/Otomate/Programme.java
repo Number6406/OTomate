@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import Affichage.Affichage;
+import Affichage.FenetreMenu;
 
 public class Programme {
 	
@@ -19,6 +20,7 @@ public class Programme {
 
     // Nécessaire au lancement du jeu
     private static boolean commencerJeu = false;
+    private static int numeroUnivers;
     private static int nZombie;
     private static int nbPersoParZombie;
     private static List<List<String>> xmls;
@@ -26,12 +28,17 @@ public class Programme {
     private static int nUnivers;
 	
 	public static void main(String[] args) throws InterruptedException, IOException {
+
+        FenetreMenu menuJeu = new FenetreMenu();
+
         while (!commencerJeu) {
             Thread.sleep(100);
         }
 
         if(!charge) {Jeu.debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Jeu.charger("Start.txt");}
+        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
+        
         SaveLoad save = new SaveLoad(Jeu.createSaveJeu(), "Start.txt");
         save.save();
         
