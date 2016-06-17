@@ -132,7 +132,7 @@ public class Grille {
         if(dimv<50)
             dimv = 50;
             
-      //cration die la map dimh/dimv avec minimum 50/50
+      //creation de la map dimh/dimv avec minimum 50/50
         g = new Case[dimh][dimv];
     	tailleX=dimh;
     	tailleY=dimv;
