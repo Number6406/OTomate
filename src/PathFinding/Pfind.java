@@ -3,7 +3,7 @@ package PathFinding;
 import Otomate.Coordonnees;
 
 public class Pfind {
-	private Path p;
+	private Path p=null;
 	private TileBasedMap map=new TileBasedMap();
 	private int max=2000;
 	private int next;
@@ -16,7 +16,7 @@ public class Pfind {
 	
 	AStarPathFinder pf = new AStarPathFinder(map, max, false);
 	p=pf.findPath(new Mover(), from.getX(), from.getY(), To.getX(), To.getY());
-	if(p.getLength()>1){
+	if(p!=null && p.getLength()>1){
 	int x=p.getStep(1).getX();
 	int y=p.getStep(1).getY();
 	if(x>from.getX()){
@@ -36,6 +36,7 @@ public class Pfind {
 	}
 	}
 	else{
+		System.out.println("Path Finding bugué");
 		next=0;
 	}
 	}

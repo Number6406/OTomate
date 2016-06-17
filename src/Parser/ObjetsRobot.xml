@@ -14,7 +14,7 @@
 		<id>1</id>
 		<type>4</type>
 		<use>0</use>
-		<name>un Port USB (piégeable)</name>
+		<name>un Port USB</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Robot/usb.png</path>
 	</objet>
@@ -54,7 +54,7 @@
 		<id>6</id>
 		<type>2</type>
 		<use>0</use>
-		<name>Navigation privée</name>
+		<name>le mode Navigation Privee</name>
 		<passage>1</passage>
 		<path>../Graphics/Tiles/Robot/private.png</path>
 	</objet>

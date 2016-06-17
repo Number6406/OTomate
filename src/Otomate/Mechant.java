@@ -21,6 +21,7 @@ public class Mechant extends $Personnage {
 	public Mechant($Personnage perso, Color couleur, String name) {
 		super(perso,couleur, name);
 		vie = viemax;
+		setPosition(c);
 	}
 
 	public String toString() {

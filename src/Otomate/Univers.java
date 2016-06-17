@@ -25,7 +25,7 @@ public class Univers {
 	String nomGentils;
 	String nomMechants;
 	String imageGentil, imageMechant;
-	String antidote,remede, nomAntidote, nomRemede;
+	String antidote,remede, nomAntidote, nomRemede, actionAntidote, actionRemede;
 	int numero;
 	
 	// Getteurs
@@ -81,6 +81,14 @@ public class Univers {
 	public String getNomAntidote() {
 		return nomAntidote;
 	}
+
+	public String getActionRemede() {
+		return actionRemede;
+	}
+
+	public String getActionAntidote() {
+		return actionAntidote;
+	}
 	
 	
 	// Constructeur
@@ -96,8 +104,10 @@ public class Univers {
 			nomUnivers = "Humains vs. Zombies";
 			nomGentils = "humains";
 			nomMechants = "zombies";
-			nomAntidote = "a utilisé un antidote pour soigner son infection";
-			nomRemede = "a utilisé un bandage pour arreter son saignement";
+			nomAntidote = "un Antidote";
+			nomRemede = "un Bandage";
+			actionAntidote = "a utilisé un antidote pour soigner son infection";
+			actionRemede = "a utilisé un bandage pour arreter son saignement";
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
 			break;
@@ -108,10 +118,12 @@ public class Univers {
 			nomUnivers = "Robots vs. Virus";
 			nomGentils = "robots";
 			nomMechants = "virus";
-			nomAntidote = "a fait une analyse pour éliminer les virus";
-			nomRemede = "a lancé CCleaner pour enlever les malwares";
+			nomAntidote = "une Analyse";
+			nomRemede = "CCleaner";
+			actionAntidote = "a fait une analyse pour éliminer les virus";
+			actionRemede = "a lancé CCleaner pour enlever les malwares";
 			antidote = "../Graphics/Tiles/Robot/analyse.png";
-			remede = "../Graphics/Tiles/Zombie/ccleaner.png";
+			remede = "../Graphics/Tiles/Robot/ccleaner.png";
 			break;
 		default :
 			Pg = new ParserAction("ActionsHumain.xml");
@@ -120,8 +132,10 @@ public class Univers {
 			nomUnivers = "Humains vs. Zombies";
 			nomGentils = "humains";
 			nomMechants = "zombies";
-			nomAntidote = "a utilisé un antidote pour soigner son infection";
-			nomRemede = "a utilisé un bandage pour arreter son saignement";
+			nomAntidote = "antidote";
+			nomRemede = "bandage";
+			actionAntidote = "a utilisé un antidote pour soigner son infection";
+			actionRemede = "a utilisé un bandage pour arreter son saignement";
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
 		}
