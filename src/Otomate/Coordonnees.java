@@ -45,19 +45,23 @@ public class Coordonnees{
     	k.setY(this.getY());
     	switch(d){
     		case 1:
-    			k.setY(this.getY()-1);
+    			if(k.getY()==0)k.setY(0);
+    			else k.setY(this.getY()-1);
     		break;
     		
     		case 2:
-    			k.setX(this.getX()+1);
+    			if(k.getX()==Jeu.plateau.tailleX()-1)k.setX(Jeu.plateau.tailleX()-1);
+    			else k.setX(this.getX()+1);
     		break;
     		
     		case 3:
-    			k.setY(this.getY()+1);
+    			if(k.getY()==Jeu.plateau.tailleY()-1) k.setY(Jeu.plateau.tailleY()-1);
+    			else k.setY(this.getY()+1);
     		break;
     		
     		case 4:
-    			k.setX(this.getX()-1);
+    			if(k.getX()==0)k.setX(0);
+    			else k.setX(this.getX()-1);
     		break;
     		
     		default:

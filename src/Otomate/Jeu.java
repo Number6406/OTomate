@@ -444,8 +444,14 @@ public class Jeu {
      */
     
     public static class Music extends Thread {
+    	String s;
+    	
+    	public Music(String pS) {
+    		s = pS;
+    	}
+    	
     	public void run() {
-    		File f = new File(this.getClass().getResource("Mitch.mp3").getFile());
+    		File f = new File(this.getClass().getResource("Crypteque.mp3").getFile());
             FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
@@ -467,7 +473,8 @@ public class Jeu {
 
         FenetreMenu menuJeu = new FenetreMenu();
         
-        (new Music()).start();
+        Music player = new Music("Mitch");
+        player.start();
         
         while (!commencerJeu) {
             Thread.sleep(100);
