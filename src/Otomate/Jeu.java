@@ -299,7 +299,7 @@ public class Jeu {
         Affichage.ajouterTour(historique.ceTour());
     }
 
-    private static String croqueMorts(List<Joueur> lesJoueurs) {
+    public static String croqueMorts(List<Joueur> lesJoueurs) {
         String s = "<i>Fin de Tour</i> : ";
         int i,k;
         Joueur player = null;
