@@ -3,6 +3,7 @@ package Otomate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
 import Actions.*;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
@@ -292,7 +293,10 @@ public class Grille {
             }
             if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
                 res.add(newc[k]);
-                if(Pos(newc[k]).getValeur() != 3 && Pos(newc[k]).getValeur() != 5)
+                	boolean b=true;
+                	int a;
+                	for(a=0;a<5;a++) b=b&&  Pos(newc[k].CalculCase(a)).Passable(Jeu.univers.getObjets());
+                if(b)
                 	l.get(i).setPosition(newc[k]);
                 else
                 	k--;
