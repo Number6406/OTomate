@@ -79,6 +79,8 @@ public class Jeu {
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
         
         plateau = new Grille(joueurs, univers);
+    	plateau.initialisergrille(joueurs);
+    	plateau.placerPersonnages(joueurs);
         
         refPersos = new LinkedList<Integer>();
         

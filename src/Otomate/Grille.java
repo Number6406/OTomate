@@ -74,6 +74,10 @@ public class Grille {
 	public void setUnivers(Univers univ) {
 		u = univ;
 	}
+	
+	public void setCoinsAutomates(List<Coordonnees> coord){
+		coinsAutomates = coord;
+	}
 
     // Constructeur
     /**
@@ -138,8 +142,8 @@ public class Grille {
     			g[i][j] = new Case();
     		}
     	}
-    	this.initialisergrille(l);
-    	this.placerPersonnages(list);
+    	//this.initialisergrille(l);
+    	//this.placerPersonnages(l);
     }
     
     //Méthodes
@@ -254,10 +258,18 @@ public class Grille {
         return res;
     }
 	
-	public void placerPersonnages(List<$Personnage> l){
+	public void placerPersonnages(List<Joueur> list){
+        List<$Personnage> l = new LinkedList<>();
+        int i,j,k;	 //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
+        for(i=0; i<list.size(); i++){
+        	int max = list.get(i).getSizePersonnages();
+        	for(j=0;j<max;j++){
+        	    l.add(list.get(i).getPersonnagesI(j));    	
+        	}
+	    }
+	      
 		List<Coordonnees> res = new LinkedList<Coordonnees>();
         Random rnd = new Random();
-        int i, j, k;
         Coordonnees[] newc = new Coordonnees[l.size()];
         for(i=0;i<l.size();i++){
         	newc[i] = new Coordonnees();
