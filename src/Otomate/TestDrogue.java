@@ -9,15 +9,13 @@ import Affichage.Affichage;
 import Affichage.FenetreMenu;
 import Otomate.historique.Historique;
 
-public class TestMiam {
-
-	
+public class TestDrogue {
 	
 	public static void initialisergrille(List<Joueur> l, Grille G) {
     	int i,j,k;
         for(i=0; i<G.tailleX(); i++){
             for(j=0; j<G.tailleY(); j++){
-                k = Grille.random(6, 8);        //car 15 actions possibles numerotees de 0 a 14 
+                k = Grille.random(12, 13);        //car 15 actions possibles numerotees de 0 a 14 
                 G.set(k, i, j);
             }
         }
@@ -30,6 +28,7 @@ public class TestMiam {
         G.setCoinsAutomates(G.goAutomates(list, G.tailleX(), G.tailleY()));
         G.Placements(l);
     }
+
     /**
      * Initialise toutes les variables pour lancer la partie.
      */
@@ -43,14 +42,9 @@ public class TestMiam {
         Jeu.initJoueurs(Jeu.names, nbPersoParZombie, nZombie, xmls, couleurs);
         
         Jeu.plateau = new Grille(Jeu.joueurs, Jeu.univers);
-    	initialisergrille(Jeu.joueurs, Jeu.plateau);
+    	initialisergrille(Jeu.joueurs,Jeu.plateau);
     	Jeu.plateau.placerPersonnages(Jeu.joueurs);
-    	int i,j;
-    	for(i=0; i<Jeu.joueurs.size(); i++){
-    		for(j=0; j<Jeu.joueurs.get(i).getSizePersonnages(); j++)
-    			if(Jeu.joueurs.get(i).getPersonnagesI(j) instanceof Gentil)
-    				Jeu.joueurs.get(i).getPersonnagesI(j).setVie(30);
-    	}
+    	Jeu.joueurs.get(1).getPersonnagesI(0).setVie(30);
         
         Jeu.refPersos = new LinkedList<Integer>();
         
