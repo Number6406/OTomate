@@ -273,7 +273,7 @@ public final class SaveLoad {
 			fout.skip(1);
 			
 			nouv.setName(lire_nom(fout, ';'));
-			System.out.println("dazfygrthiyiogrfuyguyyoiguvfycsegbthfiv " + nouv.getName());
+			System.out.println(nouv.getName());
 			nbPers = Integer.parseInt(lire(fout, '\\'));
 			System.out.println(nbPers);
 			nouv.setMechant(Integer.parseInt(lire(fout, ';')) == 1);
@@ -285,7 +285,8 @@ public final class SaveLoad {
 				} else {
 					pe = new Gentil();
 				}
-				pe.setNom(nouv.getName());
+				pe.setNom(nouv.getName()+"_"+j);
+				pe.setCouleur(nouv.getCouleur());
 				pe.setPosition(new Coordonnees(Integer.parseInt(lire(fout, ' ')), Integer.parseInt(lire(fout, ' '))));
 				System.out.println(pe.getPosition().getX());
 				System.out.println(pe.getPosition().getY());
