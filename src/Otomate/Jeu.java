@@ -29,6 +29,7 @@ public class Jeu {
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
+    public static Player pl;
     
     // Chargement
     protected static boolean charge = false;
@@ -456,7 +457,6 @@ public class Jeu {
 			try {
 				fis = new FileInputStream(f);
 	            BufferedInputStream bis = new BufferedInputStream(fis);
-	            Player pl;
 				try {
 					pl = new Player(bis);
 					pl.play();
@@ -500,6 +500,7 @@ public class Jeu {
 
         }
         finDeJeu();
+        pl.close();
         Affichage.fin();
     }
 }
