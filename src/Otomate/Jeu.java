@@ -16,7 +16,7 @@ public class Jeu {
     public static Grille plateau;
     public static List<Joueur> joueurs;
     public static List<Integer> refPersos;
-    private static int joueurZombie;
+    public static int joueurZombie;
     public static Historique historique;
     public static Univers univers;
     public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 250;
@@ -25,17 +25,17 @@ public class Jeu {
     public static boolean step = false;
     
     // Chargement
-    private static boolean charge = false;
+    protected static boolean charge = false;
 
     // Nécessaire au lancement du jeu
-    private static boolean commencerJeu = false;
-    private static int numeroUnivers;
-    private static List<String> names;
-    private static int nZombie;
-    private static int nbPersoParZombie;
-    private static List<List<String>> xmls;
-    private static List<Color> couleurs;
-    private static int nUnivers;
+    protected static boolean commencerJeu = false;
+    protected static int numeroUnivers;
+    protected static List<String> names;
+    protected static int nZombie;
+    protected static int nbPersoParZombie;
+    protected static List<List<String>> xmls;
+    protected static List<Color> couleurs;
+    protected static int nUnivers;
     
     // Methodes
     /**
@@ -79,14 +79,6 @@ public class Jeu {
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
         
         plateau = new Grille(joueurs, univers);
-        //joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(5,5));
-        //joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(7,5));
-        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(6,8));
-        //joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
-        //joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(2,6));
-        //joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(2,4));
-        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(4,5));
-        //joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
         
         refPersos = new LinkedList<Integer>();
         
@@ -323,7 +315,7 @@ public class Jeu {
                             Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(),perso.getPosition());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
                       //      System.err.println("il est mort 1");
-                            s += perso.getNomHtml() + " est transformé. ";
+                            s += perso.getNomHtml() + " est transforme. ";
                             player.getPersonnages().remove(k);
                         } else {
                        // 	System.err.println("il est mort 2");

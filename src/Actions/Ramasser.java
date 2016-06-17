@@ -132,9 +132,9 @@ public class Ramasser extends $Action {
 
 	public String toString() {
 		if ((effect == true) && (drogue == false))
-			return ("a ramassé " + Jeu.univers.getObjets().get(ramasse).getName());
+			return ("a ramasse " + Jeu.univers.getObjets().get(ramasse).getName());
 		else if ((effect == true) && (drogue == true)) {
-			return ("a ramassé " + Jeu.univers.getObjets().get(ramasse).getName() + " et " + effet);
+			return ("a ramasse " + Jeu.univers.getObjets().get(ramasse).getName() + " et " + effet);
 		} else
 			return ("essaye de ramasser quelque chose. Mais il n'y a rien.");
 	}

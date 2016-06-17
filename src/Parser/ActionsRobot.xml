@@ -1,7 +1,7 @@
 <parse>
 	<action>
 		<id>0</id>
-		<succes>observe les petits éléctrons qui courent</succes>
+		<succes>observe les petits electrons qui courent</succes>
 		<echec>n'arrive pas à rien faire</echec>
 	</action>
 	<action>
@@ -12,16 +12,16 @@
 	<action>
 		<id>2</id>
 		<succes>descends vers le sud</succes>
-		<echec>tente d'aller au sud mais rencontre de l'adversité</echec>
+		<echec>tente d'aller au sud mais rencontre de l'adversite</echec>
 	</action>
 	<action>
 		<id>3</id>
 		<succes>se dirige vers l'est</succes>
-		<echec>est bloqué dans sa course vers l'est</echec>
+		<echec>est bloque dans sa course vers l'est</echec>
 	</action>
 	<action>
 		<id>4</id>
-		<succes>pars à l'ouest</succes>
+		<succes>pars a l'ouest</succes>
 		<echec>ne peut pas aller à l'ouest</echec>
 	</action>
 	<action>
@@ -47,31 +47,31 @@
 	<action>
 		<id>9</id>
 		<succes>ramasse un composant</succes>
-		<echec>essaye de ramasser quelque chose qui ne peut pas l'être</echec>
+		<echec>essaye de ramasser quelque chose qui ne peut pas l'etre</echec>
 	</action>
 	<action>
 		<id>10</id>
-		<succes>pose un piége</succes>
-		<echec>essaye de pieger quelque chose qui ne peut pas l'être</echec>
+		<succes>pose un piege</succes>
+		<echec>essaye de pieger quelque chose qui ne peut pas l'etre</echec>
 	</action>
 	<action>
 		<id>11</id>
-		<succes>se recharge. Il est revigoré</succes>
+		<succes>se recharge. Il est revigore</succes>
 		<echec>est vidé de son énérgie et a un inventaire vide</echec>
 	</action>
 	<action>
 		<id>12</id>
-		<succes>fuit comme un lâche</succes>
+		<succes>fuit comme un lache</succes>
 		<echec>essaye de fuir, mais il n'y a pas d'issues</echec>
 	</action>
 	<action>
 		<id>13</id>
-		<succes>détruit l'obstacle</succes>
-		<echec>frappe l'objet. Cela n'est pas très efficace</echec>
+		<succes>detruit l'obstacle</succes>
+		<echec>frappe l'objet. Cela n'est pas tres efficace</echec>
 	</action>
 	<action>
 		<id>14</id>
 		<succes>fouille un tas de composants</succes>
-		<echec>veux fouiller mais échoue</echec>
+		<echec>veux fouiller mais echoue</echec>
 	</action>
 </parse>
