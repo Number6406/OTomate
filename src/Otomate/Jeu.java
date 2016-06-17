@@ -25,7 +25,7 @@ public class Jeu {
     public static int joueurZombie;
     public static Historique historique;
     public static Univers univers;
-    public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 250;
+    public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 150;
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
