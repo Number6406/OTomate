@@ -18,5 +18,6 @@ public class RaF extends $Action {
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
 		effect = true;
+		p.setInactivite(p.getInactivite()-1);
 	}
 }

@@ -22,10 +22,13 @@ public class DeplOuest extends $Action {
 								// -> regarde l'ouest
 			p.getPosition().setX(p.getPosition().getX() - 1);
 			effect = true;
+        	if(p.getInactivite()<20)
+        		p.setInactivite(20);
 		}
-		else {
+		else { // Echec de l'action
 			effect = false;
-		}
+			p.setInactivite(p.getInactivite()-1);
+		}	 
 		if (p instanceof Mechant) {
 			if (g.Pos(p.getPosition()).piegee == true){
 				((Mechant) p).setVie(((Mechant) p).getVie() - 20);

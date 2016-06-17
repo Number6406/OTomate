@@ -46,8 +46,12 @@ public class AttSud extends $Action {
 					((Gentil) e).setInfecte(true);
 			}
 			effect = true;
-		} else {
-			effect = false;
+        	if(p.getInactivite()<20)
+        		p.setInactivite(20);
 		}
+		else { // Echec de l'action
+			effect = false;
+			p.setInactivite(p.getInactivite()-1);
+		}	 
 	}
 }

@@ -171,6 +171,8 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
+        if(((Gentil) P).getParalysie() <= 0)
+        	P.setInactivite(P.getInactivite()-1);
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
@@ -196,14 +198,6 @@ public class Jeu {
             if (((Gentil) P).getInfecte()) {
                 P.setVie(P.getVie() - 1);
             }
-        }
-    }
-
-    public static void junky(List<$Personnage> lp) throws InterruptedException {
-        int i, max = lp.size();
-        for (i = 0; i < max; i++) {
-            saigne(lp.get(i));
-            gereParalysie(lp.get(i));
         }
     }
 
@@ -237,11 +231,15 @@ public class Jeu {
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
+        	if(P.getInactivite()<20)
+        		P.setInactivite(20);
             historique.ceTour().addEvenement(new Evenement(P, univers.getActionRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
             ((Gentil) P).setRemede(0);
+        	if(P.getInactivite()<20)
+        		P.setInactivite(20);
             historique.ceTour().addEvenement(new Evenement(P, univers.getActionAntidote()));
             return true;
         }
@@ -321,7 +319,7 @@ public class Jeu {
             if(player!=null){
             for (k=0; k<player.getSizePersonnages(); k++) {
             	perso = player.getPersonnagesI(k);
-                if (perso.getVie() <= 0) {
+                if (perso.getVie() <= 0 || perso.getInactivite() == 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
                             Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
