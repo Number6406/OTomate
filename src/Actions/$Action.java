@@ -19,9 +19,9 @@ Actions :
     10 Pieger
     11 Manger/Restaurer
     12 Fuir
-    13 Détruire
+    13 Detruire
     14 Fouiller
-*/
+ */
 public abstract class $Action {
 	protected int valeur;
 	protected String succes;
@@ -32,15 +32,15 @@ public abstract class $Action {
 		this.succes=succes;	
 		this.echec=echec;	
 	}
-	
+
 	public $Action(){
 		valeur = -1;
 	}
-	
+
 	public int getValeur(){
 		return valeur;
 	}
-	
+
 	/**
 	 * 
 	 * @param l, la liste des conditions environnantes
@@ -49,12 +49,11 @@ public abstract class $Action {
 	 * @param g, la grille de jeu
 	 */
 	public abstract void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g);
-	
+
 	public String toString(){
 		if(effect == true)
 			return succes;
 		else
 			return echec;
 	}
-	
 }

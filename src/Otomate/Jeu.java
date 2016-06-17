@@ -28,7 +28,7 @@ public class Jeu {
     public static Grille plateau;
     public static List<Joueur> joueurs;
     public static List<Integer> refPersos;
-    private static int joueurZombie;
+    public static int joueurZombie;
     public static Historique historique;
     public static Univers univers;
     public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 250;
@@ -37,17 +37,17 @@ public class Jeu {
     public static boolean step = false;
     
     // Chargement
-    private static boolean charge = false;
+    protected static boolean charge = false;
 
     // Nécessaire au lancement du jeu
-    private static boolean commencerJeu = false;
-    private static int numeroUnivers;
-    private static List<String> names;
-    private static int nZombie;
-    private static int nbPersoParZombie;
-    private static List<List<String>> xmls;
-    private static List<Color> couleurs;
-    private static int nUnivers;
+    protected static boolean commencerJeu = false;
+    protected static int numeroUnivers;
+    protected static List<String> names;
+    protected static int nZombie;
+    protected static int nbPersoParZombie;
+    protected static List<List<String>> xmls;
+    protected static List<Color> couleurs;
+    protected static int nUnivers;
     
     // Methodes
     /**
@@ -91,21 +91,14 @@ public class Jeu {
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
         
         plateau = new Grille(joueurs, univers);
-        //joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(5,5));
-        //joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(7,5));
-        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(6,8));
-        //joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
-        //joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(2,6));
-        //joueurs.get(0).getPersonnagesI(1).setPosition(new Coordonnees(2,4));
-        //joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(4,5));
-        //joueurs.get(2).getPersonnagesI(0).setPosition(new Coordonnees(20,6));
+    	plateau.initialisergrille(joueurs);
+    	plateau.placerPersonnages(joueurs);
         
         refPersos = new LinkedList<Integer>();
         
         try {
             Affichage.charger();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -187,7 +180,6 @@ public class Jeu {
             	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
             }
             historique.ceTour().addEvenement(new Evenement(P, th));
-            //Thread.sleep(period);
         }
     }
 
@@ -241,16 +233,15 @@ public class Jeu {
     
 
     public static boolean soinInstantane($Personnage P) {
-        //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
-            historique.ceTour().addEvenement(new Evenement(P, univers.getNomRemede()));
+            historique.ceTour().addEvenement(new Evenement(P, univers.getActionRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
             ((Gentil) P).setRemede(0);
-            historique.ceTour().addEvenement(new Evenement(P, univers.getNomAntidote()));
+            historique.ceTour().addEvenement(new Evenement(P, univers.getActionAntidote()));
             return true;
         }
         return false;
@@ -288,7 +279,6 @@ public class Jeu {
             tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            //Thread.sleep(period);
         }
     }
 
@@ -309,14 +299,12 @@ public class Jeu {
                 Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
         String findetour = croqueMorts(joueurs);
         historique.ceTour().addEvenement(new Evenement(null, findetour));
         Affichage.ajouterTour(historique.ceTour());
-        // TODO enlever les morts.
     }
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
@@ -332,18 +320,15 @@ public class Jeu {
                 if (perso.getVie() <= 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
-                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(),perso.getPosition());
+                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-                      //      System.err.println("il est mort 1");
-                            s += perso.getNomHtml() + " est transformé. ";
+                            s += perso.getNomHtml() + " est transforme. ";
                             player.getPersonnages().remove(k);
                         } else {
-                       // 	System.err.println("il est mort 2");
                         	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
                     } else {
-                    //	System.err.println("il est mort 3");
                         s += perso.getNomHtml() + " est mort. ";
                         player.getPersonnages().remove(k);
                     }
@@ -496,13 +481,8 @@ public class Jeu {
         while (!commencerJeu) {
             Thread.sleep(100);
         }
-
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Affichage.charger();}
-        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-        
-        //sauvegarder();
-        
         while (!finPartie()) {
             while (pause) {
                 if (step) {
@@ -515,10 +495,8 @@ public class Jeu {
 
             Affichage.again();
             Thread.sleep(period * 2);
-
         }
         finDeJeu();
         Affichage.fin();
-        // TODO Annoncer gagnant
     }
 }

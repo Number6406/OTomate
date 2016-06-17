@@ -3,6 +3,7 @@ package Otomate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
 import Actions.*;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
@@ -74,6 +75,10 @@ public class Grille {
 	public void setUnivers(Univers univ) {
 		u = univ;
 	}
+	
+	public void setCoinsAutomates(List<Coordonnees> coord){
+		coinsAutomates = coord;
+	}
 
     // Constructeur
     /**
@@ -127,7 +132,7 @@ public class Grille {
         if(dimv<50)
             dimv = 50;
             
-      //cration die la map dimh/dimv avec minimum 150/150
+      //cration de la map dimh/dimv avec minimum 150/150
         System.out.println("dim : "+dimh + " "+dimv);
         g = new Case[dimh][dimv];
     	tailleX=dimh;
@@ -138,8 +143,8 @@ public class Grille {
     			g[i][j] = new Case();
     		}
     	}
-    	this.initialisergrille(l);
-    	this.placerPersonnages(list);
+    	//this.initialisergrille(l);
+    	//this.placerPersonnages(l);
     }
     
     //Méthodes
@@ -195,9 +200,7 @@ public class Grille {
             	int taillejx=list.get(j).nbEtat();
             	int taillejy=list.get(j).getAutomate().nbconditions;
                 if(!(ix+tailleix>=jx && ix<=jx+taillejx && iy+tailleiy>=jy && iy<=jy+taillejy)){System.out.println("ok");}
-            	else
-                    System.out.println("Erreur les automates se superposent on a un probleme pour la generation de leur coordonnees : erreur dans goAutomates !");
-            }
+            	}
         }
         int jdeb, kdeb;
         int x=0, s, y;
@@ -239,8 +242,6 @@ public class Grille {
             j = rnd.nextInt(nb);
             newc[k].setY(j*dimv/nb);
             j=k;
-            //System.out.println("in boucle k = " + k + "/ xy : " + newc[k].toString());
-            //System.out.println("res : " + res.toString());
             for(i=0; i<k; i++){
                 if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
                     i=k;
@@ -254,10 +255,18 @@ public class Grille {
         return res;
     }
 	
-	public void placerPersonnages(List<$Personnage> l){
+	public void placerPersonnages(List<Joueur> list){
+        List<$Personnage> l = new LinkedList<>();
+        int i,j,k;	 //nbCond contient le nombre de condition (soit la "hauteur" de nos automates)
+        for(i=0; i<list.size(); i++){
+        	int max = list.get(i).getSizePersonnages();
+        	for(j=0;j<max;j++){
+        	    l.add(list.get(i).getPersonnagesI(j));    	
+        	}
+	    }
+	      
 		List<Coordonnees> res = new LinkedList<Coordonnees>();
         Random rnd = new Random();
-        int i, j, k;
         Coordonnees[] newc = new Coordonnees[l.size()];
         for(i=0;i<l.size();i++){
         	newc[i] = new Coordonnees();
@@ -280,7 +289,10 @@ public class Grille {
             }
             if(j == k){             //c'est pour verifier qu'on est pas tomba dans le if et que c'est bon la case est dispo
                 res.add(newc[k]);
-                if(Pos(newc[k]).getValeur() != 3 && Pos(newc[k]).getValeur() != 5)
+                	boolean b=true;
+                	int a;
+                	for(a=0;a<5;a++) b=b&&  Pos(newc[k].CalculCase(a)).Passable(Jeu.univers.getObjets());
+                if(b)
                 	l.get(i).setPosition(newc[k]);
                 else
                 	k--;
@@ -292,7 +304,7 @@ public class Grille {
     	int i,j,k;
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(9, 10);        //car 15 actions possibles numerotees de 0 a 14 
+                k = random(0, 15);        //car 15 actions possibles numerotees de 0 a 14 
                 g[i][j].element = k;
             }
         }
@@ -339,21 +351,18 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
-    		//System.out.println("position "+p.getPosition().toString());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
     	}
     	return res;
     }
- // TODO CHANGER LES TRUCS PARKE 5 ICI WESH
 /**
- * Retourne une liste de 6 entiers repr�sentant les differentes conditions
+ * Retourne une liste de 5 entiers repr�sentant les differentes conditions
  * @param p
  * @param l
  * @return
  */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	//System.out.println("l.toString():"+l.toString());
     								//**********CONDITION SUR CASE***************
     	if(l.get(9) == true)		//
     		listcond.add(9);		//
@@ -405,7 +414,6 @@ public class Grille {
     	for(i=0; i<s; i++){
     		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
     			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur());
-    			//p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
     		}
     	}
     	return la;
@@ -482,7 +490,6 @@ public class Grille {
     
 //On rappelle que l'"origine" du repere de la grille est en haut  gauche donc un deplacement au nord = -1 en ord et +1 pour aller vers le sud cependant
 //on garde +1 pour l'est en abs et -1 pour l'ouest
-  
 //Met a jour la map = change le numero si besoin est
     public void Maj($Personnage P, $Action A, List<Joueur> J, List<Integer> l){
     	int i,j;

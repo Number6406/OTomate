@@ -12,7 +12,6 @@ public class AttOuest extends $Action {
 
 	public AttOuest(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public AttOuest() {
@@ -20,7 +19,7 @@ public class AttOuest extends $Action {
 	}
 
 	public void todo(List<Integer> l, $Personnage p, List<$Personnage> lp, Grille g) {
-		if (l.get(4) == 8) { // 8 = ennemi au nord et 5 regard au nord
+		if (l.get(4) == 8) { 
 			$Personnage e = null;
 			Coordonnees card = new Coordonnees(p.getPosition());
 			card.setY(card.getY() - 1);
@@ -39,15 +38,15 @@ public class AttOuest extends $Action {
 				}
 			else if (e != null && e instanceof Gentil) {
 				((Gentil) e).setVie(((Gentil) e).getVie() - p.getDmg());
-				if (Grille.random(0, 101) > 24)	//75% de chances de souffrir de saignement apres une attaque de zombies
+				if (Grille.random(0, 101) > 24)	//75% de chances de souffrir de saignement apres une attaque de zombie
 					
 					((Gentil) e).setSaignement(true);
-				if (Grille.random(0, 101) > 4)	//95% de chances d'etre infecte
+				if (Grille.random(0, 101) > 4)	//95% de chances d'etre infecte apres une attaque de zombie
 					((Gentil) e).setInfecte(true);
 			}
 			effect = true;
 		}
-		else {
+		else { // Echec de l'action
 			effect = false;
 		}
 	}

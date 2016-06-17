@@ -6,7 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -31,34 +30,23 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 import Otomate.historique.Tour;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author bonhourg
- */
+
 public class FenetreJeu extends JFrame {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     // Constantes
     public static final int XINFO = 300;
@@ -72,10 +60,10 @@ public class FenetreJeu extends JFrame {
     AffichagePlateau pan_plateau;
     JLabel label_perso;
     JScrollPane scroll_perso;
-    JTable tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Consom.", "Arme", "Remede"}, 0) {
-        /**
-         *
-         */
+    JTable tab_perso = new JTable(new DefaultTableModel(new Object[]{"Perso", "PV", "Conso", "Arme", "Remede"}, 0) {
+    	
+    	
+        
         private static final long serialVersionUID = 1L;
 
         public boolean isCellEditable(int row, int column) {
@@ -122,8 +110,6 @@ public class FenetreJeu extends JFrame {
         Grille g = Jeu.plateau;
         List<Objet> lo = Jeu.univers.getObjets();
         Historique h = Jeu.historique;
-        List<Joueur> l = Jeu.joueurs;
-        int i, j, max = l.size(), max2;
 
         // Chargement des différents éléments des fenetres
         chargerMenu();
@@ -131,6 +117,10 @@ public class FenetreJeu extends JFrame {
         pan_info = new JPanel();
         label_perso = new JLabel();
         tab_perso.getTableHeader().setReorderingAllowed(false);
+        
+        TableColumn col1 = tab_perso.getColumnModel().getColumn(0);
+        col1.setPreferredWidth(200);
+        
         majTabPersos(); // Mise à jour de l'affichage de l'état des personnages
 
         scroll_perso = new JScrollPane(tab_perso);
@@ -164,7 +154,8 @@ public class FenetreJeu extends JFrame {
         });
 
         tab_history.getTableHeader().setReorderingAllowed(false);
-
+        
+        // On fixe la taille de colonne des actions à 400 pixels
         TableColumn col = tab_history.getColumnModel().getColumn(1);
         col.setPreferredWidth(400);
 
@@ -374,7 +365,6 @@ public class FenetreJeu extends JFrame {
                 ImageIcon arme = null;
                 ImageIcon remede = null;
 
-                String iconeConsommable = Jeu.univers.getObjets().get(p.getInventaire()).getPath();
                 if (p instanceof Gentil) { // Si le personnage est gentil, il a deux slots en plus
                     System.err.println("C'est un gentil");
                     if (((Gentil) p).getArme() != null) {
@@ -407,7 +397,7 @@ public class FenetreJeu extends JFrame {
                 if (p instanceof Gentil) {
                     ((DefaultTableModel) tab_perso.getModel()).addRow(
                             new Object[]{
-                                "<html>" + p.getNomHtml() + " (" + p.getEtatString() + ")" + "</html>",
+                                "<html>[<i>" + p.getEtatString() + "</i>] " + p.getNomHtml() + "</html>",
                                 p.getVie() + "/" + p.getViemax(),
                                 consommable, // Affichage de l'icone
                                 arme,
@@ -418,7 +408,7 @@ public class FenetreJeu extends JFrame {
                 } else {
                     ((DefaultTableModel) tab_perso.getModel()).addRow(
                             new Object[]{
-                                "<html>" + p.getNomHtml() + "</html>",
+                                "<html>[<i>" + Jeu.univers.getNomMechants() + "</i>] " + p.getNomHtml() + "</html>",
                                 p.getVie() + "/" + p.getViemax(),
                                 consommable, // Affichage de l'icone
                                 arme,
@@ -490,7 +480,6 @@ public class FenetreJeu extends JFrame {
                         try {
                             Jeu.sauvegarder(path);
                         } catch (IOException e1) {
-                            // TODO Auto-generated catch block
                             e1.printStackTrace();
                         }
                     }

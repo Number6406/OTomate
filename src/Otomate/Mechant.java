@@ -1,11 +1,6 @@
 package Otomate;
 
 import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 public class Mechant extends $Personnage {
 
@@ -18,8 +13,8 @@ public class Mechant extends $Personnage {
 		super();
 	}
 
-	public Mechant($Personnage perso, Color couleur, Coordonnees c) {
-		super(perso,couleur);
+	public Mechant($Personnage perso, Color couleur, String name, Coordonnees c) {
+		super(perso,couleur, name);
 		vie = viemax;
 		setPosition(c);
 	}

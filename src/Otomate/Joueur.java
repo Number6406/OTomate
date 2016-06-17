@@ -24,9 +24,9 @@ public class Joueur {
         mechant = estMechant;
         setCouleur(couleur);
         if (mechant) {
-            for (int i = 0; i < nbMechants; i++) {
-            	personnages.add(new Mechant(xmls.get(0), couleur,name + "_" + (i+1)));
-            	//personnages.add(new Mechant(personnages.get(0),couleur));
+            personnages.add(new Mechant(xmls.get(0), couleur,name + "_1"));
+            for (int i = 1; i < nbMechants; i++) {
+            	personnages.add(new Mechant(personnages.get(0),couleur, name + "_" + (i+1), new Coordonnees(0,0)));
             }
         } else {
             for (int i = 0; i < xmls.size(); i++) {
@@ -35,7 +35,6 @@ public class Joueur {
         }
     }
     
-    /** FOR DEBUG PURPOSE */
     public Joueur($Personnage p) {
         personnages = new LinkedList<>();
         setCouleur(Color.pink);

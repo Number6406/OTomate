@@ -1,13 +1,6 @@
 package Otomate;
 
-import ImageEditor.ImageColor;
-
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Gentil extends $Personnage {
 
@@ -39,7 +32,7 @@ public class Gentil extends $Personnage {
         infecte = saignement = false;
         vie = viemax;
         paralysie = 1;
-        piege = 10;
+        piege = 0;
         efdrogue = 0;
     }
     
@@ -136,7 +129,7 @@ public class Gentil extends $Personnage {
     }
 
 	public String getEtatString(){
-		if(getEffets().equalsIgnoreCase("")) return "Sain";
+		if(getEffets().equalsIgnoreCase("")) return "sain";
 		else return getEffets();
 	}
     
@@ -145,10 +138,10 @@ public class Gentil extends $Personnage {
         String effets = super.getEffets();
 
         if (infecte) {
-            effets += "Inf ";
+            effets += "infecté" + ((saignement) ? "/" : "");
         }
         if (saignement) {
-            effets += "Saig ";
+            effets += "blessé";
         }
 
         return effets;
