@@ -61,7 +61,6 @@ public class XMLObjet extends DefaultHandler {
     public void endElement(String uri,
             String localName, String qName) throws SAXException {
         if (qName.equalsIgnoreCase("objet")) {
-            // System.out.println("End Element :" + name + " " + id + " " + type + " " + use + " " + passable + " " + path);
         }
     }
 

@@ -42,7 +42,6 @@ public class Case {
     		if(l.get(i).getId()==this.element) return l.get(i).estPassable();
     	}
     	
-    System.out.println("Passable false !");
     return false;
     }
 }

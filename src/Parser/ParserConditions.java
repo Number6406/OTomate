@@ -24,11 +24,9 @@ public class ParserConditions{
         
         XMLConditions a=new XMLConditions();
         File f=new File(this.getClass().getResource(file).getFile());
-        //System.out.println("filename : " + file);
         parser.parse(f, a);
         
         list=a.list;
-        //ystem.out.println("Dans le parser : "+list.size());
         
 	      } catch (DOMException e) {
 	          e.printStackTrace();
@@ -39,7 +37,6 @@ public class ParserConditions{
 	       } catch (SAXException e) {
 	          e.printStackTrace();
 	       } catch (IOException e) {
-	          // TODO Auto-generated catch block
 	  e.printStackTrace();
         
         

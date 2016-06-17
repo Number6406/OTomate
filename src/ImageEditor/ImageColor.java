@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ImageEditor;
 
-import Affichage.FenetreBase;
+
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+
 
 /**
  * Classe permettant de modifier les couleurs d'une image
@@ -61,29 +52,4 @@ public class ImageColor {
     public void setBuffer(BufferedImage bi) {
         this.iEntree = bi;
     }
-     
-    public void test() throws IOException {
-        iEntree = ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
-        int cEntree = toRGB(10, 64, 7);
-        int cSortie = toRGB(0, 0, 255);
-        
-        BufferedImage bf2 = changeColor(cEntree, cSortie);
-        
-        FenetreBase f = new FenetreBase(200, 200, "BITE") {};
-        JPanel p = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(Color.red);
-                g.fillRect(0, 0, 100, 200);
-                g.drawImage(iEntree, 0, 0, 100, 100, f);
-                g.drawImage(bf2, 0, 100, 100, 100, f);
-            }
-        };
-        f.add(p);
-        
-        f.setResizable(true);
-        
-    }
-    
 }

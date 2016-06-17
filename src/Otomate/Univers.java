@@ -139,15 +139,10 @@ public class Univers {
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
 		}
-                System.out.println("1");
 		actionsGentil = Pg.list;
-                System.out.println("2");
 		actionsMechant = Pm.list;
-                System.out.println("3");
 		objets = Po.list;
-                System.out.println("4");
 		imageGentil = Po.imageGentil;
-                System.out.println("5");
 		imageMechant = Po.imageMechant;
 		
 		Pc = new ParserConditions("Conditions.xml");

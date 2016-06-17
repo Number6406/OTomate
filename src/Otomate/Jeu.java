@@ -87,7 +87,6 @@ public class Jeu {
         try {
             Affichage.charger();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -169,7 +168,6 @@ public class Jeu {
             	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
             }
             historique.ceTour().addEvenement(new Evenement(P, th));
-            //Thread.sleep(period);
         }
     }
 
@@ -223,7 +221,6 @@ public class Jeu {
     
 
     public static boolean soinInstantane($Personnage P) {
-        //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
@@ -270,7 +267,6 @@ public class Jeu {
             tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            //Thread.sleep(period);
         }
     }
 
@@ -291,14 +287,12 @@ public class Jeu {
                 Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
         String findetour = croqueMorts(joueurs);
         historique.ceTour().addEvenement(new Evenement(null, findetour));
         Affichage.ajouterTour(historique.ceTour());
-        // TODO enlever les morts.
     }
 
     private static String croqueMorts(List<Joueur> lesJoueurs) {
@@ -316,16 +310,13 @@ public class Jeu {
                         if (((Gentil) perso).getInfecte()) {
                             Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-                      //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transforme. ";
                             player.getPersonnages().remove(k);
                         } else {
-                       // 	System.err.println("il est mort 2");
                         	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
                     } else {
-                    //	System.err.println("il est mort 3");
                         s += perso.getNomHtml() + " est mort. ";
                         player.getPersonnages().remove(k);
                     }
@@ -444,21 +435,12 @@ public class Jeu {
      * @throws InterruptedException
      * @throws IOException
      */
-    // TODO : Raccourcir la fonction !
     public static void main(String[] pArgs) throws InterruptedException, IOException {
-
-        FenetreMenu menuJeu = new FenetreMenu();
-
         while (!commencerJeu) {
             Thread.sleep(100);
         }
-
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Affichage.charger();}
-        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-        
-        //sauvegarder();
-        
         while (!finPartie()) {
             while (pause) {
                 if (step) {
@@ -471,10 +453,8 @@ public class Jeu {
 
             Affichage.again();
             Thread.sleep(period * 2);
-
         }
         finDeJeu();
         Affichage.fin();
-        // TODO Annoncer gagnant
     }
 }

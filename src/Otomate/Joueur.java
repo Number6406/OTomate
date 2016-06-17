@@ -35,7 +35,6 @@ public class Joueur {
         }
     }
     
-    /** FOR DEBUG PURPOSE */
     public Joueur($Personnage p) {
         personnages = new LinkedList<>();
         setCouleur(Color.pink);

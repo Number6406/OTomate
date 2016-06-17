@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Affichage;
 
 import java.util.ArrayList;
@@ -20,9 +15,6 @@ import javax.swing.JTextField;
  */
 public class GentilPicker extends JLabel {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     List<JTextField> listeChemins = new ArrayList<JTextField>();
     List<AutomatePicker> l = new LinkedList<>();
@@ -33,7 +25,6 @@ public class GentilPicker extends JLabel {
         for (i = 0; i < l.size(); i++) {
             b = b && l.get(i).cool();
         }
-//	System.out.println("gentilPicker : " + b);
         return b;
     }
 

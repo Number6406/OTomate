@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Affichage;
 
 import Otomate.Grille;
@@ -31,9 +26,6 @@ import javax.swing.JTabbedPane;
  */
 public class FenetreCreation extends FenetreBase {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     FenetreNouvellePartie configPartie = null;
@@ -156,7 +148,6 @@ public class FenetreCreation extends FenetreBase {
          */
         //Retourner dans le jeu
         
-        System.err.println("size : "+lls.size());
         Jeu.setUserNames(listNames);
         Jeu.setNbZombie(id);
         Jeu.setCouleurP(lc);
@@ -178,5 +169,4 @@ public class FenetreCreation extends FenetreBase {
     public void setPrevious(FenetreNouvellePartie f) {
         this.configPartie = f;
     }
-
 }

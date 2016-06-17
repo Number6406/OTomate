@@ -27,9 +27,7 @@ public class ParserAutomate {
             SAXParser parser = factory.newSAXParser();
 
             XMLAutomate a = new XMLAutomate();
-            System.out.println("JE TEMMERDE PD : " +file);
             File f = new File(file);
-            //System.out.println("filename : " + file);
             parser.parse(f, a);
 
             act = a.act;
@@ -46,7 +44,6 @@ public class ParserAutomate {
         } catch (SAXException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
 
         }

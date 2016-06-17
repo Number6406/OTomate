@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Affichage;
 
 import java.awt.BorderLayout;
@@ -24,14 +19,10 @@ import javax.swing.JTextField;
 
 import Otomate.Jeu;
 
-/**
- *
- */
+
 public class FenetreMenu extends FenetreBase {
 
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     // Elements du menu
@@ -76,7 +67,6 @@ public class FenetreMenu extends FenetreBase {
 
         b_jouer.addActionListener((ActionEvent e) -> {
             // Ouvre une fenetre de nouvelle partie au clic
-            FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(univers);
             dispose();
         });
 
@@ -158,6 +148,5 @@ public class FenetreMenu extends FenetreBase {
     }
 
     public static void main(String[] args) {
-        FenetreMenu f = new FenetreMenu();
     }
 }

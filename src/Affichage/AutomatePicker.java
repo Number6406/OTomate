@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Affichage;
 
 import java.awt.Button;
@@ -25,9 +20,7 @@ import javax.swing.event.DocumentListener;
  */
 public class AutomatePicker extends JPanel {
 
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     JTextField chemin = new JTextField();
@@ -110,20 +103,16 @@ public class AutomatePicker extends JPanel {
                 String ext = nomFichier.substring(nomFichier.lastIndexOf("."));
                 // Si le fichier n'a pas la bonne extension
                 if (!ext.equals(camlExt)) {
-                    //              	System.out.println(nomFichier+" Depuis CheckExt rep1 : false");
                     return false;
                 }
             } else {
                 // sinon c'est que le fichier n'a pas d'extension
-                //       	System.out.println(nomFichier+" Depuis CheckExt rep2 : false");
                 return false;
             }
 
         } catch (FileNotFoundException fnfe) {
-            //      	System.out.println(nomFichier+" Depuis CheckExt rep : false (fnfe)");
             return false;
         }
-        //      System.out.println(nomFichier+" Depuis CheckExt rep : true");
         return true;
     }
 

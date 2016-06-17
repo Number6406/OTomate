@@ -209,7 +209,7 @@ public abstract class $Personnage {
 	// Override
 	public String toString() {
 		String s = "PV : " + viemax + "\n";
-		s += "Inventaire : " + /* Contenus.fromint(inventaire).toString() + */ "\n";
+		s += "Inventaire : " + "\n";
 		s += "Position : " + position.toString() + "\n";
 		s += "Automate : " + a.toString() + "\n";
 		s += "Etat courant : " + etat;
@@ -229,15 +229,13 @@ public abstract class $Personnage {
 		List<Integer> lc = G.conditions(this, lb);
 		List<Integer> lt = G.transitionsPossibles(this,lc);
 		List<Integer> la = G.actionsPossibles(this, lc);
-		System.out.println("Actions possible "+la.toString());
 		$Action actionAFaire;		
 		int numaction;
 		if(la.size()!=0){
 			int x = Grille.random(0, la.size());
 			numaction = la.get(x);
 			this.setEtat(lt.get(x));
-			System.err.println("PERSONNAGE " + this.getNom() + " DANS ETAT " + this.getEtat());
-		} else {
+			} else {
 			numaction = 0; // Ne rien faire
 		}
 		
