@@ -12,7 +12,6 @@ public class AttOuest extends $Action {
 
 	public AttOuest(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public AttOuest() {
@@ -46,9 +45,12 @@ public class AttOuest extends $Action {
 					((Gentil) e).setInfecte(true);
 			}
 			effect = true;
+        	if(p.getInactivite()<20)
+        		p.setInactivite(20);
 		}
-		else {
+		else { // Echec de l'action
 			effect = false;
-		}
+			p.setInactivite(p.getInactivite()-1);
+		}	 
 	}
 }

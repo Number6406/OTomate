@@ -36,7 +36,6 @@ public class Pfind {
 	}
 	}
 	else{
-		System.out.println("Path Finding bugue");
 		next=0;
 	}
 	}

@@ -2,7 +2,6 @@ package Affichage;
 
 import Otomate.Gentil;
 import Otomate.Grille;
-//import Otomate.Jeu;
 import Otomate.Joueur;
 import Otomate.Mechant;
 import Otomate.historique.Evenement;
@@ -12,12 +11,10 @@ import Otomate.$Personnage;
 
 import java.awt.Color;
 import java.io.IOException;
-//import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class Affichage {
@@ -27,7 +24,6 @@ public class Affichage {
     }
     //Attibuts
     private static FenetreJeu jeu;
-    //private static Affichage_plateau plateau;
     private static List<$Personnage> perso;
 
     private static Historique h;
@@ -36,7 +32,6 @@ public class Affichage {
     public static void main(String[] args) throws IOException {
         jeu = new FenetreJeu();
 
-        //  Jeu.initPartie();
         Grille g = new Grille(20, 20);
         int i, j;
         for (i = 0; i < g.tailleX(); i++) {
@@ -83,7 +78,6 @@ public class Affichage {
     }
 
     public static void again() {
-        //jeu.pan_plateau.validate();
         jeu.pan_plateau.repaint();
         jeu.majTabPersos();
     }
@@ -105,7 +99,6 @@ public class Affichage {
                 JOptionPane.INFORMATION_MESSAGE,
                 null);
 		jeu.dispose();
-		// TODO Auto-generated method stub
 		
 	}
 

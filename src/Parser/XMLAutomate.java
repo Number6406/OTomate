@@ -85,7 +85,6 @@ public class XMLAutomate extends DefaultHandler{
 			    	 bTransition = false;
 			      } else if (bAction) {
 			    	 act[j-1][i].element=Integer.parseInt(lecture);
-			    	 System.out.println((act[j-1][i]).element);
 			         bAction = false;
 			      }
 				   	

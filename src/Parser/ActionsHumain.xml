@@ -21,8 +21,8 @@
 	</action>
 	<action>
 		<id>4</id>
-		<succes>part à l'ouest</succes>
-		<echec>ne peut pas aller à l'ouest</echec>
+		<succes>part a l'ouest</succes>
+		<echec>ne peut pas aller a l'ouest</echec>
 	</action>
 	<action>
 		<id>5</id>
@@ -71,7 +71,7 @@
 	</action>
 	<action>
 		<id>14</id>
-		<succes>fouille un batiment à la recherche de trésors</succes>
+		<succes>fouille un batiment a la recherche de trésors</succes>
 		<echec>veux fouiller mais echoue</echec>
 	</action>
 </parse>

@@ -38,7 +38,6 @@ public class TestMiam {
         try {
             Affichage.charger();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -53,9 +52,6 @@ public class TestMiam {
 
         if(!Jeu.charge) {debutPartie(Jeu.nUnivers, Jeu.nZombie, Jeu.nbPersoParZombie, Jeu.xmls, Jeu.couleurs);}
         else {Affichage.charger();}
-        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
-        
-        //sauvegarder();
         
         while (!Jeu.finPartie()) {
             while (Jeu.pause) {
@@ -73,6 +69,5 @@ public class TestMiam {
         }
         Jeu.finDeJeu();
         Affichage.fin();
-        // TODO Annoncer gagnant
     }
 }

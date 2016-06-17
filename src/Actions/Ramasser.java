@@ -16,7 +16,6 @@ public class Ramasser extends $Action {
 	
 	public Ramasser(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	private boolean drogue = false;
@@ -65,7 +64,7 @@ public class Ramasser extends $Action {
 							p.setViemax(p.getViemax() - 10);
 							System.err.println("viemax : " + p.getViemax());
 							p.setVie(p.getVie() - 10);
-							if(p.getVie()<p.getViemax())
+							if(p.getVie()>p.getViemax())
 								p.setVie(p.getViemax());	//barre de hp = hp max si hp > hp max
 							((Gentil) p).setDrogue(2);
 
@@ -124,10 +123,13 @@ public class Ramasser extends $Action {
 				}
 			}
 			effect = true;
+        	if(p.getInactivite()<20)
+        		p.setInactivite(20);
 		}
-		else {
+		else { // Echec de l'action
 			effect = false;
-		}
+			p.setInactivite(p.getInactivite()-1);
+		}	 
 	}
 
 	public String toString() {

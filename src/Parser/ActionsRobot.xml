@@ -2,7 +2,7 @@
 	<action>
 		<id>0</id>
 		<succes>observe les petits electrons qui courent</succes>
-		<echec>n'arrive pas à rien faire</echec>
+		<echec>n'arrive pas a rien faire</echec>
 	</action>
 	<action>
 		<id>1</id>
@@ -22,7 +22,7 @@
 	<action>
 		<id>4</id>
 		<succes>pars a l'ouest</succes>
-		<echec>ne peut pas aller à l'ouest</echec>
+		<echec>ne peut pas aller a l'ouest</echec>
 	</action>
 	<action>
 		<id>5</id>
@@ -67,11 +67,11 @@
 	<action>
 		<id>13</id>
 		<succes>détruit le pop up</succes>
-		<echec>ne peut pas détruire ce site</echec>
+		<echec>ne peut pas detruire ce site</echec>
 	</action>
 	<action>
 		<id>14</id>
 		<succes>fouille dans un navigateur</succes>
-		<echec>veux fouiller mais échoue</echec>
+		<echec>veux fouiller mais echoue</echec>
 	</action>
 </parse>

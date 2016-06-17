@@ -5,7 +5,6 @@ import Otomate.historique.Evenement;
 import Otomate.historique.Historique;
 
 import java.awt.Color;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -14,9 +13,6 @@ import java.io.*;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.*;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -29,7 +25,7 @@ public class Jeu {
     public static int joueurZombie;
     public static Historique historique;
     public static Univers univers;
-    public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 250;
+    public static int vitesse1 = 1000, vitesse2 = 500, vitesse3 = 150;
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
@@ -97,7 +93,6 @@ public class Jeu {
         try {
             Affichage.charger();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -171,6 +166,8 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
+        if(((Gentil) P).getParalysie() <= 0)
+        	P.setInactivite(P.getInactivite()-1);
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
@@ -179,7 +176,6 @@ public class Jeu {
             	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
             }
             historique.ceTour().addEvenement(new Evenement(P, th));
-            //Thread.sleep(period);
         }
     }
 
@@ -196,14 +192,6 @@ public class Jeu {
             if (((Gentil) P).getInfecte()) {
                 P.setVie(P.getVie() - 1);
             }
-        }
-    }
-
-    public static void junky(List<$Personnage> lp) throws InterruptedException {
-        int i, max = lp.size();
-        for (i = 0; i < max; i++) {
-            saigne(lp.get(i));
-            gereParalysie(lp.get(i));
         }
     }
 
@@ -233,15 +221,18 @@ public class Jeu {
     
 
     public static boolean soinInstantane($Personnage P) {
-        //System.out.println("pk tu viens l� wesh");
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
+        	if(P.getInactivite()<20)
+        		P.setInactivite(20);
             historique.ceTour().addEvenement(new Evenement(P, univers.getActionRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
             ((Gentil) P).setRemede(0);
+        	if(P.getInactivite()<20)
+        		P.setInactivite(20);
             historique.ceTour().addEvenement(new Evenement(P, univers.getActionAntidote()));
             return true;
         }
@@ -280,7 +271,6 @@ public class Jeu {
             tempHistorique = P.jouer(plateau, joueurs, univers);
             E = ((Mechant) P);
             historique.ceTour().addEvenement(new Evenement(P, tempHistorique));
-            //Thread.sleep(period);
         }
     }
 
@@ -301,17 +291,15 @@ public class Jeu {
                 Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
         String findetour = croqueMorts(joueurs);
         historique.ceTour().addEvenement(new Evenement(null, findetour));
         Affichage.ajouterTour(historique.ceTour());
-        // TODO enlever les morts.
     }
 
-    private static String croqueMorts(List<Joueur> lesJoueurs) {
+    public static String croqueMorts(List<Joueur> lesJoueurs) {
         String s = "<i>Fin de Tour</i> : ";
         int i,k;
         Joueur player = null;
@@ -321,21 +309,18 @@ public class Jeu {
             if(player!=null){
             for (k=0; k<player.getSizePersonnages(); k++) {
             	perso = player.getPersonnagesI(k);
-                if (perso.getVie() <= 0) {
+                if (perso.getVie() <= 0 || perso.getInactivite() == 0) {
                     if (perso instanceof Gentil) {
                         if (((Gentil) perso).getInfecte()) {
                             Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
                             lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-                      //      System.err.println("il est mort 1");
                             s += perso.getNomHtml() + " est transforme. ";
                             player.getPersonnages().remove(k);
                         } else {
-                       // 	System.err.println("il est mort 2");
                         	s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
                     } else {
-                    //	System.err.println("il est mort 3");
                         s += perso.getNomHtml() + " est mort. ";
                         player.getPersonnages().remove(k);
                     }
@@ -457,11 +442,16 @@ public class Jeu {
      * @throws UnsupportedAudioFileException 
      * @throws JavaLayerException 
      */
-    // TODO : Raccourcir la fonction !
     
     public static class Music extends Thread {
+    	String s;
+    	
+    	public Music(String pS) {
+    		s = pS;
+    	}
+    	
     	public void run() {
-    		File f = new File(this.getClass().getResource("Mitch.mp3").getFile());
+    		File f = new File(this.getClass().getResource("Crypteque.mp3").getFile());
             FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
@@ -483,7 +473,8 @@ public class Jeu {
 
         FenetreMenu menuJeu = new FenetreMenu();
         
-        (new Music()).start();
+        Music player = new Music("Mitch");
+        player.start();
         
         while (!commencerJeu) {
             Thread.sleep(100);
@@ -491,7 +482,6 @@ public class Jeu {
 
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Affichage.charger();}
-        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         //sauvegarder();
         
@@ -511,6 +501,5 @@ public class Jeu {
         }
         finDeJeu();
         Affichage.fin();
-        // TODO Annoncer gagnant
     }
 }

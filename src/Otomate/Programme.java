@@ -37,7 +37,6 @@ public class Programme {
 
         if(!charge) {Jeu.debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Jeu.charger("Start.txt");}
-        //int nbTotal = (nbJoueurs-1)*nbPersoParJoueur+((nbJoueurs-1)*nbPersoParJoueur/nbPersoParZombie);
         
         SaveLoad save = new SaveLoad(Jeu.createSaveJeu(), "Start.txt");
         save.save();

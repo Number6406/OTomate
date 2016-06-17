@@ -25,16 +25,4 @@
 		<action>8</action>
 		<transition>1</transition>
 	</case>
-	<case>
-	    <etat>1</etat>
-	    <condition>9</condition>
-	    <action>9</action>
-	    <transition>1</transition>
-	</case>
-	<case>
-	    <etat>1</etat>
-	    <condition>10</condition>
-	    <action>9</action>
-	    <transition>1</transition>
-	</case>
 </automate>

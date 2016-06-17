@@ -25,6 +25,7 @@ public abstract class $Personnage {
 	protected int inventaire;
 	protected String nom;
 	protected int dmg;
+	protected int inactivite;
 	protected Color couleur;
 	protected BufferedImage sprite = null;
 	protected String spriteURL = null;
@@ -45,6 +46,7 @@ public abstract class $Personnage {
 		position = new Coordonnees(3, 5);
 		viemax = 100;
 		inventaire = 0;
+		inactivite = 20;
 		nom = name;
 		dmg = 10;
 		this.couleur = couleur;
@@ -163,6 +165,10 @@ public abstract class $Personnage {
             }
             return "";
         }
+        
+        public int getInactivite(){
+        	return inactivite;
+        }
 
 	// Setteurs
         public void setNom(String nom) {
@@ -205,6 +211,10 @@ public abstract class $Personnage {
 	public void setDmg(int d) {
 		dmg = d;
 	}
+	
+	public void setInactivite(int deathtime){
+		inactivite = deathtime;
+	}
 
 	// Override
 	public String toString() {
@@ -229,24 +239,20 @@ public abstract class $Personnage {
 		List<Integer> lc = G.conditions(this, lb);
 		List<Integer> lt = G.transitionsPossibles(this,lc);
 		List<Integer> la = G.actionsPossibles(this, lc);
-		System.out.println("Actions possible "+la.toString());
 		$Action actionAFaire;		
 		int numaction;
 		if(la.size()!=0){
 			int x = Grille.random(0, la.size());
 			numaction = la.get(x);
 			this.setEtat(lt.get(x));
-			System.err.println("PERSONNAGE " + this.getNom() + " DANS ETAT " + this.getEtat());
 		} else {
 			numaction = 0; // Ne rien faire
 		}
 		
 		if(this instanceof Gentil){
 			actionAFaire = U.getActionsGentil().get(numaction);
-			System.out.println("On recupere l'action gentille : "+numaction);
 		} else {
 			actionAFaire = U.getActionsMechant().get(numaction);
-			System.out.println("On recupere l'action mechante : "+numaction);
 		}
 		G.Maj(this, actionAFaire, listJoueur, lc);
 		return actionAFaire.toString();

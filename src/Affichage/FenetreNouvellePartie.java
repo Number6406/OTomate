@@ -175,7 +175,7 @@ public class FenetreNouvellePartie extends FenetreBase {
         ButtonModel selectedModel = radio_univers.getSelection();
         if (selectedModel != null) {
             // and dislay it
-            System.out.println("On choisit le modèle : "+ selectedModel.getMnemonic());
+            //System.out.println("On choisit le modèle : "+ selectedModel.getMnemonic());
             return selectedModel.getMnemonic();
         }
         return 1; // par défaut, on prend zombie

@@ -10,7 +10,6 @@ public class Pieger extends $Action {
 
 	public Pieger(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Pieger() {
@@ -23,10 +22,13 @@ public class Pieger extends $Action {
 				g.Pos(p.getPosition()).setPiegee(true);
 				((Gentil) p).setPiege(10);
 				effect = true;
+	        	if(p.getInactivite()<20)
+	        		p.setInactivite(20);
 			}
 		}
 		else {
 			effect = false;
+			p.setInactivite(p.getInactivite()-1);
 		}
 	}
 }

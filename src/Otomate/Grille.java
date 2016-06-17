@@ -132,8 +132,7 @@ public class Grille {
         if(dimv<50)
             dimv = 50;
             
-      //cration die la map dimh/dimv avec minimum 150/150
-        System.out.println("dim : "+dimh + " "+dimv);
+      //cration die la map dimh/dimv avec minimum 50/50
         g = new Case[dimh][dimv];
     	tailleX=dimh;
     	tailleY=dimv;
@@ -244,8 +243,6 @@ public class Grille {
             j = rnd.nextInt(nb);
             newc[k].setY(j*dimv/nb);
             j=k;
-            //System.out.println("in boucle k = " + k + "/ xy : " + newc[k].toString());
-            //System.out.println("res : " + res.toString());
             for(i=0; i<k; i++){
                 if(newc[k].getX() == res.get(i).getX() && newc[k].getY() == res.get(i).getY()){
                     i=k;
@@ -355,12 +352,10 @@ public class Grille {
     	int s = lc.size();
     	int i;
     	for(i=0; i<s; i++){
-    		//System.out.println("position "+p.getPosition().toString());
     		res.add(lc.get(i).estVrai(this, p.getPosition(), lo, p, lj));
     	}
     	return res;
     }
- // TODO CHANGER LES TRUCS PARKE 5 ICI WESH
 /**
  * Retourne une liste de 6 entiers repr�sentant les differentes conditions
  * @param p
@@ -369,7 +364,6 @@ public class Grille {
  */
     public List<Integer> conditions($Personnage p, List<Boolean> l){
     	List<Integer> listcond = new LinkedList<>();
-    	//System.out.println("l.toString():"+l.toString());
     								//**********CONDITION SUR CASE***************
     	if(l.get(9) == true)		//
     		listcond.add(9);		//
@@ -421,7 +415,6 @@ public class Grille {
     	for(i=0; i<s; i++){
     		if(p.getAutomate().transition(l.get(i), p.getEtat()-1) != 0){
     			la.add(p.getAutomate().getActions(l.get(i), p.getEtat()-1).getValeur());
-    			//p.setEtat(p.getAutomate().transition(l.get(i), p.getEtat()-1));
     		}
     	}
     	return la;
@@ -509,6 +502,7 @@ public class Grille {
         	    list.add(J.get(i).getPersonnagesI(j));    	
         	}
         }
+    	if(A!=null)
     	A.todo(l,P,list, this);
     }
 }

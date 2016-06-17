@@ -48,7 +48,6 @@ public class Conditions {
     //Constructeur
     
     public boolean estVrai(Grille g,Coordonnees pos,List<Objet> l,$Personnage jo,List<Joueur> lj){
-    	//System.out.println("Le type est a : "+ type);
     	if(pos.getX()==g.tailleX()-1 && direction==2) return type==0||type==2;
     	if(pos.getY()==g.tailleY()-1 && direction==3) return type==0||type==2;
     	
@@ -59,17 +58,10 @@ public class Conditions {
     	if(next.getX()<0 && direction == 4){return type==0||type==2;}
     	if(next.getY()>g.tailleY()-1 && direction == 3){return type==0||type==2;}
     	if(next.getY()<0 && direction == 1){return type==0 ||type==2;}
-    	//System.out.println("direction="+direction);
-    	//System.out.println("next.getX()="+next.getX());
-    	//System.out.println("next.getY()="+next.getY());
+    	
     	int Cid=g.get(next.getX(), next.getY()).getValeur();
-    	//System.out.println("direction : "+direction);
-    	//System.out.println("contenu : "+ Cid);
-    	//System.out.println(max);
     	for(i=0;i<max;i++){
-    		//System.out.println("id = "+l.get(i).id +"\nCid="+Cid);
     		if(l.get(i).getId()==Cid){
-    			//System.out.println("tamer");
     			switch(type){
     			
     			case 0:
@@ -123,7 +115,6 @@ public class Conditions {
     			}
     		}
     	}
-    	//System.out.println("coucou");
     	return false;
     }
     

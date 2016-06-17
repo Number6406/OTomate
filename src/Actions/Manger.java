@@ -9,7 +9,6 @@ import Otomate.Grille;
 public class Manger extends $Action {
 	public Manger(String succes, String echec) {
 		super(succes, echec);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Manger() {
@@ -25,10 +24,13 @@ public class Manger extends $Action {
 					((Gentil) p).setVie(((Gentil) p).getViemax());
 				p.setInventaire(0);
 				effect = true;
+	        	if(p.getInactivite()<20)
+	        		p.setInactivite(20);
 			}
-			else {
+			else { // Echec de l'action
 				effect = false;
-			}
+				p.setInactivite(p.getInactivite()-1);
+			}	 
 		}
 	}
 }

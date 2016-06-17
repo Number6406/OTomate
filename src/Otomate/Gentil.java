@@ -1,19 +1,12 @@
 package Otomate;
 
-import ImageEditor.ImageColor;
-
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Gentil extends $Personnage {
 
     /*
 	 * arme = numero de l'objet
-	 * (25.pompe 15.couteau 5 .branche correspond au degats supp)
+	 * (30.pompe 20.couteau 15.branche correspond au degats des armes)
      */
 
  /*

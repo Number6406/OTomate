@@ -9,13 +9,7 @@ import javax.swing.JDialog;
 import Otomate.$Personnage;
 import Otomate.Gentil;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,7 +30,6 @@ public class FenetreInfoPersonnage extends JDialog  {
         this.add(entete, BorderLayout.NORTH);
         
         JPanel infoEntete = new JPanel(new GridLayout(3,1));
-        // #TODO :Set le sprite du perso dans la partie gauche !//
         
         
         entete.add(infoEntete);

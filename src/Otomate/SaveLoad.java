@@ -122,6 +122,10 @@ public final class SaveLoad {
 				fin.write(((Integer) pe.getPosition().getY()));
 				fin.write(new Character(' '));
 				System.out.println(pe.getPosition().getY());
+				
+				fin.write(pe.getNom().getBytes(StandardCharsets.UTF_8));
+				fin.write(new Character(';'));
+				System.out.println(pe.getNom());
 				System.out.println("°°°°°");
 				if (pe instanceof Gentil) {
 					fin.write(((Gentil) pe).estArme()?(1):(0));
@@ -194,8 +198,7 @@ public final class SaveLoad {
 				for(int k=0; k<nc; k++) {
 					System.out.println(j+" "+k);
 					System.out.println(ix+" "+iy);
-					tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(j+iy, k+ix));
-					//jeu.plateau.setCase(j, k, tacos.get(i).getAutomate().getActions(k-iy, j-ix));
+					tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(k+ix, j+iy));
 				}
 			}
 		}
@@ -235,10 +238,10 @@ public final class SaveLoad {
 		System.out.println(jeu.plateau.tailleX());
 		System.out.println(jeu.plateau.tailleY());
 		jeu.plateau.setUnivers(jeu.univers);
-		for (int j = 0; j < jeu.plateau.tailleX(); j++) {
-			for (int i = 0; i < jeu.plateau.tailleY(); i++) {
-				jeu.plateau.set(Integer.parseInt(lire(fout, ':')), i, j);
-				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i, j);
+		for (int j = 0; j < jeu.plateau.tailleY(); j++) {
+			for (int i = 0; i < jeu.plateau.tailleX(); i++) {
+				jeu.plateau.set(Integer.parseInt(lire(fout, ':')),i,j);
+				jeu.plateau.setP(((Integer.parseInt(lire(fout, ' ')) == 1) ? (true) : (false)), i,j);
 			}
 			fout.skip(1);
 		}
@@ -290,6 +293,8 @@ public final class SaveLoad {
 				pe.setPosition(new Coordonnees(Integer.parseInt(lire(fout, ' ')), Integer.parseInt(lire(fout, ' '))));
 				System.out.println(pe.getPosition().getX());
 				System.out.println(pe.getPosition().getY());
+				pe.setNom(lire_nom(fout, ';'));
+				System.out.println(pe.getNom());
 				System.out.println("°°°°°");
 				if (nouv.estMechant()) {
 					pe.setInventaire(Integer.parseInt(lire(fout, ' ')));
