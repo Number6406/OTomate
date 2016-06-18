@@ -26,6 +26,7 @@ public class Univers {
 	String nomMechants;
 	String imageGentil, imageMechant;
 	String antidote,remede, nomAntidote, nomRemede, actionAntidote, actionRemede;
+	String musique;
 	int numero;
 	
 	// Getteurs
@@ -110,6 +111,7 @@ public class Univers {
 			actionRemede = "a utilisé un bandage pour arreter son saignement";
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
+			musique = "Crypteque.mp3";
 			break;
 		case 2 :
 			Pg = new ParserAction("ActionsRobot.xml");
@@ -124,6 +126,7 @@ public class Univers {
 			actionRemede = "a lancé CCleaner pour enlever les malwares";
 			antidote = "../Graphics/Tiles/Robot/analyse.png";
 			remede = "../Graphics/Tiles/Robot/ccleaner.png";
+			musique = "Robots.mp3";
 			break;
 		default :
 			Pg = new ParserAction("ActionsHumain.xml");
@@ -138,6 +141,7 @@ public class Univers {
 			actionRemede = "a utilisé un bandage pour arreter son saignement";
 			antidote = "../Graphics/Tiles/Zombie/pills.png";
 			remede = "../Graphics/Tiles/Zombie/bandage.png";
+			musique = "Crypteque.mp3";
 		}
                 System.out.println("1");
 		actionsGentil = Pg.list;

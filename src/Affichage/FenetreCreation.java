@@ -51,14 +51,6 @@ public class FenetreCreation extends FenetreBase {
         super(500, 400, "Création des joueurs pour la partie");
 
         this.setLayout(new BorderLayout());
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                configPartie.setVisible(true);
-                dispose();
-            }
-        });
 
         this.add(ongletsJoueurs, BorderLayout.CENTER);
 

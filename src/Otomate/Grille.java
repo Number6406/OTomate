@@ -123,16 +123,18 @@ public class Grille {
             }
         }
         setNbetats(taille);
-        int maxi = max(taille);
-        int dimh = maxi * list.size();
+        int maxh = max(taille);
+        int maxv = l.get(0).getPersonnagesI(0).a.nbconditions();
+        int dimh = maxh * list.size();
+        //int dimh = 5 * maxv/maxh * list.size();
         if(dimh<50)
             dimh = 50;
-        maxi = l.get(0).getPersonnagesI(0).a.nbconditions();
-        int dimv = maxi * list.size();
+        int dimv = maxv * list.size();
+        //int dimv = 5 * maxh/maxv * list.size();
         if(dimv<50)
             dimv = 50;
             
-      //cration die la map dimh/dimv avec minimum 50/50
+      //creation de la map dimh/dimv avec minimum 50/50
         g = new Case[dimh][dimv];
     	tailleX=dimh;
     	tailleY=dimv;

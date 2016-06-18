@@ -70,14 +70,6 @@ public class FenetreNouvellePartie extends FenetreBase {
 
     public FenetreNouvellePartie(List<String> univers) {
         super(500, 300, "Création d'une nouvelle partie");
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                new FenetreMenu();
-                dispose();
-            }
-        });
         this.setLayout(new BorderLayout());
 
         GridBagConstraints c = new GridBagConstraints();

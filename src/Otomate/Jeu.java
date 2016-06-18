@@ -29,6 +29,7 @@ public class Jeu {
     public static int period = vitesse1;
     public static boolean pause = false;
     public static boolean step = false;
+    public static Player pl;
     
     // Chargement
     protected static boolean charge = false;
@@ -451,12 +452,11 @@ public class Jeu {
     	}
     	
     	public void run() {
-    		File f = new File(this.getClass().getResource("Crypteque.mp3").getFile());
+    		File f = new File(this.getClass().getResource(s).getFile());
             FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
 	            BufferedInputStream bis = new BufferedInputStream(fis);
-	            Player pl;
 				try {
 					pl = new Player(bis);
 					pl.play();
@@ -469,11 +469,12 @@ public class Jeu {
     	}
     }
     
-    public static void main(String[] pArgs) throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException, JavaLayerException {
+    @SuppressWarnings("deprecation")
+	public static void main(String[] pArgs) throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException, JavaLayerException {
 
         FenetreMenu menuJeu = new FenetreMenu();
         
-        Music player = new Music("Mitch");
+        Music player = new Music("Mitch.mp3");
         player.start();
         
         while (!commencerJeu) {
@@ -483,7 +484,11 @@ public class Jeu {
         if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
         else {Affichage.charger();}
         
-        //sauvegarder();
+
+        
+        player.stop();
+        player = new Music(univers.musique);
+        player.start();
         
         while (!finPartie()) {
             while (pause) {
@@ -500,6 +505,7 @@ public class Jeu {
 
         }
         finDeJeu();
+        pl.close();
         Affichage.fin();
     }
 }
