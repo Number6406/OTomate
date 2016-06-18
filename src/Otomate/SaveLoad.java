@@ -51,7 +51,7 @@ public final class SaveLoad {
 		fin.write(new Character('\n'));
 		System.out.println(jeu.joueurZombie);
 		// fin.write(jeu.plateau.tailleX()); // tailleX
-		for (i = 0; i < 10; i++) {
+		for (i = 0; i < 5; i++) {
 			temp = jeu.plateau.tailleX();
 			for (j = 0; j < i; j++) {
 				temp = (temp - (temp % 10)) / 10;
@@ -63,7 +63,7 @@ public final class SaveLoad {
 		fin.write(new Character('\n'));
 		System.out.println(jeu.plateau.tailleX());
 		// fin.write((jeu.plateau.tailleY())); // tailleY
-		for (i = 0; i < 10; i++) {
+		for (i = 0; i < 5; i++) {
 			temp = jeu.plateau.tailleY();
 			for (j = 0; j < i; j++) {
 				temp = (temp - (temp % 10)) / 10;
@@ -87,10 +87,24 @@ public final class SaveLoad {
 		fin.write(new Character(' '));
 		System.out.println(jeu.plateau.getCoinsAutomates().size());
 		for (j = 0; j < jeu.plateau.getCoinsAutomates().size(); j++) {
-			fin.write(jeu.plateau.getCoinsAutomates().get(j).getX());
+			for(i = 0; i<5; i++) {
+				temp = jeu.plateau.getCoinsAutomates().get(j).getX();
+				for(int k=0; k<i; k++) {
+					temp = (temp - (temp % 10)) / 10;
+				}
+				fin.write(temp % 10);
+				fin.write(new Character(' '));
+			}
 			fin.write(new Character(':'));
-			fin.write(jeu.plateau.getCoinsAutomates().get(j).getY());
-			fin.write(new Character(' '));
+			for(i = 0; i<5; i++) {
+				temp = jeu.plateau.getCoinsAutomates().get(j).getY();
+				for(int k=0; k<i; k++) {
+					temp = (temp - (temp % 10)) / 10;
+				}
+				fin.write(temp % 10);
+				fin.write(new Character(' '));
+			}
+			fin.write(new Character(':'));
 		}
 		fin.write(jeu.plateau.getNbetats().size());
 		fin.write(new Character(' '));
@@ -133,12 +147,25 @@ public final class SaveLoad {
 			System.out.println("#####");
 			for (j = 0; j < jeu.joueurs.get(i).getSizePersonnages(); j++) {
 				pe = jeu.joueurs.get(i).getPersonnagesI(j);
-				fin.write(((Integer) pe.getPosition().getX()));
-				fin.write(new Character(' '));
+				for(int k=0; k<5; k++) {
+					temp = pe.getPosition().getX();
+					for(int l=0; l<k; l++) {
+						temp = (temp - (temp%10)) / 10;
+					}
+					fin.write(temp%10);
+					fin.write(new Character(' '));
+				}
+				fin.write(new Character(':'));
 				System.out.println(pe.getPosition().getX());
-
-				fin.write(((Integer) pe.getPosition().getY()));
-				fin.write(new Character(' '));
+				for(int k=0; k<5; k++) {
+					temp = pe.getPosition().getY();
+					for(int l=0; l<k; l++) {
+						temp = (temp - (temp%10)) / 10;
+					}
+					fin.write(temp%10);;
+					fin.write(new Character(' '));
+				}
+				fin.write(new Character(':'));
 				System.out.println(pe.getPosition().getY());
 
 				fin.write(pe.getNom().getBytes(StandardCharsets.UTF_8));
@@ -216,7 +243,8 @@ public final class SaveLoad {
 				for (int k = 0; k < nc; k++) {
 					System.out.println(j + " " + k);
 					System.out.println(ix + " " + iy);
-					tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(k + ix, j + iy));
+					//tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(k + ix, j + iy));
+					tacos.get(i).getAutomate().setAction(j, k, jeu.plateau.get(j + ix, k + iy));
 				}
 			}
 		}
@@ -257,7 +285,7 @@ public final class SaveLoad {
 		// jeu.plateau = new Grille(Integer.parseInt(lire(fout, '\n')),
 		// Integer.parseInt(lire(fout, '\n')));
 		int tempX = 0, tempY = 0, temp = 0;
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			temp = 0;
 			temp = Integer.parseInt(lire(fout, ' '));
 			for (int j = 0; j < i; j++) {
@@ -267,7 +295,7 @@ public final class SaveLoad {
 			tempX += temp;
 		}
 		fout.skip(1);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			temp = 0;
 			temp = Integer.parseInt(lire(fout, ' '));
 			for (int j = 0; j < i; j++) {
@@ -291,10 +319,29 @@ public final class SaveLoad {
 		}
 		int l = Integer.parseInt(lire(fout, ' '));
 		System.out.println(l);
+		int t1, t2;
 		for (int j = 0; j < l; j++) {
-			System.out.println(j);
-			jeu.plateau.getCoinsAutomates()
-					.add(new Coordonnees(Integer.parseInt(lire(fout, ':')), Integer.parseInt(lire(fout, ' '))));
+			t1=0;
+			for(int i=0; i<5; i++) {
+				temp = 0;
+				temp = Integer.parseInt(lire(fout, ' '));
+				for(int k=0; k<i; k++) {
+					temp*=10;
+				}
+				t1+=temp;
+			}
+			fout.skip(1);
+			t2=0;
+			for(int i=0; i<5; i++) {
+				temp = 0;
+				temp = Integer.parseInt(lire(fout, ' '));
+				for(int k=0; k<i; k++) {
+					temp*=10;
+				}
+				t2+=temp;
+			}
+			fout.skip(1);
+			jeu.plateau.getCoinsAutomates().add(new Coordonnees(t1, t2));
 		}
 		l = Integer.parseInt(lire(fout, ' '));
 		System.out.println(l);
@@ -306,7 +353,7 @@ public final class SaveLoad {
 		int nbJou = Integer.parseInt(lire(fout, '\n')), nbPers;
 		System.out.println(nbJou);
 		System.out.println("-----");
-		int r, g, b;
+		int r, g, b, c1, c2;
 		for (int i = 0; i < nbJou; i++) {
 			nouv = new Joueur();
 			r = Integer.parseInt(lire(fout, ' '));
@@ -340,9 +387,30 @@ public final class SaveLoad {
 				} else {
 					pe = new Gentil();
 				}
-				pe.setNom(nouv.getName() + "_" + j);
 				pe.setCouleur(nouv.getCouleur());
-				pe.setPosition(new Coordonnees(Integer.parseInt(lire(fout, ' ')), Integer.parseInt(lire(fout, ' '))));
+				c1=0;
+				for(int k=0; k<5; k++) {
+					temp = 0;
+					temp = Integer.parseInt(lire(fout, ' '));
+					for(int m=0; m<k; m++) {
+						temp*=10;
+					}
+					c1+=temp;
+					System.out.println("TAMERLAPUTE "+k+" : "+temp+" "+c1);
+				}
+				fout.skip(1);
+				c2=0;
+				for(int k=0; k<5; k++) {
+					temp = 0;
+					temp = Integer.parseInt(lire(fout, ' '));
+					for(int m=0; m<k; m++) {
+						temp*=10;
+					}
+					c2+=temp;
+					System.out.println("TAMERLATEPU "+k+" : "+temp+" "+c2);
+				}
+				fout.skip(1);
+				pe.setPosition(new Coordonnees(c1,c2));
 				System.out.println(pe.getPosition().getX());
 				System.out.println(pe.getPosition().getY());
 				pe.setNom(lire_nom(fout, ';'));
