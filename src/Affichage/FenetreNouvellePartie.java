@@ -16,8 +16,6 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
@@ -136,23 +134,25 @@ public class FenetreNouvellePartie extends FenetreBase {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new FenetreMenu();
-                } catch (IOException ex) {
-                    Logger.getLogger(FenetreNouvellePartie.class.getName()).log(Level.SEVERE, null, ex);
-                }
+					new FenetreMenu();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
                 dispose();
             }
         });
 
         b_suivant.addActionListener((ActionEvent e) -> {
             this.setVisible(false);
-            FenetreCreation fCreation;
-            try {
-                fCreation = new FenetreCreation(getRatio(), getNbP(), getNbJ(), getUniv());
-                fCreation.setPrevious(this);
-            } catch (IOException ex) {
-                Logger.getLogger(FenetreNouvellePartie.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            FenetreCreation fCreation = null;
+			try {
+				fCreation = new FenetreCreation(getRatio(), getNbP(), getNbJ(), getUniv());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            fCreation.setPrevious(this);
         });
 
     }
