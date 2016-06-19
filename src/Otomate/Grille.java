@@ -140,13 +140,8 @@ public class Grille {
         else
         	dim = dimh;
         dim = dim*((int)Math.sqrt(list.size())+3);
-        //int dimh = 5 * maxv/maxh * list.size();
         if(dim<50)
             dim = 50;
-        //int dimv = maxv * list.size();
-        //int dimv = 5 * maxh/maxv * list.size();
-        //if(dimv<50)
-            //dimv = 50;
             
       //creation de la map dimh/dimv avec minimum 50/50
         g = new Case[dim][dim];
