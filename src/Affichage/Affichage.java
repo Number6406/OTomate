@@ -97,9 +97,7 @@ public class Affichage {
                 "La partie est finie !",
                 "Victoire",
                 JOptionPane.INFORMATION_MESSAGE,
-                null);
-		jeu.dispose();
-		
+                null);		
 	}
 
 }

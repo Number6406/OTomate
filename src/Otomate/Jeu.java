@@ -540,7 +540,6 @@ public class Jeu {
 
         }
         finDeJeu();
-        pl.close();
         Affichage.fin();
     }
 }
