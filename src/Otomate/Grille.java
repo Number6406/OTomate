@@ -9,6 +9,7 @@ import Parser.ParserConditions;
 import Parser.ParserObjet;
 import MapGenerator.$Pattern;
 import MapGenerator.InitPatterns;
+import MapGenerator.MapPattern;
 
 public class Grille {
 
@@ -109,6 +110,11 @@ public class Grille {
     	new Grille(50,50);
     }
     
+    /**
+     * 
+     * @param l une liste de joueurs
+     * @param u un univers précisant les contexte des objects, conditions et actions 
+     */
     public Grille(List<Joueur> l,Univers u){
     	int i,j;
         List<$Personnage> list = new LinkedList<>();
@@ -314,6 +320,8 @@ public class Grille {
             }
         }
         
+        MapPattern map = new MapPattern(tailleX, tailleY, 10);
+        positionnerPattern(0, 0, map);
         InitPatterns initP = new InitPatterns(u);
         if(initP.patterns != null) {
             for($Pattern p : initP.patterns) {
