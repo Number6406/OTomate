@@ -47,7 +47,7 @@ public class FenetreMenu extends FenetreBase {
     JButton b_jouer = new JButton("Jouer");
     JButton b_credits = new JButton("Crédits");
     JButton b_charger = new JButton("Charger");
-    JButton b_musique = new JButton("Musique [ON]");
+    JButton b_musique = new JButton("Musique");
     JButton b_quitter = new JButton("Quitter");
 
     // Liste des univers
@@ -84,7 +84,13 @@ public class FenetreMenu extends FenetreBase {
                 }
             }
         });
-        // panel_b.add(b_musique);
+        panel_b.add(b_musique);
+        b_musique.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		Jeu.playPause();
+        	}
+        });
         // La gestion de la musique n'est pas encore fonctionnelle
         
         panel_b.add(b_quitter);
