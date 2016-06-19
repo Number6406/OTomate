@@ -1,0 +1,22 @@
+Code4Dead est un projet créé par 6 élèves ingénieurs en informatique :
+
+- Abonnenc Alicia
+- Bonhoure Gilles
+- Lesage Lucas
+- Marchand Charles
+- Moreau Gwenaël
+- Pellicer Marion
+
+----
+
+Crédits musicaux :
+
+Musique de Menu : Mitchiri Neko March
+Musique Zombie : Crypteque | dannyBstyle
+Musique Robots : Robots
+
+----
+
+Librairies utilisées :
+
+AWT / SWING

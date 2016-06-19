@@ -23,6 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Otomate.Jeu;
+import java.awt.Desktop;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -58,6 +61,18 @@ public class FenetreMenu extends FenetreBase {
         panel_b.add(b_jouer);
         panel_b.add(b_charger);
         panel_b.add(b_credits);
+        b_credits.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Desktop desk = Desktop.getDesktop();
+                try {
+                    desk.open(new File(this.getClass().getResource("../credit.txt").getFile()));
+                } catch (IOException ex) {
+                    Logger.getLogger(FenetreMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
         panel_b.add(b_quitter);
         
         b_quitter.addActionListener(new ActionListener() {
@@ -135,7 +150,7 @@ public class FenetreMenu extends FenetreBase {
                         }
                     });
 
-                    saveW.add(new JLabel("Choisissez o� charger votre partie."), BorderLayout.NORTH);
+                    saveW.add(new JLabel("Choisissez ou charger votre partie."), BorderLayout.NORTH);
 
                     JPanel pchoix = new JPanel(new BorderLayout());
                     saveW.add(pchoix, BorderLayout.CENTER);
@@ -148,6 +163,8 @@ public class FenetreMenu extends FenetreBase {
                     panelb.add(bquitter, BorderLayout.EAST);
 
                     saveW.pack();
+                } else {
+                    saveW.toFront();
                 }
             }
         }
