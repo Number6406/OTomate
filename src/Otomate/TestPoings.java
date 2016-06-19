@@ -45,8 +45,10 @@ public class TestPoings {
     	initialisergrille(Jeu.joueurs,Jeu.plateau);
     	Jeu.plateau.placerPersonnages(Jeu.joueurs);
     	Jeu.joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(5,4));
+    	Jeu.plateau.set(0,5,4);
     	Jeu.joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(4,4));
-    	((Gentil)Jeu.joueurs.get(1).getPersonnagesI(0)).setArme(Jeu.univers.getObjets().get(13));;
+    	Jeu.plateau.set(0,4,4);
+    	((Gentil)Jeu.joueurs.get(1).getPersonnagesI(0)).setArme(Jeu.univers.getObjets().get(13));
         
         Jeu.refPersos = new LinkedList<Integer>();
         
