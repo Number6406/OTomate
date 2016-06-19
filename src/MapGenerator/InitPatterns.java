@@ -31,7 +31,16 @@ public class InitPatterns {
             }
             
         } else if(u.numero() == 2) { // les robots
-            
+            for(int i=0; i<dimension; i++) {
+                VillePattern v1 = new VillePattern(4,4,50);
+                VillePattern v2 = new VillePattern(10, 10, 60);
+
+                DesertPattern d1 = new DesertPattern(8, 8, 20);
+
+                patterns.add(v1);
+                patterns.add(v2);
+                patterns.add(d1);
+            }
         }
     }
     
