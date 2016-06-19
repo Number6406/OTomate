@@ -7,6 +7,9 @@ import java.util.Random;
 import Actions.*;
 import Parser.ParserConditions;
 import Parser.ParserObjet;
+import MapGenerator.$Pattern;
+import MapGenerator.InitPatterns;
+import MapGenerator.MapPattern;
 
 public class Grille {
 
@@ -17,7 +20,6 @@ public class Grille {
     private  int tailleX;
     private  int tailleY;
     private Univers u;
-    
     
     // Getteurs
     
@@ -108,6 +110,11 @@ public class Grille {
     	new Grille(50,50);
     }
     
+    /**
+     * 
+     * @param l une liste de joueurs
+     * @param u un univers précisant les contexte des objects, conditions et actions 
+     */
     public Grille(List<Joueur> l,Univers u){
     	int i,j;
         List<$Personnage> list = new LinkedList<>();
@@ -312,12 +319,23 @@ public class Grille {
     
     public void initialisergrille(List<Joueur> l) {
     	int i,j,k;
+        k = 0; //init de base
         for(i=0; i<tailleX; i++){
             for(j=0; j<tailleY; j++){
-                k = random(0, 15);        //car 15 actions possibles numerotees de 0 a 14 
+                //k = random(0, 15);        //car 15 actions possibles numerotees de 0 a 14 
                 g[i][j].element = k;
             }
         }
+        
+        MapPattern map = new MapPattern(tailleX, tailleY, 10);
+        positionnerPattern(0, 0, map);
+        InitPatterns initP = new InitPatterns(u);
+        if(initP.patterns != null) {
+            for($Pattern p : initP.patterns) {
+                positionnerPattern(random(0, tailleX-p.sizeX-1), random(0, tailleY-p.sizeY-1), p);
+            }
+        }
+        
         List<$Personnage> list = new LinkedList<>();
         for(i=0; i<l.size(); i++){
         	for(j=0;j<l.get(i).getSizePersonnages();j++){
@@ -495,6 +513,18 @@ public class Grille {
             else if(l.get(i) == 14)
             	a = new Fouiller();
             return a;
+        }
+    }
+    
+    public void positionnerPattern(int x, int y, $Pattern p) {
+        int patternX = 0, patternY = 0;
+        for(int i=x; i<x+p.sizeX; i++) {
+            patternY = 0;
+            for(int j=y; j<y+p.sizeY; j++) {
+                g[i][j] = p.getCase(patternX,patternY);
+                patternY++;
+            }
+            patternX++;
         }
     }
     

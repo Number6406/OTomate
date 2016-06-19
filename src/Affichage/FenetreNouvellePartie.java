@@ -43,7 +43,7 @@ public class FenetreNouvellePartie extends FenetreBase {
     private int ratio = 1;
     private int maxP = 5;
     private int minP = 1;
-    private String tratio = "Ratio infecté / sain";
+    private String tratio = " sain(s) pour 1 infecté";
 
     // Elements
     JPanel pan_corps = new JPanel(new GridLayout(1, 2));
@@ -53,9 +53,9 @@ public class FenetreNouvellePartie extends FenetreBase {
     JLabel ljoueurs = new JLabel("Nombre de joueurs : ");
     SpinnerModel smj = new SpinnerNumberModel(2, minJ, maxJ, 1);
     JSpinner spin_joueurs = new JSpinner(smj);
-    JLabel lratio = new JLabel(tratio + "(" + ratio + ")");
+    JLabel lratio = new JLabel();
     JSlider slider_ratio = new JSlider(minR, maxR, ratio);
-    JLabel lratiof = new JLabel("1 personnage sain");
+    JLabel lratiof = new JLabel();
     JLabel lnbpersos = new JLabel("Nb. persos / joueur max.");
     SpinnerModel smp = new SpinnerNumberModel(1, minP, maxP, 1);
     JSpinner spin_persos = new JSpinner(smp);
@@ -95,8 +95,9 @@ public class FenetreNouvellePartie extends FenetreBase {
         pan_partie.add(lratio, c);
         c.gridx = 1;
         pan_partie.add(slider_ratio, c);
+        lratio.setText("<html><b>" +slider_ratio.getValue() + "</b>" + tratio + "</html>");
         slider_ratio.addChangeListener((ChangeEvent e) -> {
-            lratio.setText(tratio + "(" + slider_ratio.getValue() + ")");
+            lratio.setText("<html><b>" +slider_ratio.getValue() + "</b>" + tratio + "</html>");
         });
 
         c.gridx = 0;
