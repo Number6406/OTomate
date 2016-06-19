@@ -324,7 +324,7 @@ public class Grille {
         
         MapPattern map = new MapPattern(tailleX, tailleY, 10);
         positionnerPattern(0, 0, map);
-        InitPatterns initP = new InitPatterns(u);
+        InitPatterns initP = new InitPatterns(u, tailleX);
         if(initP.patterns != null) {
             for($Pattern p : initP.patterns) {
                 positionnerPattern(random(0, tailleX-p.sizeX-1), random(0, tailleY-p.sizeY-1), p);
