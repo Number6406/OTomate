@@ -109,6 +109,8 @@ public class Univers {
 			nomRemede = "un Bandage";
 			actionAntidote = "a utilisé un antidote pour soigner son infection";
 			actionRemede = "a utilisé un bandage pour arreter son saignement";
+			imageGentil = "/Graphics/Sprites/humain.png";
+			imageMechant = "/Graphis/Sprites/zombie.png";
 			antidote = "/Graphics/Tiles/Zombie/pills.png";
 			remede = "/Graphics/Tiles/Zombie/bandage.png";
 			musique = "Crypteque.mp3";
@@ -124,6 +126,8 @@ public class Univers {
 			nomRemede = "CCleaner";
 			actionAntidote = "a fait une analyse pour éliminer les virus";
 			actionRemede = "a lancé CCleaner pour enlever les malwares";
+			imageGentil = "/Graphics/Sprites/robot.png";
+			imageMechant = "/Grpahics/Sprites/virus.png";
 			antidote = "/Graphics/Tiles/Robot/analyse.png";
 			remede = "/Graphics/Tiles/Robot/ccleaner.png";
 			musique = "Robots.mp3";
@@ -139,6 +143,8 @@ public class Univers {
 			nomRemede = "bandage";
 			actionAntidote = "a utilisé un antidote pour soigner son infection";
 			actionRemede = "a utilisé un bandage pour arreter son saignement";
+			imageGentil = "/Graphics/Sprites/humain.png";
+			imageMechant = "/Graphis/Sprites/zombie.png";
 			antidote = "/Graphics/Tiles/Zombie/pills.png";
 			remede = "/Graphics/Tiles/Zombie/bandage.png";
 			musique = "Crypteque.mp3";
