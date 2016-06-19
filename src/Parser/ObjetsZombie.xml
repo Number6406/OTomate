@@ -1,14 +1,14 @@
 <fic>
-	<imageG>../Graphics/Sprites/humain.png</imageG>
-	<imageM>../Graphics/Sprites/zombie.png</imageM>
+	<imageG>/Graphics/Sprites/humain.png</imageG>
+	<imageM>/Graphics/Sprites/zombie.png</imageM>
 	<objet>
 		<id>0</id>
 		<type>4</type>
 		<use>0</use>
 		<name>de l'Herbe</name>
 		<passage>1</passage>
-		<piege>../Graphics/Tiles/Zombie/hole.png</piege>
-		<path>../Graphics/Tiles/Zombie/grass.png</path>
+		<piege>/Graphics/Tiles/Zombie/hole.png</piege>
+		<path>/Graphics/Tiles/Zombie/grass.png</path>
 	</objet>
 	<objet>
 		<id>1</id>
@@ -16,7 +16,7 @@
 		<use>0</use>
 		<name>de la Terre</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/dirt.png</path>
+		<path>/Graphics/Tiles/Zombie/dirt.png</path>
 	</objet>
 	<objet>
 		<id>2</id>
@@ -24,7 +24,7 @@
 		<use>0</use>
 		<name>du Sable</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/sand.png</path>
+		<path>/Graphics/Tiles/Zombie/sand.png</path>
 	</objet>
 	<objet>
 		<id>3</id>
@@ -32,7 +32,7 @@
 		<use>0</use>
 		<name>de l'Eau</name>
 		<passage>0</passage>
-		<path>../Graphics/Tiles/Zombie/trouble_water.png</path>
+		<path>/Graphics/Tiles/Zombie/trouble_water.png</path>
 	</objet>
 	<objet>
 		<id>4</id>
@@ -40,8 +40,8 @@
 		<use>0</use>
 		<name>un Immeuble</name>
 		<passage>1</passage>
-		<piege>../Graphics/Tiles/Zombie/building1.png</piege>
-		<path>../Graphics/Tiles/Zombie/building2.png</path>
+		<piege>/Graphics/Tiles/Zombie/building1.png</piege>
+		<path>/Graphics/Tiles/Zombie/building2.png</path>
 	</objet>
 	<objet>
 		<id>5</id>
@@ -49,7 +49,7 @@
 		<use>0</use>
 		<name>des Ronces</name>
 		<passage>0</passage>
-		<path>../Graphics/Tiles/Zombie/torn.png</path>
+		<path>/Graphics/Tiles/Zombie/torn.png</path>
 	</objet>
 	<objet>
 		<id>6</id>
@@ -57,7 +57,7 @@
 		<use>0</use>
 		<name>une Conserve</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/can.png</path>
+		<path>/Graphics/Tiles/Zombie/can.png</path>
 	</objet>
 	<objet>
 		<id>7</id>
@@ -65,7 +65,7 @@
 		<use>0</use>
 		<name>une Bouteille</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/bottle.png</path>
+		<path>/Graphics/Tiles/Zombie/bottle.png</path>
 	</objet>
 	<objet>
 		<id>8</id>
@@ -73,7 +73,7 @@
 		<use>20</use>
 		<name>un Couteau</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/knife.png</path>
+		<path>/Graphics/Tiles/Zombie/knife.png</path>
 	</objet>
 	<objet>
 		<id>9</id>
@@ -81,8 +81,8 @@
 		<use>0</use>
 		<name>un Hopital</name>
 		<passage>1</passage>
-		<piege>../Graphics/Tiles/Zombie/hopital.png</piege>
-		<path>../Graphics/Tiles/Zombie/hopital.png</path>
+		<piege>/Graphics/Tiles/Zombie/hopital.png</piege>
+		<path>/Graphics/Tiles/Zombie/hopital.png</path>
 	</objet>
 	<objet>
 		<id>10</id>
@@ -90,8 +90,8 @@
 		<use>0</use>
 		<name>une Grange</name>
 		<passage>1</passage>
-		<piege>../Graphics/Tiles/Zombie/grange.png</piege>
-		<path>../Graphics/Tiles/Zombie/grange.png</path>
+		<piege>/Graphics/Tiles/Zombie/grange.png</piege>
+		<path>/Graphics/Tiles/Zombie/grange.png</path>
 	</objet>
 	<objet>
 		<id>11</id>
@@ -99,7 +99,7 @@
 		<use>0</use>
 		<name>un Cactus</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/cactus.png</path>
+		<path>/Graphics/Tiles/Zombie/cactus.png</path>
 	</objet>
 	<objet>
 		<id>12</id>
@@ -107,7 +107,7 @@
 		<use>0</use>
 		<name>une Seringue</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/seringue.png</path>
+		<path>/Graphics/Tiles/Zombie/seringue.png</path>
 	</objet>
 	<objet>
 		<id>13</id>
@@ -115,7 +115,7 @@
 		<use>15</use>
 		<name>une Branche</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/branch.png</path>
+		<path>/Graphics/Tiles/Zombie/branch.png</path>
 	</objet>
 	<objet>
 		<id>14</id>
@@ -123,6 +123,6 @@
 		<use>30</use>
 		<name>un Fusil à pompe</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Zombie/gun.png</path>
+		<path>/Graphics/Tiles/Zombie/gun.png</path>
 	</objet>
 </fic>

@@ -138,18 +138,18 @@ public class FenetreJeu extends JFrame {
         scroll_perso = new JScrollPane(tab_perso);
         pan_interraction = new JPanel();
 
-        ImageIcon play = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile())));
-        ImageIcon pause = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/pause.png").getFile())));
+        ImageIcon play = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/play.png").getFile())));
+        ImageIcon pause = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/pause.png").getFile())));
         b_playpause = new JButton(pause);
         b_playpause.setToolTipText("Mettre en pause la simulation.");
 
-        ImageIcon fast1 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/fast1.png").getFile())));
-        ImageIcon fast2 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/fast2.png").getFile())));
-        ImageIcon fast3 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/fast3.png").getFile())));
+        ImageIcon fast1 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/fast1.png").getFile())));
+        ImageIcon fast2 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/fast2.png").getFile())));
+        ImageIcon fast3 = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/fast3.png").getFile())));
         b_fast = new JButton(fast1);
         b_fast.setToolTipText("Accélérer la simulation (Vitesse 1)");
 
-        b_step = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/step.png").getFile()))));
+        b_step = new JButton(new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/step.png").getFile()))));
         b_step.setToolTipText("Jouer un tour : Accessible quand la pause est active uniquement.");
         b_step.setEnabled(false);
 
@@ -321,7 +321,7 @@ public class FenetreJeu extends JFrame {
                     Jeu.play_pause();
                     ImageIcon play = null;
                     try {
-                        play = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/play.png").getFile())));
+                        play = new ImageIcon(ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/play.png").getFile())));
                     } catch (IOException ex) {
                         Logger.getLogger(FenetreJeu.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -64,7 +64,7 @@ public class FenetreMenu extends FenetreBase {
         //titre.setSize(800, 100);
         //titre.setHorizontalTextPosition(JLabel.CENTER);
 
-        logo = new ImageIcon(getClass().getResource("../Graphics/logo.png"));
+        logo = new ImageIcon(getClass().getResource("/Graphics/logo.png"));
         logoL.setIcon(logo);
         this.add(logoL, BorderLayout.CENTER);
         logoL.setHorizontalAlignment(JTextField.CENTER);
@@ -78,7 +78,7 @@ public class FenetreMenu extends FenetreBase {
             public void actionPerformed(ActionEvent e) {
                 Desktop desk = Desktop.getDesktop();
                 try {
-                    desk.open(new File(this.getClass().getResource("../credit.txt").getFile()));
+                    desk.open(new File(this.getClass().getResource("/credit.txt").getFile()));
                 } catch (IOException ex) {
                     Logger.getLogger(FenetreMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }

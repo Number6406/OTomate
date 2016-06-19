@@ -481,7 +481,7 @@ public class Jeu {
 
         FenetreMenu menuJeu = new FenetreMenu();
 
-        player = new Music("Mitch.mp3");
+        player = new Music("/Otomate/Mitch.mp3");
         player.start();
 
         while (!commencerJeu) {

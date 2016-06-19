@@ -153,7 +153,7 @@ public abstract class $Personnage {
         
         public void setSprite() {
             try {
-                ImageIO.read(new File(this.getClass().getResource("../Graphics/Sprites/1.gif").getFile()));
+                ImageIO.read(new File(this.getClass().getResource("/Graphics/Sprites/1.gif").getFile()));
             } catch (IOException ex) {
                 Logger.getLogger($Personnage.class.getName()).log(Level.SEVERE, null, ex);
             }
