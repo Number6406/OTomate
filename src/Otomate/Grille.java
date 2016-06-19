@@ -125,19 +125,26 @@ public class Grille {
         setNbetats(taille);
         int maxh = max(taille);
         int maxv = l.get(0).getPersonnagesI(0).a.nbconditions();
-        int dimh = maxh * list.size();
+        int dimh = maxh /** list.size()*/;
+        int dimv = maxv /** list.size()*/;
+        int dim;
+        if(dimh<dimv)
+        	dim = dimv;
+        else
+        	dim = dimh;
+        dim = dim*((int)Math.sqrt(list.size())+3);
         //int dimh = 5 * maxv/maxh * list.size();
-        if(dimh<50)
-            dimh = 50;
-        int dimv = maxv * list.size();
+        if(dim<50)
+            dim = 50;
+        //int dimv = maxv * list.size();
         //int dimv = 5 * maxh/maxv * list.size();
-        if(dimv<50)
-            dimv = 50;
+        //if(dimv<50)
+            //dimv = 50;
             
       //creation de la map dimh/dimv avec minimum 50/50
-        g = new Case[dimh][dimv];
-    	tailleX=dimh;
-    	tailleY=dimv;
+        g = new Case[dim][dim];
+    	tailleX=dim;
+    	tailleY=dim;
     	this.u = u;
     	for(i=0;i<tailleX;i++){
     		for(j=0;j<tailleY;j++){
@@ -200,7 +207,7 @@ public class Grille {
             	int jy=coinsAutomates.get(j).getY();
             	int taillejx=list.get(j).nbEtat();
             	int taillejy=list.get(j).getAutomate().nbconditions;
-                if(!(ix+tailleix>=jx && ix<=jx+taillejx && iy+tailleiy>=jy && iy<=jy+taillejy)){System.out.println("ok");}
+                if(!(ix+tailleix>jx && ix<jx+taillejx && iy+tailleiy>jy && iy<jy+taillejy)){/*System.out.println("ok");*/}
             	else
                     System.out.println("Erreur les automates se superposent on a un probleme pour la generation de leur coordonnees : erreur dans goAutomates !");
             }
@@ -237,7 +244,7 @@ public class Grille {
         for(i=0;i<list.size();i++){
         	newc[i] = new Coordonnees();
         }
-        int nb = list.size();
+        int nb = (int)Math.sqrt(list.size())+3;
         
         for(k=0; k<list.size(); k++){
             i = rnd.nextInt(nb);       //donne le numero de la case "h" abscisse correspondant
