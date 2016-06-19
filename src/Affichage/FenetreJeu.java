@@ -331,6 +331,15 @@ public class FenetreJeu extends JFrame {
                 sauvegarder();
             }
         });
+        
+        JButton music = new JButton("Musique [Play/Pause]");
+        toolbar.add(music);
+        music.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Jeu.playPause();
+			}
+		});
 
         JButton aide = new JButton("Aide");
         toolbar.add(aide);

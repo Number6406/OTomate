@@ -100,7 +100,7 @@ public class PanelCreationJoueur extends JPanel {
             this.add(new JLabel("Couleur"), c);
             
             c.gridx = 3;
-            this.add(new JLabel("Jouer Zombie ?"), c);
+            this.add(new JLabel("Jouer Mechant ?"), c);
 
             c.gridy = 2;
             c.gridx = 0;

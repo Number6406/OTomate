@@ -466,6 +466,22 @@ public class Jeu {
         }
     }
     
+    @SuppressWarnings("deprecation")
+	public static void playPause() {
+    	if(isPlaying) {
+    		player.stop();
+    		isPlaying = false;
+    	} else {
+    		if(!commencerJeu) {
+    			player = new Music("/Otomate/Mitch.mp3");
+    		} else {
+    			player = new Music(univers.musique);
+    		}
+    		player.start();
+    		isPlaying = true;
+    	}
+    }
+    
     /**
      * Fonction principale de Jeu
      *
@@ -483,6 +499,7 @@ public class Jeu {
 
         player = new Music("/Otomate/Mitch.mp3");
         player.start();
+        isPlaying = true;
 
         while (!commencerJeu) {
             Thread.sleep(100);
@@ -493,8 +510,10 @@ public class Jeu {
         } else {
             Affichage.charger();
         }
-
-        player.stop();
+        
+        if(isPlaying) {
+        	player.stop();
+        }
         player = new Music(univers.musique);
         player.start();
 
