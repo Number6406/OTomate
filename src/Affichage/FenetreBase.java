@@ -37,7 +37,7 @@ public abstract class FenetreBase extends JFrame {
         
         BufferedImage icon;
         try {
-            icon = ImageIO.read(new File(this.getClass().getResource("/Graphics/Icons/c4d.png").getFile()));
+            icon = ImageIO.read(this.getClass().getResourceAsStream("/Graphics/Icons/c4d.png"));
             this.setIconImage(icon);
         } catch (IOException ex) {
             System.out.println(ex);
