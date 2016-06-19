@@ -287,6 +287,7 @@ public class Jeu {
     public static void tour() {
 
         int j, p;
+        String suite = new String();
 
         melange(); // Mélange la liste des personnages
         historique.addTour(); // Ajout un tour à l'historique
@@ -297,46 +298,51 @@ public class Jeu {
             try {
                 Thread.sleep(period);
                 tourDePerso(joueurs.get(j).getPersonnagesI(p));
+                suite += rip(joueurs, joueurs.get(j).getPersonnagesI(p));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        String findetour = croqueMorts(joueurs);
+        String findetour = croqueMorts(joueurs, suite);
         historique.ceTour().addEvenement(new Evenement(null, findetour));
         Affichage.ajouterTour(historique.ceTour());
     }
-
-    public static String croqueMorts(List<Joueur> lesJoueurs) {
-        String s = "<i>Fin de Tour</i> : ";
+    
+    public static String rip(List<Joueur> lesJoueurs, $Personnage P) {
+        String s = new String();
         int i, k;
         Joueur player = null;
-        $Personnage perso = null;
         for (i = 0; i < lesJoueurs.size(); i++) {
             player = lesJoueurs.get(i);
             if (player != null) {
                 for (k = 0; k < player.getSizePersonnages(); k++) {
-                    perso = player.getPersonnagesI(k);
-                    if (perso.getVie() <= 0 || perso.getInactivite() == 0) {
-                        if (perso instanceof Gentil) {
-                            if (((Gentil) perso).getInfecte()) {
-                                Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName() + "_" + (lesJoueurs.get(joueurZombie).getSizePersonnages() + 1), perso.getPosition());
+                    if(P == player.getPersonnagesI(k)){//;
+                    if (P.getVie() <= 0 || P.getInactivite() == 0) {
+                        if (P instanceof Gentil) {
+                            if (((Gentil) P).getInfecte()) {
+                                Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName() + "_" + (lesJoueurs.get(joueurZombie).getSizePersonnages() + 1), P.getPosition());
                                 lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-                                s += perso.getNomHtml() + " est transforme. ";
+                                s += P.getNomHtml() + " est transforme. ";
                                 player.getPersonnages().remove(k);
                             } else {
-                                s += perso.getNomHtml() + " est mort. ";
+                                s += P.getNomHtml() + " est mort. ";
                                 player.getPersonnages().remove(k);
                             }
                         } else {
-                            s += perso.getNomHtml() + " est mort. ";
+                            s += P.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
+                    }
                     }
                 }
             }
         }
 
         return s;
+    }
+
+    public static String croqueMorts(List<Joueur> lesJoueurs, String suite) {
+        return "<i>Fin de Tour</i> : "+suite;
     }
 
     public static void changeSpeed() {
