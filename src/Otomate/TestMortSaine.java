@@ -46,7 +46,9 @@ public class TestMortSaine {
     	initialisergrille(Jeu.joueurs,Jeu.plateau);
     	Jeu.plateau.placerPersonnages(Jeu.joueurs);
     	Jeu.joueurs.get(0).getPersonnagesI(0).setPosition(new Coordonnees(35,40));
+    	Jeu.plateau.set(0,35,40);
     	Jeu.joueurs.get(1).getPersonnagesI(0).setPosition(new Coordonnees(4,4));
+    	Jeu.plateau.set(0,4,4);
     	((Gentil)Jeu.joueurs.get(1).getPersonnagesI(0)).setRemede(1);
     	((Gentil)Jeu.joueurs.get(1).getPersonnagesI(0)).setInfecte(true);
     	((Gentil)Jeu.joueurs.get(1).getPersonnagesI(0)).setSaignement(true);
