@@ -28,6 +28,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -38,12 +40,14 @@ public class FenetreMenu extends FenetreBase {
 
     // Elements du menu
     JLabel titre = new JLabel("Code4Dead");
+    ImageIcon logo;
 
     JPanel panel_b = new JPanel();
     Dimension d = new Dimension(200, 50);
     JButton b_jouer = new JButton("Jouer");
     JButton b_credits = new JButton("Crédits");
     JButton b_charger = new JButton("Charger");
+    JButton b_musique = new JButton("Musique [ON]");
     JButton b_quitter = new JButton("Quitter");
 
     // Liste des univers
@@ -54,11 +58,17 @@ public class FenetreMenu extends FenetreBase {
     public FenetreMenu() throws IOException {
         super(500, 300, "Code4Dead");
         this.setLayout(new BorderLayout());
+        JLabel logoL = new JLabel();
 
-        this.add(titre, BorderLayout.NORTH);
-        titre.setSize(800, 100);
-        titre.setHorizontalTextPosition(JLabel.CENTER);
+        //this.add(titre, BorderLayout.NORTH);
+        //titre.setSize(800, 100);
+        //titre.setHorizontalTextPosition(JLabel.CENTER);
 
+        logo = new ImageIcon(getClass().getResource("../Graphics/logo.png"));
+        logoL.setIcon(logo);
+        this.add(logoL, BorderLayout.CENTER);
+        logoL.setHorizontalAlignment(JTextField.CENTER);
+        
         this.add(panel_b, BorderLayout.SOUTH);
         panel_b.add(b_jouer);
         panel_b.add(b_charger);
@@ -74,8 +84,12 @@ public class FenetreMenu extends FenetreBase {
                 }
             }
         });
+        // panel_b.add(b_musique);
+        // La gestion de la musique n'est pas encore fonctionnelle
         
         panel_b.add(b_quitter);
+        
+        this.setVisible(true); // repaint pour voir l'image
         
         b_quitter.addActionListener(new ActionListener() {
             @Override
