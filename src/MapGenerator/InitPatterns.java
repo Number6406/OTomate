@@ -19,7 +19,7 @@ public class InitPatterns {
     public InitPatterns(Univers u, int dimension) {
         if(u.numero() == 1) { // univers de zombies
             
-            for(int i=0; i<dimension/2; i++) {
+            for(int i=0; i<dimension; i++) {
                 VillePattern v1 = new VillePattern(4,4,80);
                 VillePattern v2 = new VillePattern(6, 4, 90);
 
