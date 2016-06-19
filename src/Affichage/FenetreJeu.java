@@ -50,7 +50,7 @@ import javax.swing.JTextField;
  *
  * @author bonhourg
  */
-public class FenetreJeu extends JFrame {
+public class FenetreJeu extends FenetreBase {
 
     /**
      *
@@ -101,7 +101,7 @@ public class FenetreJeu extends JFrame {
     JDialog saveW = null;
 
     public FenetreJeu() {
-        super();
+        super(X, Y, "Partie en cours");
         this.setSize(X, Y);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -342,7 +342,7 @@ public class FenetreJeu extends JFrame {
 		});
 
         JButton aide = new JButton("Aide");
-        toolbar.add(aide);
+        //toolbar.add(aide);
         aide.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
