@@ -513,9 +513,11 @@ public class Jeu {
         
         if(isPlaying) {
         	player.stop();
+        	isPlaying = false;
         }
         player = new Music(univers.musique);
         player.start();
+        isPlaying = true;
 
         while (!finPartie()) {
             while (pause) {
