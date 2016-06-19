@@ -384,8 +384,10 @@ public final class SaveLoad {
 			for (int j = 0; j < nbPers; j++) {
 				if (nouv.estMechant()) {
 					pe = new Mechant();
+					pe.setSpriteURL(jeu.univers.spriteMechant());
 				} else {
 					pe = new Gentil();
+					pe.setSpriteURL(jeu.univers.spriteGentil());
 				}
 				pe.setCouleur(nouv.getCouleur());
 				c1=0;
