@@ -76,7 +76,7 @@ public class AutomatePicker extends JPanel {
         c.gridx += 1;
         this.add(bChoix, c);
         bChoix.addActionListener((ActionEvent e) -> {
-            JFileChooser f = new JFileChooser("./");
+            JFileChooser f = new JFileChooser("/");
             int returnValue = f.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = f.getSelectedFile();

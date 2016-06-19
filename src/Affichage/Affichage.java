@@ -41,8 +41,8 @@ public class Affichage {
         }
 
         perso = new ArrayList<>();
-        perso.add(new Gentil("../Parser/AutomateenXML.xml", Color.PINK,"bob"));
-        perso.add(new Mechant("../Parser/AutomateenXML.xml", Color.BLACK,"john"));
+        perso.add(new Gentil("/Parser/AutomateenXML.xml", Color.PINK,"bob"));
+        perso.add(new Mechant("/Parser/AutomateenXML.xml", Color.BLACK,"john"));
 
         perso.get(0).getPosition().setX(1);
         perso.get(0).getPosition().setY(1);

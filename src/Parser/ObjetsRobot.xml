@@ -1,14 +1,14 @@
 <fic>
-	<imageG>../Graphics/Sprites/robot.png</imageG>
-	<imageM>../Graphics/Sprites/virus.png</imageM>
+	<imageG>/Graphics/Sprites/robot.png</imageG>
+	<imageM>/Graphics/Sprites/virus.png</imageM>
 	<objet>
 		<id>0</id>
 		<type>4</type>
 		<use>0</use>
 		<name>le Web</name>
 		<passage>1</passage>
-                <piege>../Graphics/Tiles/Robot/parefeu.png</piege>
-		<path>../Graphics/Tiles/Robot/internet.png</path>
+                <piege>/Graphics/Tiles/Robot/parefeu.png</piege>
+		<path>/Graphics/Tiles/Robot/internet.png</path>
 	</objet>
 	<objet>
 		<id>1</id>
@@ -16,7 +16,7 @@
 		<use>0</use>
 		<name>un Port USB</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/usb.png</path>
+		<path>/Graphics/Tiles/Robot/usb.png</path>
 	</objet>
 	<objet>
 		<id>2</id>
@@ -24,7 +24,7 @@
 		<use>0</use>
 		<name>un Intranet</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/intranet.png</path>
+		<path>/Graphics/Tiles/Robot/intranet.png</path>
 	</objet>
 	<objet>
 		<id>3</id>
@@ -32,7 +32,7 @@
 		<use>0</use>
 		<name>le Dark Web</name>
 		<passage>0</passage>
-		<path>../Graphics/Tiles/Robot/darkweb.png</path>
+		<path>/Graphics/Tiles/Robot/darkweb.png</path>
 	</objet>
 	<objet>
 		<id>4</id>
@@ -40,7 +40,7 @@
 		<use>0</use>
 		<name>Google</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/google.png</path>
+		<path>/Graphics/Tiles/Robot/google.png</path>
 	</objet>
 	<objet>
 		<id>5</id>
@@ -48,7 +48,7 @@
 		<use>0</use>
 		<name>le Deep Web</name>
 		<passage>0</passage>
-		<path>../Graphics/Tiles/Robot/deepweb.png</path>
+		<path>/Graphics/Tiles/Robot/deepweb.png</path>
 	</objet>
 	<objet>
 		<id>6</id>
@@ -56,7 +56,7 @@
 		<use>0</use>
 		<name>le mode Navigation Privee</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/private.png</path>
+		<path>/Graphics/Tiles/Robot/private.png</path>
 	</objet>
 	<objet>
 		<id>7</id>
@@ -64,7 +64,7 @@
 		<use>0</use>
 		<name>de la RAM</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/ram.png</path>
+		<path>/Graphics/Tiles/Robot/ram.png</path>
 	</objet>
 	<objet>
 		<id>8</id>
@@ -72,7 +72,7 @@
 		<use>15</use>
 		<name>Avast (Anti Virus)</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/avast.png</path>
+		<path>/Graphics/Tiles/Robot/avast.png</path>
 	</objet>
 	<objet>
 		<id>9</id>
@@ -80,7 +80,7 @@
 		<use>0</use>
 		<name>Duck Duck Go</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/duckgo.png</path>
+		<path>/Graphics/Tiles/Robot/duckgo.png</path>
 	</objet>
 	<objet>
 		<id>10</id>
@@ -88,7 +88,7 @@
 		<use>0</use>
 		<name>Bing</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/bing.png</path>
+		<path>/Graphics/Tiles/Robot/bing.png</path>
 	</objet>
 	<objet>
 		<id>11</id>
@@ -96,7 +96,7 @@
 		<use>0</use>
 		<name>un Pop Up</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/popup.png</path>
+		<path>/Graphics/Tiles/Robot/popup.png</path>
 	</objet>
 	<objet>
 		<id>12</id>
@@ -104,7 +104,7 @@
 		<use>0</use>
 		<name>un Script Inconnu</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/script.png</path>
+		<path>/Graphics/Tiles/Robot/script.png</path>
 	</objet>
 	<objet>
 		<id>13</id>
@@ -112,7 +112,7 @@
 		<use>5</use>
 		<name>AVG (Anti Virus Gratuit)</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/avg.png</path>
+		<path>/Graphics/Tiles/Robot/avg.png</path>
 	</objet>
 	<objet>
 		<id>14</id>
@@ -120,6 +120,6 @@
 		<use>25</use>
 		<name>ESET (Bon anti virus)</name>
 		<passage>1</passage>
-		<path>../Graphics/Tiles/Robot/eset.png</path>
+		<path>/Graphics/Tiles/Robot/eset.png</path>
 	</objet>
 </fic>

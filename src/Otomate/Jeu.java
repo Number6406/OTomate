@@ -30,7 +30,9 @@ public class Jeu {
     public static boolean pause = false;
     public static boolean step = false;
     public static Player pl;
-    
+    public static Music player;
+    public static boolean isPlaying; // La musique est jouée ou non
+
     // Chargement
     protected static boolean charge = false;
 
@@ -43,7 +45,7 @@ public class Jeu {
     protected static List<List<String>> xmls;
     protected static List<Color> couleurs;
     protected static int nUnivers;
-    
+
     // Methodes
     /**
      * Verifie la fin de partie dans un jeu. Le jeu est fini quand il n'y a plus
@@ -77,20 +79,20 @@ public class Jeu {
      * Initialise toutes les variables pour lancer la partie.
      */
     public static void debutPartie(int numeroUnivers, int nZombie, int nbPersoParZombie, List<List<String>> xmls, List<Color> couleurs) {
-        
-    	univers = new Univers(numeroUnivers);
+
+        univers = new Univers(numeroUnivers);
         historique = new Historique();
-        
+
         joueurZombie = nZombie;
-        
+
         initJoueurs(names, nbPersoParZombie, nZombie, xmls, couleurs);
-        
+
         plateau = new Grille(joueurs, univers);
-    	plateau.initialisergrille(joueurs);
-    	plateau.placerPersonnages(joueurs);
-        
+        plateau.initialisergrille(joueurs);
+        plateau.placerPersonnages(joueurs);
+
         refPersos = new LinkedList<Integer>();
-        
+
         try {
             Affichage.charger();
         } catch (IOException e) {
@@ -155,12 +157,12 @@ public class Jeu {
     public static void initJoueurs(List<String> names, int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
         joueurs = new LinkedList<Joueur>();
         int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
-        
-        System.out.println("GENTILS" +nbGentils(xmls, nZombie));
-        
+
+        System.out.println("GENTILS" + nbGentils(xmls, nZombie));
+
         for (int i = 0; i < xmls.size(); i++) {
             if (i == nZombie) {
-            	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
+                joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
             } else {
                 joueurs.add(new Joueur(names.get(i), xmls.get(i), false, 42, couleurs.get(i)));
             }
@@ -170,14 +172,15 @@ public class Jeu {
     // FONCTIONS DE GESTION DE STATUS
     public static void gereParalysie($Personnage P) throws InterruptedException {
         String th = new String();
-        if(((Gentil) P).getParalysie() <= 0)
-        	P.setInactivite(P.getInactivite()-1);
+        if (((Gentil) P).getParalysie() <= 0) {
+            P.setInactivite(P.getInactivite() - 1);
+        }
         while (((Gentil) P).getParalysie() > 0) {
             ((Gentil) P).setParalysie(((Gentil) P).getParalysie() - 1);
             effetsDrogue(P);
             th = P.jouer(plateau, joueurs, univers);
-            if(((Gentil) P).getPiege() != 0){
-            	((Gentil) P).setPiege(((Gentil) P).getPiege()-1);
+            if (((Gentil) P).getPiege() != 0) {
+                ((Gentil) P).setPiege(((Gentil) P).getPiege() - 1);
             }
             historique.ceTour().addEvenement(new Evenement(P, th));
         }
@@ -217,32 +220,32 @@ public class Jeu {
                 ((Gentil) P).setParalysie(0);
             }
             ((Gentil) P).setEfdrogue(((Gentil) P).getEfdrogue() - 1);
+        } else {
+            ((Gentil) P).setDrogue(0);
         }
-        else {
-        	((Gentil) P).setDrogue(0);
-        }
-        }
-    
+    }
 
     public static boolean soinInstantane($Personnage P) {
         if (((Gentil) P).getSaignement() == true && ((Gentil) P).getRemede() == 2) {
             ((Gentil) P).setSaignement(false);
             ((Gentil) P).setRemede(0);
-        	if(P.getInactivite()<20)
-        		P.setInactivite(20);
+            if (P.getInactivite() < 20) {
+                P.setInactivite(20);
+            }
             historique.ceTour().addEvenement(new Evenement(P, univers.getActionRemede()));
             return true;
         } else if (((Gentil) P).getInfecte() == true && ((Gentil) P).getRemede() == 1) {
             ((Gentil) P).setInfecte(false);
             ((Gentil) P).setRemede(0);
-        	if(P.getInactivite()<20)
-        		P.setInactivite(20);
+            if (P.getInactivite() < 20) {
+                P.setInactivite(20);
+            }
             historique.ceTour().addEvenement(new Evenement(P, univers.getActionAntidote()));
             return true;
         }
         return false;
     }
-    
+
     // UN TOUR DE JEU
     /**
      * Fait jouer Un personnage.
@@ -305,31 +308,31 @@ public class Jeu {
 
     public static String croqueMorts(List<Joueur> lesJoueurs) {
         String s = "<i>Fin de Tour</i> : ";
-        int i,k;
+        int i, k;
         Joueur player = null;
         $Personnage perso = null;
-        for (i=0; i<lesJoueurs.size(); i++) {
+        for (i = 0; i < lesJoueurs.size(); i++) {
             player = lesJoueurs.get(i);
-            if(player!=null){
-            for (k=0; k<player.getSizePersonnages(); k++) {
-            	perso = player.getPersonnagesI(k);
-                if (perso.getVie() <= 0 || perso.getInactivite() == 0) {
-                    if (perso instanceof Gentil) {
-                        if (((Gentil) perso).getInfecte()) {
-                            Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName()+"_"+(lesJoueurs.get(joueurZombie).getSizePersonnages()+1), perso.getPosition());
-                            lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
-                            s += perso.getNomHtml() + " est transforme. ";
-                            player.getPersonnages().remove(k);
+            if (player != null) {
+                for (k = 0; k < player.getSizePersonnages(); k++) {
+                    perso = player.getPersonnagesI(k);
+                    if (perso.getVie() <= 0 || perso.getInactivite() == 0) {
+                        if (perso instanceof Gentil) {
+                            if (((Gentil) perso).getInfecte()) {
+                                Mechant nouveauMechant = new Mechant(lesJoueurs.get(joueurZombie).getPersonnagesI(0), lesJoueurs.get(joueurZombie).getCouleur(), lesJoueurs.get(joueurZombie).getName() + "_" + (lesJoueurs.get(joueurZombie).getSizePersonnages() + 1), perso.getPosition());
+                                lesJoueurs.get(joueurZombie).getPersonnages().add(nouveauMechant);
+                                s += perso.getNomHtml() + " est transforme. ";
+                                player.getPersonnages().remove(k);
+                            } else {
+                                s += perso.getNomHtml() + " est mort. ";
+                                player.getPersonnages().remove(k);
+                            }
                         } else {
-                        	s += perso.getNomHtml() + " est mort. ";
+                            s += perso.getNomHtml() + " est mort. ";
                             player.getPersonnages().remove(k);
                         }
-                    } else {
-                        s += perso.getNomHtml() + " est mort. ";
-                        player.getPersonnages().remove(k);
                     }
                 }
-            }
             }
         }
 
@@ -399,41 +402,68 @@ public class Jeu {
     public static void go() {
         commencerJeu = true;
     }
-    
+
     public static void chargement() {
-    	charge = true;
+        charge = true;
     }
-    
+
     public static SaveJeu createSaveJeu() {
-    	SaveJeu sj = new SaveJeu();
-    	sj.plateau = plateau;
-    	sj.joueurs = joueurs;
-    	sj.joueurZombie = joueurZombie;
-    	sj.univers = univers;
-    	return sj;
+        SaveJeu sj = new SaveJeu();
+        sj.plateau = plateau;
+        sj.joueurs = joueurs;
+        sj.joueurZombie = joueurZombie;
+        sj.univers = univers;
+        return sj;
     }
-    
+
     public static void sauvegarder(String chemin) throws IOException {
-    	SaveLoad sl = new SaveLoad(createSaveJeu(),chemin);
-    	sl.save();
+        SaveLoad sl = new SaveLoad(createSaveJeu(), chemin);
+        sl.save();
     }
-    
+
     public static void charger(String fichier) throws IOException {
-    	SaveLoad sl = new SaveLoad(fichier);
-    	sl.load();
-    	plateau = sl.getJeu().plateau;
-    	joueurs = sl.getJeu().joueurs;
-    	refPersos = new LinkedList<Integer>();
-    	joueurZombie = sl.getJeu().joueurZombie;
-    	univers = sl.getJeu().univers;
-    	historique = new Historique();
-    	charge = true;
-    	go();
-    	
+        SaveLoad sl = new SaveLoad(fichier);
+        sl.load();
+        plateau = sl.getJeu().plateau;
+        joueurs = sl.getJeu().joueurs;
+        refPersos = new LinkedList<Integer>();
+        joueurZombie = sl.getJeu().joueurZombie;
+        univers = sl.getJeu().univers;
+        historique = new Historique();
+        charge = true;
+        go();
+
     }
 
     public static void setUserNames(List<String> listNames) {
         names = listNames;
+    }
+    
+    public static class Music extends Thread {
+
+        String s;
+
+        public Music(String pS) {
+            s = pS;
+        }
+
+        public void run() {
+            File f = new File(this.getClass().getResource(s).getFile());
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream(f);
+                BufferedInputStream bis = new BufferedInputStream(fis);
+                try {
+                    pl = new Player(bis);
+                    pl.play();
+                    Jeu.isPlaying = true;
+                } catch (JavaLayerException e) {
+                    e.printStackTrace();
+                }
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
     
     /**
@@ -442,57 +472,32 @@ public class Jeu {
      * @param pArgs
      * @throws InterruptedException
      * @throws IOException
-     * @throws LineUnavailableException 
-     * @throws UnsupportedAudioFileException 
-     * @throws JavaLayerException 
+     * @throws LineUnavailableException
+     * @throws UnsupportedAudioFileException
+     * @throws JavaLayerException
      */
-    
-    public static class Music extends Thread {
-    	String s;
-    	
-    	public Music(String pS) {
-    		s = pS;
-    	}
-    	
-    	public void run() {
-    		File f = new File(this.getClass().getResource(s).getFile());
-            FileInputStream fis;
-			try {
-				fis = new FileInputStream(f);
-	            BufferedInputStream bis = new BufferedInputStream(fis);
-				try {
-					pl = new Player(bis);
-					pl.play();
-				} catch (JavaLayerException e) {
-					e.printStackTrace();
-				}
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			}
-    	}
-    }
-    
     @SuppressWarnings("deprecation")
-	public static void main(String[] pArgs) throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException, JavaLayerException {
+    public static void main(String[] pArgs) throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException, JavaLayerException {
 
         FenetreMenu menuJeu = new FenetreMenu();
-        
-        Music player = new Music("Mitch.mp3");
+
+        player = new Music("/Otomate/Mitch.mp3");
         player.start();
-        
+
         while (!commencerJeu) {
             Thread.sleep(100);
         }
 
-        if(!charge) {debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);}
-        else {Affichage.charger();}
-        
+        if (!charge) {
+            debutPartie(nUnivers, nZombie, nbPersoParZombie, xmls, couleurs);
+        } else {
+            Affichage.charger();
+        }
 
-        
         player.stop();
         player = new Music(univers.musique);
         player.start();
-        
+
         while (!finPartie()) {
             while (pause) {
                 if (step) {

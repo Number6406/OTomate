@@ -63,7 +63,7 @@ public class ImageColor {
     }
      
     public void test() throws IOException {
-        iEntree = ImageIO.read(new File(this.getClass().getResource("../Graphics/Chara/1.png").getFile()));
+        iEntree = ImageIO.read(new File(this.getClass().getResource("/Graphics/Chara/1.png").getFile()));
         int cEntree = toRGB(10, 64, 7);
         int cSortie = toRGB(0, 0, 255);
         

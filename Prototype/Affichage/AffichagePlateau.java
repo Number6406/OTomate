@@ -43,8 +43,8 @@ public class AffichagePlateau extends JPanel {
             try {
                 for(int i=0; i<=10; i++) {
                     BufferedImage img;
-                    System.out.println("../Graphics/Tiles/Zombie/"+i+".jpg");
-                    img = ImageIO.read(new File(this.getClass().getResource("../Graphics/Tiles/Zombie/"+i+".jpg").getFile())); //Version Linux
+                    System.out.println("/Graphics/Tiles/Zombie/"+i+".jpg");
+                    img = ImageIO.read(new File(this.getClass().getResource("/Graphics/Tiles/Zombie/"+i+".jpg").getFile())); //Version Linux
                     tiles.add(img);
                 }
             } catch (IOException e) {
@@ -53,7 +53,7 @@ public class AffichagePlateau extends JPanel {
             
             //test perso
             try {
-                chara = new ImageIcon(this.getClass().getResource("../Graphics/Chara/1.gif")).getImage();
+                chara = new ImageIcon(this.getClass().getResource("/Graphics/Chara/1.gif")).getImage();
             } catch (Exception e) {};
             
         }
