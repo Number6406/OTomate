@@ -155,6 +155,9 @@ public class Jeu {
     public static void initJoueurs(List<String> names, int nbPersoParZombie, int nZombie, List<List<String>> xmls, List<Color> couleurs) {
         joueurs = new LinkedList<Joueur>();
         int nbZ = nbGentils(xmls, nZombie) / nbPersoParZombie;
+        
+        System.out.println("GENTILS" +nbGentils(xmls, nZombie));
+        
         for (int i = 0; i < xmls.size(); i++) {
             if (i == nZombie) {
             	joueurs.add(new Joueur(names.get(i), xmls.get(i), true, nbZ, couleurs.get(i)));
@@ -373,8 +376,8 @@ public class Jeu {
         Affichage.again();
     }
 
-    public static void setNbZombie(int nb) {
-        nZombie = nb;
+    public static void setNZombie(int numero) {
+        nZombie = numero;
     }
 
     public static void setNbPersoParZ(int nb) {

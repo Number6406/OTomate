@@ -89,8 +89,12 @@ public class FenetreMenu extends FenetreBase {
         univers.add("Robots VS. Virus");
 
         b_jouer.addActionListener((ActionEvent e) -> {
-            // Ouvre une fenetre de nouvelle partie au clic
-            FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(univers);
+            try {
+                // Ouvre une fenetre de nouvelle partie au clic
+                FenetreNouvellePartie fNvPartie = new FenetreNouvellePartie(univers);
+            } catch (IOException ex) {
+                Logger.getLogger(FenetreMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         });
 
