@@ -24,6 +24,8 @@ import javax.swing.JTextField;
 
 import Otomate.Jeu;
 import java.awt.Desktop;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,7 +51,7 @@ public class FenetreMenu extends FenetreBase {
 
     JDialog saveW = null;
 
-    public FenetreMenu() {
+    public FenetreMenu() throws IOException {
         super(500, 300, "Code4Dead");
         this.setLayout(new BorderLayout());
 
@@ -100,7 +102,14 @@ public class FenetreMenu extends FenetreBase {
                     saveW = new JDialog();
                     saveW.setLocationRelativeTo(null);
                     saveW.setLayout(new BorderLayout());
-                    saveW.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    saveW.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+                    saveW.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosing(WindowEvent e){
+                            saveW.dispose();
+                            saveW = null;
+                        }
+                    });
                     saveW.setVisible(true);
                     JTextField chemin = new JTextField();
                     JButton bchemin = new JButton("Fichier");
@@ -167,11 +176,6 @@ public class FenetreMenu extends FenetreBase {
                     saveW.toFront();
                 }
             }
-        }
-        );
-    }
-
-    public static void main(String[] args) {
-        FenetreMenu f = new FenetreMenu();
+        });
     }
 }

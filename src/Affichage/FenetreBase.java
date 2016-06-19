@@ -5,6 +5,10 @@
  */
 package Affichage;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 /**
@@ -18,7 +22,7 @@ public abstract class FenetreBase extends JFrame {
      */
     private static final long serialVersionUID = 1L;
 
-    public FenetreBase(int l, int h, String nom) {
+    public FenetreBase(int l, int h, String nom) throws IOException {
 
         super(nom);
         // On force des tailles minimales à la création histoire d'éviter de se retrouver dans de mauvaises situations
@@ -29,6 +33,8 @@ public abstract class FenetreBase extends JFrame {
             this.setSize(l, h);
         }
         
+        BufferedImage icon = ImageIO.read(new File(this.getClass().getResource("../Graphics/Icons/c4d.png").getFile()));
+        this.setIconImage(icon);
         this.setLocationRelativeTo(null);
 
         this.setVisible(true); // On affiche la fenêtre

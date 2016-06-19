@@ -472,7 +472,14 @@ public class FenetreJeu extends JFrame {
             saveW = new JDialog(this, "Sauvegarder la partie");
             saveW.setLocationRelativeTo(this);
             saveW.setLayout(new BorderLayout());
-            saveW.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            saveW.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+            saveW.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e){
+                    saveW.dispose();
+                    saveW = null;
+                }
+            });
             saveW.setVisible(true);
             JTextField chemin = new JTextField();
             JButton bchemin = new JButton("Fichier");

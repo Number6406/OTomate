@@ -20,3 +20,9 @@ Musique Robots : Robots
 Librairies utilisées :
 
 AWT / SWING
+JLayer
+
+----
+
+Toutes les images utilisées pour cette application sont notre propriété
+Quelques inspirations sont à noter, pour les icones des moteurs de recherches et antivirus par exemple.
